@@ -49,3 +49,5 @@ select
 from joined
 -- drop venues confirmed in manual review to be bad imports (shops, other sports, ...)
 where venue_id not in (select venue_id from {{ ref('excluded_venues') }})
+  -- hard quality bar: hide thin/unproven listings (junk, brand-new, bad scrapes)
+  and coalesce(review_count, 0) >= 3

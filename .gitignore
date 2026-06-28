@@ -1,0 +1,39 @@
+# scrape output + warehouse (regenerated, never commit)
+scraper/out/
+*.duckdb
+*.duckdb.wal
+pipeline/**/target/
+pipeline/**/logs/
+pipeline/.dlt/secrets.toml
+*.json.gz
+
+# python
+.venv/
+__pycache__/
+*.pyc
+.ruff_cache/
+.pytest_cache/
+
+# node / next
+node_modules/
+.next/
+.open-next/
+out/
+.turbo/
+
+# cloudflare
+.wrangler/
+.dev.vars
+web/worker-configuration.d.ts
+
+# env + secrets
+.env
+.env.*
+!.env.example
+
+# local tooling (not part of the project)
+.claude/
+
+# misc
+.DS_Store
+*.log

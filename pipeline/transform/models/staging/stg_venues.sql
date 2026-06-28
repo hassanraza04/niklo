@@ -39,10 +39,12 @@ select
     -- normalized key to collapse the rare rows that come back with no place_id
     lower(trim(title)) || '|' || round(latitude, 4) || ',' || round(longitude, 4) as name_geo_key,
 
-    -- how many useful fields are populated -- used to pick the best of N duplicates
+    -- how many useful fields are populated -- used to pick the best of N duplicates.
+    -- rating/review_count count only when > 0, since gosom occasionally returns a
+    -- 0 on a bad parse for a venue that really does have ratings.
     (
-        (review_rating is not null)::int
-      + (review_count is not null)::int
+        (review_rating is not null and review_rating > 0)::int
+      + (review_count is not null and review_count > 0)::int
       + (nullif(web_site, '') is not null)::int
       + (nullif(phone, '') is not null)::int
       + (nullif(address, '') is not null)::int

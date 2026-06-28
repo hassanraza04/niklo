@@ -5,6 +5,7 @@ import { listVenuesBySubcategory } from "@/lib/venues";
 import { VenueCard } from "@/components/VenueCard";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { canonicalArea } from "@/lib/areas";
+import { isOpenNow } from "@/lib/hours";
 import { subcategoryIcon } from "@/lib/icons";
 
 export const dynamic = "force-dynamic";
@@ -19,24 +20,25 @@ export async function generateMetadata({
   return { title: found ? `${found.sub.name} in Karachi` : "Browse" };
 }
 
+const ELSEWHERE = "Elsewhere";
+
 export default async function SubcategoryPage({
   params,
   searchParams,
 }: {
   params: Promise<{ category: string; subcategory: string }>;
-  searchParams: Promise<{ area?: string }>;
+  searchParams: Promise<{ area?: string; open?: string }>;
 }) {
   const { category, subcategory } = await params;
-  const { area: activeArea } = await searchParams;
+  const { area: activeArea, open } = await searchParams;
+  const openActive = open === "1";
   const found = findSubcategory(subcategory);
   if (!found || found.category.slug !== category) notFound();
   const { category: cat, sub } = found;
 
   const venues = await listVenuesBySubcategory(subcategory);
 
-  // build area facets from the messy scraped text. anything that doesn't map to a
-  // known area falls into "Elsewhere" so the chip counts always add up to the total.
-  const ELSEWHERE = "Elsewhere";
+  // area facets; anything that doesn't map to a known area falls into "Elsewhere"
   const areaCounts = new Map<string, number>();
   let elsewhere = 0;
   for (const v of venues) {
@@ -47,13 +49,21 @@ export default async function SubcategoryPage({
   const areas = [...areaCounts.entries()].sort((a, b) => b[1] - a[1]);
   if (elsewhere > 0) areas.push([ELSEWHERE, elsewhere]);
 
-  const filtered = !activeArea
+  const byArea = !activeArea
     ? venues
     : activeArea === ELSEWHERE
       ? venues.filter((v) => canonicalArea(v) === null)
       : venues.filter((v) => canonicalArea(v) === activeArea);
+  const filtered = openActive ? byArea.filter((v) => isOpenNow(v.hours) === true) : byArea;
 
   const base = `/c/${cat.slug}/${sub.slug}`;
+  const href = (a?: string, o?: boolean) => {
+    const sp = new URLSearchParams();
+    if (a) sp.set("area", a);
+    if (o) sp.set("open", "1");
+    const s = sp.toString();
+    return s ? `${base}?${s}` : base;
+  };
 
   return (
     <div className="mx-auto max-w-6xl px-5 py-8">
@@ -72,18 +82,34 @@ export default async function SubcategoryPage({
             {sub.name} in Karachi
           </h1>
           <p className="text-ink-soft">
-            {venues.length > 0
-              ? `${venues.length} ${venues.length === 1 ? "place" : "places"} we found`
-              : "Nothing here yet"}
+            {venues.length === 0
+              ? "Nothing here yet"
+              : activeArea || openActive
+                ? `${filtered.length} of ${venues.length} ${venues.length === 1 ? "place" : "places"}`
+                : `${venues.length} ${venues.length === 1 ? "place" : "places"} we found`}
           </p>
         </div>
       </header>
 
-      {/* area chips */}
-      {areas.length > 0 && (
-        <div className="mt-6 flex flex-wrap gap-2">
+      {venues.length > 0 && (
+        <div className="mt-6 flex flex-wrap items-center gap-2">
+          {/* open now toggle */}
           <Link
-            href={base}
+            href={href(activeArea, !openActive)}
+            className={`rounded-full border px-3.5 py-1.5 text-sm font-semibold transition-colors ${
+              openActive
+                ? "border-pine bg-pine text-paper"
+                : "border-line bg-card text-pine hover:border-pine/40"
+            }`}
+          >
+            ● Open now
+          </Link>
+
+          <span className="mx-1 h-5 w-px bg-line" aria-hidden />
+
+          {/* area chips (preserve the open toggle) */}
+          <Link
+            href={href(undefined, openActive)}
             className={`rounded-full border px-3.5 py-1.5 text-sm font-medium transition-colors ${
               !activeArea
                 ? "border-clay bg-clay text-paper"
@@ -95,7 +121,7 @@ export default async function SubcategoryPage({
           {areas.map(([area, n]) => (
             <Link
               key={area}
-              href={`${base}?area=${encodeURIComponent(area)}`}
+              href={href(area, openActive)}
               className={`rounded-full border px-3.5 py-1.5 text-sm font-medium transition-colors ${
                 activeArea === area
                   ? "border-clay bg-clay text-paper"
@@ -132,9 +158,9 @@ export default async function SubcategoryPage({
         </div>
       ) : (
         <p className="mt-10 text-ink-soft">
-          Nothing in {activeArea}.{" "}
+          {openActive ? "Nothing open right now" : `Nothing in ${activeArea}`}.{" "}
           <Link href={base} className="text-clay underline">
-            Show all areas
+            Clear filters
           </Link>
         </p>
       )}

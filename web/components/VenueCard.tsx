@@ -2,9 +2,11 @@ import Link from "next/link";
 import { Rating } from "./Rating";
 import type { Venue } from "@/lib/types";
 import { canonicalArea } from "@/lib/areas";
+import { isOpenNow } from "@/lib/hours";
 
 export function VenueCard({ venue }: { venue: Venue }) {
   const area = canonicalArea(venue);
+  const open = isOpenNow(venue.hours);
   return (
     <Link
       href={`/v/${venue.slug}`}
@@ -47,8 +49,14 @@ export function VenueCard({ venue }: { venue: Venue }) {
             {area && <span> · {area}</span>}
           </p>
         </div>
-        <div className="mt-auto pt-1">
+        <div className="mt-auto flex items-center justify-between gap-2 pt-1">
           <Rating rating={venue.rating} reviewCount={venue.review_count} />
+          {open === true && (
+            <span className="shrink-0 text-xs font-semibold text-pine">● Open</span>
+          )}
+          {open === false && (
+            <span className="shrink-0 text-xs text-ink-soft">Closed now</span>
+          )}
         </div>
       </div>
     </Link>

@@ -5,7 +5,7 @@ export function SiteFooter() {
         <p className="font-display text-lg text-ink">Niklo</p>
         <p className="mt-1 max-w-md">
           A little side project to answer the eternal Karachi question, &ldquo;yaar
-          kya karein?&rdquo; Made at home, for free.
+          kya karein?&rdquo;
         </p>
         <p className="mt-4 text-xs">
           Ratings &amp; details pulled from public Google Maps listings, refreshed

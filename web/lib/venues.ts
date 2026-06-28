@@ -89,17 +89,17 @@ export async function searchVenues(q: string, limit = 60): Promise<Venue[]> {
 }
 
 export async function spinPool(
-  subSlug = "padel",
+  subSlug: string | null = null,
   limit = 12,
 ): Promise<{ name: string; slug: string; area: string | null; address: string | null }[]> {
   const db = await getDb();
+  const where = subSlug
+    ? "where subcategory_slug = ? and rating is not null"
+    : "where rating is not null";
+  const binds: (string | number)[] = subSlug ? [subSlug, limit] : [limit];
   const { results } = await db
-    .prepare(
-      `select name, slug, area, address from venues
-       where subcategory_slug = ? and rating is not null
-       order by random() limit ?`,
-    )
-    .bind(subSlug, limit)
+    .prepare(`select name, slug, area, address from venues ${where} order by random() limit ?`)
+    .bind(...binds)
     .all<{ name: string; slug: string; area: string | null; address: string | null }>();
   return results ?? [];
 }

@@ -7,7 +7,7 @@ export const dynamic = "force-dynamic";
 export const metadata = { title: "Can't decide? Spin" };
 
 export default async function SpinPage() {
-  const pool = await spinPool("padel", 10);
+  const pool = await spinPool(null, 10);
   const segments = pool.map((v) => ({
     name: v.name,
     slug: v.slug,
@@ -20,7 +20,8 @@ export default async function SpinPage() {
         Can&apos;t decide? Spin.
       </h1>
       <p className="mx-auto mt-2 max-w-md text-ink-soft">
-        Ten padel courts on the wheel. Give it a spin and stop overthinking it.
+        Ten random spots from across Karachi on the wheel. Give it a spin and stop
+        overthinking it.
       </p>
 
       <div className="mt-10">

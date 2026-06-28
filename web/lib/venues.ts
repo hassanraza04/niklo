@@ -57,18 +57,33 @@ export async function countsByCategory(): Promise<Record<string, number>> {
 }
 
 export async function searchVenues(q: string, limit = 60): Promise<Venue[]> {
-  const cleaned = q.trim().replace(/[%_]/g, " ");
-  if (!cleaned) return [];
-  const like = `%${cleaned}%`;
+  // tokenize: each word must appear in some field (so "padel clifton" matches a
+  // padel venue in clifton, not the literal substring).
+  const tokens = q
+    .trim()
+    .split(/\s+/)
+    .map((t) => t.replace(/[%_]/g, ""))
+    .filter(Boolean)
+    .slice(0, 6);
+  if (!tokens.length) return [];
+
   const db = await getDb();
-  const { results } = await db
-    .prepare(
-      `select * from venues
-       where name like ?1 or area like ?1 or address like ?1
-          or subcategory_name like ?1 or category_name like ?1
-       ${ORDER} limit ?2`,
+  const clause = tokens
+    .map(
+      () =>
+        "(name like ? or area like ? or address like ? or subcategory_name like ? or category_name like ?)",
     )
-    .bind(like, limit)
+    .join(" and ");
+  const binds: (string | number)[] = [];
+  for (const t of tokens) {
+    const like = `%${t}%`;
+    binds.push(like, like, like, like, like);
+  }
+  binds.push(limit);
+
+  const { results } = await db
+    .prepare(`select * from venues where ${clause} ${ORDER} limit ?`)
+    .bind(...binds)
     .all<Venue>();
   return results ?? [];
 }

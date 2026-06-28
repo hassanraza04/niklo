@@ -7,6 +7,7 @@ import { Breadcrumb } from "@/components/Breadcrumb";
 import { OpenHours } from "@/components/OpenHours";
 import { VenueMap } from "@/components/VenueMap";
 import { VenueCard } from "@/components/VenueCard";
+import { SaveButton } from "@/components/SaveButton";
 
 export const dynamic = "force-dynamic";
 
@@ -127,6 +128,17 @@ export default async function VenuePage({
 
           {/* contact row */}
           <div className="mt-5 flex flex-wrap gap-3 text-sm">
+            <SaveButton
+              item={{
+                slug: venue.slug,
+                name: venue.name,
+                sub: found?.sub.name ?? null,
+                area: area ?? venue.area,
+                rating: venue.rating,
+                reviews: venue.review_count,
+                photo: venue.photo_url,
+              }}
+            />
             {venue.phone && (
               <a
                 href={`tel:${venue.phone.replace(/\s+/g, "")}`}

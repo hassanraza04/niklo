@@ -24,6 +24,12 @@ export function SiteHeader() {
             Browse
           </Link>
           <Link
+            href="/saved"
+            className="hidden rounded-full px-3 py-1.5 text-sm font-medium text-ink-soft transition-colors hover:bg-paper-2 hover:text-ink sm:inline-block"
+          >
+            Saved
+          </Link>
+          <Link
             href="/spin"
             className="rounded-full bg-marigold px-3.5 py-1.5 text-sm font-semibold text-ink shadow-sm transition-transform hover:-translate-y-0.5"
           >

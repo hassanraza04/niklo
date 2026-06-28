@@ -116,6 +116,18 @@ export async function listFlagged(): Promise<Venue[]> {
   return results ?? [];
 }
 
+export async function getVenuesBySlugs(slugs: string[]): Promise<Venue[]> {
+  if (!slugs.length) return [];
+  const db = await getDb();
+  const ph = slugs.map(() => "?").join(",");
+  const { results } = await db
+    .prepare(`select * from venues where slug in (${ph})`)
+    .bind(...slugs)
+    .all<Venue>();
+  const bySlug = new Map((results ?? []).map((v) => [v.slug, v]));
+  return slugs.map((s) => bySlug.get(s)).filter((v): v is Venue => !!v);
+}
+
 export async function allVenueSlugs(): Promise<string[]> {
   const db = await getDb();
   const { results } = await db.prepare(`select slug from venues`).all<{ slug: string }>();

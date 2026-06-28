@@ -79,14 +79,27 @@ def main() -> None:
       where d.subcategory_slug = 'padel'
     """).fetchall()
 
+    # manual verification overlay: hand-researched verdicts win over the heuristic.
+    # decision keep -> no flag, remove -> high, check -> check.
+    verdicts = {}
+    vpath = os.path.normpath(os.path.join(HERE, "..", "data", "padel_review_verdicts.csv"))
+    if os.path.exists(vpath):
+        for r in csv.DictReader(open(vpath, encoding="utf-8")):
+            verdicts[r["venue_id"]] = (r["decision"], r["reason"])
+    decision_level = {"keep": None, "remove": "high", "check": "check"}
+
     flags = []
     for venue_id, name, slug, gcat, rating, reviews, cats_json in rows:
-        cats = [gcat or ""]
-        try:
-            cats += json.loads(cats_json) if cats_json else []
-        except Exception:
-            pass
-        level, reason = classify(name, gcat, cats, rating, reviews)
+        if venue_id in verdicts:
+            decision, reason = verdicts[venue_id]
+            level = decision_level.get(decision)
+        else:
+            cats = [gcat or ""]
+            try:
+                cats += json.loads(cats_json) if cats_json else []
+            except Exception:
+                pass
+            level, reason = classify(name, gcat, cats, rating, reviews)
         if level:
             flags.append((venue_id, slug, name, level, reason))
 

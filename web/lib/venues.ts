@@ -56,6 +56,23 @@ export async function countsByCategory(): Promise<Record<string, number>> {
   return Object.fromEntries((results ?? []).map((r) => [r.category_slug, r.n]));
 }
 
+export async function searchVenues(q: string, limit = 60): Promise<Venue[]> {
+  const cleaned = q.trim().replace(/[%_]/g, " ");
+  if (!cleaned) return [];
+  const like = `%${cleaned}%`;
+  const db = await getDb();
+  const { results } = await db
+    .prepare(
+      `select * from venues
+       where name like ?1 or area like ?1 or address like ?1
+          or subcategory_name like ?1 or category_name like ?1
+       ${ORDER} limit ?2`,
+    )
+    .bind(like, limit)
+    .all<Venue>();
+  return results ?? [];
+}
+
 export async function spinPool(
   subSlug = "padel",
   limit = 12,

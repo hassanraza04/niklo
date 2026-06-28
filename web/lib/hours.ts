@@ -38,6 +38,25 @@ export function isOpenNow(raw: string | null): boolean | null {
   return false;
 }
 
+// does this place stay open past midnight on any day? (good "night out" signal)
+export function opensLate(raw: string | null): boolean {
+  const hours = parseHours(raw);
+  if (!hours) return false;
+  for (const ranges of Object.values(hours)) {
+    for (const rangeRaw of ranges) {
+      const r = rangeRaw.replace(/ | /g, " ").toLowerCase().trim();
+      if (r.includes("24 hour") || r.includes("open 24")) return true;
+      const parts = r.split(/\s*(?:–|—|-|to)\s*/).filter(Boolean);
+      if (parts.length === 2) {
+        const start = parseTime(parts[0]);
+        const end = parseTime(parts[1]);
+        if (start != null && end != null && end <= start) return true; // crosses midnight
+      }
+    }
+  }
+  return false;
+}
+
 function parseTime(s: string): number | null {
   const m = s.match(/(\d{1,2})(?::(\d{2}))?\s*(a|p)m/i);
   if (!m) return null;

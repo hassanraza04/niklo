@@ -116,6 +116,12 @@ export async function listFlagged(): Promise<Venue[]> {
   return results ?? [];
 }
 
+export async function listAllVenues(): Promise<Venue[]> {
+  const db = await getDb();
+  const { results } = await db.prepare(`select * from venues ${ORDER}`).all<Venue>();
+  return results ?? [];
+}
+
 export async function getVenuesBySlugs(slugs: string[]): Promise<Venue[]> {
   if (!slugs.length) return [];
   const db = await getDb();

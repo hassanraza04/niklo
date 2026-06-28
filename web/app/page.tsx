@@ -3,6 +3,7 @@ import { categories } from "@/lib/taxonomy";
 import { countsByCategory, topVenues } from "@/lib/venues";
 import { CategoryCard } from "@/components/CategoryCard";
 import { VenueCard } from "@/components/VenueCard";
+import { collections } from "@/lib/collections";
 
 export const dynamic = "force-dynamic";
 
@@ -61,6 +62,28 @@ export default async function Home() {
         <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
           {categories.map((c) => (
             <CategoryCard key={c.slug} category={c} count={counts[c.slug] ?? 0} />
+          ))}
+        </div>
+      </section>
+
+      {/* collections */}
+      <section className="mx-auto max-w-6xl px-5 pb-2">
+        <h2 className="font-display text-2xl font-semibold text-ink">Niklo picks</h2>
+        <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
+          {collections.map((c) => (
+            <Link
+              key={c.slug}
+              href={`/list/${c.slug}`}
+              className="flex items-center gap-4 rounded-[var(--radius-card)] border border-line bg-card p-5 shadow-sm transition-all hover:-translate-y-1 hover:border-clay/40 hover:shadow-md"
+            >
+              <span className="text-3xl">{c.emoji}</span>
+              <span>
+                <span className="block font-display text-lg font-semibold text-ink">
+                  {c.title}
+                </span>
+                <span className="block text-sm text-ink-soft">{c.blurb}</span>
+              </span>
+            </Link>
           ))}
         </div>
       </section>

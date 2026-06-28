@@ -1,0 +1,76 @@
+{
+  "city": "karachi",
+  "categories": [
+    {
+      "slug": "sports-active",
+      "name": "Sports & Active",
+      "blurb": "Burn some energy.",
+      "subcategories": [
+        { "slug": "padel", "name": "Padel", "synonyms": ["padel", "padel court", "padel club", "padel tennis"] },
+        { "slug": "box-cricket", "name": "Box Cricket", "synonyms": ["box cricket", "cricket nets", "indoor cricket"] },
+        { "slug": "futsal", "name": "Futsal", "synonyms": ["futsal", "football ground", "5 a side football"] },
+        { "slug": "tennis", "name": "Tennis", "synonyms": ["tennis court", "tennis club"] },
+        { "slug": "squash", "name": "Squash", "synonyms": ["squash court"] },
+        { "slug": "swimming", "name": "Swimming", "synonyms": ["swimming pool", "swimming club"] },
+        { "slug": "bowling", "name": "Bowling", "synonyms": ["bowling", "bowling alley"] },
+        { "slug": "karting", "name": "Karting", "synonyms": ["go karting", "karting", "go kart track"] },
+        { "slug": "trampoline", "name": "Trampoline Parks", "synonyms": ["trampoline park", "trampoline"] },
+        { "slug": "climbing", "name": "Climbing", "synonyms": ["climbing gym", "rock climbing", "bouldering"] },
+        { "slug": "skating", "name": "Skating", "synonyms": ["skating rink", "roller skating", "ice skating"] },
+        { "slug": "paintball", "name": "Paintball", "synonyms": ["paintball"] }
+      ]
+    },
+    {
+      "slug": "entertainment",
+      "name": "Entertainment",
+      "blurb": "Lights, screens, scoreboards.",
+      "subcategories": [
+        { "slug": "cinemas", "name": "Cinemas", "synonyms": ["cinema", "movie theatre", "multiplex"] },
+        { "slug": "arcades", "name": "Arcades & Gaming Lounges", "synonyms": ["arcade", "gaming lounge", "gaming zone"] },
+        { "slug": "escape-rooms", "name": "Escape Rooms", "synonyms": ["escape room", "escape game"] },
+        { "slug": "vr", "name": "VR", "synonyms": ["vr gaming", "virtual reality", "vr zone"] },
+        { "slug": "laser-tag", "name": "Laser Tag", "synonyms": ["laser tag"] },
+        { "slug": "billiards", "name": "Billiards & Snooker", "synonyms": ["snooker club", "billiards", "pool club"] },
+        { "slug": "mini-golf", "name": "Mini Golf", "synonyms": ["mini golf", "miniature golf"] },
+        { "slug": "theme-parks", "name": "Theme & Water Parks", "synonyms": ["theme park", "water park", "amusement park"] }
+      ]
+    },
+    {
+      "slug": "outdoors-adventure",
+      "name": "Outdoors & Adventure",
+      "blurb": "Get out of the city.",
+      "subcategories": [
+        { "slug": "hikes", "name": "Hikes", "synonyms": ["hiking trail", "hiking"] },
+        { "slug": "beaches", "name": "Beaches", "synonyms": ["beach"] },
+        { "slug": "boating", "name": "Boating & Island Trips", "synonyms": ["boating", "boat ride", "island trip"] },
+        { "slug": "adventure-parks", "name": "Adventure Parks", "synonyms": ["adventure park", "zip line"] },
+        { "slug": "camping", "name": "Camping", "synonyms": ["camping site", "campsite"] }
+      ]
+    },
+    {
+      "slug": "creative-chill",
+      "name": "Creative & Chill",
+      "blurb": "Slow it down, make something.",
+      "subcategories": [
+        { "slug": "pottery-art", "name": "Pottery & Art Studios", "synonyms": ["pottery studio", "art studio", "ceramics"] },
+        { "slug": "paint-cafe", "name": "Paint Cafés", "synonyms": ["paint cafe", "art cafe"] },
+        { "slug": "board-game-cafe", "name": "Board-Game Cafés", "synonyms": ["board game cafe", "boardgame cafe"] },
+        { "slug": "music-rooms", "name": "Music & Jam Rooms", "synonyms": ["jam room", "music studio", "rehearsal room"] },
+        { "slug": "cooking-classes", "name": "Cooking Classes", "synonyms": ["cooking class", "baking class"] },
+        { "slug": "bookstore-cafe", "name": "Bookstore-Cafés", "synonyms": ["bookstore cafe", "book cafe"] },
+        { "slug": "shisha", "name": "Shisha Lounges", "synonyms": ["shisha lounge", "sheesha cafe"] }
+      ]
+    },
+    {
+      "slug": "culture",
+      "name": "Culture",
+      "blurb": "The city's quieter side.",
+      "subcategories": [
+        { "slug": "museums", "name": "Museums", "synonyms": ["museum"] },
+        { "slug": "galleries", "name": "Galleries", "synonyms": ["art gallery"] },
+        { "slug": "heritage", "name": "Heritage", "synonyms": ["heritage site", "historical place"] },
+        { "slug": "theatre", "name": "Theatre", "synonyms": ["theatre", "performing arts"] }
+      ]
+    }
+  ]
+}

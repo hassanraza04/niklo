@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+@theme {
+  /* warm, homey, karachi-ish. cream paper + clay + pine + marigold. */
+  --color-paper: #faf5ec;
+  --color-paper-2: #f4ebda;
+  --color-card: #fffdf8;
+  --color-ink: #2b2724;
+  --color-ink-soft: #6f6657;
+  --color-clay: #c75b39;
+  --color-clay-dark: #a8462a;
+  --color-pine: #1f6b4f;
+  --color-pine-dark: #16513c;
+  --color-marigold: #e9a523;
+  --color-line: #e7dcc7;
+
+  --font-display: var(--font-fraunces);
+  --font-sans: var(--font-inter);
+
+  --radius-card: 1.25rem;
+}
+
+html {
+  background: var(--color-paper);
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-marigold);
+  color: var(--color-ink);
+}
+
+h1, h2, h3, .font-display {
+  font-family: var(--font-display), Georgia, serif;
+}
+
+/* subtle link underline that doesn't crowd the text */
+.link-underline {
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}

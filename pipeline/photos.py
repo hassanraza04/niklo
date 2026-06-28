@@ -25,7 +25,7 @@ import duckdb
 HERE = os.path.dirname(os.path.abspath(__file__))
 DUCKDB = os.environ.get("NIKLO_DUCKDB", os.path.join(HERE, "warehouse.duckdb"))
 MANIFEST = os.path.normpath(os.path.join(HERE, "..", "data", "photo_manifest.csv"))
-CACHE = os.path.join(HERE, "photos_cache")
+CACHE = os.environ.get("PHOTOS_DIR", os.path.join(HERE, "photos_cache"))
 LIMIT = int(os.environ.get("PHOTOS_LIMIT", "0"))  # 0 = all
 UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Safari/537.36"
 

@@ -36,5 +36,7 @@ deduped as (
 
 select *
 from deduped
-where latitude between 24.78 and 25.10
-  and longitude between 66.95 and 67.35
+-- greater-karachi bounding box. kept generous on the south/west so DHA Phase 8,
+-- Korangi Creek and Sea View aren't clipped; no other city is near enough to spill in.
+where latitude between 24.70 and 25.25
+  and longitude between 66.80 and 67.55

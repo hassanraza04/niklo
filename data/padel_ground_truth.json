@@ -1,0 +1,289 @@
+{
+  "canonical": [
+    {
+      "name": "Padelverse",
+      "area": "Korangi Industrial Area (Plot H-3/A, Sector 5, EBM Causeway)",
+      "aliases": [],
+      "confidence": "high"
+    },
+    {
+      "name": "Legends Arena",
+      "area": "DHA Phase 5 (Stadium Lane 3, Khy-e-Mujahid, Defence)",
+      "aliases": [
+        "Legends Arena Karachi"
+      ],
+      "confidence": "high"
+    },
+    {
+      "name": "Padel Up (by Legends Arena)",
+      "area": "Gulshan-e-Iqbal (5-A, Block 10, off Rashid Minhas Road)",
+      "aliases": [
+        "Padel Up",
+        "Padel Up Karachi"
+      ],
+      "confidence": "high"
+    },
+    {
+      "name": "HMR Waterfront Padel (Legends Arena partnership)",
+      "area": "DHA Phase 8 (Abdul Sattar Edhi Ave, Zone D, HMR Waterfront)",
+      "aliases": [
+        "Padel at HMR Waterfront",
+        "HMR Waterfront padel courts"
+      ],
+      "confidence": "high"
+    },
+    {
+      "name": "Cross Court (by Legends Arena)",
+      "area": "Clifton",
+      "aliases": [],
+      "confidence": "medium"
+    },
+    {
+      "name": "Smash X",
+      "area": "KDA Scheme 1 (KDA Residence Club), Gulshan-e-Iqbal, and Bahadurabad (multiple branches)",
+      "aliases": [
+        "Smash X Arena",
+        "Smash X Karachi"
+      ],
+      "confidence": "high"
+    },
+    {
+      "name": "Viva Padel",
+      "area": "Clifton Block 5 (Shaheed Hosh Muhammad Sheedi Park)",
+      "aliases": [
+        "Viva Padel Club"
+      ],
+      "confidence": "high"
+    },
+    {
+      "name": "The Padel Club",
+      "area": "DHA Phase 8",
+      "aliases": [
+        "The Padel Club (Karachi)",
+        "Padel Club (DHA Phase 8)"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "name": "Padel X",
+      "area": "DHA Phase 8 (Al-Murtaza Commercial Lane 1); possible second Clifton Block 2 branch",
+      "aliases": [
+        "Padel X Karachi",
+        "Padel X Karachi DHA Phase VIII"
+      ],
+      "confidence": "high"
+    },
+    {
+      "name": "Greenwich Padel",
+      "area": "DHA Phase 6 (DK-10, 38th St, Darakhshan Villas)",
+      "aliases": [
+        "Padel at Greenwich",
+        "Padel At Greenwich"
+      ],
+      "confidence": "high"
+    },
+    {
+      "name": "House of Padel",
+      "area": "Clifton (Plot D-118, Block 2)",
+      "aliases": [
+        "House of Padel Khi"
+      ],
+      "confidence": "high"
+    },
+    {
+      "name": "Court X",
+      "area": "PECHS (Plot P-41, Main Ferozabad Police Station Road)",
+      "aliases": [
+        "Court X - Padel Club",
+        "Court X Padel Club"
+      ],
+      "confidence": "high"
+    },
+    {
+      "name": "Champions Club",
+      "area": "Main Shahrah-e-Faisal (opposite Habitt / Dunkin Donuts)",
+      "aliases": [
+        "Champions Club Karachi",
+        "Champions Club PK"
+      ],
+      "confidence": "high"
+    },
+    {
+      "name": "Padel Pulse",
+      "area": "Gulshan-e-Iqbal (D-10, Block 13/D-1)",
+      "aliases": [],
+      "confidence": "high"
+    },
+    {
+      "name": "Capital Padel",
+      "area": "DHA Phase 5 (Zamzama Park)",
+      "aliases": [
+        "Capital Padel Karachi"
+      ],
+      "confidence": "high"
+    },
+    {
+      "name": "The Padel Factory",
+      "area": "Korangi Industrial Area (21/3, Sector 22)",
+      "aliases": [
+        "Padel Factory",
+        "The Padel Factory Karachi"
+      ],
+      "confidence": "high"
+    },
+    {
+      "name": "Courtside Padel",
+      "area": "Gulistan-e-Johar (161, Block 14)",
+      "aliases": [
+        "Courtside",
+        "Courtside Padel Karachi"
+      ],
+      "confidence": "high"
+    },
+    {
+      "name": "Clifton Courtyard",
+      "area": "Clifton (Plot ST-4, Block 2)",
+      "aliases": [
+        "Clifton Courtyard Padel"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "name": "Padel Grove",
+      "area": "Korangi Creek (Plot 19-A, Hyderi Industrial Trading Estate, Korangi Creek Rd)",
+      "aliases": [
+        "Padel Grove Karachi"
+      ],
+      "confidence": "high"
+    },
+    {
+      "name": "Power Padel Arena",
+      "area": "PECHS (Delhi CHS / Delhi Society)",
+      "aliases": [],
+      "confidence": "high"
+    },
+    {
+      "name": "Padel Gardens",
+      "area": "Karachi (exact area unconfirmed)",
+      "aliases": [
+        "Padel Gardens PK"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "name": "Matchbox Padel",
+      "area": "Malir Cantt (Ordnance Mart)",
+      "aliases": [],
+      "confidence": "high"
+    },
+    {
+      "name": "Space Padel",
+      "area": "PECHS (Plot 39/B/6, Employees Cooperative Housing Society Block 6, behind Jason Trade Centre, off Shahrah-e-Faisal)",
+      "aliases": [
+        "Space Padel Khi"
+      ],
+      "confidence": "high"
+    },
+    {
+      "name": "Silk Arena",
+      "area": "Karachi (exact area unconfirmed)",
+      "aliases": [],
+      "confidence": "low"
+    },
+    {
+      "name": "Vamos Padel Club",
+      "area": "Karachi (DHA vicinity; exact street unconfirmed)",
+      "aliases": [
+        "Vamos Padel Club Khi"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "name": "Pro Padel",
+      "area": "Karachi (exact area unconfirmed)",
+      "aliases": [],
+      "confidence": "low"
+    },
+    {
+      "name": "Premier Club (Premier Sports Club)",
+      "area": "KDA Scheme 1 (KDA Ground, near Springfield School)",
+      "aliases": [
+        "Premier Club",
+        "Premier Sports Club"
+      ],
+      "confidence": "high"
+    },
+    {
+      "name": "Karachi Creek Club (DA Creek Club)",
+      "area": "DHA Phase 8 (waterfront)",
+      "aliases": [
+        "DA Creek Club",
+        "Defence Authority Creek Club"
+      ],
+      "confidence": "high"
+    },
+    {
+      "name": "Jahangir Khan Sports Club (JKC / JKSC)",
+      "area": "Jamshed Quarters (Kashmir Road)",
+      "aliases": [
+        "JKC",
+        "JKSC",
+        "Jahangir Khan Sports Club"
+      ],
+      "confidence": "high"
+    },
+    {
+      "name": "Club 44",
+      "area": "Clifton",
+      "aliases": [
+        "Club 44 Karachi"
+      ],
+      "confidence": "low"
+    },
+    {
+      "name": "Arena (Millennium Entertainment)",
+      "area": "Karsaz (FEC-01, Habib Ibrahim Rehmatullah Rd, next to Bahria Auditorium)",
+      "aliases": [
+        "Arena Karsaz",
+        "Millennium Entertainment Arena"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "name": "Jauhar Sports Arena",
+      "area": "Gulistan-e-Johar (Block 16)",
+      "aliases": [],
+      "confidence": "medium"
+    },
+    {
+      "name": "Padel Fix",
+      "area": "DHA Phase 8 (DA Creek Club, Gate 5)",
+      "aliases": [],
+      "confidence": "medium"
+    },
+    {
+      "name": "Padel Club (padelclub.pk)",
+      "area": "Dehli Mercantile CHS / Karachi Memon Society (Plot 25, Block 7, near Tipu Sultan Rd)",
+      "aliases": [
+        "padel.club.pk"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "name": "Ignite Sports Pavilion",
+      "area": "Karachi (exact area unconfirmed)",
+      "aliases": [],
+      "confidence": "medium"
+    },
+    {
+      "name": "The Match Point",
+      "area": "Karachi (exact area unconfirmed)",
+      "aliases": [
+        "Match Point"
+      ],
+      "confidence": "low"
+    }
+  ],
+  "estimated_total_range": "36-45 distinct operating padel courts (high/medium confidence core of ~33, plus several low-confidence and unconfirmed-area venues)",
+  "notes": "Deduplication and merges:\\n- 'Padel Up' appears with two conflicting locations: Karsaz (Premier Club, KDA Ground) in one early mention versus Gulshan-e-Iqbal Block 10 in two later, more detailed mentions with full address/phone/email. The Gulshan-e-Iqbal address is better-sourced, so I treated all 'Padel Up' mentions as one Legends-operated venue. There may be more than one Padel Up branch (Legends runs a multi-site network), but evidence is not strong enough to split confidently.\\n- Legends Arena group operates a network of sub-venues that are genuinely distinct locations: Legends Arena (DHA Phase 5 flagship), Padel Up (Gulshan), HMR Waterfront (DHA Phase 8), Cross Court (Clifton), and JKC (which appears Legends-affiliated via legendsarena.pk). I kept these as separate courts because each has its own physical location and booking.\\n- Padel Fix and Karachi Creek Club (DA Creek Club) overlap: Padel Fix operates inside DA Creek Club Gate 5 in DHA Phase 8. They may be the same physical courts under different branding/booking. I kept both but flag the likely overlap; this could collapse to one venue.\\n- 'The Padel Club' (DHA Phase 8) is flagged medium because one researcher noted the domain thepadelclub.pk may actually be a separate Lahore club, while another treated thepadelclub.pk as the Karachi site's own domain. The DHA Phase 8 Karachi venue is corroborated by Vouch365/Padel Tribe, but the domain ownership needs re-verification.\\n- 'Padel Club (padelclub.pk)' near Tipu Sultan Rd is a DISTINCT venue from 'The Padel Club' DHA Phase 8 and from Lahore's 'Club Padel' - kept separate.\\n- Viva Padel area resolves to Clifton Block 5 (Sheedi Park conversion) per the most detailed source, overriding the vaguer 'DHA Phase 8' early mention.\\n- Power Padel Arena area resolves to PECHS (Delhi CHS) per the detailed source; the early 'area unconfirmed' mention is the same venue.\\n- Low-confidence venues (Silk Arena, Pro Padel, Club 44, The Match Point) rest on a single aggregator/booking-page angle each with no own-site or address; they may be real, may be rebrands, or may be duplicate listings of venues already on this list - re-verify before treating as confirmed.\\n- Dropped nothing as clearly non-Karachi; all mentions plausibly correspond to Karachi padel courts.\\n- IMPORTANT: Karachi's padel scene is booming and changes fast - new courts open frequently and some close or rebrand. This list is a FLOOR, not a ceiling; treat the count as a snapshot that will be out of date quickly."
+}

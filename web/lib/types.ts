@@ -17,7 +17,7 @@ export type Venue = {
   price_level: string | null;
   website: string | null;
   phone: string | null;
-  hours: string | null; // json: { Monday: ["7 AM–11 PM"], ... }
+  hours: string | null; // json: { Monday: ["7 AM-11 PM"], ... }
   photo_url: string | null;
   photos: string | null; // json: [{ title, image }]
   google_url: string | null;

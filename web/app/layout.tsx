@@ -17,11 +17,11 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "Niklo — things to do in Karachi",
+    default: "Niklo: things to do in Karachi",
     template: "%s · Niklo",
   },
   description:
-    "A homey guide to everything you can do in Karachi besides eat — padel, cinemas, bowling, escape rooms and more. Can't decide? Spin.",
+    "A homey guide to everything you can do in Karachi besides eat: padel, cinemas, bowling, escape rooms and more. Can't decide? Spin.",
 };
 
 export default function RootLayout({

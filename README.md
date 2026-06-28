@@ -1,6 +1,6 @@
 # Niklo
 
-A homey little directory of things to do in Karachi besides eat — padel, cinemas,
+A homey little directory of things to do in Karachi besides eat: padel, cinemas,
 bowling, escape rooms, arcades, hikes, all that. Browse by category, filter by area,
 and when you genuinely can't decide, spin the wheel.
 
@@ -8,7 +8,7 @@ It started as a real itch (me and my friends hang out constantly and always end 
 eating because we can't think of anything else), and turned into a nice excuse to
 build a proper data pipeline end to end.
 
-> Working name "Activit", going with **Niklo** (Urdu — "let's head out").
+> Working name "Activit", going with **Niklo** (Urdu for "let's head out").
 
 ## how it works
 
@@ -17,21 +17,21 @@ google maps  ──gosom──▶  raw json  ──dlt──▶  duckdb  ──d
   (scrape)                (per query)         (raw)    (dedupe)  (canonical)      (sqlite)         (the site)
 ```
 
-1. **Scrape** — `gosom/google-maps-scraper`, run locally off my Karachi home line so
+1. **Scrape.** `gosom/google-maps-scraper`, run locally off my Karachi home line so
    the geo comes back correct (see `docs/part-c-ip-test.md` for why, and the safe
    concurrency/pacing I landed on). One query per run, low concurrency, pauses between.
-2. **Pipeline** — `dlt` loads the scrape json into DuckDB, then `dbt` does the entity
+2. **Pipeline.** `dlt` loads the scrape json into DuckDB, then `dbt` does the entity
    resolution: dedupe on Google's `place_id`, a name+geo fallback for the rare rows
    missing one, clip to the Karachi bbox, map to my taxonomy → `dim_venue`.
-3. **Serve** — `dim_venue` gets pushed into Cloudflare D1; the Next.js app reads it.
+3. **Serve.** `dim_venue` gets pushed into Cloudflare D1; the Next.js app reads it.
 
-Only thing kept from Google is the rating + review count (plus the public facts —
+Only thing kept from Google is the rating + review count (plus the public facts like
 hours, phone, location). No review text rehosted; venue pages link out to Maps.
 
 ## the stack
 
-- **Scrape:** gosom (native arm64 binary — the docker image is amd64 and its chromium
-  dies under emulation on Apple silicon)
+- **Scrape:** gosom (native arm64 binary, because the docker image is amd64 and its
+  chromium dies under emulation on Apple silicon)
 - **Pipeline:** Python, dlt → dbt → DuckDB
 - **App:** Next.js (App Router) + Tailwind, on Cloudflare via OpenNext
 - **Data:** Cloudflare D1 (venues), R2 later for first-party photos

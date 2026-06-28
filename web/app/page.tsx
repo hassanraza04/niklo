@@ -32,7 +32,7 @@ export default async function Home() {
             besides eating.
           </h1>
           <p className="mt-5 max-w-xl text-lg text-ink-soft">
-            Padel, cinemas, bowling, escape rooms, arcades, hikes — sorted,
+            Padel, cinemas, bowling, escape rooms, arcades, hikes, all sorted,
             rated and filtered. And when you really can&apos;t decide, just spin
             the wheel.
           </p>

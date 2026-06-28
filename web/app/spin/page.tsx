@@ -27,7 +27,7 @@ export default async function SpinPage() {
         {segments.length > 0 ? (
           <SpinWheel segments={segments} />
         ) : (
-          <p className="text-ink-soft">Nothing to spin yet — load some venues first.</p>
+          <p className="text-ink-soft">Nothing to spin yet. Load some venues first.</p>
         )}
       </div>
     </div>

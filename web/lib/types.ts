@@ -25,6 +25,8 @@ export type Venue = {
   is_open: number | null;
   source_query: string | null;
   last_verified: string | null;
+  review_level: "high" | "check" | null; // manual curation flag
+  review_flag: string | null; // why it was flagged
 };
 
 export type OpenHours = Record<string, string[]>;

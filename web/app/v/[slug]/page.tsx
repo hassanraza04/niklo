@@ -69,6 +69,16 @@ export default async function VenuePage({
         ]}
       />
 
+      {venue.review_flag && (
+        <div className="mt-4 rounded-2xl border border-marigold/60 bg-marigold/10 p-3 text-sm text-ink">
+          ⚠ <span className="font-semibold">Flagged for review:</span>{" "}
+          {venue.review_flag}.{" "}
+          <a href="/review" className="underline">
+            review queue
+          </a>
+        </div>
+      )}
+
       {/* gallery */}
       {gallery.length > 0 && (
         <div className="mt-4 grid grid-cols-4 gap-2 overflow-hidden rounded-[var(--radius-card)]">

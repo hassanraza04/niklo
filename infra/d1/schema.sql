@@ -27,7 +27,10 @@ create table if not exists venues (
   status           text,
   is_open          integer,
   source_query     text,
-  last_verified    text
+  last_verified    text,
+  -- manual curation: set when a venue might be a bad import (see infra/d1/flags.sql)
+  review_level     text,   -- 'high' = probably not a real court, 'check' = verify
+  review_flag      text    -- why it was flagged
 );
 
 create index if not exists idx_venues_subcategory on venues (subcategory_slug);

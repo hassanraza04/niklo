@@ -72,6 +72,18 @@ export async function spinPool(
   return results ?? [];
 }
 
+export async function listFlagged(): Promise<Venue[]> {
+  const db = await getDb();
+  const { results } = await db
+    .prepare(
+      `select * from venues where review_level is not null
+       order by case review_level when 'high' then 0 else 1 end,
+                review_count desc nulls last, name`,
+    )
+    .all<Venue>();
+  return results ?? [];
+}
+
 export async function allVenueSlugs(): Promise<string[]> {
   const db = await getDb();
   const { results } = await db.prepare(`select slug from venues`).all<{ slug: string }>();

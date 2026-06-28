@@ -34,16 +34,24 @@ export default async function SubcategoryPage({
 
   const venues = await listVenuesBySubcategory(subcategory);
 
-  // build area facets from the messy scraped text
+  // build area facets from the messy scraped text. anything that doesn't map to a
+  // known area falls into "Elsewhere" so the chip counts always add up to the total.
+  const ELSEWHERE = "Elsewhere";
   const areaCounts = new Map<string, number>();
+  let elsewhere = 0;
   for (const v of venues) {
     const a = canonicalArea(v);
     if (a) areaCounts.set(a, (areaCounts.get(a) ?? 0) + 1);
+    else elsewhere += 1;
   }
   const areas = [...areaCounts.entries()].sort((a, b) => b[1] - a[1]);
-  const filtered = activeArea
-    ? venues.filter((v) => canonicalArea(v) === activeArea)
-    : venues;
+  if (elsewhere > 0) areas.push([ELSEWHERE, elsewhere]);
+
+  const filtered = !activeArea
+    ? venues
+    : activeArea === ELSEWHERE
+      ? venues.filter((v) => canonicalArea(v) === null)
+      : venues.filter((v) => canonicalArea(v) === activeArea);
 
   const base = `/c/${cat.slug}/${sub.slug}`;
 

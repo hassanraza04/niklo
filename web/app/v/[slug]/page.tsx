@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
 import { getVenueBySlug, listVenuesBySubcategory } from "@/lib/venues";
-import { parsePhotos } from "@/lib/types";
 import { findSubcategory } from "@/lib/taxonomy";
 import { canonicalArea } from "@/lib/areas";
 import { Rating } from "@/components/Rating";
@@ -43,8 +42,6 @@ export default async function VenuePage({
 
   const found = venue.subcategory_slug ? findSubcategory(venue.subcategory_slug) : null;
   const area = canonicalArea(venue);
-  const photos = parsePhotos(venue.photos);
-  const gallery = photos.length ? photos.slice(0, 5) : venue.photo_url ? [venue.photo_url] : [];
   const verified = verifiedOn(venue.last_verified);
 
   const similar = (await listVenuesBySubcategory(venue.subcategory_slug))
@@ -79,26 +76,25 @@ export default async function VenuePage({
         </div>
       )}
 
-      {/* gallery */}
-      {gallery.length > 0 && (
-        <div className="mt-4 grid grid-cols-4 gap-2 overflow-hidden rounded-[var(--radius-card)]">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={gallery[0]}
-            alt={venue.name}
-            className="col-span-4 h-64 w-full object-cover sm:col-span-2 sm:h-80"
-          />
-          {gallery.slice(1, 5).map((src, i) => (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              key={i}
-              src={src}
-              alt=""
-              className="hidden h-[9.5rem] w-full object-cover sm:block"
-            />
-          ))}
+      {/* hero photo (self-hosted; gradient sits behind so it never flashes blank) */}
+      <div className="relative mt-4 aspect-[16/9] overflow-hidden rounded-[var(--radius-card)] bg-paper-2 sm:aspect-[5/2]">
+        <div
+          aria-hidden
+          className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-clay/15 to-marigold/20"
+        >
+          <span className="font-display text-6xl text-clay/40">
+            {venue.name.charAt(0)}
+          </span>
         </div>
-      )}
+        {venue.photo_url && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={venue.photo_url}
+            alt={venue.name}
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+        )}
+      </div>
 
       <div className="mt-6 grid gap-8 lg:grid-cols-[1fr_20rem]">
         {/* main column */}

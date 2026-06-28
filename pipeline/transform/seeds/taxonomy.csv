@@ -1,0 +1,37 @@
+subcategory_slug,subcategory_name,category_slug,category_name
+padel,Padel,sports-active,Sports & Active
+box-cricket,Box Cricket,sports-active,Sports & Active
+futsal,Futsal,sports-active,Sports & Active
+tennis,Tennis,sports-active,Sports & Active
+squash,Squash,sports-active,Sports & Active
+swimming,Swimming,sports-active,Sports & Active
+bowling,Bowling,sports-active,Sports & Active
+karting,Karting,sports-active,Sports & Active
+trampoline,Trampoline Parks,sports-active,Sports & Active
+climbing,Climbing,sports-active,Sports & Active
+skating,Skating,sports-active,Sports & Active
+paintball,Paintball,sports-active,Sports & Active
+cinemas,Cinemas,entertainment,Entertainment
+arcades,Arcades & Gaming Lounges,entertainment,Entertainment
+escape-rooms,Escape Rooms,entertainment,Entertainment
+vr,VR,entertainment,Entertainment
+laser-tag,Laser Tag,entertainment,Entertainment
+billiards,Billiards & Snooker,entertainment,Entertainment
+mini-golf,Mini Golf,entertainment,Entertainment
+theme-parks,Theme & Water Parks,entertainment,Entertainment
+hikes,Hikes,outdoors-adventure,Outdoors & Adventure
+beaches,Beaches,outdoors-adventure,Outdoors & Adventure
+boating,Boating & Island Trips,outdoors-adventure,Outdoors & Adventure
+adventure-parks,Adventure Parks,outdoors-adventure,Outdoors & Adventure
+camping,Camping,outdoors-adventure,Outdoors & Adventure
+pottery-art,Pottery & Art Studios,creative-chill,Creative & Chill
+paint-cafe,Paint Cafés,creative-chill,Creative & Chill
+board-game-cafe,Board-Game Cafés,creative-chill,Creative & Chill
+music-rooms,Music & Jam Rooms,creative-chill,Creative & Chill
+cooking-classes,Cooking Classes,creative-chill,Creative & Chill
+bookstore-cafe,Bookstore-Cafés,creative-chill,Creative & Chill
+shisha,Shisha Lounges,creative-chill,Creative & Chill
+museums,Museums,culture,Culture
+galleries,Galleries,culture,Culture
+heritage,Heritage,culture,Culture
+theatre,Theatre,culture,Culture

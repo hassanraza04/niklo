@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: raw
+    schema: raw
+    description: raw gosom scrape rows loaded by dlt
+    tables:
+      - name: venues

@@ -1,0 +1,9 @@
+niklo:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      # warehouse lives next to the dbt project; dlt loads raw scrape rows here first
+      path: "{{ env_var('NIKLO_DUCKDB', '../warehouse.duckdb') }}"
+      schema: main
+      threads: 4

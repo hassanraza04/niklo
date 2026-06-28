@@ -2,6 +2,8 @@
 scraper/out/
 *.duckdb
 *.duckdb.wal
+pipeline/photos_cache/
+data/photo_manifest.csv
 pipeline/**/target/
 pipeline/**/logs/
 pipeline/.dlt/secrets.toml

@@ -76,6 +76,19 @@ npm run db:schema && npm run db:seed      # load venues into local d1
 npm run dev                               # http://localhost:3000
 ```
 
+**Photos** — google's image urls are signed and expire, so `photos.py` mirrors each
+venue photo into R2 once and `export_to_d1.py` then serves those permanent urls. it's
+idempotent (only fetches changed photos) so it runs after every scrape. without R2
+creds it runs in local-cache mode so you can test it:
+
+```bash
+uv run python photos.py                    # set R2_* env to push to r2, else local cache
+```
+
+To turn it on: make an R2 bucket + a public domain for it, set `R2_ACCOUNT_ID`,
+`R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`, `R2_BUCKET` (for `photos.py`) and
+`R2_PUBLIC_BASE` (for `export_to_d1.py`), then re-run the build. The app doesn't change.
+
 **Deploying to Cloudflare** (one-time): `wrangler login`, `wrangler d1 create niklo`,
 drop the returned id into `web/wrangler.jsonc`, run the schema/seed with `--remote`,
 then `npm run deploy`.

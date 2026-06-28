@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { getVenueBySlug, listVenuesBySubcategory } from "@/lib/venues";
 import { findSubcategory } from "@/lib/taxonomy";
 import { canonicalArea } from "@/lib/areas";
+import { isOpenNow } from "@/lib/hours";
 import { Rating } from "@/components/Rating";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { OpenHours } from "@/components/OpenHours";
@@ -43,6 +44,7 @@ export default async function VenuePage({
 
   const found = venue.subcategory_slug ? findSubcategory(venue.subcategory_slug) : null;
   const area = canonicalArea(venue);
+  const open = isOpenNow(venue.hours);
   const verified = verifiedOn(venue.last_verified);
 
   const similar = (await listVenuesBySubcategory(venue.subcategory_slug))
@@ -118,8 +120,18 @@ export default async function VenuePage({
           </h1>
           <p className="mt-1 text-ink-soft">{area ?? venue.area ?? "Karachi"}</p>
 
-          <div className="mt-3">
+          <div className="mt-3 flex flex-wrap items-center gap-3">
             <Rating rating={venue.rating} reviewCount={venue.review_count} size="lg" />
+            {open === true && (
+              <span className="rounded-full bg-pine/10 px-2.5 py-1 text-sm font-semibold text-pine">
+                ● Open now
+              </span>
+            )}
+            {open === false && (
+              <span className="rounded-full bg-paper-2 px-2.5 py-1 text-sm font-medium text-ink-soft">
+                Closed now
+              </span>
+            )}
           </div>
 
           {venue.address && (

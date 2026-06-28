@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getVenueBySlug, listVenuesBySubcategory } from "@/lib/venues";
 import { parsePhotos } from "@/lib/types";

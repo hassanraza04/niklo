@@ -42,15 +42,32 @@ live_subs as (
     select distinct subcategory_slug from kept
 ),
 
+-- second signal: google's own categories[] array. a multi-activity venue often
+-- lists the extra activities there (e.g. Arena -> [...,"Bowling alley","Ice
+-- skating rink"]) even when our search query only caught one. map the unambiguous
+-- ones to our taxonomy so those memberships get added too. junk and broad google
+-- categories (restaurant, sports club, amusement center) are simply not in the map.
+from_gcat as (
+    select k.place_id as venue_id, gm.subcategory as subcategory_slug
+    from kept k
+    cross join unnest(cast(k.google_categories as varchar[])) as t(gcat)
+    join {{ ref('gcat_to_subcategory') }} gm
+      on lower(trim(t.gcat)) = gm.google_category
+    where k.google_categories is not null
+),
+
 -- many-to-many membership: every category a venue was scraped under, plus its
--- corrected primary, minus dead categories and the hand-pruned misfiles in
--- venue_category_excludes (e.g. a padel court that false-matched a bowling query).
+-- corrected primary, plus what google's categories[] imply, minus dead categories
+-- and the hand-pruned misfiles in venue_category_excludes (e.g. a padel court that
+-- false-matched a bowling query).
 member_src as (
     select distinct place_id as venue_id, subcategory_slug
     from {{ ref('stg_venues') }}
     where place_id is not null
     union
     select venue_id, subcategory from overrides
+    union
+    select venue_id, subcategory_slug from from_gcat
 ),
 
 members as (

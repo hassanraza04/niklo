@@ -47,6 +47,11 @@ select
         when 'cinemas' then 13 when 'vr' then 14 when 'laser-tag' then 15
         when 'arcades' then 16 when 'mini-golf' then 17 when 'billiards' then 18
         when 'futsal' then 19 when 'shisha' then 20 when 'board-game-cafe' then 21
+        when 'pottery-art' then 22 when 'paint-cafe' then 23 when 'music-rooms' then 24
+        when 'cooking-classes' then 25 when 'bookstore-cafe' then 26 when 'museums' then 27
+        when 'galleries' then 28 when 'heritage' then 29 when 'theatre' then 30
+        when 'hikes' then 31 when 'beaches' then 32 when 'boating' then 33
+        when 'adventure-parks' then 34 when 'camping' then 35
         else 99
     end                                                   as category_priority,
     _source_query                                         as source_query,

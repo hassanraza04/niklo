@@ -3,10 +3,12 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { type SavedItem, readSaved, removeSaved, SAVED_EVENT } from "@/lib/saved";
+import { SpinWheel } from "@/components/SpinWheel";
 
 export default function SavedPage() {
   const [items, setItems] = useState<SavedItem[]>([]);
   const [copied, setCopied] = useState(false);
+  const [showWheel, setShowWheel] = useState(false);
 
   useEffect(() => {
     const refresh = () => setItems(readSaved());
@@ -31,12 +33,35 @@ export default function SavedPage() {
       </p>
 
       {items.length > 0 && (
-        <button
-          onClick={share}
-          className="mt-5 rounded-full bg-clay px-5 py-2.5 font-semibold text-paper transition-transform hover:-translate-y-0.5"
-        >
-          {copied ? "Link copied ✓" : "Share this list"}
-        </button>
+        <div className="mt-5 flex flex-wrap gap-3">
+          <button
+            onClick={share}
+            className="rounded-full bg-clay px-5 py-2.5 font-semibold text-paper transition-transform hover:-translate-y-0.5"
+          >
+            {copied ? "Link copied ✓" : "Share this list"}
+          </button>
+          {items.length >= 2 && (
+            <button
+              onClick={() => setShowWheel((s) => !s)}
+              className="rounded-full border border-line bg-card px-5 py-2.5 font-semibold text-ink transition-colors hover:border-clay/40"
+            >
+              {showWheel ? "Hide wheel" : "🎡 Spin to decide"}
+            </button>
+          )}
+        </div>
+      )}
+
+      {showWheel && items.length >= 2 && (
+        <section className="mt-8 rounded-[var(--radius-card)] border border-line bg-card px-5 py-8">
+          {items.length > 10 && (
+            <p className="mb-4 text-center text-sm text-ink-soft">
+              Showing the first 10 on the wheel.
+            </p>
+          )}
+          <SpinWheel
+            segments={items.map((i) => ({ name: i.name, slug: i.slug, area: i.area }))}
+          />
+        </section>
       )}
 
       {items.length === 0 ? (

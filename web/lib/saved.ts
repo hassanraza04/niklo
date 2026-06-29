@@ -41,3 +41,13 @@ export function removeSaved(slug: string) {
 export function isSaved(slug: string): boolean {
   return readSaved().some((i) => i.slug === slug);
 }
+
+// add several at once (a friend taking a shared plan onto their own list).
+// only adds the ones not already saved; returns how many were newly added.
+export function addManySaved(incoming: SavedItem[]): number {
+  const items = readSaved();
+  const have = new Set(items.map((i) => i.slug));
+  const fresh = incoming.filter((i) => !have.has(i.slug));
+  if (fresh.length) writeSaved([...items, ...fresh]);
+  return fresh.length;
+}

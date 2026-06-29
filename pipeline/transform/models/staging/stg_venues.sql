@@ -11,8 +11,13 @@ with src as (
 -- Galleries"), so fold the two scrape categories into a single slug up front.
 canon as (
     select *,
-        case when _category in ('museums', 'galleries') then 'museums-galleries'
-             else _category end                          as _cat
+        case
+            when _category in ('museums', 'galleries') then 'museums-galleries'
+            -- board-game and paint cafes overlap heavily (google returns the same
+            -- cafes for both), so they are one browse category.
+            when _category in ('board-game-cafe', 'paint-cafe') then 'board-game-paint-cafe'
+            else _category
+        end                                              as _cat
     from src
 )
 
@@ -55,10 +60,10 @@ select
         when 'skating' then 10 when 'paintball' then 11 when 'escape-rooms' then 12
         when 'cinemas' then 13 when 'vr' then 14 when 'laser-tag' then 15
         when 'arcades' then 16 when 'mini-golf' then 17 when 'billiards' then 18
-        when 'futsal' then 19 when 'shisha' then 20 when 'board-game-cafe' then 21
-        when 'pottery-art' then 22 when 'paint-cafe' then 23 when 'music-rooms' then 24
-        when 'cooking-classes' then 25 when 'bookstore-cafe' then 26
-        when 'museums-galleries' then 27 when 'heritage' then 29 when 'theatre' then 30
+        when 'futsal' then 19 when 'shisha' then 20 when 'board-game-paint-cafe' then 21
+        when 'pottery-art' then 22 when 'music-rooms' then 24
+        when 'cooking-classes' then 25
+        when 'museums-galleries' then 27 when 'heritage' then 29
         when 'hikes' then 31 when 'beaches' then 32 when 'boating' then 33
         when 'adventure-parks' then 34 when 'camping' then 35
         else 99

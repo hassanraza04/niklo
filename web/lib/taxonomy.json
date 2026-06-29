@@ -246,19 +246,12 @@
           ]
         },
         {
-          "slug": "paint-cafe",
-          "name": "Paint Cafés",
-          "synonyms": [
-            "paint cafe",
-            "art cafe"
-          ]
-        },
-        {
-          "slug": "board-game-cafe",
-          "name": "Board-Game Cafés",
+          "slug": "board-game-paint-cafe",
+          "name": "Board-Game & Paint Cafés",
           "synonyms": [
             "board game cafe",
-            "boardgame cafe"
+            "paint cafe",
+            "art cafe"
           ]
         },
         {
@@ -276,14 +269,6 @@
           "synonyms": [
             "cooking class",
             "baking class"
-          ]
-        },
-        {
-          "slug": "bookstore-cafe",
-          "name": "Bookstore-Cafés",
-          "synonyms": [
-            "bookstore cafe",
-            "book cafe"
           ]
         },
         {
@@ -316,14 +301,6 @@
           "synonyms": [
             "heritage site",
             "historical place"
-          ]
-        },
-        {
-          "slug": "theatre",
-          "name": "Theatre",
-          "synonyms": [
-            "theatre",
-            "performing arts"
           ]
         }
       ]

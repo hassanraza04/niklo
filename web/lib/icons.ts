@@ -34,15 +34,12 @@ const SUBCATEGORY: Record<string, string> = {
   "adventure-parks": "🪂",
   camping: "🏕️",
   "pottery-art": "🏺",
-  "paint-cafe": "🖌️",
-  "board-game-cafe": "🎲",
+  "board-game-paint-cafe": "🎲",
   "music-rooms": "🎸",
   "cooking-classes": "🍳",
-  "bookstore-cafe": "📚",
   shisha: "💨",
   "museums-galleries": "🏛️",
   heritage: "🕌",
-  theatre: "🎭",
 };
 
 export function categoryIcon(slug: string): string {

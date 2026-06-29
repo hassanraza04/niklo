@@ -77,6 +77,8 @@ members_raw as (
     left join {{ ref('venue_category_excludes') }} x
            on x.venue_id = m.venue_id and x.subcategory = m.subcategory_slug
     where x.venue_id is null
+      -- retired categories (removed from the directory)
+      and m.subcategory_slug not in ('theatre', 'bookstore-cafe')
 ),
 
 -- google maps treats padel as "padel tennis", so tennis queries drag in padel
@@ -95,15 +97,49 @@ members as (
     )
 ),
 
+-- the venue's primary subcategory drives its breadcrumb and "more nearby". keep the
+-- curated/deduped pick when it's still a live membership; otherwise (e.g. its category
+-- was retired) fall back to the lowest-priority remaining membership. venues left with
+-- no live membership at all are dropped (the join below is what removes them).
+member_pri as (
+    select venue_id, subcategory_slug,
+        case subcategory_slug
+            when 'padel' then 1 when 'box-cricket' then 2 when 'tennis' then 3
+            when 'squash' then 4 when 'swimming' then 5 when 'bowling' then 6
+            when 'karting' then 7 when 'trampoline' then 8 when 'climbing' then 9
+            when 'skating' then 10 when 'paintball' then 11 when 'escape-rooms' then 12
+            when 'cinemas' then 13 when 'vr' then 14 when 'laser-tag' then 15
+            when 'arcades' then 16 when 'mini-golf' then 17 when 'billiards' then 18
+            when 'futsal' then 19 when 'shisha' then 20 when 'board-game-paint-cafe' then 21
+            when 'pottery-art' then 22 when 'music-rooms' then 24 when 'cooking-classes' then 25
+            when 'museums-galleries' then 27 when 'heritage' then 29 when 'hikes' then 31
+            when 'beaches' then 32 when 'boating' then 33 when 'adventure-parks' then 34
+            when 'camping' then 35 else 99
+        end as pri
+    from members
+),
+
+primary_pick as (
+    select
+        mp.venue_id,
+        coalesce(
+            max(case when mp.subcategory_slug = k.subcategory_slug then mp.subcategory_slug end),
+            arg_min(mp.subcategory_slug, mp.pri)
+        ) as subcategory_slug
+    from member_pri mp
+    join kept k on mp.venue_id = k.place_id
+    group by mp.venue_id
+),
+
 member_named as (
     select
         me.venue_id,
         me.subcategory_slug,
         t.subcategory_name,
         t.category_slug,
-        (me.subcategory_slug = k.subcategory_slug) as is_primary
+        (me.subcategory_slug = pp.subcategory_slug) as is_primary
     from members me
-    join kept k on me.venue_id = k.place_id
+    join primary_pick pp on me.venue_id = pp.venue_id
     left join tax t on me.subcategory_slug = t.subcategory_slug
 ),
 
@@ -121,11 +157,11 @@ joined as (
     select
         k.place_id                                          as venue_id,
         k.name,
-        k.subcategory_slug,
+        pp.subcategory_slug,
         t.subcategory_name,
         t.category_slug,
         t.category_name,
-        coalesce(ma.subcategories, k.subcategory_slug)      as subcategories,
+        coalesce(ma.subcategories, pp.subcategory_slug)     as subcategories,
         coalesce(ma.category_slugs, t.category_slug)        as category_slugs,
         k.google_category,
         k.rating,
@@ -147,7 +183,8 @@ joined as (
         k.source_query,
         k.scraped_at                                        as last_verified
     from kept k
-    left join tax t on k.subcategory_slug = t.subcategory_slug
+    join primary_pick pp on k.place_id = pp.venue_id
+    left join tax t on pp.subcategory_slug = t.subcategory_slug
     left join member_agg ma on k.place_id = ma.venue_id
 )
 

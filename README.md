@@ -1,7 +1,7 @@
 # Niklo
 
 A homey little directory of things to do in Karachi besides eat: padel, cinemas,
-bowling, escape rooms, arcades, hikes, all that. Browse by category, filter by area,
+bowling, escape rooms, arcades, parks, all that. Browse by category, filter by area,
 and when you genuinely can't decide, spin the wheel.
 
 It started as a real itch (me and my friends hang out constantly and always end up

@@ -5,6 +5,15 @@
 
 with src as (
     select * from {{ source('raw', 'venues') }}
+),
+
+-- museums and art galleries are presented as one browse category ("Museums &
+-- Galleries"), so fold the two scrape categories into a single slug up front.
+canon as (
+    select *,
+        case when _category in ('museums', 'galleries') then 'museums-galleries'
+             else _category end                          as _cat
+    from src
 )
 
 select
@@ -32,14 +41,14 @@ select
     images                                                as photos,
     nullif(status, '')                                     as status,
     nullif(timezone, '')                                   as timezone,
-    _category                                             as subcategory_slug,
+    _cat                                                  as subcategory_slug,
     -- when a venue is scraped under several categories (a multi-sport complex), the
     -- dedup keeps the highest-priority one so verified/established categories don't
     -- get their venues stolen by a later dense scrape (futsal/billiards/shisha).
     -- specific sports rank above the dense, generic categories (futsal/billiards/
     -- shisha/board-game) so a dedicated venue keeps its specific primary. order of
     -- the existing categories is preserved, so adding these doesn't reshuffle them.
-    case _category
+    case _cat
         when 'padel' then 1 when 'box-cricket' then 2 when 'tennis' then 3
         when 'squash' then 4 when 'swimming' then 5 when 'bowling' then 6
         when 'karting' then 7 when 'trampoline' then 8 when 'climbing' then 9
@@ -48,8 +57,8 @@ select
         when 'arcades' then 16 when 'mini-golf' then 17 when 'billiards' then 18
         when 'futsal' then 19 when 'shisha' then 20 when 'board-game-cafe' then 21
         when 'pottery-art' then 22 when 'paint-cafe' then 23 when 'music-rooms' then 24
-        when 'cooking-classes' then 25 when 'bookstore-cafe' then 26 when 'museums' then 27
-        when 'galleries' then 28 when 'heritage' then 29 when 'theatre' then 30
+        when 'cooking-classes' then 25 when 'bookstore-cafe' then 26
+        when 'museums-galleries' then 27 when 'heritage' then 29 when 'theatre' then 30
         when 'hikes' then 31 when 'beaches' then 32 when 'boating' then 33
         when 'adventure-parks' then 34 when 'camping' then 35
         else 99
@@ -73,4 +82,4 @@ select
       + (nullif(thumbnail, '') is not null)::int
     )                                                     as completeness_score
 
-from src
+from canon

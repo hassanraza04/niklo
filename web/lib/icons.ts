@@ -40,8 +40,7 @@ const SUBCATEGORY: Record<string, string> = {
   "cooking-classes": "🍳",
   "bookstore-cafe": "📚",
   shisha: "💨",
-  museums: "🏛️",
-  galleries: "🖼️",
+  "museums-galleries": "🏛️",
   heritage: "🕌",
   theatre: "🎭",
 };

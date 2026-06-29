@@ -33,6 +33,16 @@ select
     nullif(status, '')                                     as status,
     nullif(timezone, '')                                   as timezone,
     _category                                             as subcategory_slug,
+    -- when a venue is scraped under several categories (a multi-sport complex), the
+    -- dedup keeps the highest-priority one so verified/established categories don't
+    -- get their venues stolen by a later dense scrape (futsal/billiards/shisha).
+    case _category
+        when 'padel' then 1 when 'bowling' then 2 when 'karting' then 3
+        when 'trampoline' then 4 when 'escape-rooms' then 5 when 'cinemas' then 6
+        when 'vr' then 7 when 'laser-tag' then 8 when 'arcades' then 9
+        when 'mini-golf' then 10 when 'billiards' then 11 when 'futsal' then 12
+        when 'shisha' then 13 when 'board-game-cafe' then 14 else 99
+    end                                                   as category_priority,
     _source_query                                         as source_query,
     _loaded_at                                            as scraped_at,
 

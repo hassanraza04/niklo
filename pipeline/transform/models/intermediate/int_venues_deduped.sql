@@ -12,7 +12,7 @@ with_pid as (
     select *,
         row_number() over (
             partition by place_id
-            order by completeness_score desc, review_count desc nulls last, scraped_at desc
+            order by category_priority, completeness_score desc, review_count desc nulls last, scraped_at desc
         ) as rn
     from stg
     where place_id is not null
@@ -22,7 +22,7 @@ no_pid as (
     select *,
         row_number() over (
             partition by name_geo_key
-            order by completeness_score desc, review_count desc nulls last, scraped_at desc
+            order by category_priority, completeness_score desc, review_count desc nulls last, scraped_at desc
         ) as rn
     from stg
     where place_id is null

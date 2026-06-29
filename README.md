@@ -95,6 +95,10 @@ then `npm run deploy`.
 
 ## status
 
-Padel is fully scraped, cleaned and live (122 venues). The pipeline is parameterised
-by category, so the rest of the taxonomy is just more sweeps. Next up: more categories,
-open-now filters, and saving/sharing shortlists with friends.
+Thirteen categories are scraped, cleaned and live (around 380 venues): padel, futsal,
+snooker, bowling, arcades, cinemas, shisha, board-game cafes, trampoline, laser tag,
+karting, VR and escape rooms. A venue can sit in several at once, so a sports complex
+shows up under both padel and futsal but stays a single result in search and on its own
+page. Browse has open-now and area filters, you can save a shortlist, share it as a link,
+and spin the wheel (the whole city, or just your shortlist) to settle it. Next up: more
+of the taxonomy (cricket nets, climbing, the outdoorsy stuff) and the Cloudflare deploy.

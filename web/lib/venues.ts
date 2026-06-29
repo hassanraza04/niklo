@@ -1,7 +1,9 @@
 import { getDb } from "./db";
 import type { Venue } from "./types";
 
-const ORDER = "order by rating desc nulls last, review_count desc nulls last, name";
+// default sort: most-rated first (popularity), so established venues lead instead of
+// a tiny place with a perfect score from a handful of reviews. rating breaks ties.
+const ORDER = "order by review_count desc nulls last, rating desc nulls last, name";
 
 export async function getVenueBySlug(slug: string): Promise<Venue | null> {
   const db = await getDb();
@@ -33,9 +35,12 @@ export async function listVenuesByCategory(catSlug: string): Promise<Venue[]> {
 
 export async function topVenues(limit = 8): Promise<Venue[]> {
   const db = await getDb();
+  // "crowd favourites" is explicitly highest-rated (among venues with enough reviews),
+  // so it keeps a rating-first sort regardless of the default browse order.
   const { results } = await db
     .prepare(
-      `select * from venues where rating is not null and review_count >= 20 ${ORDER} limit ?`,
+      `select * from venues where rating is not null and review_count >= 20
+       order by rating desc nulls last, review_count desc nulls last, name limit ?`,
     )
     .bind(limit)
     .all<Venue>();

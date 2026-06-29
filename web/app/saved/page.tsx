@@ -59,7 +59,11 @@ export default function SavedPage() {
             </p>
           )}
           <SpinWheel
-            segments={items.map((i) => ({ name: i.name, slug: i.slug, area: i.area }))}
+            segments={items.map((i) => ({
+              label: i.name,
+              href: `/v/${i.slug}`,
+              tag: i.area,
+            }))}
           />
         </section>
       )}

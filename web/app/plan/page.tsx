@@ -20,9 +20,9 @@ export default async function PlanPage({
   const venues = await getVenuesBySlugs(slugs);
 
   const segments = venues.map((vn) => ({
-    name: vn.name,
-    slug: vn.slug,
-    area: canonicalArea(vn),
+    label: vn.name,
+    href: `/v/${vn.slug}`,
+    tag: canonicalArea(vn),
   }));
 
   // shape the plan so a friend can pull it onto their own saved list

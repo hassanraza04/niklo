@@ -3,7 +3,9 @@
 import { useState } from "react";
 import Link from "next/link";
 
-type Seg = { name: string; slug: string; area?: string | null };
+// a wheel segment is just a label, with an optional link to "go there" and an
+// optional bit of subtext. works for venues, categories, or custom text.
+export type Seg = { label: string; href?: string; tag?: string | null };
 
 const COLORS = ["#c75b39", "#1f6b4f", "#e9a523", "#a8462a", "#16513c", "#d2762f"];
 
@@ -16,7 +18,15 @@ function short(name: string, max = 14): string {
   return name.length > max ? name.slice(0, max - 1).trimEnd() + "…" : name;
 }
 
-export function SpinWheel({ segments }: { segments: Seg[] }) {
+export function SpinWheel({
+  segments,
+  lead = "Tonight you're going to",
+  goLabel = "Let's go →",
+}: {
+  segments: Seg[];
+  lead?: string;
+  goLabel?: string;
+}) {
   const segs = segments.slice(0, 10);
   const n = segs.length;
   const sweep = n ? 360 / n : 360;
@@ -73,7 +83,7 @@ export function SpinWheel({ segments }: { segments: Seg[] }) {
                 : `M ${cx} ${cy} L ${x1} ${y1} A ${r} ${r} 0 ${large} 1 ${x2} ${y2} Z`;
             const mid = start + sweep / 2;
             return (
-              <g key={s.slug}>
+              <g key={i}>
                 <path d={path} fill={COLORS[i % COLORS.length]} stroke="#faf5ec" strokeWidth="2" />
                 <text
                   transform={`rotate(${mid} ${cx} ${cy})`}
@@ -84,7 +94,7 @@ export function SpinWheel({ segments }: { segments: Seg[] }) {
                   fontWeight="600"
                   fill="#fffdf8"
                 >
-                  {short(s.name)}
+                  {short(s.label)}
                 </text>
               </g>
             );
@@ -106,23 +116,25 @@ export function SpinWheel({ segments }: { segments: Seg[] }) {
 
       {result && !spinning && (
         <div className="mt-6 w-full max-w-sm rounded-[var(--radius-card)] border border-line bg-card p-6 text-center shadow-md">
-          <p className="text-sm text-ink-soft">Tonight you&apos;re going to</p>
+          <p className="text-sm text-ink-soft">{lead}</p>
           <p className="mt-1 font-display text-2xl font-semibold text-ink">
-            {result.name}
+            {result.label}
           </p>
-          {result.area && <p className="text-ink-soft">{result.area}</p>}
+          {result.tag && <p className="text-ink-soft">{result.tag}</p>}
           <div className="mt-5 flex justify-center gap-3">
-            <Link
-              href={`/v/${result.slug}`}
-              className="rounded-full bg-pine px-5 py-2.5 font-semibold text-paper"
-            >
-              Let&apos;s go →
-            </Link>
+            {result.href && (
+              <Link
+                href={result.href}
+                className="rounded-full bg-pine px-5 py-2.5 font-semibold text-paper"
+              >
+                {goLabel}
+              </Link>
+            )}
             <button
               onClick={spin}
               className="rounded-full border border-line px-5 py-2.5 font-semibold text-ink hover:border-clay/40"
             >
-              Nah, again
+              {result.href ? "Nah, again" : "Spin again"}
             </button>
           </div>
         </div>

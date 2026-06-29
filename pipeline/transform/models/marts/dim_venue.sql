@@ -78,7 +78,7 @@ members_raw as (
            on x.venue_id = m.venue_id and x.subcategory = m.subcategory_slug
     where x.venue_id is null
       -- retired categories (removed from the directory)
-      and m.subcategory_slug not in ('theatre', 'bookstore-cafe')
+      and m.subcategory_slug not in ('theatre', 'bookstore-cafe', 'camping', 'climbing')
 ),
 
 -- google maps treats padel as "padel tennis", so tennis queries drag in padel
@@ -112,9 +112,9 @@ member_pri as (
             when 'arcades' then 16 when 'mini-golf' then 17 when 'billiards' then 18
             when 'futsal' then 19 when 'shisha' then 20 when 'board-game-paint-cafe' then 21
             when 'pottery-art' then 22 when 'music-rooms' then 24 when 'cooking-classes' then 25
-            when 'museums-galleries' then 27 when 'heritage' then 29 when 'hikes' then 31
+            when 'museums-galleries' then 27 when 'heritage' then 29 when 'parks' then 31
             when 'beaches' then 32 when 'boating' then 33 when 'adventure-parks' then 34
-            when 'camping' then 35 else 99
+            else 99
         end as pri
     from members
 ),

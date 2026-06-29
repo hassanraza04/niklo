@@ -16,6 +16,9 @@ canon as (
             -- board-game and paint cafes overlap heavily (google returns the same
             -- cafes for both), so they are one browse category.
             when _category in ('board-game-cafe', 'paint-cafe') then 'board-game-paint-cafe'
+            -- karachi has few real hikes; the "hiking" scrape mostly found parks, so
+            -- that category becomes Parks.
+            when _category = 'hikes' then 'parks'
             else _category
         end                                              as _cat
     from src
@@ -64,8 +67,8 @@ select
         when 'pottery-art' then 22 when 'music-rooms' then 24
         when 'cooking-classes' then 25
         when 'museums-galleries' then 27 when 'heritage' then 29
-        when 'hikes' then 31 when 'beaches' then 32 when 'boating' then 33
-        when 'adventure-parks' then 34 when 'camping' then 35
+        when 'parks' then 31 when 'beaches' then 32 when 'boating' then 33
+        when 'adventure-parks' then 34
         else 99
     end                                                   as category_priority,
     _source_query                                         as source_query,

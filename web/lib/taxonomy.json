@@ -83,15 +83,6 @@
           ]
         },
         {
-          "slug": "climbing",
-          "name": "Climbing",
-          "synonyms": [
-            "climbing gym",
-            "rock climbing",
-            "bouldering"
-          ]
-        },
-        {
           "slug": "skating",
           "name": "Skating",
           "synonyms": [
@@ -190,11 +181,11 @@
       "blurb": "Get out of the city.",
       "subcategories": [
         {
-          "slug": "hikes",
-          "name": "Hikes",
+          "slug": "parks",
+          "name": "Parks",
           "synonyms": [
-            "hiking trail",
-            "hiking"
+            "park",
+            "garden"
           ]
         },
         {
@@ -219,14 +210,6 @@
           "synonyms": [
             "adventure park",
             "zip line"
-          ]
-        },
-        {
-          "slug": "camping",
-          "name": "Camping",
-          "synonyms": [
-            "camping site",
-            "campsite"
           ]
         }
       ]

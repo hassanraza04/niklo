@@ -99,7 +99,7 @@ The whole taxonomy is now scraped, cleaned and live: around 640 venues across fi
 groups, sports & active, entertainment, creative & chill, outdoors & adventure and
 culture, covering padel, box cricket, futsal, tennis, squash, swimming, bowling, snooker,
 arcades, cinemas, escape rooms, shisha, board-game and paint cafes, pottery and art
-studios, jam rooms, cooking classes, beaches, hikes, boating, museums and galleries,
+studios, jam rooms, cooking classes, beaches, parks, boating, museums and galleries,
 heritage sites and more. A venue can sit in several at once, so a sports complex shows up
 under both padel and futsal but stays a single result in search and on its own page.
 Browse has open-now and area filters, you can save a shortlist, share it as a link, and

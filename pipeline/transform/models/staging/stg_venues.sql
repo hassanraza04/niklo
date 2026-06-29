@@ -36,12 +36,18 @@ select
     -- when a venue is scraped under several categories (a multi-sport complex), the
     -- dedup keeps the highest-priority one so verified/established categories don't
     -- get their venues stolen by a later dense scrape (futsal/billiards/shisha).
+    -- specific sports rank above the dense, generic categories (futsal/billiards/
+    -- shisha/board-game) so a dedicated venue keeps its specific primary. order of
+    -- the existing categories is preserved, so adding these doesn't reshuffle them.
     case _category
-        when 'padel' then 1 when 'bowling' then 2 when 'karting' then 3
-        when 'trampoline' then 4 when 'escape-rooms' then 5 when 'cinemas' then 6
-        when 'vr' then 7 when 'laser-tag' then 8 when 'arcades' then 9
-        when 'mini-golf' then 10 when 'billiards' then 11 when 'futsal' then 12
-        when 'shisha' then 13 when 'board-game-cafe' then 14 else 99
+        when 'padel' then 1 when 'box-cricket' then 2 when 'tennis' then 3
+        when 'squash' then 4 when 'swimming' then 5 when 'bowling' then 6
+        when 'karting' then 7 when 'trampoline' then 8 when 'climbing' then 9
+        when 'skating' then 10 when 'paintball' then 11 when 'escape-rooms' then 12
+        when 'cinemas' then 13 when 'vr' then 14 when 'laser-tag' then 15
+        when 'arcades' then 16 when 'mini-golf' then 17 when 'billiards' then 18
+        when 'futsal' then 19 when 'shisha' then 20 when 'board-game-cafe' then 21
+        else 99
     end                                                   as category_priority,
     _source_query                                         as source_query,
     _loaded_at                                            as scraped_at,

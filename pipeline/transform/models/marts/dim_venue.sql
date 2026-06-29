@@ -70,13 +70,29 @@ member_src as (
     select venue_id, subcategory_slug from from_gcat
 ),
 
-members as (
+members_raw as (
     select m.venue_id, m.subcategory_slug
     from member_src m
     join live_subs ls on m.subcategory_slug = ls.subcategory_slug
     left join {{ ref('venue_category_excludes') }} x
            on x.venue_id = m.venue_id and x.subcategory = m.subcategory_slug
     where x.venue_id is null
+),
+
+-- google maps treats padel as "padel tennis", so tennis queries drag in padel
+-- arenas. a venue that is really a padel place is not a tennis venue, unless it's
+-- a member club (gcat Club/Country club, e.g. a gymkhana) that has real courts.
+padel_ids as (select distinct venue_id from members_raw where subcategory_slug = 'padel'),
+
+members as (
+    select mr.venue_id, mr.subcategory_slug
+    from members_raw mr
+    left join kept k on mr.venue_id = k.place_id
+    where not (
+        mr.subcategory_slug = 'tennis'
+        and mr.venue_id in (select venue_id from padel_ids)
+        and lower(coalesce(k.google_category, '')) not in ('club', 'country club')
+    )
 ),
 
 member_named as (

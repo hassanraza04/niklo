@@ -95,10 +95,11 @@ then `npm run deploy`.
 
 ## status
 
-Thirteen categories are scraped, cleaned and live (around 380 venues): padel, futsal,
-snooker, bowling, arcades, cinemas, shisha, board-game cafes, trampoline, laser tag,
-karting, VR and escape rooms. A venue can sit in several at once, so a sports complex
-shows up under both padel and futsal but stays a single result in search and on its own
-page. Browse has open-now and area filters, you can save a shortlist, share it as a link,
-and spin the wheel (the whole city, or just your shortlist) to settle it. Next up: more
-of the taxonomy (cricket nets, climbing, the outdoorsy stuff) and the Cloudflare deploy.
+Twenty categories are scraped, cleaned and live (around 470 venues): padel, box cricket,
+futsal, tennis, squash, swimming, bowling, karting, trampoline, climbing, skating,
+paintball, cinemas, arcades, escape rooms, VR, laser tag, snooker, board-game cafes and
+shisha. A venue can sit in several at once, so a sports complex shows up under both padel
+and futsal but stays a single result in search and on its own page. Browse has open-now
+and area filters, you can save a shortlist, share it as a link, and spin the wheel (the
+whole city, or just your shortlist) to settle it. Next up: the outdoors, creative and
+culture categories, and the Cloudflare deploy.

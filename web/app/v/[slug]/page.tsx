@@ -43,6 +43,13 @@ export default async function VenuePage({
   if (!venue) notFound();
 
   const found = venue.subcategory_slug ? findSubcategory(venue.subcategory_slug) : null;
+  // every activity this venue offers (a multi-sport complex lists them all)
+  const memberSubs = (venue.subcategories ?? venue.subcategory_slug)
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean)
+    .map((slug) => findSubcategory(slug))
+    .filter((x): x is NonNullable<typeof x> => !!x);
   const area = canonicalArea(venue);
   const open = isOpenNow(venue.hours);
   const verified = verifiedOn(venue.last_verified);
@@ -102,12 +109,16 @@ export default async function VenuePage({
       <div className="mt-6 grid gap-8 lg:grid-cols-[1fr_20rem]">
         {/* main column */}
         <div>
-          <div className="flex flex-wrap items-center gap-3">
-            {found && (
-              <span className="rounded-full bg-pine/10 px-2.5 py-0.5 text-sm font-medium text-pine">
-                {found.sub.name}
-              </span>
-            )}
+          <div className="flex flex-wrap items-center gap-2">
+            {memberSubs.map(({ category, sub }) => (
+              <a
+                key={sub.slug}
+                href={`/c/${category.slug}/${sub.slug}`}
+                className="rounded-full bg-pine/10 px-2.5 py-0.5 text-sm font-medium text-pine transition-colors hover:bg-pine/20"
+              >
+                {sub.name}
+              </a>
+            ))}
             {venue.is_open === 0 && (
               <span className="rounded-full bg-ink/80 px-2.5 py-0.5 text-sm font-medium text-paper">
                 Permanently closed

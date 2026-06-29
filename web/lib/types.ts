@@ -6,6 +6,8 @@ export type Venue = {
   subcategory_name: string | null;
   category_slug: string | null;
   category_name: string | null;
+  subcategories: string | null; // csv of subcategory slugs, primary first
+  category_slugs: string | null; // csv of parent category slugs
   google_category: string | null;
   rating: number | null;
   review_count: number | null;

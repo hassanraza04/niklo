@@ -1,12 +1,17 @@
 -- the canonical venue table the app reads. one row per venue, joined to the
 -- taxonomy and with a stable url slug. scraped_at doubles as "last verified".
+--
+-- a venue keeps ONE primary subcategory (drives its url + breadcrumb) but can
+-- belong to several: a sports complex scraped under padel and futsal shows up in
+-- both browse pages, appears once in search, and lists both on its own page. that
+-- membership lives in the `subcategories` / `category_slugs` lists below.
 
 with v as (
     select * from {{ ref('int_venues_deduped') }}
 ),
 
--- manual curation: move a venue to the right subcategory (e.g. a place that got
--- scraped under bowling but is really padel). see category_overrides seed.
+-- manual curation: move a venue to the right primary subcategory (e.g. a place
+-- that got scraped under bowling but is really padel). see category_overrides.
 overrides as (
     select * from {{ ref('category_overrides') }}
 ),
@@ -23,35 +28,94 @@ tax as (
     select * from {{ ref('taxonomy') }}
 ),
 
+-- venues that clear the quality bar. this is the canonical set, and it also
+-- defines which subcategories are "live" (have at least one home venue) so a
+-- dead category like mini-golf can't sneak back in via a multi-sport venue.
+kept as (
+    select c.*
+    from corrected c
+    where c.place_id not in (select venue_id from {{ ref('excluded_venues') }})
+      and coalesce(c.review_count, 0) >= 3
+),
+
+live_subs as (
+    select distinct subcategory_slug from kept
+),
+
+-- many-to-many membership: every category a venue was scraped under, plus its
+-- corrected primary, minus dead categories and the hand-pruned misfiles in
+-- venue_category_excludes (e.g. a padel court that false-matched a bowling query).
+member_src as (
+    select distinct place_id as venue_id, subcategory_slug
+    from {{ ref('stg_venues') }}
+    where place_id is not null
+    union
+    select venue_id, subcategory from overrides
+),
+
+members as (
+    select m.venue_id, m.subcategory_slug
+    from member_src m
+    join live_subs ls on m.subcategory_slug = ls.subcategory_slug
+    left join {{ ref('venue_category_excludes') }} x
+           on x.venue_id = m.venue_id and x.subcategory = m.subcategory_slug
+    where x.venue_id is null
+),
+
+member_named as (
+    select
+        me.venue_id,
+        me.subcategory_slug,
+        t.subcategory_name,
+        t.category_slug,
+        (me.subcategory_slug = k.subcategory_slug) as is_primary
+    from members me
+    join kept k on me.venue_id = k.place_id
+    left join tax t on me.subcategory_slug = t.subcategory_slug
+),
+
+member_agg as (
+    select
+        venue_id,
+        -- primary first, then alphabetical, so the venue page reads naturally
+        string_agg(subcategory_slug, ',' order by is_primary desc, subcategory_name) as subcategories,
+        string_agg(distinct category_slug, ',') as category_slugs
+    from member_named
+    group by venue_id
+),
+
 joined as (
     select
-        c.place_id                                          as venue_id,
-        c.name,
-        c.subcategory_slug,
+        k.place_id                                          as venue_id,
+        k.name,
+        k.subcategory_slug,
         t.subcategory_name,
         t.category_slug,
         t.category_name,
-        c.google_category,
-        c.rating,
-        c.review_count,
-        c.latitude,
-        c.longitude,
-        coalesce(nullif(c.borough, ''), c.city)             as area,
-        c.address,
-        c.city,
-        c.price_level,
-        c.website,
-        c.phone,
-        c.hours,
-        c.thumbnail                                         as photo_url,
-        c.photos,
-        c.google_url,
-        c.status,
-        (c.status is null or lower(c.status) not like '%closed%') as is_open,
-        c.source_query,
-        c.scraped_at                                        as last_verified
-    from corrected c
-    left join tax t on c.subcategory_slug = t.subcategory_slug
+        coalesce(ma.subcategories, k.subcategory_slug)      as subcategories,
+        coalesce(ma.category_slugs, t.category_slug)        as category_slugs,
+        k.google_category,
+        k.rating,
+        k.review_count,
+        k.latitude,
+        k.longitude,
+        coalesce(nullif(k.borough, ''), k.city)             as area,
+        k.address,
+        k.city,
+        k.price_level,
+        k.website,
+        k.phone,
+        k.hours,
+        k.thumbnail                                         as photo_url,
+        k.photos,
+        k.google_url,
+        k.status,
+        (k.status is null or lower(k.status) not like '%closed%') as is_open,
+        k.source_query,
+        k.scraped_at                                        as last_verified
+    from kept k
+    left join tax t on k.subcategory_slug = t.subcategory_slug
+    left join member_agg ma on k.place_id = ma.venue_id
 )
 
 select
@@ -61,7 +125,3 @@ select
         '(^-|-$)', '', 'g'
     ) || '-' || lower(substr(venue_id, 4, 6))               as slug
 from joined
--- drop venues confirmed in manual review to be bad imports (shops, other sports, ...)
-where venue_id not in (select venue_id from {{ ref('excluded_venues') }})
-  -- hard quality bar: hide thin/unproven listings (junk, brand-new, bad scrapes)
-  and coalesce(review_count, 0) >= 3

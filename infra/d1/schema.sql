@@ -9,6 +9,10 @@ create table if not exists venues (
   subcategory_name text,
   category_slug    text,
   category_name    text,
+  -- many-to-many membership (csv, primary first): a venue shows in every one of
+  -- these browse pages but appears once in search and on its own page.
+  subcategories    text,   -- e.g. 'padel,futsal'
+  category_slugs   text,   -- parent categories, e.g. 'sports-active'
   google_category  text,
   rating           real,
   review_count     integer,

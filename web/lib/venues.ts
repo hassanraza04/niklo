@@ -11,11 +11,13 @@ export async function getVenueBySlug(slug: string): Promise<Venue | null> {
     .first<Venue>()) ?? null;
 }
 
+// membership is many-to-many: match the slug as a whole token inside the csv so a
+// multi-sport venue (subcategories = 'padel,futsal') shows on both browse pages.
 export async function listVenuesBySubcategory(subSlug: string): Promise<Venue[]> {
   const db = await getDb();
   const { results } = await db
-    .prepare(`select * from venues where subcategory_slug = ? ${ORDER}`)
-    .bind(subSlug)
+    .prepare(`select * from venues where instr(',' || subcategories || ',', ?) > 0 ${ORDER}`)
+    .bind(`,${subSlug},`)
     .all<Venue>();
   return results ?? [];
 }
@@ -23,8 +25,8 @@ export async function listVenuesBySubcategory(subSlug: string): Promise<Venue[]>
 export async function listVenuesByCategory(catSlug: string): Promise<Venue[]> {
   const db = await getDb();
   const { results } = await db
-    .prepare(`select * from venues where category_slug = ? ${ORDER}`)
-    .bind(catSlug)
+    .prepare(`select * from venues where instr(',' || category_slugs || ',', ?) > 0 ${ORDER}`)
+    .bind(`,${catSlug},`)
     .all<Venue>();
   return results ?? [];
 }
@@ -40,20 +42,31 @@ export async function topVenues(limit = 8): Promise<Venue[]> {
   return results ?? [];
 }
 
+// counts follow membership: a venue is tallied in every category it belongs to.
+function tallyCsv(rows: { csv: string | null }[]): Record<string, number> {
+  const counts: Record<string, number> = {};
+  for (const r of rows) {
+    for (const s of (r.csv ?? "").split(",").filter(Boolean)) {
+      counts[s] = (counts[s] ?? 0) + 1;
+    }
+  }
+  return counts;
+}
+
 export async function countsBySubcategory(): Promise<Record<string, number>> {
   const db = await getDb();
   const { results } = await db
-    .prepare(`select subcategory_slug, count(*) as n from venues group by subcategory_slug`)
-    .all<{ subcategory_slug: string; n: number }>();
-  return Object.fromEntries((results ?? []).map((r) => [r.subcategory_slug, r.n]));
+    .prepare(`select subcategories as csv from venues`)
+    .all<{ csv: string | null }>();
+  return tallyCsv(results ?? []);
 }
 
 export async function countsByCategory(): Promise<Record<string, number>> {
   const db = await getDb();
   const { results } = await db
-    .prepare(`select category_slug, count(*) as n from venues group by category_slug`)
-    .all<{ category_slug: string; n: number }>();
-  return Object.fromEntries((results ?? []).map((r) => [r.category_slug, r.n]));
+    .prepare(`select category_slugs as csv from venues`)
+    .all<{ csv: string | null }>();
+  return tallyCsv(results ?? []);
 }
 
 export async function searchVenues(q: string, limit = 60): Promise<Venue[]> {
@@ -68,16 +81,18 @@ export async function searchVenues(q: string, limit = 60): Promise<Venue[]> {
   if (!tokens.length) return [];
 
   const db = await getDb();
+  // include subcategories (slug csv) so "futsal" also matches a padel-primary
+  // venue that happens to offer futsal too. still one row per venue.
   const clause = tokens
     .map(
       () =>
-        "(name like ? or area like ? or address like ? or subcategory_name like ? or category_name like ?)",
+        "(name like ? or area like ? or address like ? or subcategory_name like ? or category_name like ? or subcategories like ?)",
     )
     .join(" and ");
   const binds: (string | number)[] = [];
   for (const t of tokens) {
     const like = `%${t}%`;
-    binds.push(like, like, like, like, like);
+    binds.push(like, like, like, like, like, like);
   }
   binds.push(limit);
 
@@ -94,9 +109,9 @@ export async function spinPool(
 ): Promise<{ name: string; slug: string; area: string | null; address: string | null }[]> {
   const db = await getDb();
   const where = subSlug
-    ? "where subcategory_slug = ? and rating is not null"
+    ? "where instr(',' || subcategories || ',', ?) > 0 and rating is not null"
     : "where rating is not null";
-  const binds: (string | number)[] = subSlug ? [subSlug, limit] : [limit];
+  const binds: (string | number)[] = subSlug ? [`,${subSlug},`, limit] : [limit];
   const { results } = await db
     .prepare(`select name, slug, area, address from venues ${where} order by random() limit ?`)
     .bind(...binds)

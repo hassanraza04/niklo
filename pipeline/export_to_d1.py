@@ -24,7 +24,8 @@ SEED_PATH = os.path.normpath(os.path.join(HERE, "..", "infra", "d1", "seed.sql")
 # columns in d1's venues table, in order
 COLUMNS = [
     "venue_id", "name", "slug", "subcategory_slug", "subcategory_name",
-    "category_slug", "category_name", "google_category", "rating", "review_count",
+    "category_slug", "category_name", "subcategories", "category_slugs",
+    "google_category", "rating", "review_count",
     "latitude", "longitude", "area", "address", "city", "price_level",
     "website", "phone", "hours", "photo_url", "photos", "google_url",
     "status", "is_open", "source_query", "last_verified",

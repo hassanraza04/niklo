@@ -43,8 +43,8 @@ scraper/     gosom query files + run.sh (one query) + sweep.sh (a whole category
 pipeline/    dlt loader, dbt project (stg -> int -> dim_venue), export to d1
 infra/d1/    d1 schema + generated seed
 web/         next.js app
-data/        taxonomy + the padel ground-truth list used to measure recall
-docs/        the ip-test writeup
+data/        taxonomy, the live listing allowlist, and verification reports
+docs/        the ip-test writeup, launch checklist, and update runbook
 ```
 
 ## running it
@@ -75,6 +75,25 @@ npm install
 npm run db:schema && npm run db:seed      # load venues into local d1
 npm run dev                               # http://localhost:3000
 ```
+
+**Pre-deploy checks** (no Cloudflare account needed):
+
+```bash
+python3 pipeline/export_live_listings.py  # seed -> data/live_listings.csv
+python3 pipeline/seed_checks.py           # validate generated d1 seed + local photos
+python3 -m unittest discover -s tests -v  # pipeline guardrail tests
+cd web && npm ci && npm run lint && npm run build
+```
+
+**Routine updates for existing listings only:**
+
+```bash
+python3 pipeline/export_live_listings.py
+# run the local scraper sweeps you want to refresh
+python3 pipeline/verify_existing.py       # writes data/verification/YYYY-MM-DD/
+```
+
+The verification step ignores new `place_id`s by design. See `docs/update-runbook.md`.
 
 **Photos** — google's image urls are signed and expire, so `photos.py` mirrors each
 venue photo into R2 once and `export_to_d1.py` then serves those permanent urls. it's

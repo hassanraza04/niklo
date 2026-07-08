@@ -4,6 +4,8 @@ scraper/out/
 *.duckdb.wal
 pipeline/photos_cache/
 data/photo_manifest.csv
+data/verification/*
+!data/verification/.gitkeep
 pipeline/**/target/
 pipeline/**/logs/
 pipeline/.dlt/secrets.toml

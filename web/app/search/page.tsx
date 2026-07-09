@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { searchVenues } from "@/lib/venues";
-import { VenueCard } from "@/components/VenueCard";
 import { SearchBox } from "@/components/SearchBox";
 import { Breadcrumb } from "@/components/Breadcrumb";
+import { SortableVenueGrid } from "@/components/SortableVenueGrid";
 
 export const dynamic = "force-dynamic";
 
@@ -54,11 +54,10 @@ export default async function SearchPage({
       )}
 
       {results.length > 0 ? (
-        <div className="mt-6 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
-          {results.map((v) => (
-            <VenueCard key={v.venue_id} venue={v} />
-          ))}
-        </div>
+        <SortableVenueGrid
+          venues={results}
+          className="mt-6 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4"
+        />
       ) : query ? (
         <div className="mt-12 rounded-[var(--radius-card)] border border-dashed border-line bg-card p-10 text-center">
           <p className="font-display text-xl text-ink">No matches for &ldquo;{query}&rdquo;</p>

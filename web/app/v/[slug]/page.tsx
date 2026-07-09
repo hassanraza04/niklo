@@ -9,6 +9,7 @@ import { OpenHours } from "@/components/OpenHours";
 import { VenueMap } from "@/components/VenueMap";
 import { VenueCard } from "@/components/VenueCard";
 import { SaveButton } from "@/components/SaveButton";
+import { VenueDistance } from "@/components/VenueDistance";
 
 export const dynamic = "force-dynamic";
 
@@ -143,6 +144,12 @@ export default async function VenuePage({
                 Closed now
               </span>
             )}
+            <VenueDistance
+              lat={venue.latitude}
+              lon={venue.longitude}
+              prompt
+              className="text-sm font-semibold text-pine"
+            />
           </div>
 
           {venue.address && (

@@ -2,11 +2,11 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { findSubcategory } from "@/lib/taxonomy";
 import { listVenuesBySubcategory } from "@/lib/venues";
-import { VenueCard } from "@/components/VenueCard";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { canonicalArea } from "@/lib/areas";
 import { isOpenNow } from "@/lib/hours";
 import { subcategoryIcon } from "@/lib/icons";
+import { SortableVenueGrid } from "@/components/SortableVenueGrid";
 
 export const dynamic = "force-dynamic";
 
@@ -136,11 +136,7 @@ export default async function SubcategoryPage({
 
       {/* venue grid */}
       {filtered.length > 0 ? (
-        <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
-          {filtered.map((v) => (
-            <VenueCard key={v.venue_id} venue={v} />
-          ))}
-        </div>
+        <SortableVenueGrid venues={filtered} />
       ) : venues.length === 0 ? (
         <div className="mt-12 rounded-[var(--radius-card)] border border-dashed border-line bg-card p-10 text-center">
           <p className="font-display text-xl text-ink">

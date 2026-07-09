@@ -2,9 +2,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getCategory } from "@/lib/taxonomy";
 import { countsBySubcategory, listVenuesByCategory } from "@/lib/venues";
-import { VenueCard } from "@/components/VenueCard";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { categoryIcon, subcategoryIcon } from "@/lib/icons";
+import { SortableVenueGrid } from "@/components/SortableVenueGrid";
 
 export const dynamic = "force-dynamic";
 
@@ -76,13 +76,12 @@ export default async function CategoryPage({
       {venues.length > 0 && (
         <section className="mt-12">
           <h2 className="font-display text-2xl font-semibold text-ink">
-            Top {category.name.toLowerCase()} spots
+            All {category.name.toLowerCase()} spots
           </h2>
-          <div className="mt-5 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
-            {venues.slice(0, 8).map((v) => (
-              <VenueCard key={v.venue_id} venue={v} />
-            ))}
-          </div>
+          <SortableVenueGrid
+            venues={venues}
+            className="mt-5 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4"
+          />
         </section>
       )}
     </div>

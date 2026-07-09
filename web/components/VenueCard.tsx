@@ -3,6 +3,7 @@ import { Rating } from "./Rating";
 import type { Venue } from "@/lib/types";
 import { canonicalArea } from "@/lib/areas";
 import { isOpenNow } from "@/lib/hours";
+import { VenueDistance } from "./VenueDistance";
 
 export function VenueCard({ venue }: { venue: Venue }) {
   const area = canonicalArea(venue);
@@ -48,6 +49,11 @@ export function VenueCard({ venue }: { venue: Venue }) {
             {venue.subcategory_name}
             {area && <span> · {area}</span>}
           </p>
+          <VenueDistance
+            lat={venue.latitude}
+            lon={venue.longitude}
+            className="mt-1 block text-xs font-medium text-pine"
+          />
         </div>
         <div className="mt-auto flex items-center justify-between gap-2 pt-1">
           <Rating rating={venue.rating} reviewCount={venue.review_count} />

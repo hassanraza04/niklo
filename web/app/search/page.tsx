@@ -56,7 +56,7 @@ export default async function SearchPage({
       {results.length > 0 ? (
         <SortableVenueGrid
           venues={results}
-          className="mt-6 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4"
+          className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
         />
       ) : query ? (
         <div className="mt-12 rounded-[var(--radius-card)] border border-dashed border-line bg-card p-10 text-center">

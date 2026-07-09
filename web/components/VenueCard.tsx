@@ -11,9 +11,9 @@ export function VenueCard({ venue }: { venue: Venue }) {
   return (
     <Link
       href={`/v/${venue.slug}`}
-      className="group flex flex-col overflow-hidden rounded-[var(--radius-card)] border border-line bg-card shadow-sm transition-all hover:-translate-y-1 hover:shadow-md"
+      className="group flex min-w-0 flex-col overflow-hidden rounded-[var(--radius-card)] border border-line bg-card shadow-sm transition-all hover:-translate-y-1 hover:shadow-md active:translate-y-0"
     >
-      <div className="relative aspect-[4/3] overflow-hidden bg-paper-2">
+      <div className="relative aspect-[16/10] overflow-hidden bg-paper-2 sm:aspect-[4/3]">
         {/* gradient + initial sit behind, so the card never flashes blank while
             the photo lazy-loads, and shows through if a photo is missing */}
         <div
@@ -41,11 +41,11 @@ export function VenueCard({ venue }: { venue: Venue }) {
       </div>
 
       <div className="flex flex-1 flex-col gap-2 p-4">
-        <div>
-          <h3 className="font-display text-lg font-semibold leading-snug text-ink group-hover:text-clay">
+        <div className="min-w-0">
+          <h3 className="break-words font-display text-base font-semibold leading-snug text-ink group-hover:text-clay sm:text-lg">
             {venue.name}
           </h3>
-          <p className="mt-0.5 text-sm text-ink-soft">
+          <p className="mt-0.5 break-words text-sm text-ink-soft">
             {venue.subcategory_name}
             {area && <span> · {area}</span>}
           </p>
@@ -55,7 +55,7 @@ export function VenueCard({ venue }: { venue: Venue }) {
             className="mt-1 block text-xs font-medium text-pine"
           />
         </div>
-        <div className="mt-auto flex items-center justify-between gap-2 pt-1">
+        <div className="mt-auto flex flex-wrap items-center justify-between gap-2 pt-1">
           <Rating rating={venue.rating} reviewCount={venue.review_count} />
           {open === true && (
             <span className="shrink-0 text-xs font-semibold text-pine">● Open</span>

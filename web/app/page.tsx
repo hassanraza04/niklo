@@ -5,8 +5,38 @@ import { CategoryCard } from "@/components/CategoryCard";
 import { VenueCard } from "@/components/VenueCard";
 import { collections } from "@/lib/collections";
 import { TonightFinder } from "@/components/TonightFinder";
+import type { Venue } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
+
+function heroVenuePhotos(venues: Venue[]): Venue[] {
+  const wanted = [
+    "padel",
+    "cinemas",
+    "bowling",
+    "arcades",
+    "parks",
+    "museums-galleries",
+    "paintball",
+    "music-rooms",
+  ];
+  const seen = new Set<string>();
+  const picked: Venue[] = [];
+  for (const slug of wanted) {
+    const venue = venues.find(
+      (venue) =>
+        venue.photo_url &&
+        !seen.has(venue.venue_id) &&
+        (venue.subcategories ?? venue.subcategory_slug).split(",").includes(slug),
+    );
+    if (venue) {
+      seen.add(venue.venue_id);
+      picked.push(venue);
+    }
+    if (picked.length === 4) break;
+  }
+  return picked;
+}
 
 export default async function Home() {
   const [counts, featured, allVenues] = await Promise.all([
@@ -14,27 +44,34 @@ export default async function Home() {
     topVenues(8),
     listFinderVenues(),
   ]);
+  const heroPhotos = heroVenuePhotos(allVenues);
 
   return (
     <div>
       {/* hero */}
-      <section className="relative overflow-hidden border-b border-line">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-marigold/25 blur-3xl"
-        />
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -bottom-32 -left-20 h-72 w-72 rounded-full bg-pine/15 blur-3xl"
-        />
-        <div className="mx-auto max-w-6xl px-5 py-16 sm:py-24">
+      <section className="relative overflow-hidden border-b border-line bg-ink">
+        <div className="absolute inset-0 grid grid-cols-2 gap-1 opacity-45 sm:grid-cols-4">
+          {heroPhotos.map((venue) => (
+            <div key={venue.venue_id} className="relative min-h-40 overflow-hidden">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={venue.photo_url ?? ""}
+                alt=""
+                className="h-full w-full object-cover"
+                loading="eager"
+              />
+            </div>
+          ))}
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-r from-paper via-paper/90 to-paper/55" />
+        <div className="relative mx-auto max-w-6xl px-5 py-14 sm:py-20">
           <p className="font-display text-lg italic text-clay">Yaar, kya karein?</p>
-          <h1 className="mt-2 max-w-3xl font-display text-5xl font-semibold leading-[1.05] tracking-tight text-ink sm:text-6xl">
+          <h1 className="mt-2 max-w-3xl text-balance font-display text-5xl font-semibold leading-[1.05] text-ink sm:text-6xl">
             Everything to do in Karachi,
             <br />
             besides eating.
           </h1>
-          <p className="mt-5 max-w-xl text-lg text-ink-soft">
+          <p className="mt-5 max-w-xl text-lg leading-relaxed text-ink-soft">
             Padel, cinemas, bowling, escape rooms, arcades, hikes, all sorted,
             rated and filtered. And when you really can&apos;t decide, just spin
             the wheel.
@@ -42,7 +79,7 @@ export default async function Home() {
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
               href="/spin"
-              className="rounded-full bg-clay px-6 py-3 font-semibold text-paper shadow-sm transition-transform hover:-translate-y-0.5"
+              className="rounded-full bg-clay px-6 py-3 font-semibold text-paper shadow-sm transition-transform hover:-translate-y-0.5 active:translate-y-0"
             >
               Can&apos;t decide? Spin 🎡
             </Link>
@@ -101,7 +138,7 @@ export default async function Home() {
             </h2>
             <span className="text-sm text-ink-soft">highest rated right now</span>
           </div>
-          <div className="mt-6 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
+          <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {featured.map((v) => (
               <VenueCard key={v.venue_id} venue={v} />
             ))}

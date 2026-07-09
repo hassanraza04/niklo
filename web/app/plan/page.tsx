@@ -69,7 +69,7 @@ export default async function PlanPage({
             <h2 className="font-display text-2xl font-semibold text-ink">Everything on the list</h2>
             <AddAllButton items={asSaved} />
           </div>
-          <div className="mt-5 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
+          <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {venues.map((vn) => (
               <VenueCard key={vn.venue_id} venue={vn} />
             ))}

@@ -19,6 +19,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: url("/search"), lastModified: now, changeFrequency: "weekly", priority: 0.6 },
     { url: url("/saved"), lastModified: now, changeFrequency: "monthly", priority: 0.3 },
     { url: url("/spin"), lastModified: now, changeFrequency: "weekly", priority: 0.7 },
+    { url: url("/privacy"), lastModified: now, changeFrequency: "yearly", priority: 0.2 },
+    { url: url("/terms"), lastModified: now, changeFrequency: "yearly", priority: 0.2 },
   ];
 
   const categoryRoutes: MetadataRoute.Sitemap = categories.flatMap((category) => [

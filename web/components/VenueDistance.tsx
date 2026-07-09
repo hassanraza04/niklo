@@ -21,7 +21,23 @@ export function VenueDistance({
   );
 
   if (km != null) {
-    return <span className={className}>{formatDistance(km)} away</span>;
+    if (!prompt) {
+      return <span className={className}>{formatDistance(km)} away</span>;
+    }
+
+    return (
+      <span className="inline-flex flex-wrap items-center gap-2">
+        <span className={className}>{formatDistance(km)} away</span>
+        <button
+          type="button"
+          onClick={requestLocation}
+          className="rounded-full border border-line bg-card px-3 py-1.5 text-sm font-medium text-ink hover:border-clay/40"
+          disabled={status === "loading"}
+        >
+          {status === "loading" ? "Updating..." : "Update location"}
+        </button>
+      </span>
+    );
   }
 
   if (!prompt) return null;

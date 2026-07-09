@@ -179,6 +179,16 @@ export function SortableVenueGrid({
             {status === "loading" ? "Finding you..." : "Use location"}
           </button>
         )}
+        {sort === "nearest" && location && (
+          <button
+            type="button"
+            onClick={requestLocation}
+            disabled={status === "loading"}
+            className="rounded-full border border-line bg-paper px-3.5 py-1.5 font-semibold text-ink disabled:opacity-60"
+          >
+            {status === "loading" ? "Updating..." : "Update location"}
+          </button>
+        )}
         {sort === "nearest" && status === "denied" && (
           <span className="text-clay-dark">Location blocked</span>
         )}

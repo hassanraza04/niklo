@@ -1,3 +1,5 @@
+import { LocationPrivacyControls } from "@/components/LocationPrivacyControls";
+
 export const metadata = { title: "Privacy" };
 
 export default function PrivacyPage() {
@@ -11,7 +13,7 @@ export default function PrivacyPage() {
         <p>
           Niklo can ask for location access so it can show distance and sort nearby
           places. That location is stored locally in your browser and is not sent to
-          Niklo&apos;s database.
+          Niklo&apos;s database. Saved location expires after 24 hours.
         </p>
         <p>
           Saved places and wheel preferences are also kept in your browser. If you
@@ -22,6 +24,7 @@ export default function PrivacyPage() {
           Niklo does not collect account details, payment details, or booking details.
         </p>
       </div>
+      <LocationPrivacyControls />
     </div>
   );
 }

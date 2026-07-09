@@ -1,13 +1,11 @@
 import type { Coordinates } from "./geo.ts";
 import { venueDistanceKm } from "./geo.ts";
-import { canonicalArea } from "./areas.ts";
 import { isOpenNow, opensLate } from "./hours.ts";
 import type { Venue } from "./types.ts";
 
 export type VenueMood = "any" | "active" | "chill" | "family" | "indoor" | "outdoor" | "late";
 
 export type VenueFilters = {
-  area?: string;
   openNow?: boolean;
   minRating?: number;
   mood?: VenueMood;
@@ -101,10 +99,6 @@ function googleCategory(venue: Venue): string {
   return (venue.google_category ?? "").toLowerCase();
 }
 
-export function venueArea(venue: Pick<Venue, "area" | "address">): string | null {
-  return canonicalArea(venue);
-}
-
 export function moodMatchesVenue(venue: Venue, mood: VenueMood): boolean {
   if (mood === "any") return true;
   if (mood === "active") return hasAny(venue, ACTIVE);
@@ -127,7 +121,6 @@ export function filterVenuesForDisplay<T extends Venue>(
   location: Coordinates | null,
 ): T[] {
   return venues.filter((venue) => {
-    if (filters.area && venueArea(venue) !== filters.area) return false;
     if (filters.openNow && isOpenNow(venue.hours) !== true) return false;
     if (filters.minRating && (venue.rating ?? 0) < filters.minRating) return false;
     if (filters.mood && !moodMatchesVenue(venue, filters.mood)) return false;

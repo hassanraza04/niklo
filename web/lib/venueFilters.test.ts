@@ -51,7 +51,7 @@ test("moodMatchesVenue maps existing categories into user friendly moods", () =>
   assert.equal(moodMatchesVenue(venue({ subcategories: "cinemas" }), "indoor"), true);
 });
 
-test("filterVenuesForDisplay filters by area, rating, mood, and distance", () => {
+test("filterVenuesForDisplay filters by rating, mood, and distance", () => {
   const venues = [
     venue({ name: "Near Padel", subcategories: "padel", rating: 4.8 }),
     venue({
@@ -74,7 +74,7 @@ test("filterVenuesForDisplay filters by area, rating, mood, and distance", () =>
 
   const filtered = filterVenuesForDisplay(
     venues,
-    { area: "Clifton", minRating: 4.5, mood: "active", maxDistanceKm: 5 },
+    { minRating: 4.5, mood: "active", maxDistanceKm: 5 },
     { latitude: 24.8138, longitude: 67.0305 },
   );
 

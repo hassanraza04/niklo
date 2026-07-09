@@ -2,47 +2,52 @@
 
 import { useMemo, useState } from "react";
 import type { Venue } from "@/lib/types";
-import { useUserLocation } from "@/lib/useUserLocation";
 import {
-  tonightPicks,
-  venueArea,
-  type VenueFilters,
-} from "@/lib/venueFilters";
+  distanceReferenceCoordinates,
+  distanceReferenceName,
+  LANDMARK_REFERENCES,
+  USER_LOCATION_REFERENCE_ID,
+} from "@/lib/locationReference";
+import { useUserLocation } from "@/lib/useUserLocation";
+import { tonightPicks, type VenueFilters } from "@/lib/venueFilters";
 import { VenueCard } from "./VenueCard";
 
-function isString(value: string | null): value is string {
-  return typeof value === "string";
-}
-
 export function TonightFinder({ venues }: { venues: Venue[] }) {
-  const [area, setArea] = useState("");
   const [openNow, setOpenNow] = useState(false);
   const [maxDistance, setMaxDistance] = useState("");
+  const [distanceReference, setDistanceReference] = useState(USER_LOCATION_REFERENCE_ID);
   const { location, status, requestLocation } = useUserLocation();
-
-  const areaOptions = useMemo(() => {
-    return [...new Set(venues.map((venue) => venueArea(venue)).filter(isString))]
-      .sort((a, b) => a.localeCompare(b));
-  }, [venues]);
+  const distanceCenter = useMemo(
+    () => distanceReferenceCoordinates(distanceReference, location),
+    [distanceReference, location],
+  );
+  const needsUserLocation =
+    distanceReference === USER_LOCATION_REFERENCE_ID && !location;
 
   const filters = useMemo<VenueFilters>(
     () => ({
-      area: area || undefined,
       openNow,
       minRating: 4.2,
       maxDistanceKm: maxDistance ? Number(maxDistance) : undefined,
     }),
-    [area, openNow, maxDistance],
+    [openNow, maxDistance],
   );
 
   const picks = useMemo(
-    () => tonightPicks(venues, filters, location, 5),
-    [venues, filters, location],
+    () => tonightPicks(venues, filters, distanceCenter, 5),
+    [venues, filters, distanceCenter],
   );
 
   function onDistance(next: string) {
     setMaxDistance(next);
-    if (next && !location) requestLocation();
+    if (next && needsUserLocation) requestLocation();
+  }
+
+  function onDistanceReference(next: string) {
+    setDistanceReference(next);
+    if (next === USER_LOCATION_REFERENCE_ID && !location && maxDistance) {
+      requestLocation();
+    }
   }
 
   return (
@@ -66,35 +71,35 @@ export function TonightFinder({ venues }: { venues: Venue[] }) {
               Open now
             </label>
             <label className="flex items-center gap-2 text-ink-soft">
-              Area
+              Within
+              <input
+                type="number"
+                value={maxDistance}
+                onChange={(event) => onDistance(event.target.value)}
+                min="1"
+                max="80"
+                step="1"
+                placeholder="Any"
+                className="w-20 rounded-full border border-line bg-paper px-3 py-1.5 font-medium text-ink outline-none focus:border-clay/50"
+              />
+              km
+            </label>
+            <label className="flex items-center gap-2 text-ink-soft">
+              From
               <select
-                value={area}
-                onChange={(event) => setArea(event.target.value)}
+                value={distanceReference}
+                onChange={(event) => onDistanceReference(event.target.value)}
                 className="rounded-full border border-line bg-paper px-3 py-1.5 font-medium text-ink outline-none focus:border-clay/50"
               >
-                <option value="">All</option>
-                {areaOptions.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
+                <option value={USER_LOCATION_REFERENCE_ID}>My location</option>
+                {LANDMARK_REFERENCES.map((reference) => (
+                  <option key={reference.id} value={reference.id}>
+                    {reference.name}
                   </option>
                 ))}
               </select>
             </label>
-            <label className="flex items-center gap-2 text-ink-soft">
-              Within
-              <select
-                value={maxDistance}
-                onChange={(event) => onDistance(event.target.value)}
-                className="rounded-full border border-line bg-paper px-3 py-1.5 font-medium text-ink outline-none focus:border-clay/50"
-              >
-                <option value="">Any</option>
-                <option value="2">2 km</option>
-                <option value="5">5 km</option>
-                <option value="10">10 km</option>
-                <option value="20">20 km</option>
-              </select>
-            </label>
-            {maxDistance && !location && (
+            {maxDistance && needsUserLocation && (
               <button
                 type="button"
                 onClick={requestLocation}
@@ -104,7 +109,7 @@ export function TonightFinder({ venues }: { venues: Venue[] }) {
                 {status === "loading" ? "Finding you..." : "Use location"}
               </button>
             )}
-            {maxDistance && location && (
+            {maxDistance && distanceReference === USER_LOCATION_REFERENCE_ID && location && (
               <button
                 type="button"
                 onClick={requestLocation}
@@ -113,6 +118,11 @@ export function TonightFinder({ venues }: { venues: Venue[] }) {
               >
                 {status === "loading" ? "Updating..." : "Update location"}
               </button>
+            )}
+            {maxDistance && distanceCenter && (
+              <span className="text-pine">
+                Distance from {distanceReferenceName(distanceReference)}
+              </span>
             )}
           </div>
         </div>

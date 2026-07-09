@@ -2,18 +2,16 @@
 
 import { useMemo, useState } from "react";
 import { sortVenuesForDisplay, type SortDirection, type SortMode } from "@/lib/geo";
-import { useUserLocation } from "@/lib/useUserLocation";
 import {
-  filterVenuesForDisplay,
-  venueArea,
-  type VenueFilters,
-} from "@/lib/venueFilters";
+  distanceReferenceCoordinates,
+  distanceReferenceName,
+  LANDMARK_REFERENCES,
+  USER_LOCATION_REFERENCE_ID,
+} from "@/lib/locationReference";
+import { useUserLocation } from "@/lib/useUserLocation";
+import { filterVenuesForDisplay, type VenueFilters } from "@/lib/venueFilters";
 import type { Venue } from "@/lib/types";
 import { VenueCard } from "./VenueCard";
-
-function isString(value: string | null): value is string {
-  return typeof value === "string";
-}
 
 export function SortableVenueGrid({
   venues,
@@ -24,46 +22,54 @@ export function SortableVenueGrid({
 }) {
   const [sort, setSort] = useState<SortMode>("popularity");
   const [direction, setDirection] = useState<SortDirection>("desc");
-  const [area, setArea] = useState("");
   const [openNow, setOpenNow] = useState(false);
   const [minRating, setMinRating] = useState("");
   const [maxDistance, setMaxDistance] = useState("");
+  const [distanceReference, setDistanceReference] = useState(USER_LOCATION_REFERENCE_ID);
   const { location, status, requestLocation } = useUserLocation();
 
-  const areaOptions = useMemo(() => {
-    return [...new Set(venues.map((venue) => venueArea(venue)).filter(isString))]
-      .sort((a, b) => a.localeCompare(b));
-  }, [venues]);
+  const distanceCenter = useMemo(
+    () => distanceReferenceCoordinates(distanceReference, location),
+    [distanceReference, location],
+  );
+  const needsUserLocation =
+    distanceReference === USER_LOCATION_REFERENCE_ID && !location;
 
   const filters = useMemo<VenueFilters>(
     () => ({
-      area: area || undefined,
       openNow,
       minRating: minRating ? Number(minRating) : undefined,
       maxDistanceKm: maxDistance ? Number(maxDistance) : undefined,
     }),
-    [area, openNow, minRating, maxDistance],
+    [openNow, minRating, maxDistance],
   );
 
   const filtered = useMemo(
-    () => filterVenuesForDisplay(venues, filters, location),
-    [venues, filters, location],
+    () => filterVenuesForDisplay(venues, filters, distanceCenter),
+    [venues, filters, distanceCenter],
   );
 
   const sorted = useMemo(
-    () => sortVenuesForDisplay(filtered, sort, direction, location),
-    [filtered, sort, direction, location],
+    () => sortVenuesForDisplay(filtered, sort, direction, distanceCenter),
+    [filtered, sort, direction, distanceCenter],
   );
 
   function onSort(next: SortMode) {
     setSort(next);
     setDirection(next === "nearest" ? "asc" : "desc");
-    if (next === "nearest" && !location) requestLocation();
+    if (next === "nearest" && needsUserLocation) requestLocation();
   }
 
   function onDistance(next: string) {
     setMaxDistance(next);
-    if (next && !location) requestLocation();
+    if (next && needsUserLocation) requestLocation();
+  }
+
+  function onDistanceReference(next: string) {
+    setDistanceReference(next);
+    if (next === USER_LOCATION_REFERENCE_ID && !location && (maxDistance || sort === "nearest")) {
+      requestLocation();
+    }
   }
 
   const directionLabels =
@@ -86,21 +92,6 @@ export function SortableVenueGrid({
           Open now
         </label>
         <label className="flex items-center gap-2 text-ink-soft">
-          Area
-          <select
-            value={area}
-            onChange={(event) => setArea(event.target.value)}
-            className="rounded-full border border-line bg-paper px-3 py-1.5 font-medium text-ink outline-none focus:border-clay/50"
-          >
-            <option value="">All</option>
-            {areaOptions.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label className="flex items-center gap-2 text-ink-soft">
           Rated
           <select
             value={minRating}
@@ -115,16 +106,31 @@ export function SortableVenueGrid({
         </label>
         <label className="flex items-center gap-2 text-ink-soft">
           Within
-          <select
+          <input
+            type="number"
             value={maxDistance}
             onChange={(event) => onDistance(event.target.value)}
+            min="1"
+            max="80"
+            step="1"
+            placeholder="Any"
+            className="w-20 rounded-full border border-line bg-paper px-3 py-1.5 font-medium text-ink outline-none focus:border-clay/50"
+          />
+          km
+        </label>
+        <label className="flex items-center gap-2 text-ink-soft">
+          From
+          <select
+            value={distanceReference}
+            onChange={(event) => onDistanceReference(event.target.value)}
             className="rounded-full border border-line bg-paper px-3 py-1.5 font-medium text-ink outline-none focus:border-clay/50"
           >
-            <option value="">Any</option>
-            <option value="2">2 km</option>
-            <option value="5">5 km</option>
-            <option value="10">10 km</option>
-            <option value="20">20 km</option>
+            <option value={USER_LOCATION_REFERENCE_ID}>My location</option>
+            {LANDMARK_REFERENCES.map((reference) => (
+              <option key={reference.id} value={reference.id}>
+                {reference.name}
+              </option>
+            ))}
           </select>
         </label>
         <label className="flex items-center gap-2 text-ink-soft">
@@ -150,7 +156,7 @@ export function SortableVenueGrid({
             <option value="asc">{directionLabels.asc}</option>
           </select>
         </label>
-        {sort === "nearest" && !location && (
+        {(sort === "nearest" || maxDistance) && needsUserLocation && (
           <button
             type="button"
             onClick={requestLocation}
@@ -160,7 +166,9 @@ export function SortableVenueGrid({
             {status === "loading" ? "Finding you..." : "Use location"}
           </button>
         )}
-        {sort === "nearest" && location && (
+        {(sort === "nearest" || maxDistance) &&
+          distanceReference === USER_LOCATION_REFERENCE_ID &&
+          location && (
           <button
             type="button"
             onClick={requestLocation}
@@ -170,11 +178,11 @@ export function SortableVenueGrid({
             {status === "loading" ? "Updating..." : "Update location"}
           </button>
         )}
-        {sort === "nearest" && status === "denied" && (
+        {(sort === "nearest" || maxDistance) && needsUserLocation && status === "denied" && (
           <span className="text-clay-dark">Location blocked</span>
         )}
-        {sort === "nearest" && location && (
-          <span className="text-pine">Sorting by distance</span>
+        {(sort === "nearest" || maxDistance) && distanceCenter && (
+          <span className="text-pine">Distance from {distanceReferenceName(distanceReference)}</span>
         )}
         <span className="ml-auto text-ink-soft">
           {sorted.length} of {venues.length}

@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import type { Coordinates } from "./geo";
 
-type LocationStatus = "idle" | "loading" | "ready" | "denied" | "unsupported" | "error";
+export type LocationStatus = "idle" | "loading" | "ready" | "denied" | "unsupported" | "error";
 
 const KEY = "niklo:location";
 const EVENT = "niklo-location";
@@ -36,8 +36,10 @@ function writeStoredLocation(location: Coordinates) {
 }
 
 export function useUserLocation() {
-  const [location, setLocation] = useState<Coordinates | null>(null);
-  const [status, setStatus] = useState<LocationStatus>("idle");
+  const [location, setLocation] = useState<Coordinates | null>(() => readStoredLocation());
+  const [status, setStatus] = useState<LocationStatus>(() =>
+    readStoredLocation() ? "ready" : "idle",
+  );
 
   useEffect(() => {
     const refresh = () => {
@@ -77,4 +79,3 @@ export function useUserLocation() {
 
   return { location, status, requestLocation };
 }
-

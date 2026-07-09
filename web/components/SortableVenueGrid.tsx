@@ -7,7 +7,6 @@ import {
   filterVenuesForDisplay,
   venueArea,
   type VenueFilters,
-  type VenueMood,
 } from "@/lib/venueFilters";
 import type { Venue } from "@/lib/types";
 import { VenueCard } from "./VenueCard";
@@ -27,7 +26,6 @@ export function SortableVenueGrid({
   const [direction, setDirection] = useState<SortDirection>("desc");
   const [area, setArea] = useState("");
   const [openNow, setOpenNow] = useState(false);
-  const [mood, setMood] = useState<VenueMood>("any");
   const [minRating, setMinRating] = useState("");
   const [maxDistance, setMaxDistance] = useState("");
   const { location, status, requestLocation } = useUserLocation();
@@ -41,11 +39,10 @@ export function SortableVenueGrid({
     () => ({
       area: area || undefined,
       openNow,
-      mood,
       minRating: minRating ? Number(minRating) : undefined,
       maxDistanceKm: maxDistance ? Number(maxDistance) : undefined,
     }),
-    [area, openNow, mood, minRating, maxDistance],
+    [area, openNow, minRating, maxDistance],
   );
 
   const filtered = useMemo(
@@ -101,22 +98,6 @@ export function SortableVenueGrid({
                 {option}
               </option>
             ))}
-          </select>
-        </label>
-        <label className="flex items-center gap-2 text-ink-soft">
-          Mood
-          <select
-            value={mood}
-            onChange={(event) => setMood(event.target.value as VenueMood)}
-            className="rounded-full border border-line bg-paper px-3 py-1.5 font-medium text-ink outline-none focus:border-clay/50"
-          >
-            <option value="any">Any</option>
-            <option value="active">Active</option>
-            <option value="chill">Chill</option>
-            <option value="family">Family</option>
-            <option value="indoor">Indoor</option>
-            <option value="outdoor">Outdoor</option>
-            <option value="late">Late night</option>
           </select>
         </label>
         <label className="flex items-center gap-2 text-ink-soft">

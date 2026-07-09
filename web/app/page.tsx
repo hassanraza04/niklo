@@ -98,7 +98,7 @@ export default async function Home() {
       {/* categories */}
       <section className="mx-auto max-w-6xl px-5 py-12">
         <h2 className="font-display text-2xl font-semibold text-ink">
-          What are you in the mood for?
+          Browse by type
         </h2>
         <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
           {categories.map((c) => (

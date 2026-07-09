@@ -7,7 +7,6 @@ import {
   tonightPicks,
   venueArea,
   type VenueFilters,
-  type VenueMood,
 } from "@/lib/venueFilters";
 import { VenueCard } from "./VenueCard";
 
@@ -16,7 +15,6 @@ function isString(value: string | null): value is string {
 }
 
 export function TonightFinder({ venues }: { venues: Venue[] }) {
-  const [mood, setMood] = useState<VenueMood>("any");
   const [area, setArea] = useState("");
   const [openNow, setOpenNow] = useState(false);
   const [maxDistance, setMaxDistance] = useState("");
@@ -31,11 +29,10 @@ export function TonightFinder({ venues }: { venues: Venue[] }) {
     () => ({
       area: area || undefined,
       openNow,
-      mood,
       minRating: 4.2,
       maxDistanceKm: maxDistance ? Number(maxDistance) : undefined,
     }),
-    [area, openNow, mood, maxDistance],
+    [area, openNow, maxDistance],
   );
 
   const picks = useMemo(
@@ -67,22 +64,6 @@ export function TonightFinder({ venues }: { venues: Venue[] }) {
                 className="h-4 w-4 accent-pine"
               />
               Open now
-            </label>
-            <label className="flex items-center gap-2 text-ink-soft">
-              Mood
-              <select
-                value={mood}
-                onChange={(event) => setMood(event.target.value as VenueMood)}
-                className="rounded-full border border-line bg-paper px-3 py-1.5 font-medium text-ink outline-none focus:border-clay/50"
-              >
-                <option value="any">Any</option>
-                <option value="active">Active</option>
-                <option value="chill">Chill</option>
-                <option value="family">Family</option>
-                <option value="indoor">Indoor</option>
-                <option value="outdoor">Outdoor</option>
-                <option value="late">Late night</option>
-              </select>
             </label>
             <label className="flex items-center gap-2 text-ink-soft">
               Area

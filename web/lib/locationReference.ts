@@ -16,7 +16,14 @@ export const LANDMARK_REFERENCES: LandmarkReference[] = [
     longitude: 67.0298,
   },
   { id: "port-grand", name: "Port Grand", latitude: 24.8446, longitude: 66.9978 },
+  {
+    id: "mazar-e-quaid",
+    name: "Mazar-e-Quaid",
+    latitude: 24.8754,
+    longitude: 67.0402,
+  },
   { id: "tariq-road", name: "Tariq Road", latitude: 24.8738, longitude: 67.0618 },
+  { id: "chaar-minar", name: "Chaar Minar", latitude: 24.8847, longitude: 67.0666 },
   { id: "lucky-one", name: "LuckyOne Mall", latitude: 24.9336, longitude: 67.0878 },
   {
     id: "millennium-mall",
@@ -36,6 +43,8 @@ export const LANDMARK_REFERENCES: LandmarkReference[] = [
     latitude: 24.9309,
     longitude: 67.0367,
   },
+  { id: "dha-phase-8", name: "DHA Phase 8", latitude: 24.7931, longitude: 67.0826 },
+  { id: "hawksbay", name: "Hawksbay", latitude: 24.8602, longitude: 66.8637 },
 ];
 
 export function distanceReferenceCoordinates(

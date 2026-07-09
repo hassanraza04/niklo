@@ -38,3 +38,11 @@ test("landmark references include central Karachi anchors", () => {
   assert.equal(names.has("Chaar Minar"), true);
   assert.equal(names.has("Mazar-e-Quaid"), true);
 });
+
+test("landmark references include outer coverage anchors", () => {
+  const names = new Set(LANDMARK_REFERENCES.map((reference) => reference.name));
+
+  assert.equal(names.has("Surjani Town"), true);
+  assert.equal(names.has("Korangi Crossing"), true);
+  assert.equal(names.has("Bahria Town Karachi"), true);
+});

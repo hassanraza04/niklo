@@ -1,4 +1,4 @@
-import { parseHours } from "./types";
+import { parseHours } from "./types.ts";
 
 // minutes-since-midnight for a time like "9 AM", "3 PM", "11:30 PM", or a bare
 // "12" that inherits its AM/PM from the other end of the range.

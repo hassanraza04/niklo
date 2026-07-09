@@ -1,16 +1,18 @@
 import Link from "next/link";
 import { categories } from "@/lib/taxonomy";
-import { countsByCategory, topVenues } from "@/lib/venues";
+import { countsByCategory, listFinderVenues, topVenues } from "@/lib/venues";
 import { CategoryCard } from "@/components/CategoryCard";
 import { VenueCard } from "@/components/VenueCard";
 import { collections } from "@/lib/collections";
+import { TonightFinder } from "@/components/TonightFinder";
 
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
-  const [counts, featured] = await Promise.all([
+  const [counts, featured, allVenues] = await Promise.all([
     countsByCategory(),
     topVenues(8),
+    listFinderVenues(),
   ]);
 
   return (
@@ -53,6 +55,8 @@ export default async function Home() {
           </div>
         </div>
       </section>
+
+      <TonightFinder venues={allVenues} />
 
       {/* categories */}
       <section className="mx-auto max-w-6xl px-5 py-12">

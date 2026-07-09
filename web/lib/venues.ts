@@ -142,6 +142,25 @@ export async function listAllVenues(): Promise<Venue[]> {
   return results ?? [];
 }
 
+export async function listFinderVenues(limit = 160): Promise<Venue[]> {
+  const db = await getDb();
+  const { results } = await db
+    .prepare(
+      `select venue_id, name, slug, subcategory_slug, subcategory_name, category_slug,
+              category_name, subcategories, category_slugs, google_category, rating,
+              review_count, latitude, longitude, area, address, city, price_level,
+              website, phone, hours, photo_url, null as photos, google_url, status,
+              is_open, source_query, last_verified, review_level, review_flag
+       from venues
+       where rating is not null
+       order by rating desc nulls last, review_count desc nulls last, name
+       limit ?`,
+    )
+    .bind(limit)
+    .all<Venue>();
+  return results ?? [];
+}
+
 export async function getVenuesBySlugs(slugs: string[]): Promise<Venue[]> {
   if (!slugs.length) return [];
   const db = await getDb();

@@ -22,6 +22,14 @@ test("shouldPromptForLocationOnBoot prompts only when idle, unsaved, and not alr
   assert.equal(
     shouldPromptForLocationOnBoot({
       location: null,
+      status: "checking",
+      promptedThisSession: false,
+    }),
+    false,
+  );
+  assert.equal(
+    shouldPromptForLocationOnBoot({
+      location: null,
       status: "denied",
       promptedThisSession: false,
     }),

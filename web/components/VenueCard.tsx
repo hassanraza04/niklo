@@ -1,11 +1,18 @@
 import Link from "next/link";
 import { Rating } from "./Rating";
+import type { Coordinates } from "@/lib/geo";
 import type { Venue } from "@/lib/types";
 import { canonicalArea } from "@/lib/areas";
 import { isOpenNow } from "@/lib/hours";
 import { VenueDistance } from "./VenueDistance";
 
-export function VenueCard({ venue }: { venue: Venue }) {
+export function VenueCard({
+  venue,
+  distanceFrom,
+}: {
+  venue: Venue;
+  distanceFrom?: Coordinates | null;
+}) {
   const area = canonicalArea(venue);
   const open = isOpenNow(venue.hours);
   return (
@@ -52,6 +59,7 @@ export function VenueCard({ venue }: { venue: Venue }) {
           <VenueDistance
             lat={venue.latitude}
             lon={venue.longitude}
+            referenceLocation={distanceFrom}
             className="mt-1 block text-xs font-medium text-pine"
           />
         </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { formatDistance, venueDistanceKm } from "@/lib/geo";
+import { formatDistance, venueDistanceKm, type Coordinates } from "@/lib/geo";
 import { useUserLocation } from "@/lib/useUserLocation";
 
 export function VenueDistance({
@@ -8,16 +8,20 @@ export function VenueDistance({
   lon,
   prompt = false,
   className = "",
+  referenceLocation,
 }: {
   lat: number | null;
   lon: number | null;
   prompt?: boolean;
   className?: string;
+  referenceLocation?: Coordinates | null;
 }) {
   const { location, status, requestLocation } = useUserLocation();
+  const distanceLocation =
+    referenceLocation === undefined ? location : referenceLocation;
   const km = venueDistanceKm(
     { latitude: lat, longitude: lon, rating: null, review_count: null },
-    location,
+    distanceLocation,
   );
 
   if (km != null) {

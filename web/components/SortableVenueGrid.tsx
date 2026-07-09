@@ -192,7 +192,11 @@ export function SortableVenueGrid({
       {sorted.length > 0 ? (
         <div className={className}>
           {sorted.map((venue) => (
-            <VenueCard key={venue.venue_id} venue={venue} />
+            <VenueCard
+              key={venue.venue_id}
+              venue={venue}
+              distanceFrom={distanceCenter}
+            />
           ))}
         </div>
       ) : (

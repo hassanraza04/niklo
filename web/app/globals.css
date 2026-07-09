@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "leaflet/dist/leaflet.css";
 
 @theme {
   /* warm, homey, karachi-ish. cream paper + clay + pine + marigold. */
@@ -54,4 +55,120 @@ p, h1, h2, h3 {
 .link-underline {
   text-underline-offset: 3px;
   text-decoration-thickness: 1px;
+}
+
+.leaflet-container {
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+.leaflet-control-attribution {
+  border-radius: 999px 0 0 0;
+  color: var(--color-ink-soft);
+}
+
+.niklo-map-pin,
+.niklo-map-user {
+  align-items: center;
+  border: 2px solid var(--color-card);
+  border-radius: 999px;
+  box-shadow: 0 8px 18px rgb(43 39 36 / 0.22);
+  display: flex;
+  font-size: 15px;
+  font-weight: 800;
+  height: 36px;
+  justify-content: center;
+  line-height: 1;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+  width: 36px;
+}
+
+.niklo-map-pin--active,
+.niklo-map-pin:hover {
+  box-shadow: 0 10px 22px rgb(43 39 36 / 0.28);
+  transform: scale(1.2);
+}
+
+.niklo-map-pin--sports {
+  background: var(--color-pine);
+  color: var(--color-paper);
+}
+
+.niklo-map-pin--entertainment {
+  background: var(--color-clay);
+  color: var(--color-paper);
+}
+
+.niklo-map-pin--outdoors {
+  background: var(--color-marigold);
+  color: var(--color-ink);
+}
+
+.niklo-map-pin--creative {
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
+.niklo-map-pin--culture,
+.niklo-map-pin--default {
+  background: var(--color-card);
+  color: var(--color-ink);
+}
+
+.niklo-map-user {
+  background: #2563eb;
+  color: white;
+  font-size: 11px;
+  height: 44px;
+  width: 44px;
+}
+
+.niklo-map-cluster {
+  align-items: center;
+  background: var(--color-ink);
+  border: 3px solid var(--color-card);
+  border-radius: 999px;
+  box-shadow: 0 10px 24px rgb(43 39 36 / 0.26);
+  color: var(--color-paper);
+  display: flex;
+  font-size: 14px;
+  font-weight: 900;
+  height: 48px;
+  justify-content: center;
+  line-height: 1;
+  width: 48px;
+}
+
+.niklo-map-cluster--medium {
+  background: var(--color-pine);
+}
+
+.niklo-map-cluster--large {
+  background: var(--color-clay);
+}
+
+.niklo-map-popup {
+  color: var(--color-ink);
+  display: grid;
+  gap: 5px;
+  min-width: 170px;
+}
+
+.niklo-map-popup p,
+.niklo-map-popup span {
+  color: var(--color-ink-soft);
+  font-size: 12px;
+  margin: 0;
+}
+
+.niklo-map-popup strong {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 16px;
+  line-height: 1.15;
+}
+
+.niklo-map-popup a {
+  color: var(--color-clay-dark);
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }

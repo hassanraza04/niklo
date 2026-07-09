@@ -1,17 +1,28 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import dynamic from "next/dynamic";
+import { useCallback, useMemo, useState } from "react";
 import { categoryIcon } from "@/lib/icons";
 import {
   filteredMapVenues,
-  mapBounds,
-  mapPointStyle,
   primaryCategorySlug,
   type MapVenue,
 } from "@/lib/mapMode";
 import type { Category } from "@/lib/taxonomy";
 import { useUserLocation } from "@/lib/useUserLocation";
+
+const LeafletVenueMap = dynamic(
+  () => import("./LeafletVenueMap").then((mod) => mod.LeafletVenueMap),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="flex h-[520px] min-h-[520px] w-full items-center justify-center bg-paper-2 text-sm font-semibold text-ink-soft sm:h-[620px] xl:h-full xl:min-h-[620px]">
+        Loading map...
+      </div>
+    ),
+  },
+);
 
 const CATEGORY_STYLES: Record<string, { pin: string; dot: string }> = {
   "sports-active": { pin: "bg-pine text-paper", dot: "bg-pine" },
@@ -41,18 +52,16 @@ export function MapMode({
     () => new Set(categorySlugs),
   );
   const [activeSlug, setActiveSlug] = useState(venues[0]?.slug ?? "");
+  const [fitSignal, setFitSignal] = useState(0);
   const { location, status, requestLocation } = useUserLocation();
 
   const visibleVenues = useMemo(
     () => filteredMapVenues(venues, selectedCategories),
     [venues, selectedCategories],
   );
-  const bounds = useMemo(
-    () => mapBounds(visibleVenues, location),
-    [visibleVenues, location],
-  );
   const activeVenue =
     visibleVenues.find((venue) => venue.slug === activeSlug) ?? visibleVenues[0] ?? null;
+  const selectVenue = useCallback((slug: string) => setActiveSlug(slug), []);
 
   function toggleCategory(slug: string) {
     setSelectedCategories((current) => {
@@ -104,6 +113,13 @@ export function MapMode({
                 ? "Update location"
                 : "Show me"}
           </button>
+          <button
+            type="button"
+            onClick={() => setFitSignal((current) => current + 1)}
+            className="rounded-full border border-line bg-card px-4 py-2 font-semibold text-ink hover:border-clay/40"
+          >
+            Fit map
+          </button>
         </div>
       </div>
 
@@ -150,46 +166,17 @@ export function MapMode({
         </aside>
 
         <section className="grid gap-4 xl:grid-cols-[1fr_320px]">
-          <div className="relative min-h-[520px] overflow-hidden rounded-[var(--radius-card)] border border-line bg-[#e8efe5] sm:min-h-[580px]">
-            <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(43,39,36,0.08)_1px,transparent_1px),linear-gradient(180deg,rgba(43,39,36,0.08)_1px,transparent_1px)] bg-[size:56px_56px]" />
-            <div className="absolute right-0 top-0 h-full w-1/4 bg-[#c9ded8]" />
-            <div className="absolute bottom-6 left-8 rounded-full border border-pine/20 bg-paper/75 px-3 py-1 text-xs font-semibold text-pine">
-              Karachi
-            </div>
-            {visibleVenues.map((venue) => {
-              const category = primaryCategorySlug(venue);
-              const style = mapPointStyle(venue, bounds);
-              const active = venue.slug === activeVenue?.slug;
-              return (
-                <button
-                  key={venue.slug}
-                  type="button"
-                  onClick={() => setActiveSlug(venue.slug)}
-                  className={`absolute z-10 flex h-8 w-8 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 border-paper text-sm font-semibold shadow-md transition hover:z-20 hover:scale-110 ${
-                    active ? "scale-125 ring-4 ring-marigold/40" : ""
-                  } ${categoryStyle(category).pin}`}
-                  style={{ left: `${style.left}%`, top: `${style.top}%` }}
-                  title={venue.name}
-                >
-                  {categoryIcon(category)}
-                </button>
-              );
-            })}
-            {location && (
-              <div
-                className="absolute z-30 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-4 border-paper bg-blue-600 text-xs font-bold text-white shadow-lg ring-4 ring-blue-500/20"
-                style={{
-                  left: `${mapPointStyle(location, bounds).left}%`,
-                  top: `${mapPointStyle(location, bounds).top}%`,
-                }}
-                title="You"
-              >
-                You
-              </div>
-            )}
+          <div className="relative overflow-hidden rounded-[var(--radius-card)] border border-line bg-paper-2 shadow-sm">
+            <LeafletVenueMap
+              venues={visibleVenues}
+              activeSlug={activeVenue?.slug ?? ""}
+              userLocation={location}
+              fitSignal={fitSignal}
+              onSelectVenue={selectVenue}
+            />
             {!visibleVenues.length && (
-              <div className="absolute inset-0 flex items-center justify-center p-6 text-center">
-                <div className="rounded-[var(--radius-card)] border border-line bg-card p-6 text-ink-soft">
+              <div className="pointer-events-none absolute inset-0 z-[500] flex items-center justify-center p-6 text-center">
+                <div className="rounded-[var(--radius-card)] border border-line bg-card/95 p-6 text-ink-soft shadow-sm">
                   Select at least one type to see places on the map.
                 </div>
               </div>
@@ -241,7 +228,7 @@ export function MapMode({
                   <button
                     key={venue.slug}
                     type="button"
-                    onClick={() => setActiveSlug(venue.slug)}
+                    onClick={() => selectVenue(venue.slug)}
                     className={`block w-full rounded-xl border px-3 py-2 text-left text-sm transition ${
                       venue.slug === activeVenue?.slug
                         ? "border-clay bg-paper"

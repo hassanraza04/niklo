@@ -1,5 +1,13 @@
 import type { Coordinates } from "./geo";
 
+export const KARACHI_MAP_CENTER: [number, number] = [24.8607, 67.0011];
+
+export const MAP_TILE_PROVIDER = {
+  url: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  maxZoom: 19,
+};
+
 export type MapVenue = {
   slug: string;
   name: string;

@@ -12,3 +12,19 @@ export function shouldPromptForLocationOnBoot({
 }): boolean {
   return !location && status === "idle" && !promptedThisSession;
 }
+
+export function shouldShowLocationDeniedPrompt({
+  status,
+  acceptedIntroPrompt,
+  acknowledgedDeniedPrompt,
+}: {
+  status: LocationStatus;
+  acceptedIntroPrompt: boolean;
+  acknowledgedDeniedPrompt: boolean;
+}): boolean {
+  return (
+    ["denied", "unsupported", "error"].includes(status) &&
+    acceptedIntroPrompt &&
+    !acknowledgedDeniedPrompt
+  );
+}

@@ -4,6 +4,8 @@ import {
   KARACHI_MAP_CENTER,
   MAP_TILE_PROVIDER,
   filteredMapVenues,
+  mapCameraForLocation,
+  mapCameraForVenue,
   mapBounds,
   mapPointStyle,
   primaryCategorySlug,
@@ -69,4 +71,22 @@ test("map tile provider uses zoomable OSM tiles with attribution", () => {
   );
   assert.match(MAP_TILE_PROVIDER.attribution, /OpenStreetMap/);
   assert.deepEqual(KARACHI_MAP_CENTER, [24.8607, 67.0011]);
+});
+
+test("mapCameraForVenue brings a selected place into clear view", () => {
+  assert.deepEqual(mapCameraForVenue(venues[0]), {
+    center: [24.8, 67.02],
+    zoom: 16,
+  });
+});
+
+test("mapCameraForLocation brings the user into clear view", () => {
+  assert.deepEqual(
+    mapCameraForLocation({ latitude: 24.8138, longitude: 67.0305 }),
+    {
+      center: [24.8138, 67.0305],
+      zoom: 15,
+    },
+  );
+  assert.equal(mapCameraForLocation(null), null);
 });

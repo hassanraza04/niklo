@@ -53,6 +53,8 @@ export function MapMode({
   );
   const [activeSlug, setActiveSlug] = useState(venues[0]?.slug ?? "");
   const [fitSignal, setFitSignal] = useState(0);
+  const [focusVenueSignal, setFocusVenueSignal] = useState(0);
+  const [focusUserSignal, setFocusUserSignal] = useState(0);
   const { location, status, requestLocation } = useUserLocation();
 
   const visibleVenues = useMemo(
@@ -62,6 +64,15 @@ export function MapMode({
   const activeVenue =
     visibleVenues.find((venue) => venue.slug === activeSlug) ?? visibleVenues[0] ?? null;
   const selectVenue = useCallback((slug: string) => setActiveSlug(slug), []);
+  const revealVenue = useCallback((slug: string) => {
+    setActiveSlug(slug);
+    setFocusVenueSignal((current) => current + 1);
+  }, []);
+
+  function locateUser() {
+    requestLocation();
+    setFocusUserSignal((current) => current + 1);
+  }
 
   function toggleCategory(slug: string) {
     setSelectedCategories((current) => {
@@ -101,7 +112,7 @@ export function MapMode({
           </button>
           <button
             type="button"
-            onClick={requestLocation}
+            onClick={locateUser}
             disabled={status === "loading"}
             className="rounded-full bg-pine px-4 py-2 font-semibold text-paper disabled:opacity-60"
           >
@@ -110,8 +121,8 @@ export function MapMode({
                 ? "Updating..."
                 : "Finding you..."
               : location
-                ? "Update location"
-                : "Show me"}
+                ? "Locate me"
+                : "Find me"}
           </button>
           <button
             type="button"
@@ -172,6 +183,8 @@ export function MapMode({
               activeSlug={activeVenue?.slug ?? ""}
               userLocation={location}
               fitSignal={fitSignal}
+              focusVenueSignal={focusVenueSignal}
+              focusUserSignal={focusUserSignal}
               onSelectVenue={selectVenue}
             />
             {!visibleVenues.length && (
@@ -228,7 +241,7 @@ export function MapMode({
                   <button
                     key={venue.slug}
                     type="button"
-                    onClick={() => selectVenue(venue.slug)}
+                    onClick={() => revealVenue(venue.slug)}
                     className={`block w-full rounded-xl border px-3 py-2 text-left text-sm transition ${
                       venue.slug === activeVenue?.slug
                         ? "border-clay bg-paper"

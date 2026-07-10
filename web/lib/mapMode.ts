@@ -29,6 +29,11 @@ export type MapBounds = {
   maxLon: number;
 };
 
+export type MapCamera = {
+  center: [number, number];
+  zoom: number;
+};
+
 const KARACHI_BOUNDS: MapBounds = {
   minLat: 24.73,
   maxLat: 25.08,
@@ -57,6 +62,21 @@ export function filteredMapVenues<T extends MapVenue>(
   return venues.filter((venue) =>
     categoryMemberships(venue).some((slug) => selectedCategories.has(slug)),
   );
+}
+
+export function mapCameraForVenue(venue: Pick<MapVenue, "latitude" | "longitude">): MapCamera {
+  return {
+    center: [venue.latitude, venue.longitude],
+    zoom: 16,
+  };
+}
+
+export function mapCameraForLocation(location: Coordinates | null): MapCamera | null {
+  if (!location) return null;
+  return {
+    center: [location.latitude, location.longitude],
+    zoom: 15,
+  };
 }
 
 export function mapBounds(venues: MapVenue[], userLocation: Coordinates | null): MapBounds {

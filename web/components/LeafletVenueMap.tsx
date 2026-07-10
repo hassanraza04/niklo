@@ -1,12 +1,18 @@
 "use client";
 
-import L, { type LayerGroup, type Map as LeafletMap } from "leaflet";
+import L, {
+  type LayerGroup,
+  type Map as LeafletMap,
+  type Marker,
+} from "leaflet";
 import "leaflet.markercluster";
 import { useEffect, useRef } from "react";
 import type { Coordinates } from "@/lib/geo";
 import {
   KARACHI_MAP_CENTER,
   MAP_TILE_PROVIDER,
+  mapCameraForLocation,
+  mapCameraForVenue,
   primaryCategorySlug,
   type MapVenue,
 } from "@/lib/mapMode";
@@ -30,11 +36,11 @@ function markerClass(category: string, active: boolean) {
     .join(" ");
 }
 
-function makeVenueIcon(venue: MapVenue, active: boolean) {
+function makeVenueIcon(venue: MapVenue) {
   const category = primaryCategorySlug(venue);
   return L.divIcon({
     className: "",
-    html: `<span class="${markerClass(category, active)}">${categoryIcon(category)}</span>`,
+    html: `<span class="${markerClass(category, false)}">${categoryIcon(category)}</span>`,
     iconAnchor: [18, 18],
     iconSize: [36, 36],
     popupAnchor: [0, -18],
@@ -44,10 +50,10 @@ function makeVenueIcon(venue: MapVenue, active: boolean) {
 function makeUserIcon() {
   return L.divIcon({
     className: "",
-    html: '<span class="niklo-map-user">You</span>',
-    iconAnchor: [22, 22],
-    iconSize: [44, 44],
-    popupAnchor: [0, -22],
+    html: '<span class="niklo-map-user"><span class="niklo-map-user__dot"></span><span class="niklo-map-user__label">You are here</span></span>',
+    iconAnchor: [18, 18],
+    iconSize: [116, 36],
+    popupAnchor: [0, -18],
   });
 }
 
@@ -91,44 +97,44 @@ function popupContent(venue: MapVenue) {
 }
 
 function placeMarkers({
-  map,
   layer,
   venues,
-  userLocation,
-  activeSlug,
+  markers,
   onSelectVenue,
 }: {
-  map: LeafletMap;
   layer: LayerGroup;
   venues: MapVenue[];
-  userLocation: Coordinates | null;
-  activeSlug: string;
+  markers: Map<string, Marker>;
   onSelectVenue: (slug: string) => void;
 }) {
   layer.clearLayers();
+  markers.clear();
 
   for (const venue of venues) {
     const marker = L.marker([venue.latitude, venue.longitude], {
-      icon: makeVenueIcon(venue, venue.slug === activeSlug),
+      icon: makeVenueIcon(venue),
       title: venue.name,
     })
       .addTo(layer)
       .bindPopup(popupContent(venue));
 
     marker.on("click", () => onSelectVenue(venue.slug));
+    markers.set(venue.slug, marker);
   }
+}
 
+function placeUserMarker(layer: LayerGroup, userLocation: Coordinates | null) {
+  layer.clearLayers();
   if (userLocation) {
     L.marker([userLocation.latitude, userLocation.longitude], {
       icon: makeUserIcon(),
       title: "You",
       zIndexOffset: 1000,
+      pane: "niklo-user-location",
     })
       .addTo(layer)
       .bindPopup("Your location");
   }
-
-  map.invalidateSize();
 }
 
 function fitMap(map: LeafletMap, venues: MapVenue[], userLocation: Coordinates | null) {
@@ -154,20 +160,29 @@ export function LeafletVenueMap({
   activeSlug,
   userLocation,
   fitSignal,
+  focusVenueSignal,
+  focusUserSignal,
   onSelectVenue,
 }: {
   venues: MapVenue[];
   activeSlug: string;
   userLocation: Coordinates | null;
   fitSignal: number;
+  focusVenueSignal: number;
+  focusUserSignal: number;
   onSelectVenue: (slug: string) => void;
 }) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<LeafletMap | null>(null);
-  const layerRef = useRef<LayerGroup | null>(null);
+  const venueLayerRef = useRef<L.MarkerClusterGroup | null>(null);
+  const userLayerRef = useRef<LayerGroup | null>(null);
+  const markersRef = useRef<Map<string, Marker>>(new Map());
+  const lastFitSignalRef = useRef<number | null>(null);
+  const lastFocusedUserRef = useRef("");
 
   useEffect(() => {
     if (!containerRef.current || mapRef.current) return;
+    const markers = markersRef.current;
 
     const map = L.map(containerRef.current, {
       center: KARACHI_MAP_CENTER,
@@ -180,38 +195,76 @@ export function LeafletVenueMap({
       maxZoom: MAP_TILE_PROVIDER.maxZoom,
     }).addTo(map);
 
+    map.createPane("niklo-user-location");
+    map.getPane("niklo-user-location")!.style.zIndex = "650";
+
     mapRef.current = map;
-    layerRef.current = L.markerClusterGroup({
-      disableClusteringAtZoom: 16,
-      maxClusterRadius: 48,
+    venueLayerRef.current = L.markerClusterGroup({
+      disableClusteringAtZoom: 15,
+      maxClusterRadius: 42,
       showCoverageOnHover: false,
       spiderfyOnMaxZoom: true,
       iconCreateFunction: makeClusterIcon,
     }).addTo(map);
+    userLayerRef.current = L.layerGroup().addTo(map);
 
     return () => {
       map.remove();
       mapRef.current = null;
-      layerRef.current = null;
+      venueLayerRef.current = null;
+      userLayerRef.current = null;
+      markers.clear();
+      lastFitSignalRef.current = null;
+      lastFocusedUserRef.current = "";
     };
   }, []);
 
   useEffect(() => {
-    if (!mapRef.current || !layerRef.current) return;
+    if (!mapRef.current || !venueLayerRef.current) return;
     placeMarkers({
-      map: mapRef.current,
-      layer: layerRef.current,
+      layer: venueLayerRef.current,
       venues,
-      userLocation,
-      activeSlug,
+      markers: markersRef.current,
       onSelectVenue,
     });
-  }, [activeSlug, onSelectVenue, userLocation, venues]);
+    mapRef.current.invalidateSize();
+  }, [onSelectVenue, venues]);
+
+  useEffect(() => {
+    if (!userLayerRef.current) return;
+    placeUserMarker(userLayerRef.current, userLocation);
+  }, [userLocation]);
 
   useEffect(() => {
     if (!mapRef.current) return;
+    if (lastFitSignalRef.current === fitSignal) return;
     fitMap(mapRef.current, venues, userLocation);
+    lastFitSignalRef.current = fitSignal;
   }, [fitSignal, userLocation, venues]);
+
+  useEffect(() => {
+    if (!mapRef.current || !venueLayerRef.current || !focusVenueSignal) return;
+    const marker = markersRef.current.get(activeSlug);
+    const venue = venues.find((item) => item.slug === activeSlug);
+    if (!marker || !venue) return;
+    const camera = mapCameraForVenue(venue);
+
+    venueLayerRef.current.zoomToShowLayer(marker, () => {
+      mapRef.current?.flyTo(camera.center, camera.zoom, { duration: 0.35 });
+      marker.openPopup();
+    });
+  }, [activeSlug, focusVenueSignal, venues]);
+
+  useEffect(() => {
+    if (!mapRef.current || !focusUserSignal) return;
+    const camera = mapCameraForLocation(userLocation);
+    if (!camera) return;
+    const focusKey = `${focusUserSignal}:${camera.center.join(",")}`;
+    if (lastFocusedUserRef.current === focusKey) return;
+
+    mapRef.current.flyTo(camera.center, camera.zoom, { duration: 0.35 });
+    lastFocusedUserRef.current = focusKey;
+  }, [focusUserSignal, userLocation]);
 
   return (
     <div

@@ -87,6 +87,16 @@ export function filteredMapVenues<T extends MapVenue>(
   });
 }
 
+export function venuesWithinBounds<T extends MapVenue>(venues: T[], bounds: MapBounds): T[] {
+  return venues.filter(
+    (venue) =>
+      venue.latitude >= bounds.minLat &&
+      venue.latitude <= bounds.maxLat &&
+      venue.longitude >= bounds.minLon &&
+      venue.longitude <= bounds.maxLon,
+  );
+}
+
 export function mapVenueHasSubcategory(
   venue: Pick<MapVenue, "subcategory_slug" | "subcategories">,
   subcategorySlug: string,

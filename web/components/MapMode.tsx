@@ -9,6 +9,8 @@ import {
   mapVenueHasSubcategory,
   primaryCategorySlug,
   setCategorySubcategorySelection,
+  venuesWithinBounds,
+  type MapBounds,
   type MapVenue,
 } from "@/lib/mapMode";
 import type { Category } from "@/lib/taxonomy";
@@ -66,6 +68,7 @@ export function MapMode({
   );
   const [openSubcategoryMenu, setOpenSubcategoryMenu] = useState<string | null>(null);
   const [activeSlug, setActiveSlug] = useState(venues[0]?.slug ?? "");
+  const [mapBounds, setMapBounds] = useState<MapBounds | null>(null);
   const [fitSignal, setFitSignal] = useState(0);
   const [focusUserSignal, setFocusUserSignal] = useState(0);
   const { location, status, requestLocation } = useUserLocation();
@@ -87,9 +90,14 @@ export function MapMode({
     () => filteredMapVenues(venues, selectedCategories, selectedSubcategories),
     [venues, selectedCategories, selectedSubcategories],
   );
+  const venuesInView = useMemo(
+    () => (mapBounds ? venuesWithinBounds(visibleVenues, mapBounds) : visibleVenues),
+    [mapBounds, visibleVenues],
+  );
   const activeVenue =
     visibleVenues.find((venue) => venue.slug === activeSlug) ?? visibleVenues[0] ?? null;
   const selectVenue = useCallback((slug: string) => setActiveSlug(slug), []);
+  const updateMapBounds = useCallback((bounds: MapBounds) => setMapBounds(bounds), []);
 
   function locateUser() {
     requestLocation();
@@ -309,6 +317,7 @@ export function MapMode({
               fitSignal={fitSignal}
               focusUserSignal={focusUserSignal}
               onSelectVenue={selectVenue}
+              onViewportChange={updateMapBounds}
             />
             {!visibleVenues.length && (
               <div className="pointer-events-none absolute inset-0 z-[500] flex items-center justify-center p-6 text-center">
@@ -356,6 +365,38 @@ export function MapMode({
             ) : (
               <p className="text-ink-soft">No place selected.</p>
             )}
+
+            <div className="mt-5 border-t border-line pt-5">
+              <div className="flex items-center justify-between gap-3">
+                <h2 className="font-display text-xl font-semibold text-ink">What&apos;s visible</h2>
+                <span className="text-sm text-ink-soft">{venuesInView.length}</span>
+              </div>
+              {venuesInView.length ? (
+                <div className="mt-3 max-h-72 space-y-1 overflow-y-auto pr-1">
+                  {venuesInView.map((venue) => (
+                    <button
+                      key={venue.slug}
+                      type="button"
+                      onClick={() => selectVenue(venue.slug)}
+                      className={`w-full rounded-md px-3 py-2 text-left transition hover:bg-paper ${
+                        venue.slug === activeVenue?.slug ? "bg-paper" : ""
+                      }`}
+                    >
+                      <span className="block truncate text-sm font-semibold text-ink">
+                        {venue.name}
+                      </span>
+                      <span className="mt-0.5 block truncate text-sm text-ink-soft">
+                        {venueLabel(venue)}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              ) : (
+                <p className="mt-3 text-sm text-ink-soft">
+                  No selected places are in this map view.
+                </p>
+              )}
+            </div>
 
           </aside>
         </section>

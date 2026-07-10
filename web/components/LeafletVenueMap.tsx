@@ -14,6 +14,7 @@ import {
   USER_LOCATION_MARKER,
   mapCameraForLocation,
   primaryCategorySlug,
+  type MapBounds,
   type MapVenue,
 } from "@/lib/mapMode";
 import { categoryIcon } from "@/lib/icons";
@@ -157,18 +158,30 @@ function fitMap(map: LeafletMap, venues: MapVenue[], userLocation: Coordinates |
   });
 }
 
+function currentMapBounds(map: LeafletMap): MapBounds {
+  const bounds = map.getBounds();
+  return {
+    minLat: bounds.getSouth(),
+    maxLat: bounds.getNorth(),
+    minLon: bounds.getWest(),
+    maxLon: bounds.getEast(),
+  };
+}
+
 export function LeafletVenueMap({
   venues,
   userLocation,
   fitSignal,
   focusUserSignal,
   onSelectVenue,
+  onViewportChange,
 }: {
   venues: MapVenue[];
   userLocation: Coordinates | null;
   fitSignal: number;
   focusUserSignal: number;
   onSelectVenue: (slug: string) => void;
+  onViewportChange: (bounds: MapBounds) => void;
 }) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<LeafletMap | null>(null);
@@ -216,6 +229,19 @@ export function LeafletVenueMap({
       lastFocusedUserRef.current = "";
     };
   }, []);
+
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map) return;
+
+    const reportViewport = () => onViewportChange(currentMapBounds(map));
+    map.on("moveend", reportViewport);
+    reportViewport();
+
+    return () => {
+      map.off("moveend", reportViewport);
+    };
+  }, [onViewportChange]);
 
   useEffect(() => {
     if (!mapRef.current || !venueLayerRef.current) return;

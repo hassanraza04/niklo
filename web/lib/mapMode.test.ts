@@ -5,6 +5,7 @@ import {
   MAP_TILE_PROVIDER,
   USER_LOCATION_MARKER,
   filteredMapVenues,
+  venuesWithinBounds,
   setCategorySubcategorySelection,
   mapCameraForLocation,
   mapCameraForVenue,
@@ -69,6 +70,18 @@ test("filteredMapVenues can narrow an active category to a subcategory", () => {
       new Set(["sports-active", "entertainment"]),
       new Set(["padel"]),
     ).map((venue) => venue.slug),
+    ["padel-one"],
+  );
+});
+
+test("venuesWithinBounds keeps only places inside the current map view", () => {
+  assert.deepEqual(
+    venuesWithinBounds(venues, {
+      minLat: 24.75,
+      maxLat: 24.85,
+      minLon: 67.0,
+      maxLon: 67.05,
+    }).map((venue) => venue.slug),
     ["padel-one"],
   );
 });

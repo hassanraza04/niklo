@@ -267,13 +267,6 @@ export function MapMode({
                           >
                             Clear
                           </button>
-                          <button
-                            type="button"
-                            onClick={() => setOpenSubcategoryMenu(null)}
-                            className="rounded-md border border-line bg-card px-2 py-1 text-xs font-semibold text-ink-soft hover:border-clay/40"
-                          >
-                            Close
-                          </button>
                         </span>
                       </div>
                       <div className="mt-2 max-h-48 space-y-1 overflow-y-auto">

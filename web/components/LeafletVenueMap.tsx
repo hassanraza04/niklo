@@ -48,15 +48,6 @@ function makeVenueIcon(venue: MapVenue) {
   });
 }
 
-function makeUserIcon() {
-  return L.divIcon({
-    className: "",
-    html: '<span class="niklo-map-user" aria-label="You are here"></span>',
-    iconAnchor: [USER_LOCATION_MARKER.anchor, USER_LOCATION_MARKER.anchor],
-    iconSize: [USER_LOCATION_MARKER.size, USER_LOCATION_MARKER.size],
-  });
-}
-
 function makeClusterIcon(cluster: L.MarkerCluster) {
   const count = cluster.getChildCount();
   const size = count >= 100 ? "large" : count >= 25 ? "medium" : "small";
@@ -126,11 +117,24 @@ function placeMarkers({
 function placeUserMarker(layer: LayerGroup, userLocation: Coordinates | null) {
   layer.clearLayers();
   if (userLocation) {
-    const marker = L.marker([userLocation.latitude, userLocation.longitude], {
-      icon: makeUserIcon(),
-      title: "You",
-      zIndexOffset: 1000,
+    const position: [number, number] = [userLocation.latitude, userLocation.longitude];
+    L.circleMarker(position, {
       pane: "niklo-user-location",
+      radius: USER_LOCATION_MARKER.outerRadius,
+      stroke: false,
+      fill: true,
+      fillColor: "#2563eb",
+      fillOpacity: 0.18,
+      interactive: false,
+    }).addTo(layer);
+    const marker = L.circleMarker(position, {
+      pane: "niklo-user-location",
+      radius: USER_LOCATION_MARKER.innerRadius,
+      color: "#ffffff",
+      weight: 4,
+      fill: true,
+      fillColor: "#2563eb",
+      fillOpacity: 1,
     }).addTo(layer);
     if (USER_LOCATION_MARKER.opensPopup) marker.bindPopup("Your location");
   }

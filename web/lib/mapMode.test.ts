@@ -109,8 +109,8 @@ test("mapCameraForLocation brings the user into clear view", () => {
 
 test("user location marker remains visible instead of opening a self-covering popup", () => {
   assert.deepEqual(USER_LOCATION_MARKER, {
-    size: 42,
-    anchor: 21,
+    innerRadius: 11,
+    outerRadius: 21,
     opensPopup: false,
   });
 });

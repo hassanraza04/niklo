@@ -9,8 +9,8 @@ export const MAP_TILE_PROVIDER = {
 };
 
 export const USER_LOCATION_MARKER = {
-  size: 42,
-  anchor: 21,
+  innerRadius: 11,
+  outerRadius: 21,
   opensPopup: false,
 } as const;
 

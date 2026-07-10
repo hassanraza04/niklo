@@ -5,6 +5,7 @@ import {
   MAP_TILE_PROVIDER,
   USER_LOCATION_MARKER,
   filteredMapVenues,
+  setCategorySubcategorySelection,
   mapCameraForLocation,
   mapCameraForVenue,
   mapBounds,
@@ -69,6 +70,23 @@ test("filteredMapVenues can narrow an active category to a subcategory", () => {
       new Set(["padel"]),
     ).map((venue) => venue.slug),
     ["padel-one"],
+  );
+});
+
+test("clearing one category's subcategories keeps other category selections", () => {
+  const selected = new Set(["padel", "tennis", "cinemas"]);
+
+  assert.deepEqual(
+    [...setCategorySubcategorySelection(selected, ["padel", "tennis"], false)],
+    ["cinemas"],
+  );
+  assert.deepEqual(
+    filteredMapVenues(
+      venues,
+      new Set(["entertainment"]),
+      new Set(["cinemas"]),
+    ).map((venue) => venue.slug),
+    ["cinema-one"],
   );
 });
 

@@ -94,6 +94,19 @@ export function mapVenueHasSubcategory(
   return subcategoryMemberships(venue).includes(subcategorySlug);
 }
 
+export function setCategorySubcategorySelection(
+  selectedSubcategories: Set<string>,
+  categorySubcategorySlugs: readonly string[],
+  selected: boolean,
+) {
+  const next = new Set(selectedSubcategories);
+  for (const slug of categorySubcategorySlugs) {
+    if (selected) next.add(slug);
+    else next.delete(slug);
+  }
+  return next;
+}
+
 export function mapCameraForVenue(venue: Pick<MapVenue, "latitude" | "longitude">): MapCamera {
   return {
     center: [venue.latitude, venue.longitude],

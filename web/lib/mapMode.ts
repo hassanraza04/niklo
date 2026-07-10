@@ -8,6 +8,12 @@ export const MAP_TILE_PROVIDER = {
   maxZoom: 19,
 };
 
+export const USER_LOCATION_MARKER = {
+  size: 42,
+  anchor: 21,
+  opensPopup: false,
+} as const;
+
 export type MapVenue = {
   slug: string;
   name: string;

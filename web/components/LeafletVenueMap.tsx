@@ -11,6 +11,7 @@ import type { Coordinates } from "@/lib/geo";
 import {
   KARACHI_MAP_CENTER,
   MAP_TILE_PROVIDER,
+  USER_LOCATION_MARKER,
   mapCameraForLocation,
   mapCameraForVenue,
   primaryCategorySlug,
@@ -51,9 +52,8 @@ function makeUserIcon() {
   return L.divIcon({
     className: "",
     html: '<span class="niklo-map-user" aria-label="You are here"></span>',
-    iconAnchor: [21, 21],
-    iconSize: [42, 42],
-    popupAnchor: [0, -21],
+    iconAnchor: [USER_LOCATION_MARKER.anchor, USER_LOCATION_MARKER.anchor],
+    iconSize: [USER_LOCATION_MARKER.size, USER_LOCATION_MARKER.size],
   });
 }
 
@@ -126,14 +126,13 @@ function placeMarkers({
 function placeUserMarker(layer: LayerGroup, userLocation: Coordinates | null) {
   layer.clearLayers();
   if (userLocation) {
-    L.marker([userLocation.latitude, userLocation.longitude], {
+    const marker = L.marker([userLocation.latitude, userLocation.longitude], {
       icon: makeUserIcon(),
       title: "You",
       zIndexOffset: 1000,
       pane: "niklo-user-location",
-    })
-      .addTo(layer)
-      .bindPopup("Your location");
+    }).addTo(layer);
+    if (USER_LOCATION_MARKER.opensPopup) marker.bindPopup("Your location");
   }
 }
 

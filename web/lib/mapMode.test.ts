@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import {
   KARACHI_MAP_CENTER,
   MAP_TILE_PROVIDER,
+  USER_LOCATION_MARKER,
   filteredMapVenues,
   mapCameraForLocation,
   mapCameraForVenue,
@@ -104,4 +105,12 @@ test("mapCameraForLocation brings the user into clear view", () => {
     },
   );
   assert.equal(mapCameraForLocation(null), null);
+});
+
+test("user location marker remains visible instead of opening a self-covering popup", () => {
+  assert.deepEqual(USER_LOCATION_MARKER, {
+    size: 42,
+    anchor: 21,
+    opensPopup: false,
+  });
 });

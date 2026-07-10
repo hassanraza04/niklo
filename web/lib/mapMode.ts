@@ -13,8 +13,10 @@ export type MapVenue = {
   name: string;
   category_slug: string | null;
   category_name: string | null;
+  subcategory_slug: string | null;
   subcategory_name: string | null;
   category_slugs: string | null;
+  subcategories: string | null;
   latitude: number;
   longitude: number;
   area: string | null;
@@ -48,6 +50,15 @@ function categoryMemberships(venue: Pick<MapVenue, "category_slug" | "category_s
     .filter(Boolean);
 }
 
+function subcategoryMemberships(
+  venue: Pick<MapVenue, "subcategory_slug" | "subcategories">,
+) {
+  return (venue.subcategories ?? venue.subcategory_slug ?? "")
+    .split(",")
+    .map((slug) => slug.trim())
+    .filter(Boolean);
+}
+
 export function primaryCategorySlug(
   venue: Pick<MapVenue, "category_slug" | "category_slugs">,
 ): string {
@@ -57,11 +68,24 @@ export function primaryCategorySlug(
 export function filteredMapVenues<T extends MapVenue>(
   venues: T[],
   selectedCategories: Set<string>,
+  selectedSubcategories = new Set<string>(),
 ): T[] {
   if (!selectedCategories.size) return [];
-  return venues.filter((venue) =>
-    categoryMemberships(venue).some((slug) => selectedCategories.has(slug)),
-  );
+  return venues.filter((venue) => {
+    const matchesCategory = categoryMemberships(venue).some((slug) =>
+      selectedCategories.has(slug),
+    );
+    if (!matchesCategory) return false;
+    if (!selectedSubcategories.size) return true;
+    return subcategoryMemberships(venue).some((slug) => selectedSubcategories.has(slug));
+  });
+}
+
+export function mapVenueHasSubcategory(
+  venue: Pick<MapVenue, "subcategory_slug" | "subcategories">,
+  subcategorySlug: string,
+) {
+  return subcategoryMemberships(venue).includes(subcategorySlug);
 }
 
 export function mapCameraForVenue(venue: Pick<MapVenue, "latitude" | "longitude">): MapCamera {

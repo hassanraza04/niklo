@@ -6,6 +6,7 @@ import { useCallback, useMemo, useState } from "react";
 import { categoryIcon } from "@/lib/icons";
 import {
   filteredMapVenues,
+  mapVenueHasSubcategory,
   primaryCategorySlug,
   type MapVenue,
 } from "@/lib/mapMode";
@@ -51,6 +52,9 @@ export function MapMode({
   const [selectedCategories, setSelectedCategories] = useState<Set<string>>(
     () => new Set(categorySlugs),
   );
+  const [selectedSubcategories, setSelectedSubcategories] = useState<Set<string>>(
+    () => new Set(),
+  );
   const [activeSlug, setActiveSlug] = useState(venues[0]?.slug ?? "");
   const [fitSignal, setFitSignal] = useState(0);
   const [focusVenueSignal, setFocusVenueSignal] = useState(0);
@@ -58,8 +62,8 @@ export function MapMode({
   const { location, status, requestLocation } = useUserLocation();
 
   const visibleVenues = useMemo(
-    () => filteredMapVenues(venues, selectedCategories),
-    [venues, selectedCategories],
+    () => filteredMapVenues(venues, selectedCategories, selectedSubcategories),
+    [venues, selectedCategories, selectedSubcategories],
   );
   const activeVenue =
     visibleVenues.find((venue) => venue.slug === activeSlug) ?? visibleVenues[0] ?? null;
@@ -83,6 +87,31 @@ export function MapMode({
     });
   }
 
+  function toggleSubcategory(categorySlug: string, subcategorySlug: string) {
+    setSelectedCategories((current) => {
+      if (current.has(categorySlug)) return current;
+      const next = new Set(current);
+      next.add(categorySlug);
+      return next;
+    });
+    setSelectedSubcategories((current) => {
+      const next = new Set(current);
+      if (next.has(subcategorySlug)) next.delete(subcategorySlug);
+      else next.add(subcategorySlug);
+      return next;
+    });
+  }
+
+  function selectEveryType() {
+    setSelectedCategories(new Set(categorySlugs));
+    setSelectedSubcategories(new Set());
+  }
+
+  function clearFilters() {
+    setSelectedCategories(new Set());
+    setSelectedSubcategories(new Set());
+  }
+
   return (
     <div className="mx-auto max-w-7xl px-5 py-8">
       <div className="flex flex-wrap items-end justify-between gap-4">
@@ -98,14 +127,14 @@ export function MapMode({
         <div className="flex flex-wrap gap-2 text-sm">
           <button
             type="button"
-            onClick={() => setSelectedCategories(new Set(categorySlugs))}
+            onClick={selectEveryType}
             className="rounded-full border border-line bg-card px-4 py-2 font-semibold text-ink hover:border-clay/40"
           >
             Select all
           </button>
           <button
             type="button"
-            onClick={() => setSelectedCategories(new Set())}
+            onClick={clearFilters}
             className="rounded-full border border-line bg-card px-4 py-2 font-semibold text-ink hover:border-clay/40"
           >
             Clear
@@ -145,12 +174,23 @@ export function MapMode({
                   .split(",")
                   .includes(category.slug),
               ).length;
+              const mappedSubcategories = category.subcategories
+                .map((subcategory) => ({
+                  ...subcategory,
+                  count: venues.filter((venue) =>
+                    mapVenueHasSubcategory(venue, subcategory.slug),
+                  ).length,
+                }))
+                .filter((subcategory) => subcategory.count > 0);
+              const selectedSubcategoryCount = mappedSubcategories.filter((subcategory) =>
+                selectedSubcategories.has(subcategory.slug),
+              ).length;
               return (
-                <label
+                <div
                   key={category.slug}
-                  className="flex cursor-pointer items-center justify-between gap-3 rounded-xl border border-line bg-paper px-3 py-2 text-sm text-ink transition hover:border-clay/40"
+                  className="flex items-center justify-between gap-2 rounded-xl border border-line bg-paper px-3 py-2 text-sm text-ink transition hover:border-clay/40"
                 >
-                  <span className="flex min-w-0 items-center gap-2">
+                  <label className="flex min-w-0 cursor-pointer items-center gap-2">
                     <input
                       type="checkbox"
                       checked={active}
@@ -160,9 +200,52 @@ export function MapMode({
                     <span className="truncate">
                       {categoryIcon(category.slug)} {category.name}
                     </span>
+                  </label>
+                  <span className="flex shrink-0 items-center gap-2">
+                    <span className="text-xs text-ink-soft">{count}</span>
+                    {mappedSubcategories.length > 0 && (
+                      <details className="relative">
+                        <summary
+                          aria-label={`Choose ${category.name} subcategories`}
+                          className="flex h-7 cursor-pointer list-none items-center rounded-md border border-line bg-card px-2 text-xs font-semibold text-ink-soft hover:border-clay/40 [&::-webkit-details-marker]:hidden"
+                        >
+                          Subtypes
+                          {selectedSubcategoryCount > 0 && (
+                            <span className="ml-1 text-pine">{selectedSubcategoryCount}</span>
+                          )}
+                        </summary>
+                        <div className="absolute right-0 top-8 z-[700] w-60 rounded-[var(--radius-card)] border border-line bg-card p-2 shadow-lg">
+                          <p className="px-2 py-1 text-xs font-semibold text-ink-soft">
+                            {category.name}
+                          </p>
+                          <div className="max-h-48 space-y-1 overflow-y-auto">
+                            {mappedSubcategories.map((subcategory) => (
+                              <label
+                                key={subcategory.slug}
+                                className="flex cursor-pointer items-center justify-between gap-3 rounded-md px-2 py-1.5 text-sm hover:bg-paper"
+                              >
+                                <span className="flex min-w-0 items-center gap-2">
+                                  <input
+                                    type="checkbox"
+                                    checked={selectedSubcategories.has(subcategory.slug)}
+                                    onChange={() =>
+                                      toggleSubcategory(category.slug, subcategory.slug)
+                                    }
+                                    className="h-4 w-4 shrink-0 accent-pine"
+                                  />
+                                  <span className="truncate">{subcategory.name}</span>
+                                </span>
+                                <span className="shrink-0 text-xs text-ink-soft">
+                                  {subcategory.count}
+                                </span>
+                              </label>
+                            ))}
+                          </div>
+                        </div>
+                      </details>
+                    )}
                   </span>
-                  <span className="shrink-0 text-xs text-ink-soft">{count}</span>
-                </label>
+                </div>
               );
             })}
           </div>

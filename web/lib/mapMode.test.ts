@@ -18,8 +18,10 @@ const venues: MapVenue[] = [
     name: "Padel One",
     category_slug: "sports-active",
     category_name: "Sports & Active",
+    subcategory_slug: "padel",
     subcategory_name: "Padel",
     category_slugs: "sports-active,entertainment",
+    subcategories: "padel",
     latitude: 24.8,
     longitude: 67.02,
     area: "Clifton",
@@ -31,8 +33,10 @@ const venues: MapVenue[] = [
     name: "Cinema One",
     category_slug: "entertainment",
     category_name: "Entertainment",
+    subcategory_slug: "cinemas",
     subcategory_name: "Cinemas",
     category_slugs: "entertainment",
+    subcategories: "cinemas",
     latitude: 24.9,
     longitude: 67.12,
     area: "DHA",
@@ -52,6 +56,17 @@ test("filteredMapVenues keeps venues matching selected categories", () => {
   );
   assert.deepEqual(
     filteredMapVenues(venues, new Set(["sports-active"])).map((venue) => venue.slug),
+    ["padel-one"],
+  );
+});
+
+test("filteredMapVenues can narrow an active category to a subcategory", () => {
+  assert.deepEqual(
+    filteredMapVenues(
+      venues,
+      new Set(["sports-active", "entertainment"]),
+      new Set(["padel"]),
+    ).map((venue) => venue.slug),
     ["padel-one"],
   );
 });

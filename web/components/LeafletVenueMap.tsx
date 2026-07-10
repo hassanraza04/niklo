@@ -50,10 +50,10 @@ function makeVenueIcon(venue: MapVenue) {
 function makeUserIcon() {
   return L.divIcon({
     className: "",
-    html: '<span class="niklo-map-user"><span class="niklo-map-user__dot"></span><span class="niklo-map-user__label">You are here</span></span>',
-    iconAnchor: [18, 18],
-    iconSize: [116, 36],
-    popupAnchor: [0, -18],
+    html: '<span class="niklo-map-user" aria-label="You are here"></span>',
+    iconAnchor: [21, 21],
+    iconSize: [42, 42],
+    popupAnchor: [0, -21],
   });
 }
 

@@ -22,8 +22,8 @@ class ExportLiveListingsTest(unittest.TestCase):
             with out.open(newline="", encoding="utf-8") as f:
                 rows = list(csv.DictReader(f))
 
-        self.assertEqual(629, count)
-        self.assertEqual(629, len(rows))
+        self.assertEqual(630, count)
+        self.assertEqual(630, len(rows))
         self.assertEqual(
             [
                 "venue_id",
@@ -43,6 +43,9 @@ class ExportLiveListingsTest(unittest.TestCase):
             ],
             list(rows[0].keys()),
         )
+        marksman = next(row for row in rows if row["venue_id"] == "ChIJybTEzTw7sz4RLb2PysKPyv0")
+        self.assertEqual("paintball", marksman["primary_subcategory"])
+        self.assertEqual("paintball,box-cricket", marksman["subcategories"])
 
 
 if __name__ == "__main__":

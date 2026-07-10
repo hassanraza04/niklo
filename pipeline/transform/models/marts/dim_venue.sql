@@ -28,6 +28,40 @@ tax as (
     select * from {{ ref('taxonomy') }}
 ),
 
+-- rare, separately verified venues that were mistakenly excluded in an earlier
+-- curation pass. A fresh scrape takes precedence whenever it finds the same id.
+curated as (
+    select
+        venue_id,
+        name,
+        subcategory_slug,
+        subcategory_name,
+        category_slug,
+        category_name,
+        subcategories,
+        category_slugs,
+        google_category,
+        cast(rating as double) as rating,
+        cast(review_count as integer) as review_count,
+        cast(latitude as double) as latitude,
+        cast(longitude as double) as longitude,
+        nullif(cast(area as varchar), '') as area,
+        nullif(cast(address as varchar), '') as address,
+        nullif(cast(city as varchar), '') as city,
+        nullif(cast(price_level as varchar), '') as price_level,
+        nullif(cast(website as varchar), '') as website,
+        nullif(cast(phone as varchar), '') as phone,
+        nullif(cast(hours as varchar), '') as hours,
+        nullif(cast(photo_url as varchar), '') as photo_url,
+        coalesce(nullif(cast(photos as varchar), ''), '[]') as photos,
+        nullif(cast(google_url as varchar), '') as google_url,
+        nullif(cast(status as varchar), '') as status,
+        cast(is_open as boolean) as is_open,
+        nullif(cast(source_query as varchar), '') as source_query,
+        nullif(cast(last_verified as varchar), '') as last_verified
+    from {{ ref('curated_venues') }}
+),
+
 -- venues that clear the quality bar. this is the canonical set, and it also
 -- defines which subcategories are "live" (have at least one home venue) so a
 -- dead category like mini-golf can't sneak back in via a multi-sport venue.
@@ -186,6 +220,14 @@ joined as (
     join primary_pick pp on k.place_id = pp.venue_id
     left join tax t on pp.subcategory_slug = t.subcategory_slug
     left join member_agg ma on k.place_id = ma.venue_id
+),
+
+all_venues as (
+    select * from joined
+    union all by name
+    select c.*
+    from curated c
+    where c.venue_id not in (select venue_id from joined)
 )
 
 select
@@ -194,4 +236,4 @@ select
         regexp_replace(lower(name), '[^a-z0-9]+', '-', 'g'),
         '(^-|-$)', '', 'g'
     ) || '-' || lower(substr(venue_id, 4, 6))               as slug
-from joined
+from all_venues

@@ -1,3 +1,4 @@
+import csv
 import tempfile
 import unittest
 from pathlib import Path
@@ -54,6 +55,20 @@ class SeedChecksTest(unittest.TestCase):
 
         failures = {r.name: r for r in results if not r.passed}
         self.assertIn("required_google_url", failures)
+
+    def test_curated_venues_cannot_be_reexcluded(self):
+        curated_path = ROOT / "pipeline" / "transform" / "seeds" / "curated_venues.csv"
+        excluded_path = ROOT / "pipeline" / "transform" / "seeds" / "excluded_venues.csv"
+        model_path = ROOT / "pipeline" / "transform" / "models" / "marts" / "dim_venue.sql"
+
+        with curated_path.open(newline="", encoding="utf-8") as f:
+            curated_ids = {row["venue_id"] for row in csv.DictReader(f)}
+        with excluded_path.open(newline="", encoding="utf-8") as f:
+            excluded_ids = {row["venue_id"] for row in csv.DictReader(f)}
+
+        self.assertTrue(curated_ids)
+        self.assertFalse(curated_ids & excluded_ids)
+        self.assertIn("from {{ ref('curated_venues') }}", model_path.read_text(encoding="utf-8"))
 
 
 if __name__ == "__main__":

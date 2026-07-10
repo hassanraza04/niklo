@@ -67,7 +67,6 @@ export function MapMode({
   const [openSubcategoryMenu, setOpenSubcategoryMenu] = useState<string | null>(null);
   const [activeSlug, setActiveSlug] = useState(venues[0]?.slug ?? "");
   const [fitSignal, setFitSignal] = useState(0);
-  const [focusVenueSignal, setFocusVenueSignal] = useState(0);
   const [focusUserSignal, setFocusUserSignal] = useState(0);
   const { location, status, requestLocation } = useUserLocation();
 
@@ -91,10 +90,6 @@ export function MapMode({
   const activeVenue =
     visibleVenues.find((venue) => venue.slug === activeSlug) ?? visibleVenues[0] ?? null;
   const selectVenue = useCallback((slug: string) => setActiveSlug(slug), []);
-  const revealVenue = useCallback((slug: string) => {
-    setActiveSlug(slug);
-    setFocusVenueSignal((current) => current + 1);
-  }, []);
 
   function locateUser() {
     requestLocation();
@@ -306,14 +301,12 @@ export function MapMode({
           )}
         </aside>
 
-        <section className="grid gap-4 xl:grid-cols-[1fr_320px]">
+        <section className="grid gap-4 xl:items-start xl:grid-cols-[1fr_320px]">
           <div className="relative overflow-hidden rounded-[var(--radius-card)] border border-line bg-paper-2 shadow-sm">
             <LeafletVenueMap
               venues={visibleVenues}
-              activeSlug={activeVenue?.slug ?? ""}
               userLocation={location}
               fitSignal={fitSignal}
-              focusVenueSignal={focusVenueSignal}
               focusUserSignal={focusUserSignal}
               onSelectVenue={selectVenue}
             />
@@ -326,7 +319,7 @@ export function MapMode({
             )}
           </div>
 
-          <aside className="rounded-[var(--radius-card)] border border-line bg-card p-4">
+          <aside className="self-start rounded-[var(--radius-card)] border border-line bg-card p-4">
             {activeVenue ? (
               <>
                 <div className="flex items-start justify-between gap-3">
@@ -364,28 +357,6 @@ export function MapMode({
               <p className="text-ink-soft">No place selected.</p>
             )}
 
-            <div className="mt-6 border-t border-line pt-4">
-              <h3 className="font-display text-lg font-semibold text-ink">Visible places</h3>
-              <div className="mt-3 max-h-80 space-y-2 overflow-auto pr-1">
-                {visibleVenues.slice(0, 80).map((venue) => (
-                  <button
-                    key={venue.slug}
-                    type="button"
-                    onClick={() => revealVenue(venue.slug)}
-                    className={`block w-full rounded-xl border px-3 py-2 text-left text-sm transition ${
-                      venue.slug === activeVenue?.slug
-                        ? "border-clay bg-paper"
-                        : "border-line bg-card hover:border-clay/40"
-                    }`}
-                  >
-                    <span className="block truncate font-semibold text-ink">
-                      {venue.name}
-                    </span>
-                    <span className="block truncate text-ink-soft">{venueLabel(venue)}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
           </aside>
         </section>
       </div>

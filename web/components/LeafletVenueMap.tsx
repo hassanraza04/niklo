@@ -13,7 +13,6 @@ import {
   MAP_TILE_PROVIDER,
   USER_LOCATION_MARKER,
   mapCameraForLocation,
-  mapCameraForVenue,
   primaryCategorySlug,
   type MapVenue,
 } from "@/lib/mapMode";
@@ -160,18 +159,14 @@ function fitMap(map: LeafletMap, venues: MapVenue[], userLocation: Coordinates |
 
 export function LeafletVenueMap({
   venues,
-  activeSlug,
   userLocation,
   fitSignal,
-  focusVenueSignal,
   focusUserSignal,
   onSelectVenue,
 }: {
   venues: MapVenue[];
-  activeSlug: string;
   userLocation: Coordinates | null;
   fitSignal: number;
-  focusVenueSignal: number;
   focusUserSignal: number;
   onSelectVenue: (slug: string) => void;
 }) {
@@ -244,19 +239,6 @@ export function LeafletVenueMap({
     fitMap(mapRef.current, venues, userLocation);
     lastFitSignalRef.current = fitSignal;
   }, [fitSignal, userLocation, venues]);
-
-  useEffect(() => {
-    if (!mapRef.current || !venueLayerRef.current || !focusVenueSignal) return;
-    const marker = markersRef.current.get(activeSlug);
-    const venue = venues.find((item) => item.slug === activeSlug);
-    if (!marker || !venue) return;
-    const camera = mapCameraForVenue(venue);
-
-    venueLayerRef.current.zoomToShowLayer(marker, () => {
-      mapRef.current?.flyTo(camera.center, camera.zoom, { duration: 0.35 });
-      marker.openPopup();
-    });
-  }, [activeSlug, focusVenueSignal, venues]);
 
   useEffect(() => {
     if (!mapRef.current || !focusUserSignal) return;

@@ -19,8 +19,12 @@ jobs:
         run: python -m unittest discover -s tests -v
       - name: Check generated D1 seed
         run: python pipeline/seed_checks.py
+      - name: Check customer flows
+        run: python pipeline/customer_flow_checks.py
       - name: Verify live listing lock can be regenerated
         run: python pipeline/export_live_listings.py --output /tmp/live_listings.csv
+      - name: Verify release lock
+        run: python pipeline/release_checks.py
 
   web:
     name: Web build

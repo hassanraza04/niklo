@@ -6,6 +6,8 @@ Use this before the Cloudflare deploy. Cloudflare account setup, D1 ids, remote 
 
 - Run `python3 pipeline/export_live_listings.py`.
 - Run `python3 pipeline/seed_checks.py`.
+- Run `python3 pipeline/customer_flow_checks.py`.
+- Run `python3 pipeline/release_checks.py`.
 - Confirm `data/live_listings.csv` has the same count as `infra/d1/seed.sql`.
 - Confirm `infra/d1/flags.sql` has no unexpected active flags.
 - Check the two deferred listing decisions when you are ready:
@@ -26,7 +28,13 @@ Use this before the Cloudflare deploy. Cloudflare account setup, D1 ids, remote 
   - `/spin`
   - `/saved`
   - `/sitemap.xml`
-  - `/robots.txt`
+- `/robots.txt`
+
+## Local Preview
+
+- After changing `infra/d1/seed.sql`, run `cd web && npm run db:reset` before testing.
+- Search for `marksman`, `english snooker`, and `edge gaming` to confirm exact venue matches lead.
+- Confirm a removed low-review listing does not resolve to a venue page.
 
 ## Content
 
@@ -39,4 +47,3 @@ Use this before the Cloudflare deploy. Cloudflare account setup, D1 ids, remote 
 - Set `NEXT_PUBLIC_SITE_URL` to the real site URL before production.
 - After Cloudflare is configured, run the remote D1 schema and seed from the README.
 - After deploy, run the same page checks against the live URL.
-

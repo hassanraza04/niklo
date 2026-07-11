@@ -81,19 +81,31 @@ npm run dev                               # http://localhost:3000
 ```bash
 python3 pipeline/export_live_listings.py  # seed -> data/live_listings.csv
 python3 pipeline/seed_checks.py           # validate generated d1 seed + local photos
+python3 pipeline/customer_flow_checks.py  # browse, search, map, and saved-place smoke checks
+python3 pipeline/release_checks.py        # committed allowlist matches the generated seed
 python3 -m unittest discover -s tests -v  # pipeline guardrail tests
 cd web && npm ci && npm run lint && npm run build
 ```
 
-**Routine updates for existing listings only:**
+**Daily safe refresh for existing listings only:**
 
 ```bash
-python3 pipeline/export_live_listings.py
-# run the local scraper sweeps you want to refresh
-python3 pipeline/verify_existing.py       # writes data/verification/YYYY-MM-DD/
+pipeline/daily_refresh.sh
 ```
 
-The verification step ignores new `place_id`s by design. See `docs/update-runbook.md`.
+This refresh only plans existing listing searches and writes review artifacts under
+`data/verification/YYYY-MM-DD/`. It never changes the seed, the allowlist, or D1.
+New place ids are quarantined in the report.
+
+**Rare discovery run:**
+
+```bash
+pipeline/rare_discovery.sh scraper/out
+```
+
+This builds an isolated discovery warehouse and writes `data/discovery/YYYY-MM-DD/new_candidates.csv`.
+Candidates stay pending until a manual evidence review adds them to the curated inputs and live allowlist.
+See `docs/update-runbook.md` for both workflows.
 
 **Photos** — google's image urls are signed and expire, so `photos.py` mirrors each
 venue photo into R2 once and `export_to_d1.py` then serves those permanent urls. it's

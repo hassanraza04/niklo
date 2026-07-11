@@ -1,5 +1,6 @@
 import { getDb } from "./db";
 import type { Venue } from "./types";
+import { buildVenueSearchPlan } from "./venueSearchPlan";
 
 // default sort: most-rated first (popularity), so established venues lead instead of
 // a tiny place with a perfect score from a handful of reviews. rating breaks ties.
@@ -75,69 +76,13 @@ export async function countsByCategory(): Promise<Record<string, number>> {
 }
 
 export async function searchVenues(q: string, limit = 60): Promise<Venue[]> {
-  // Tokenize so "padel clifton" still works as an activity-plus-location search.
-  // The whole phrase is also ranked separately below, which keeps the actual venue
-  // ahead of unrelated high-review results that happen to share one token.
-  const tokens = q
-    .trim()
-    .split(/\s+/)
-    .map((t) => t.replace(/[%_]/g, ""))
-    .filter(Boolean)
-    .slice(0, 6);
-  if (!tokens.length) return [];
-  const phrase = tokens.join(" ").toLowerCase();
-
   const db = await getDb();
-  // Include memberships so "futsal" also finds a padel-primary venue that offers
-  // futsal. Address-only matches are a fallback, keeping a busy address from
-  // overwhelming a venue-name search.
-  const strongFields = ["name", "area", "subcategory_name", "category_name", "subcategories"];
-  const exactName = phrase;
-  const namePrefix = `${phrase}%`;
-  const phraseMatch = `%${phrase}%`;
-  const exactSubcategory = phrase;
-  const exactCategory = phrase;
-  const exactArea = phrase;
-
   async function runSearch(includeAddress: boolean): Promise<Venue[]> {
-    const fields = includeAddress ? [...strongFields, "address"] : strongFields;
-    const clause = tokens
-      .map(() => `(${fields.map((field) => `${field} like ?`).join(" or ")})`)
-      .join(" and ");
-    const binds: (string | number)[] = [];
-    for (const t of tokens) {
-      const like = `%${t}%`;
-      binds.push(...fields.map(() => like));
-    }
-    binds.push(
-      exactName,
-      namePrefix,
-      phraseMatch,
-      exactSubcategory,
-      exactCategory,
-      exactArea,
-      phraseMatch,
-      limit,
-    );
-
+    const plan = buildVenueSearchPlan(q, includeAddress, limit);
+    if (!plan) return [];
     const { results } = await db
-      .prepare(
-        `select * from venues
-         where ${clause}
-         order by case
-           when lower(name) = ? then 0
-           when lower(name) like ? then 1
-           when lower(name) like ? then 2
-           when lower(subcategory_name) = ? then 3
-           when lower(category_name) = ? then 4
-           when lower(area) = ? then 5
-           when lower(address) like ? then 7
-           else 6
-         end,
-         review_count desc nulls last, rating desc nulls last, name
-         limit ?`,
-      )
-      .bind(...binds)
+      .prepare(plan.statement)
+      .bind(...plan.binds)
       .all<Venue>();
     return results ?? [];
   }

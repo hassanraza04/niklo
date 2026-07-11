@@ -15,6 +15,12 @@ npm run dev
 
 Then open `http://localhost:3000`.
 
+After `infra/d1/seed.sql` changes, reset the local database before testing:
+
+```bash
+npm run db:reset
+```
+
 ## Checks
 
 ```bash
@@ -27,6 +33,8 @@ Data guardrails live one level up:
 ```bash
 cd ..
 python3 pipeline/seed_checks.py
+python3 pipeline/customer_flow_checks.py
+python3 pipeline/release_checks.py
 python3 -m unittest discover -s tests -v
 ```
 
@@ -46,4 +54,3 @@ python3 -m unittest discover -s tests -v
 - `/spin`
 - `/saved`
 - `/plan?v=slug-a,slug-b`
-

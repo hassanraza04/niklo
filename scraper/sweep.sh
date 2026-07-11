@@ -10,7 +10,7 @@ set -euo pipefail
 
 QFILE="${1:?usage: sweep.sh <queryfile> <category-slug>}"
 CAT="${2:?usage: sweep.sh <queryfile> <category-slug>}"
-OUTDIR="out/$CAT"
+OUTDIR="${OUT_ROOT:-out}/$CAT"
 PMIN="${PAUSE_MIN:-25}"
 PMAX="${PAUSE_MAX:-50}"
 mkdir -p "$OUTDIR"

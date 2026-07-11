@@ -69,7 +69,7 @@ def run_checks(
     conn: sqlite3.Connection,
     taxonomy_path: Path,
     photo_root: Path,
-    min_venues: int = 600,
+    min_venues: int = 590,
 ) -> list[CheckResult]:
     results: list[CheckResult] = []
     venue_count = scalar(conn, "select count(*) from venues")
@@ -114,7 +114,7 @@ def run_checks(
 
     bad_reviews = scalar(
         conn,
-        "select count(*) from venues where rating is null or review_count is null or review_count < 3",
+        "select count(*) from venues where rating is null or review_count is null or review_count < 5",
     )
     results.append(
         CheckResult("ratings_reviews", bad_reviews == 0, f"{bad_reviews} bad rating rows")
@@ -184,4 +184,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
-

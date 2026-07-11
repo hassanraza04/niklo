@@ -29,7 +29,7 @@ export const collections: Collection[] = [
     emoji: "💎",
     pick: (vs) =>
       vs
-        .filter((v) => (v.rating ?? 0) >= 4.6 && (v.review_count ?? 0) >= 3 && (v.review_count ?? 0) <= 40)
+        .filter((v) => (v.rating ?? 0) >= 4.6 && (v.review_count ?? 0) >= 5 && (v.review_count ?? 0) <= 40)
         .sort((a, b) => (b.rating ?? 0) - (a.rating ?? 0)),
   },
   {

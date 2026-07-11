@@ -13,7 +13,7 @@ PHOTO_DIR="${PHOTOS_DIR:-../web/public/venues}"
 echo ">> dlt load (scrape json -> duckdb)"
 uv run python ingest/load.py >/dev/null
 
-echo ">> dbt build (dedupe, bbox, >=3 filter, excludes, overrides, tests)"
+echo ">> dbt build (dedupe, bbox, >=5 filter, excludes, overrides, tests)"
 (cd transform && uv run dbt build --profiles-dir . | tail -1)
 
 echo ">> flag venues (review queue)"

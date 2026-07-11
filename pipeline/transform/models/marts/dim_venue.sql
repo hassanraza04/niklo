@@ -69,7 +69,7 @@ kept as (
     select c.*
     from corrected c
     where c.place_id not in (select venue_id from {{ ref('excluded_venues') }})
-      and coalesce(c.review_count, 0) >= 3
+      and coalesce(c.review_count, 0) >= 5
 ),
 
 live_subs as (

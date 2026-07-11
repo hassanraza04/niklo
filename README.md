@@ -114,7 +114,7 @@ then `npm run deploy`.
 
 ## status
 
-The whole taxonomy is now scraped, cleaned and live: around 640 venues across five
+The whole taxonomy is now scraped, cleaned and live: around 600 venues across five
 groups, sports & active, entertainment, creative & chill, outdoors & adventure and
 culture, covering padel, box cricket, futsal, tennis, squash, swimming, bowling, snooker,
 arcades, cinemas, escape rooms, shisha, board-game and paint cafes, pottery and art

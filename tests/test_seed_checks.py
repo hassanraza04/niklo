@@ -23,7 +23,7 @@ class SeedChecksTest(unittest.TestCase):
                     conn=conn,
                     taxonomy_path=ROOT / "web" / "lib" / "taxonomy.json",
                     photo_root=ROOT / "web" / "public",
-                    min_venues=600,
+                    min_venues=590,
                 )
             finally:
                 conn.close()

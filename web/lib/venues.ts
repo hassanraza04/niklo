@@ -75,8 +75,9 @@ export async function countsByCategory(): Promise<Record<string, number>> {
 }
 
 export async function searchVenues(q: string, limit = 60): Promise<Venue[]> {
-  // tokenize: each word must appear in some field (so "padel clifton" matches a
-  // padel venue in clifton, not the literal substring).
+  // Tokenize so "padel clifton" still works as an activity-plus-location search.
+  // The whole phrase is also ranked separately below, which keeps the actual venue
+  // ahead of unrelated high-review results that happen to share one token.
   const tokens = q
     .trim()
     .split(/\s+/)
@@ -84,28 +85,65 @@ export async function searchVenues(q: string, limit = 60): Promise<Venue[]> {
     .filter(Boolean)
     .slice(0, 6);
   if (!tokens.length) return [];
+  const phrase = tokens.join(" ").toLowerCase();
 
   const db = await getDb();
-  // include subcategories (slug csv) so "futsal" also matches a padel-primary
-  // venue that happens to offer futsal too. still one row per venue.
-  const clause = tokens
-    .map(
-      () =>
-        "(name like ? or area like ? or address like ? or subcategory_name like ? or category_name like ? or subcategories like ?)",
-    )
-    .join(" and ");
-  const binds: (string | number)[] = [];
-  for (const t of tokens) {
-    const like = `%${t}%`;
-    binds.push(like, like, like, like, like, like);
-  }
-  binds.push(limit);
+  // Include memberships so "futsal" also finds a padel-primary venue that offers
+  // futsal. Address-only matches are a fallback, keeping a busy address from
+  // overwhelming a venue-name search.
+  const strongFields = ["name", "area", "subcategory_name", "category_name", "subcategories"];
+  const exactName = phrase;
+  const namePrefix = `${phrase}%`;
+  const phraseMatch = `%${phrase}%`;
+  const exactSubcategory = phrase;
+  const exactCategory = phrase;
+  const exactArea = phrase;
 
-  const { results } = await db
-    .prepare(`select * from venues where ${clause} ${ORDER} limit ?`)
-    .bind(...binds)
-    .all<Venue>();
-  return results ?? [];
+  async function runSearch(includeAddress: boolean): Promise<Venue[]> {
+    const fields = includeAddress ? [...strongFields, "address"] : strongFields;
+    const clause = tokens
+      .map(() => `(${fields.map((field) => `${field} like ?`).join(" or ")})`)
+      .join(" and ");
+    const binds: (string | number)[] = [];
+    for (const t of tokens) {
+      const like = `%${t}%`;
+      binds.push(...fields.map(() => like));
+    }
+    binds.push(
+      exactName,
+      namePrefix,
+      phraseMatch,
+      exactSubcategory,
+      exactCategory,
+      exactArea,
+      phraseMatch,
+      limit,
+    );
+
+    const { results } = await db
+      .prepare(
+        `select * from venues
+         where ${clause}
+         order by case
+           when lower(name) = ? then 0
+           when lower(name) like ? then 1
+           when lower(name) like ? then 2
+           when lower(subcategory_name) = ? then 3
+           when lower(category_name) = ? then 4
+           when lower(area) = ? then 5
+           when lower(address) like ? then 7
+           else 6
+         end,
+         review_count desc nulls last, rating desc nulls last, name
+         limit ?`,
+      )
+      .bind(...binds)
+      .all<Venue>();
+    return results ?? [];
+  }
+
+  const strongResults = await runSearch(false);
+  return strongResults.length ? strongResults : runSearch(true);
 }
 
 export async function spinPool(

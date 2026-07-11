@@ -155,23 +155,6 @@
             "billiards",
             "pool club"
           ]
-        },
-        {
-          "slug": "mini-golf",
-          "name": "Mini Golf",
-          "synonyms": [
-            "mini golf",
-            "miniature golf"
-          ]
-        },
-        {
-          "slug": "theme-parks",
-          "name": "Theme & Water Parks",
-          "synonyms": [
-            "theme park",
-            "water park",
-            "amusement park"
-          ]
         }
       ]
     },
@@ -210,56 +193,6 @@
           "synonyms": [
             "adventure park",
             "zip line"
-          ]
-        }
-      ]
-    },
-    {
-      "slug": "creative-chill",
-      "name": "Creative & Chill",
-      "blurb": "Slow it down, make something.",
-      "subcategories": [
-        {
-          "slug": "pottery-art",
-          "name": "Pottery & Art Studios",
-          "synonyms": [
-            "pottery studio",
-            "art studio",
-            "ceramics"
-          ]
-        },
-        {
-          "slug": "board-game-paint-cafe",
-          "name": "Board-Game & Paint Cafés",
-          "synonyms": [
-            "board game cafe",
-            "paint cafe",
-            "art cafe"
-          ]
-        },
-        {
-          "slug": "music-rooms",
-          "name": "Music & Jam Rooms",
-          "synonyms": [
-            "jam room",
-            "music studio",
-            "rehearsal room"
-          ]
-        },
-        {
-          "slug": "cooking-classes",
-          "name": "Cooking Classes",
-          "synonyms": [
-            "cooking class",
-            "baking class"
-          ]
-        },
-        {
-          "slug": "shisha",
-          "name": "Shisha Lounges",
-          "synonyms": [
-            "shisha lounge",
-            "sheesha cafe"
           ]
         }
       ]

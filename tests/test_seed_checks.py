@@ -44,7 +44,7 @@ class SeedChecksTest(unittest.TestCase):
                     conn=conn,
                     taxonomy_path=ROOT / "web" / "lib" / "taxonomy.json",
                     photo_root=ROOT / "web" / "public",
-                    min_venues=575,
+                    min_venues=440,
                 )
             finally:
                 conn.close()
@@ -122,6 +122,41 @@ class SeedChecksTest(unittest.TestCase):
         self.assertTrue(
             all(subcategory == memberships.split(",")[0] for _, subcategory, memberships in rows)
         )
+
+    def test_retired_categories_are_not_public(self):
+        taxonomy_path = ROOT / "web" / "lib" / "taxonomy.json"
+        with taxonomy_path.open(encoding="utf-8") as f:
+            taxonomy = __import__("json").load(f)
+
+        category_slugs = {category["slug"] for category in taxonomy["categories"]}
+        subcategory_slugs = {
+            subcategory["slug"]
+            for category in taxonomy["categories"]
+            for subcategory in category["subcategories"]
+        }
+        self.assertNotIn("creative-chill", category_slugs)
+        self.assertFalse({"mini-golf", "theme-parks"} & subcategory_slugs)
+
+        with tempfile.TemporaryDirectory() as tmp:
+            conn = seed_checks.load_seed_database(
+                ROOT / "infra" / "d1" / "schema.sql",
+                ROOT / "infra" / "d1" / "seed.sql",
+                Path(tmp) / "niklo.db",
+            )
+            try:
+                retired = conn.execute(
+                    "select count(*) from venues where category_slugs like '%creative-chill%' "
+                    "or subcategories like '%mini-golf%' or subcategories like '%theme-parks%'"
+                ).fetchone()[0]
+                escapistan = conn.execute(
+                    "select subcategories from venues where venue_id = ?",
+                    ("ChIJYcZDKeo9sz4RIfLBHjn16dM",),
+                ).fetchone()
+            finally:
+                conn.close()
+
+        self.assertEqual(0, retired)
+        self.assertEqual(("escape-rooms",), escapistan)
 
     def test_curated_venues_cannot_be_reexcluded(self):
         curated_path = ROOT / "pipeline" / "transform" / "seeds" / "curated_venues.csv"

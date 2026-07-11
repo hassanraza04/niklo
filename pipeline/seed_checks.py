@@ -70,7 +70,7 @@ def run_checks(
     conn: sqlite3.Connection,
     taxonomy_path: Path,
     photo_root: Path,
-    min_venues: int = 575,
+    min_venues: int = 440,
 ) -> list[CheckResult]:
     results: list[CheckResult] = []
     venue_count = scalar(conn, "select count(*) from venues")

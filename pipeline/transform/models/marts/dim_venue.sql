@@ -120,7 +120,10 @@ members_raw as (
            on x.venue_id = m.venue_id and x.subcategory = m.subcategory_slug
     where x.venue_id is null
       -- retired categories (removed from the directory)
-      and m.subcategory_slug not in ('theatre', 'bookstore-cafe', 'camping', 'climbing')
+      and m.subcategory_slug not in (
+          'theatre', 'bookstore-cafe', 'camping', 'climbing', 'mini-golf', 'theme-parks',
+          'pottery-art', 'board-game-paint-cafe', 'music-rooms', 'cooking-classes', 'shisha'
+      )
 ),
 
 -- google maps treats padel as "padel tennis", so tennis queries drag in padel

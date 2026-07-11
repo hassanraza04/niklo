@@ -34,7 +34,7 @@ hours, phone, location). No review text rehosted; venue pages link out to Maps.
   chromium dies under emulation on Apple silicon)
 - **Pipeline:** Python, dlt → dbt → DuckDB
 - **App:** Next.js (App Router) + Tailwind, on Cloudflare via OpenNext
-- **Data:** Cloudflare D1 (venues), R2 later for first-party photos
+- **Data:** Cloudflare D1 (venues), bundled first-party photos
 
 ## layout
 
@@ -107,18 +107,20 @@ This builds an isolated discovery warehouse and writes `data/discovery/YYYY-MM-D
 Candidates stay pending until a manual evidence review adds them to the curated inputs and live allowlist.
 See `docs/update-runbook.md` for both workflows.
 
-**Photos** — google's image urls are signed and expire, so `photos.py` mirrors each
-venue photo into R2 once and `export_to_d1.py` then serves those permanent urls. it's
-idempotent (only fetches changed photos) so it runs after every scrape. without R2
-creds it runs in local-cache mode so you can test it:
+**Photos**: source image URLs are pipeline-only. `photos.py` downloads each primary
+image into `web/public/venues`, and `export_to_d1.py` only emits that local path (or
+the no-photo fallback). The app never hotlinks Maps or a venue website, so a source
+site outage cannot remove an image from Niklo. It is idempotent and only fetches
+changed sources:
 
 ```bash
-uv run python photos.py                    # set R2_* env to push to r2, else local cache
+PHOTOS_DIR=../web/public/venues uv run python photos.py
+python refresh_seed_media.py                # media-only refresh after a curated addition
 ```
 
-To turn it on: make an R2 bucket + a public domain for it, set `R2_ACCOUNT_ID`,
-`R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`, `R2_BUCKET` (for `photos.py`) and
-`R2_PUBLIC_BASE` (for `export_to_d1.py`), then re-run the build. The app doesn't change.
+`pipeline/transform/seeds/curated_photo_sources.csv` supplies a verified source for
+manually added venues. It is only used to refresh the downloaded cache. R2 remains an
+optional copy of the same files for a later deployment, not a public data dependency.
 
 **Deploying to Cloudflare** (one-time): `wrangler login`, `wrangler d1 create niklo`,
 drop the returned id into `web/wrangler.jsonc`, run the schema/seed with `--remote`,

@@ -1,45 +1,48 @@
-"""mirror venue photos into our own storage so the app never depends on google's
-temporary cdn urls (the gps-cs-s links are signed and expire).
+"""Cache venue thumbnails so the public app never hotlinks Maps image URLs.
 
-reads dim_venue, downloads each venue's thumbnail once, uploads it to r2 under
-venues/<venue_id>.jpg, and records it in data/photo_manifest.csv. idempotent: a
-re-run only re-fetches photos whose source url changed, so this is safe to run
-after every monthly scrape.
-
-with no r2 creds it runs in local test mode and writes into pipeline/photos_cache/
-so you can confirm the download half works. set the R2_* env vars to push to r2.
-
-env (r2): R2_ACCOUNT_ID R2_ACCESS_KEY_ID R2_SECRET_ACCESS_KEY R2_BUCKET
-usage: uv run python photos.py
+The source URL exists only in the private pipeline. Public D1 rows point to a
+downloaded file under ``venues/<venue_id>.<extension>`` or use the UI fallback.
 """
 
 from __future__ import annotations
 
+import argparse
 import csv
 import hashlib
 import os
 import urllib.request
+from pathlib import Path
 
 import duckdb
 
-HERE = os.path.dirname(os.path.abspath(__file__))
-DUCKDB = os.environ.get("NIKLO_DUCKDB", os.path.join(HERE, "warehouse.duckdb"))
-MANIFEST = os.path.normpath(os.path.join(HERE, "..", "data", "photo_manifest.csv"))
-CACHE = os.environ.get("PHOTOS_DIR", os.path.join(HERE, "photos_cache"))
-LIMIT = int(os.environ.get("PHOTOS_LIMIT", "0"))  # 0 = all
-UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Safari/537.36"
+
+HERE = Path(__file__).resolve().parent
+ROOT = HERE.parent
+DUCKDB = os.environ.get("NIKLO_DUCKDB", str(HERE / "warehouse.duckdb"))
+MANIFEST = ROOT / "data" / "photo_manifest.csv"
+CACHE = os.environ.get("PHOTOS_DIR", str(HERE / "photos_cache"))
+CURATED_SOURCES = HERE / "transform" / "seeds" / "curated_photo_sources.csv"
+UA = "Mozilla/5.0 (Niklo image cache; +https://niklo.pk)"
+CONTENT_TYPES = {
+    "image/jpeg": ("jpg", "image/jpeg"),
+    "image/png": ("png", "image/png"),
+    "image/webp": ("webp", "image/webp"),
+}
 
 
-def load_manifest() -> dict:
-    if not os.path.exists(MANIFEST):
+def load_manifest() -> dict[str, dict[str, str]]:
+    if not MANIFEST.exists():
         return {}
-    return {r["venue_id"]: r for r in csv.DictReader(open(MANIFEST))}
+    with MANIFEST.open(newline="", encoding="utf-8") as f:
+        return {row["venue_id"]: row for row in csv.DictReader(f)}
 
 
-def fetch(url: str) -> bytes:
+def fetch(url: str) -> tuple[bytes, str, str]:
     req = urllib.request.Request(url, headers={"User-Agent": UA})
-    with urllib.request.urlopen(req, timeout=20) as resp:
-        return resp.read()
+    with urllib.request.urlopen(req, timeout=20) as response:
+        content_type = response.headers.get_content_type().lower()
+        extension, managed_type = CONTENT_TYPES.get(content_type, ("jpg", "image/jpeg"))
+        return response.read(), extension, managed_type
 
 
 def r2_client():
@@ -56,52 +59,81 @@ def r2_client():
     )
 
 
-def main() -> None:
+def dim_sources() -> dict[str, str]:
     con = duckdb.connect(DUCKDB, read_only=True)
-    rows = con.execute(
-        "select venue_id, photo_url from main.dim_venue "
-        "where photo_url is not null and photo_url <> ''"
-    ).fetchall()
-    if LIMIT:
-        rows = rows[:LIMIT]
+    try:
+        rows = con.execute(
+            "select venue_id, photo_url from main.dim_venue "
+            "where photo_url is not null and photo_url <> ''"
+        ).fetchall()
+    finally:
+        con.close()
+    return {venue_id: url for venue_id, url in rows}
 
+
+def curated_sources() -> dict[str, str]:
+    if not CURATED_SOURCES.exists():
+        return {}
+    with CURATED_SOURCES.open(newline="", encoding="utf-8") as f:
+        return {
+            row["venue_id"]: row["photo_source_url"]
+            for row in csv.DictReader(f)
+            if row.get("venue_id") and row.get("photo_source_url")
+        }
+
+
+def local_path(cache: Path, key: str) -> Path:
+    return cache / Path(key).name
+
+
+def cache_sources(sources: dict[str, str], cache: Path, limit: int) -> None:
+    if limit:
+        sources = dict(sorted(sources.items())[:limit])
     manifest = load_manifest()
     r2 = r2_client()
     bucket = os.environ.get("R2_BUCKET")
-    if r2:
-        print(f"r2 mode -> bucket '{bucket}'")
-    else:
-        os.makedirs(CACHE, exist_ok=True)
-        print(f"no r2 creds -> local cache mode ({CACHE})")
+    cache.mkdir(parents=True, exist_ok=True)
+    print(f"r2 mode -> bucket '{bucket}'" if r2 else f"local cache mode ({cache})")
 
     done = skipped = failed = 0
-    for venue_id, url in rows:
+    for venue_id, url in sorted(sources.items()):
         src_hash = hashlib.sha1(url.encode()).hexdigest()[:12]
-        if manifest.get(venue_id, {}).get("src_hash") == src_hash:
+        prior = manifest.get(venue_id)
+        prior_path = local_path(cache, prior["key"]) if prior else None
+        if prior and prior.get("src_hash") == src_hash and (r2 or prior_path.exists()):
             skipped += 1
             continue
         try:
-            data = fetch(url)
-        except Exception as e:  # noqa: BLE001
-            print(f"  fail {venue_id}: {e}")
+            data, extension, content_type = fetch(url)
+        except Exception as exc:  # noqa: BLE001
+            print(f"  fail {venue_id}: {exc}")
             failed += 1
             continue
-        key = f"venues/{venue_id}.jpg"
+        key = f"venues/{venue_id}.{extension}"
         if r2:
-            r2.put_object(Bucket=bucket, Key=key, Body=data, ContentType="image/jpeg")
+            r2.put_object(Bucket=bucket, Key=key, Body=data, ContentType=content_type)
         else:
-            with open(os.path.join(CACHE, f"{venue_id}.jpg"), "wb") as f:
-                f.write(data)
+            local_path(cache, key).write_bytes(data)
         manifest[venue_id] = {"venue_id": venue_id, "key": key, "src_hash": src_hash}
         done += 1
 
-    with open(MANIFEST, "w", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=["venue_id", "key", "src_hash"])
-        w.writeheader()
-        w.writerows(manifest.values())
+    with MANIFEST.open("w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=["venue_id", "key", "src_hash"])
+        writer.writeheader()
+        writer.writerows(sorted(manifest.values(), key=lambda row: row["venue_id"]))
+    print(f"cached {done}, skipped {skipped}, failed {failed}; {len(manifest)} total in manifest")
 
-    print(f"mirrored {done}, skipped {skipped} (unchanged), failed {failed}; "
-          f"{len(manifest)} total in manifest")
+
+def main(argv: list[str] | None = None) -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--curated-only", action="store_true")
+    parser.add_argument("--limit", type=int, default=int(os.environ.get("PHOTOS_LIMIT", "0")))
+    args = parser.parse_args(argv)
+    sources = curated_sources() if args.curated_only else dim_sources()
+    if not args.curated_only:
+        for venue_id, url in curated_sources().items():
+            sources.setdefault(venue_id, url)
+    cache_sources(sources, Path(CACHE), args.limit)
 
 
 if __name__ == "__main__":

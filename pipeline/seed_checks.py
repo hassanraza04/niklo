@@ -7,6 +7,7 @@ SQLite database, then checks the invariants the public site relies on.
 from __future__ import annotations
 
 import json
+import os
 import sqlite3
 import sys
 import tempfile
@@ -141,18 +142,32 @@ def run_checks(
         )
     )
 
+    managed_prefix = os.environ.get("R2_PUBLIC_BASE", "/").rstrip("/") + "/venues/"
+    bad_photo_urls = 0
     missing_photos = 0
-    for (photo_url,) in conn.execute(
-        "select photo_url from venues where photo_url like '/venues/%.jpg'"
-    ):
-        rel = photo_url.lstrip("/")
-        if not (photo_root / rel).exists():
-            missing_photos += 1
+    external_gallery_urls = 0
+    for photo_url, photos in conn.execute("select photo_url, photos from venues"):
+        if photo_url:
+            if str(photo_url).startswith("/venues/"):
+                rel = str(photo_url).lstrip("/")
+                if not (photo_root / rel).exists():
+                    missing_photos += 1
+            elif not str(photo_url).startswith(managed_prefix):
+                bad_photo_urls += 1
+        if "http://" in (photos or "") or "https://" in (photos or ""):
+            external_gallery_urls += 1
     results.append(
         CheckResult(
             "local_photos",
             missing_photos == 0,
             f"{missing_photos} local photo files missing",
+        )
+    )
+    results.append(
+        CheckResult(
+            "managed_photo_urls",
+            bad_photo_urls == 0 and external_gallery_urls == 0,
+            f"{bad_photo_urls} external primary URLs, {external_gallery_urls} external gallery URLs",
         )
     )
 

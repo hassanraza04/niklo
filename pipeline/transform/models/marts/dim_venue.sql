@@ -28,11 +28,18 @@ tax as (
     select * from {{ ref('taxonomy') }}
 ),
 
+curated_photo_sources as (
+    select
+        p.venue_id,
+        nullif(cast(photo_source_url as varchar), '') as photo_source_url
+    from {{ ref('curated_photo_sources') }} p
+),
+
 -- rare, separately verified venues that were mistakenly excluded in an earlier
 -- curation pass. A fresh scrape takes precedence whenever it finds the same id.
 curated as (
     select
-        venue_id,
+        c.venue_id,
         name,
         subcategory_slug,
         subcategory_name,
@@ -52,14 +59,15 @@ curated as (
         nullif(cast(website as varchar), '') as website,
         nullif(cast(phone as varchar), '') as phone,
         nullif(cast(hours as varchar), '') as hours,
-        nullif(cast(photo_url as varchar), '') as photo_url,
+        coalesce(s.photo_source_url, nullif(cast(c.photo_url as varchar), '')) as photo_url,
         coalesce(nullif(cast(photos as varchar), ''), '[]') as photos,
         nullif(cast(google_url as varchar), '') as google_url,
         nullif(cast(status as varchar), '') as status,
         cast(is_open as boolean) as is_open,
         nullif(cast(source_query as varchar), '') as source_query,
         nullif(cast(last_verified as varchar), '') as last_verified
-    from {{ ref('curated_venues') }}
+    from {{ ref('curated_venues') }} c
+    left join curated_photo_sources s on c.venue_id = s.venue_id
 ),
 
 -- venues that clear the quality bar. this is the canonical set, and it also

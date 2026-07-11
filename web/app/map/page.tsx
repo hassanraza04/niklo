@@ -3,6 +3,8 @@ import { categories } from "@/lib/taxonomy";
 import { listAllVenues } from "@/lib/venues";
 import type { MapVenue } from "@/lib/mapMode";
 
+export const dynamic = "force-dynamic";
+
 export const metadata = {
   title: "Map",
   description: "See Karachi entertainment places on a map by type.",

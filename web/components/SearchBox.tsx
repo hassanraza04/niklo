@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 type Hit = {
@@ -143,13 +144,10 @@ export function SearchBox({
           <ul>
             {hits.map((h, i) => (
               <li key={h.slug}>
-                <button
-                  type="button"
+                <Link
+                  href={`/v/${h.slug}`}
                   onMouseEnter={() => setActive(i)}
-                  onClick={() => {
-                    setOpen(false);
-                    router.push(`/v/${h.slug}`);
-                  }}
+                  onClick={() => setOpen(false)}
                   className={`flex w-full items-center justify-between gap-3 px-4 py-2.5 text-left transition-colors ${
                     active === i ? "bg-paper-2" : "hover:bg-paper-2"
                   }`}
@@ -166,17 +164,17 @@ export function SearchBox({
                       <span className="text-marigold">★</span> {h.rating.toFixed(1)}
                     </span>
                   )}
-                </button>
+                </Link>
               </li>
             ))}
           </ul>
-          <button
-            type="button"
-            onClick={() => goSearch(q)}
+          <Link
+            href={`/search?q=${encodeURIComponent(q.trim())}`}
+            onClick={() => setOpen(false)}
             className="block w-full border-t border-line px-4 py-2.5 text-left text-sm font-medium text-clay hover:bg-paper-2"
           >
             See all {total} result{total === 1 ? "" : "s"} for &ldquo;{q.trim()}&rdquo; →
-          </button>
+          </Link>
         </div>
       )}
     </div>

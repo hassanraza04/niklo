@@ -14,6 +14,20 @@ DUPLICATE_VENUE_IDS = {
     "ChIJzTTvBwA9sz4RSszn9rr7Hq0",  # Padel at Ignite
     "ChIJ6wiHVgA_sz4RkEplmgF8uD0",  # Padel at Premier Club
 }
+CLEANUP_REMOVAL_IDS = {
+    "ChIJm86Lvts-sz4ReuaAoVjF4qk",  # AKUH Sports Complex
+    "ChIJ07s6bDPyXmoR-9HiDmdD8Ko",  # Silk Arena
+    "ChIJ8zo5t9o-sz4R28CSqn_xHVU",  # Aga Khan Sports and Rehabilitation Centre
+    "ChIJ6eYnPws-sz4RDVewUbvhhRA",  # NAPA Hindu Gymkhana Building
+    "ChIJC-f0InU_sz4RRaC9EGWWYr4",  # Kashmir sports Complex
+}
+CLEANUP_MEMBERSHIPS = {
+    "ChIJN3aGHwA_sz4RJGfeyavNsOs": "padel",  # Padel at JKC
+    "ChIJ7XPvCQA_sz4RAotqaTRB3GY": "padel",  # Power padel arena
+    "ChIJ6er1u_Q-sz4RMFo272tdDTc": "tennis,skating,swimming",  # Karachi Sports Complex
+    "ChIJJVijrUM_sz4RioywLBqHK4o": "adventure-parks",  # Aquatic Adventureland
+    "ChIJ_8SHnl86sz4RXmPa0OAzKlw": "parks",  # Model Family Park Korangi 5
+}
 
 
 class SeedChecksTest(unittest.TestCase):
@@ -30,7 +44,7 @@ class SeedChecksTest(unittest.TestCase):
                     conn=conn,
                     taxonomy_path=ROOT / "web" / "lib" / "taxonomy.json",
                     photo_root=ROOT / "web" / "public",
-                    min_venues=590,
+                    min_venues=575,
                 )
             finally:
                 conn.close()
@@ -79,6 +93,35 @@ class SeedChecksTest(unittest.TestCase):
                 conn.close()
 
         self.assertEqual([], rows)
+
+    def test_requested_listing_cleanup_is_publicly_applied(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            conn = seed_checks.load_seed_database(
+                ROOT / "infra" / "d1" / "schema.sql",
+                ROOT / "infra" / "d1" / "seed.sql",
+                Path(tmp) / "niklo.db",
+            )
+            try:
+                removed = conn.execute(
+                    "select venue_id from venues where venue_id in (?, ?, ?, ?, ?)",
+                    tuple(CLEANUP_REMOVAL_IDS),
+                ).fetchall()
+                rows = conn.execute(
+                    "select venue_id, subcategory_slug, subcategories from venues "
+                    "where venue_id in (?, ?, ?, ?, ?)",
+                    tuple(CLEANUP_MEMBERSHIPS),
+                ).fetchall()
+            finally:
+                conn.close()
+
+        self.assertEqual([], removed)
+        self.assertEqual(
+            CLEANUP_MEMBERSHIPS,
+            {venue_id: subcategories for venue_id, _, subcategories in rows},
+        )
+        self.assertTrue(
+            all(subcategory == memberships.split(",")[0] for _, subcategory, memberships in rows)
+        )
 
     def test_curated_venues_cannot_be_reexcluded(self):
         curated_path = ROOT / "pipeline" / "transform" / "seeds" / "curated_venues.csv"

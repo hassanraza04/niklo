@@ -63,7 +63,7 @@ def export_live_listings(schema_path: Path, seed_path: Path, output_path: Path) 
             conn.close()
 
     with output_path.open("w", newline="", encoding="utf-8") as f:
-        writer = csv.writer(f)
+        writer = csv.writer(f, lineterminator="\n")
         writer.writerow(FIELDS)
         writer.writerows(rows)
     return len(rows)

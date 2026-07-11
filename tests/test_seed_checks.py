@@ -7,6 +7,13 @@ from pipeline import seed_checks
 
 
 ROOT = Path(__file__).resolve().parents[1]
+DUPLICATE_VENUE_IDS = {
+    "ChIJTdD8UAA_sz4R96iyu0uEQxY",  # Padel at Maidan
+    "ChIJd1hlEwA_sz4RPTu1_cUSYmY",  # United Padel Academy at Champions Club
+    "ChIJGThrdgA9sz4R3YMaY2SMnoc",  # Padel at Legends
+    "ChIJzTTvBwA9sz4RSszn9rr7Hq0",  # Padel at Ignite
+    "ChIJ6wiHVgA_sz4RkEplmgF8uD0",  # Padel at Premier Club
+}
 
 
 class SeedChecksTest(unittest.TestCase):
@@ -56,6 +63,23 @@ class SeedChecksTest(unittest.TestCase):
         failures = {r.name: r for r in results if not r.passed}
         self.assertIn("required_google_url", failures)
 
+    def test_known_duplicate_venues_are_not_public(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            conn = seed_checks.load_seed_database(
+                ROOT / "infra" / "d1" / "schema.sql",
+                ROOT / "infra" / "d1" / "seed.sql",
+                Path(tmp) / "niklo.db",
+            )
+            try:
+                rows = conn.execute(
+                    "select venue_id from venues where venue_id in (?, ?, ?, ?, ?)",
+                    tuple(DUPLICATE_VENUE_IDS),
+                ).fetchall()
+            finally:
+                conn.close()
+
+        self.assertEqual([], rows)
+
     def test_curated_venues_cannot_be_reexcluded(self):
         curated_path = ROOT / "pipeline" / "transform" / "seeds" / "curated_venues.csv"
         excluded_path = ROOT / "pipeline" / "transform" / "seeds" / "excluded_venues.csv"
@@ -70,20 +94,14 @@ class SeedChecksTest(unittest.TestCase):
         self.assertFalse(curated_ids & excluded_ids)
         self.assertIn("from {{ ref('curated_venues') }}", model_path.read_text(encoding="utf-8"))
 
-    def test_curated_photo_sources_are_valid_and_cached(self):
-        curated_path = ROOT / "pipeline" / "transform" / "seeds" / "curated_venues.csv"
-        photo_sources_path = ROOT / "pipeline" / "transform" / "seeds" / "curated_photo_sources.csv"
+    def test_photo_source_overrides_are_valid_and_cached(self):
+        photo_sources_path = ROOT / "pipeline" / "transform" / "seeds" / "photo_source_overrides.csv"
 
-        with curated_path.open(newline="", encoding="utf-8") as f:
-            curated_rows = list(csv.DictReader(f))
         with photo_sources_path.open(newline="", encoding="utf-8") as f:
             photo_rows = list(csv.DictReader(f))
 
-        self.assertTrue(curated_rows)
         self.assertTrue(photo_rows)
-        self.assertTrue(all(None not in row for row in curated_rows))
         self.assertTrue(all(None not in row for row in photo_rows))
-        curated_ids = {row["venue_id"] for row in curated_rows}
 
         with tempfile.TemporaryDirectory() as tmp:
             conn = seed_checks.load_seed_database(
@@ -93,7 +111,6 @@ class SeedChecksTest(unittest.TestCase):
             )
             try:
                 for row in photo_rows:
-                    self.assertIn(row["venue_id"], curated_ids)
                     self.assertTrue(row["photo_source_url"].startswith("https://"))
                     (photo_url,) = conn.execute(
                         "select photo_url from venues where venue_id = ?", (row["venue_id"],)

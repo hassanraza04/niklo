@@ -115,11 +115,11 @@ changed sources:
 
 ```bash
 PHOTOS_DIR=../web/public/venues uv run python photos.py
-python refresh_seed_media.py                # media-only refresh after a curated addition
+python refresh_seed_media.py                # refresh local media and approved exclusions
 ```
 
-`pipeline/transform/seeds/curated_photo_sources.csv` supplies a verified source for
-manually added venues. It is only used to refresh the downloaded cache. R2 remains an
+`pipeline/transform/seeds/photo_source_overrides.csv` supplies a verified source for
+any manually corrected venue image. It is only used to refresh the downloaded cache. R2 remains an
 optional copy of the same files for a later deployment, not a public data dependency.
 
 **Deploying to Cloudflare** (one-time): `wrangler login`, `wrangler d1 create niklo`,

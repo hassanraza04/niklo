@@ -6,6 +6,7 @@ Useful after caching a curated venue image when no full scrape warehouse is pres
 from __future__ import annotations
 
 import argparse
+import csv
 import os
 import tempfile
 from pathlib import Path
@@ -21,12 +22,23 @@ except ModuleNotFoundError:
 ROOT = Path(__file__).resolve().parents[1]
 
 
+def excluded_ids(path: Path) -> set[str]:
+    if not path.exists():
+        return set()
+    with path.open(newline="", encoding="utf-8") as f:
+        return {row["venue_id"] for row in csv.DictReader(f) if row.get("venue_id")}
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--schema", default=str(ROOT / "infra" / "d1" / "schema.sql"))
     parser.add_argument("--seed", default=str(ROOT / "infra" / "d1" / "seed.sql"))
     parser.add_argument("--manifest", default=str(ROOT / "data" / "photo_manifest.csv"))
     parser.add_argument("--photo-root", default=str(ROOT / "web" / "public" / "venues"))
+    parser.add_argument(
+        "--excluded",
+        default=str(ROOT / "pipeline" / "transform" / "seeds" / "excluded_venues.csv"),
+    )
     parser.add_argument("--photo-base", default=os.environ.get("R2_PUBLIC_BASE", "/"))
     args = parser.parse_args(argv)
     schema_path, seed_path = Path(args.schema), Path(args.seed)
@@ -39,11 +51,17 @@ def main(argv: list[str] | None = None) -> int:
             ).fetchall()]
         finally:
             conn.close()
+    excluded = excluded_ids(Path(args.excluded))
+    venue_index = COLUMNS.index("venue_id")
+    rows = [row for row in rows if row[venue_index] not in excluded]
     cached, missing = apply_cached_photos(
         rows, str(Path(args.manifest)), args.photo_base, args.photo_root
     )
     write_seed(rows, str(seed_path))
-    print(f"wrote {len(rows)} listings with {cached} downloaded photos and {missing} fallbacks")
+    print(
+        f"wrote {len(rows)} listings with {cached} downloaded photos, "
+        f"{missing} fallbacks, and excluded listings removed"
+    )
     return 0
 
 

@@ -22,8 +22,8 @@ class ExportLiveListingsTest(unittest.TestCase):
             with out.open(newline="", encoding="utf-8") as f:
                 rows = list(csv.DictReader(f))
 
-        self.assertEqual(599, count)
-        self.assertEqual(599, len(rows))
+        self.assertEqual(594, count)
+        self.assertEqual(594, len(rows))
         self.assertEqual(
             [
                 "venue_id",

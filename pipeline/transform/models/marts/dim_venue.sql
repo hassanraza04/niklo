@@ -28,11 +28,11 @@ tax as (
     select * from {{ ref('taxonomy') }}
 ),
 
-curated_photo_sources as (
+photo_source_overrides as (
     select
         p.venue_id,
         nullif(cast(photo_source_url as varchar), '') as photo_source_url
-    from {{ ref('curated_photo_sources') }} p
+    from {{ ref('photo_source_overrides') }} p
 ),
 
 -- rare, separately verified venues that were mistakenly excluded in an earlier
@@ -67,7 +67,7 @@ curated as (
         nullif(cast(source_query as varchar), '') as source_query,
         nullif(cast(last_verified as varchar), '') as last_verified
     from {{ ref('curated_venues') }} c
-    left join curated_photo_sources s on c.venue_id = s.venue_id
+    left join photo_source_overrides s on c.venue_id = s.venue_id
 ),
 
 -- venues that clear the quality bar. this is the canonical set, and it also

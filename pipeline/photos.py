@@ -21,7 +21,7 @@ ROOT = HERE.parent
 DUCKDB = os.environ.get("NIKLO_DUCKDB", str(HERE / "warehouse.duckdb"))
 MANIFEST = ROOT / "data" / "photo_manifest.csv"
 CACHE = os.environ.get("PHOTOS_DIR", str(HERE / "photos_cache"))
-CURATED_SOURCES = HERE / "transform" / "seeds" / "curated_photo_sources.csv"
+PHOTO_SOURCE_OVERRIDES = HERE / "transform" / "seeds" / "photo_source_overrides.csv"
 UA = "Mozilla/5.0 (Niklo image cache; +https://niklo.pk)"
 CONTENT_TYPES = {
     "image/jpeg": ("jpg", "image/jpeg"),
@@ -71,10 +71,10 @@ def dim_sources() -> dict[str, str]:
     return {venue_id: url for venue_id, url in rows}
 
 
-def curated_sources() -> dict[str, str]:
-    if not CURATED_SOURCES.exists():
+def photo_source_overrides() -> dict[str, str]:
+    if not PHOTO_SOURCE_OVERRIDES.exists():
         return {}
-    with CURATED_SOURCES.open(newline="", encoding="utf-8") as f:
+    with PHOTO_SOURCE_OVERRIDES.open(newline="", encoding="utf-8") as f:
         return {
             row["venue_id"]: row["photo_source_url"]
             for row in csv.DictReader(f)
@@ -126,13 +126,13 @@ def cache_sources(sources: dict[str, str], cache: Path, limit: int) -> None:
 
 def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--curated-only", action="store_true")
+    parser.add_argument("--overrides-only", action="store_true")
     parser.add_argument("--limit", type=int, default=int(os.environ.get("PHOTOS_LIMIT", "0")))
     args = parser.parse_args(argv)
-    sources = curated_sources() if args.curated_only else dim_sources()
-    if not args.curated_only:
-        for venue_id, url in curated_sources().items():
-            sources.setdefault(venue_id, url)
+    sources = photo_source_overrides() if args.overrides_only else dim_sources()
+    if not args.overrides_only:
+        # Manual sources take precedence when an existing listing needs a better image.
+        sources.update(photo_source_overrides())
     cache_sources(sources, Path(CACHE), args.limit)
 
 

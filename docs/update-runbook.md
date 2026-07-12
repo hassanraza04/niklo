@@ -67,6 +67,7 @@ python3 -m unittest discover -s tests -v
 
 ## Manual Approval Required
 
+- Record a final owner decision in `data/review_resolutions.csv` when it resolves a prior review concern.
 - A venue looks closed or disappeared from refresh.
 - A venue changed name, location, category, phone, or website.
 - A venue lost both phone and website.

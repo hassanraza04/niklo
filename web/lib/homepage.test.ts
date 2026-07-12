@@ -6,6 +6,7 @@ import test from "node:test";
 const pageSource = readFileSync(join(process.cwd(), "app", "page.tsx"), "utf8");
 const venuesSource = readFileSync(join(process.cwd(), "lib", "venues.ts"), "utf8");
 const finderSource = readFileSync(join(process.cwd(), "components", "TonightFinder.tsx"), "utf8");
+const layoutSource = readFileSync(join(process.cwd(), "app", "layout.tsx"), "utf8");
 
 test("home page puts browsing before the Tonight Finder without Niklo picks", () => {
   assert.ok(pageSource.indexOf("Browse by type") < pageSource.indexOf("<TonightFinder"));
@@ -33,4 +34,9 @@ test("Tonight Finder keeps its filters in a stable row below the title", () => {
     finderSource,
     /<div>\s*<p[^>]*>Tonight<\/p>\s*<h2[^>]*>\s*Find something that fits\s*<\/h2>\s*<\/div>\s*<div className="mt-5 flex flex-wrap items-center gap-3 text-sm">/,
   );
+});
+
+test("Niklo uses its own SVG tab icon", () => {
+  assert.match(layoutSource, /icons:\s*\{\s*icon:\s*"\/icon\.svg"/);
+  assert.match(readFileSync(join(process.cwd(), "app", "icon.svg"), "utf8"), /Niklo favicon/);
 });

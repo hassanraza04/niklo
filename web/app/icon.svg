@@ -1,0 +1,9 @@
+<!-- Niklo favicon -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>Niklo</title>
+  <rect width="64" height="64" rx="16" fill="#cc5b39" />
+  <path
+    fill="#fffaf2"
+    d="M17 48V16h7l16 18V16h7v32h-7L24 30v18z"
+  />
+</svg>

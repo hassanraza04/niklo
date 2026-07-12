@@ -24,6 +24,9 @@ export const metadata: Metadata = {
   },
   description:
     "A homey guide to everything you can do in Karachi besides eat: padel, cinemas, bowling, escape rooms and more. Can't decide? Spin.",
+  icons: {
+    icon: "/icon.svg",
+  },
   openGraph: {
     title: "Niklo: things to do in Karachi",
     description:

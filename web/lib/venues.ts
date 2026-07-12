@@ -36,12 +36,12 @@ export async function listVenuesByCategory(catSlug: string): Promise<Venue[]> {
 
 export async function topVenues(limit = 8): Promise<Venue[]> {
   const db = await getDb();
-  // "crowd favourites" is explicitly highest-rated (among venues with enough reviews),
-  // so it keeps a rating-first sort regardless of the default browse order.
+  // Crowd favourites reflects popularity. Rating breaks ties between venues with
+  // the same amount of public feedback.
   const { results } = await db
     .prepare(
-      `select * from venues where rating is not null and review_count >= 20
-       order by rating desc nulls last, review_count desc nulls last, name limit ?`,
+      `select * from venues where review_count is not null
+       order by review_count desc nulls last, rating desc nulls last, name limit ?`,
     )
     .bind(limit)
     .all<Venue>();

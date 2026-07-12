@@ -4,7 +4,7 @@
 
 **Goal:** Put category browsing before the Tonight Finder, make Crowd Favourites popularity-first, and remove stale Niklo Picks.
 
-**Architecture:** Keep homepage section layout in `web/app/page.tsx`. Make `topVenues` a review-count-first query in `web/lib/venues.ts`. Remove the now-unused static collection import and data module.
+**Architecture:** Keep homepage section layout in `web/app/page.tsx`. Make `topVenues` a review-count-first query in `web/lib/venues.ts`. Remove the now-unused static collection import and data module, together with its list route.
 
 **Tech Stack:** Next.js, TypeScript, Cloudflare D1, Node test runner.
 
@@ -20,7 +20,7 @@
 
 **Files:**
 - Modify: `web/lib/venues.ts`
-- Create: `web/lib/venues.test.ts`
+- Create: `web/lib/homepage.test.ts`
 
 **Interfaces:**
 - Produces: `topVenues(limit)` ordered by `review_count DESC`, then rating and name.
@@ -52,8 +52,9 @@ Run: `cd web && npm run test:unit`
 
 **Files:**
 - Modify: `web/app/page.tsx`
-- Modify: `web/lib/venues.test.ts`
+- Modify: `web/lib/homepage.test.ts`
 - Delete: `web/lib/collections.ts`
+- Delete: `web/app/list/[slug]/page.tsx`
 
 **Interfaces:**
 - Consumes: `topVenues(8)` with popularity ordering.
@@ -75,7 +76,7 @@ Run: `cd web && npm run test:unit`
 
 - [ ] **Step 3: Write minimal implementation**
 
-Move the category section above `<TonightFinder>`, remove the collections import and section, then delete `web/lib/collections.ts`.
+Move the category section above `<TonightFinder>`, remove the collections import and section, then delete `web/lib/collections.ts` and `web/app/list/[slug]/page.tsx`.
 
 - [ ] **Step 4: Run test to verify it passes**
 

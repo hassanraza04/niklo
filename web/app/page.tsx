@@ -3,7 +3,6 @@ import { categories } from "@/lib/taxonomy";
 import { countsByCategory, listFinderVenues, topVenues } from "@/lib/venues";
 import { CategoryCard } from "@/components/CategoryCard";
 import { VenueCard } from "@/components/VenueCard";
-import { collections } from "@/lib/collections";
 import { TonightFinder } from "@/components/TonightFinder";
 import type { Venue } from "@/lib/types";
 
@@ -93,8 +92,6 @@ export default async function Home() {
         </div>
       </section>
 
-      <TonightFinder venues={allVenues} />
-
       {/* categories */}
       <section className="mx-auto max-w-6xl px-5 py-12">
         <h2 className="font-display text-2xl font-semibold text-ink">
@@ -107,27 +104,7 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* collections */}
-      <section className="mx-auto max-w-6xl px-5 pb-2">
-        <h2 className="font-display text-2xl font-semibold text-ink">Niklo picks</h2>
-        <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
-          {collections.map((c) => (
-            <Link
-              key={c.slug}
-              href={`/list/${c.slug}`}
-              className="flex items-center gap-4 rounded-[var(--radius-card)] border border-line bg-card p-5 shadow-sm transition-all hover:-translate-y-1 hover:border-clay/40 hover:shadow-md"
-            >
-              <span className="text-3xl">{c.emoji}</span>
-              <span>
-                <span className="block font-display text-lg font-semibold text-ink">
-                  {c.title}
-                </span>
-                <span className="block text-sm text-ink-soft">{c.blurb}</span>
-              </span>
-            </Link>
-          ))}
-        </div>
-      </section>
+      <TonightFinder venues={allVenues} />
 
       {/* featured */}
       {featured.length > 0 && (
@@ -136,7 +113,7 @@ export default async function Home() {
             <h2 className="font-display text-2xl font-semibold text-ink">
               Crowd favourites
             </h2>
-            <span className="text-sm text-ink-soft">highest rated right now</span>
+            <span className="text-sm text-ink-soft">most rated in Karachi</span>
           </div>
           <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {featured.map((v) => (

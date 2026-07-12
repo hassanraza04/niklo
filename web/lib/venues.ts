@@ -15,7 +15,7 @@ export async function getVenueBySlug(slug: string): Promise<Venue | null> {
 }
 
 // membership is many-to-many: match the slug as a whole token inside the csv so a
-// multi-sport venue (subcategories = 'padel,futsal') shows on both browse pages.
+// multi-sport venue (subcategories = 'tennis,swimming') shows on both browse pages.
 export async function listVenuesBySubcategory(subSlug: string): Promise<Venue[]> {
   const db = await getDb();
   const { results } = await db
@@ -107,18 +107,6 @@ export async function spinPool(
   return results ?? [];
 }
 
-export async function listFlagged(): Promise<Venue[]> {
-  const db = await getDb();
-  const { results } = await db
-    .prepare(
-      `select * from venues where review_level is not null
-       order by case review_level when 'high' then 0 else 1 end,
-                review_count desc nulls last, name`,
-    )
-    .all<Venue>();
-  return results ?? [];
-}
-
 export async function listAllVenues(): Promise<Venue[]> {
   const db = await getDb();
   const { results } = await db.prepare(`select * from venues ${ORDER}`).all<Venue>();
@@ -133,7 +121,7 @@ export async function listFinderVenues(): Promise<Venue[]> {
               category_name, subcategories, category_slugs, google_category, rating,
               review_count, latitude, longitude, area, address, city, price_level,
               website, phone, hours, photo_url, null as photos, google_url, status,
-              is_open, source_query, last_verified, review_level, review_flag
+              is_open, source_query, last_verified
        from venues
        where rating is not null
        order by rating desc nulls last, review_count desc nulls last, name`,

@@ -10,12 +10,12 @@ export const dynamic = "force-dynamic";
 
 function heroVenuePhotos(venues: Venue[]): Venue[] {
   const wanted = [
-    "padel",
     "cinemas",
     "bowling",
-    "arcades",
     "parks",
     "museums-galleries",
+    "padel",
+    "arcades",
     "paintball",
     "music-rooms",
   ];
@@ -71,9 +71,8 @@ export default async function Home() {
             besides eating.
           </h1>
           <p className="mt-5 max-w-xl text-lg leading-relaxed text-ink-soft">
-            Padel, cinemas, bowling, escape rooms, arcades, hikes, all sorted,
-            rated and filtered. And when you really can&apos;t decide, just spin
-            the wheel.
+            Sport, screens, games, parks and culture, all sorted, rated and
+            filtered. And when you really can&apos;t decide, just spin the wheel.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
@@ -83,7 +82,7 @@ export default async function Home() {
               Can&apos;t decide? Spin 🎡
             </Link>
             <Link
-              href="/c/sports-active/padel"
+              href="/#browse"
               className="rounded-full border border-line bg-card px-6 py-3 font-semibold text-ink transition-colors hover:border-clay/40"
             >
               Browse all
@@ -93,7 +92,7 @@ export default async function Home() {
       </section>
 
       {/* categories */}
-      <section className="mx-auto max-w-6xl px-5 py-12">
+      <section id="browse" className="mx-auto max-w-6xl px-5 py-12">
         <h2 className="font-display text-2xl font-semibold text-ink">
           Browse by type
         </h2>

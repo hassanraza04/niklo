@@ -18,7 +18,7 @@ export default function NotFound() {
           Go home
         </Link>
         <Link
-          href="/c/sports-active/padel"
+          href="/#browse"
           className="rounded-full border border-line bg-card px-5 py-2.5 font-semibold text-ink transition-colors hover:border-clay/40"
         >
           Browse spots

@@ -97,13 +97,13 @@ export default async function SubcategoryPage({
             We haven&apos;t mapped {sub.name.toLowerCase()} yet
           </p>
           <p className="mt-2 text-ink-soft">
-            It&apos;s on the list. Padel is fully loaded if you want to start there.
+            Try another type, or browse everything Niklo has mapped so far.
           </p>
           <Link
-            href="/c/sports-active/padel"
+            href="/#browse"
             className="mt-5 inline-block rounded-full bg-clay px-5 py-2.5 font-semibold text-paper"
           >
-            See padel courts
+            Browse all types
           </Link>
         </div>
       ) : (

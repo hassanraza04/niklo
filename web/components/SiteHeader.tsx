@@ -18,7 +18,7 @@ export function SiteHeader() {
 
         <nav className="flex shrink-0 items-center gap-1.5">
           <Link
-            href="/c/sports-active/padel"
+            href="/#browse"
             className="hidden rounded-full px-3 py-1.5 text-sm font-medium text-ink-soft transition-colors hover:bg-paper-2 hover:text-ink sm:inline-block"
           >
             Browse

@@ -75,7 +75,7 @@ export default function SavedPage() {
             Hit &ldquo;Save to list&rdquo; on any venue and it&apos;ll show up here.
           </p>
           <Link
-            href="/c/sports-active/padel"
+            href="/#browse"
             className="mt-5 inline-block rounded-full bg-clay px-5 py-2.5 font-semibold text-paper"
           >
             Start browsing

@@ -19,18 +19,18 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://niklo.pk"),
   title: {
-    default: "Niklo: things to do in Karachi",
+    default: "Niklo: Karachi plans",
     template: "%s · Niklo",
   },
   description:
-    "A homey guide to everything you can do in Karachi besides eat: padel, cinemas, bowling, escape rooms and more. Can't decide? Spin.",
+    "A friendly Karachi guide for plans beyond dinner, from sport and screens to parks, culture, and more.",
   icons: {
     icon: "/icon.svg",
   },
   openGraph: {
-    title: "Niklo: things to do in Karachi",
+    title: "Niklo: Karachi plans",
     description:
-      "Find padel courts, cinemas, bowling, escape rooms, arcades and quieter things to do in Karachi.",
+      "Find sport, screens, games, parks, culture, and other good Karachi plans.",
     type: "website",
     locale: "en_PK",
     siteName: "Niklo",

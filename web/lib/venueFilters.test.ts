@@ -38,8 +38,6 @@ function venue(overrides: Partial<Venue>): Venue {
     is_open: overrides.is_open ?? 1,
     source_query: overrides.source_query ?? null,
     last_verified: overrides.last_verified ?? null,
-    review_level: overrides.review_level ?? null,
-    review_flag: overrides.review_flag ?? null,
   };
 }
 

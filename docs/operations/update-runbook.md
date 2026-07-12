@@ -59,10 +59,10 @@ npm run db:reset
 Finish with the release checks:
 
 ```bash
-python3 pipeline/seed_checks.py
-python3 pipeline/customer_flow_checks.py
-python3 pipeline/release_checks.py
-python3 -m unittest discover -s tests -v
+pipeline/.venv/bin/python pipeline/seed_checks.py
+pipeline/.venv/bin/python pipeline/customer_flow_checks.py
+pipeline/.venv/bin/python pipeline/release_checks.py
+pipeline/.venv/bin/python -m unittest discover -s tests -v
 ```
 
 ## Manual Approval Required

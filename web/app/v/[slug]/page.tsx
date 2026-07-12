@@ -77,16 +77,6 @@ export default async function VenuePage({
         ]}
       />
 
-      {venue.review_flag && (
-        <div className="mt-4 rounded-2xl border border-marigold/60 bg-marigold/10 p-3 text-sm text-ink">
-          ⚠ <span className="font-semibold">Flagged for review:</span>{" "}
-          {venue.review_flag}.{" "}
-          <a href="/review" className="underline">
-            review queue
-          </a>
-        </div>
-      )}
-
       {/* hero photo (self-hosted; gradient sits behind so it never flashes blank) */}
       <div className="relative mt-4 aspect-[16/9] overflow-hidden rounded-[var(--radius-card)] bg-paper-2 sm:aspect-[5/2]">
         <div

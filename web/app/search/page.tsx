@@ -62,13 +62,13 @@ export default async function SearchPage({
         <div className="mt-12 rounded-[var(--radius-card)] border border-dashed border-line bg-card p-10 text-center">
           <p className="font-display text-xl text-ink">No matches for &ldquo;{query}&rdquo;</p>
           <p className="mt-2 text-ink-soft">
-            Try a venue name, an area like Clifton or DHA, or a category like padel.
+            Try a venue name, an area like Clifton or DHA, or browse by type.
           </p>
           <Link
-            href="/c/sports-active/padel"
+            href="/#browse"
             className="mt-5 inline-block rounded-full bg-clay px-5 py-2.5 font-semibold text-paper"
           >
-            Browse padel instead
+            Browse all types
           </Link>
         </div>
       ) : (

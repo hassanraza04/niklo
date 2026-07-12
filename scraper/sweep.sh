@@ -4,7 +4,7 @@
 # so the pause + low -c is our rate limiting). one json per query = built-in
 # provenance (the filename is the query that found those rows).
 #
-# usage: ./sweep.sh queries/padel.txt padel
+# usage: ./sweep.sh queries/<category>.txt <category>
 # env: CONC (default 2), DEPTH (default 10), PAUSE_MIN/PAUSE_MAX seconds between runs
 set -euo pipefail
 

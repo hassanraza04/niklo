@@ -23,9 +23,17 @@ export function SiteFooter() {
           <Link href="/terms" className="hover:text-clay">
             Terms
           </Link>
-          <Link href="/review" className="hover:text-clay">
+          <Link href="/data" className="hover:text-clay">
             Data notes
           </Link>
+          <a
+            href="https://github.com/hassanraza04/niklo"
+            target="_blank"
+            rel="noreferrer"
+            className="hover:text-clay"
+          >
+            GitHub
+          </a>
         </nav>
       </div>
     </footer>

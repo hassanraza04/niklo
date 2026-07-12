@@ -1,6 +1,7 @@
 # Niklo Web
 
-Next.js app for the Niklo Karachi activity directory. It reads venue data from Cloudflare D1 through OpenNext, with local D1 support through Wrangler.
+The Next.js application for Niklo. It reads the generated venue seed through Cloudflare
+D1 in production and Wrangler's local D1 emulator during development.
 
 ## Local Setup
 
@@ -8,8 +9,7 @@ From this folder:
 
 ```bash
 npm ci
-npm run db:schema
-npm run db:seed
+npm run db:reset
 npm run dev
 ```
 
@@ -25,6 +25,7 @@ npm run db:reset
 
 ```bash
 npm run lint
+npm run test:unit
 npm run build
 ```
 
@@ -42,7 +43,8 @@ python3 -m unittest discover -s tests -v
 
 - `NEXT_PUBLIC_SITE_URL` controls sitemap and robots URLs.
 - `wrangler.jsonc` needs the real D1 database id before deployment.
-- Remote schema, remote seed, and Cloudflare deploy are handled outside this pre-deploy hardening pass.
+- Cloudflare provisioning, remote seeding, and deployment are manual. See the root
+  [launch checklist](../docs/operations/launch-checklist.md).
 
 ## Key Routes
 

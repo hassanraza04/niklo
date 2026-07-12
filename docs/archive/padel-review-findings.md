@@ -1,4 +1,4 @@
-# padel listings — manual verification
+# Historical Padel Listing Review
 
 Researched all 41 flagged padel listings (maps, websites, booking platforms, reviews). 21 confirmed real courts, 16 confirmed NOT padel courts, 4 still need a manual look.
 
@@ -212,4 +212,3 @@ Researched all 41 flagged padel listings (maps, websites, booking platforms, rev
 - **verdict:** yes padel, medium confidence
 - **what it is:** Real indoor sports venue in Block 14 Gulshan-e-Iqbal, the "Chapter 2" branch of the Sportswing group (other venues at Tariq Road / Civic Center). It offers padel and has a dedicated padel booking system at padelatwing.skedda.com/booking ("Booking System - Sportswing Chapter 2"). Social posts promote "Panoramic Padel Courts at Sportswing" and tag Chapter 2. The official website (sportswing.pk) lists padel as a core offering across venues.
 - **evidence:** Dedicated padel booking page: https://padelatwing.skedda.com/booking titled "Booking System - Sportswing Chapter 2" (subdomain "padelatwing" = padel-at-Wing). Facebook launch video confirming the venue: "Book your slots now at the new chapter of Sportswing - location Gulshan-e-Iqbal, Block 14" (facebook.com/sportswing.khi/videos/1143901320027074). Instagram/Facebook padel promos tagging Chapter 2: "Panoramic Padel Courts at Sportswing" (instagram.com/reel/DC9i00ismrE) and "@sportswing.pk Chapter 2" (instagram.com/p/C-x-rg9NUqD). Official site sportswing.pk lists padel as a primary offering with "super panoramic courts." Google rating 4.2 from 47 reviews indicates an established, reviewed venue, not junk. CAUTION: a Facebook post "Sportswing Chapter 2 Team will miss you! Futsal & Cricket courts are currently close[d]" (facebook.com/sportswing.khi/posts/612687727983766) indicates the FUTSAL and CRICKET courts at Chapter 2 closed - padel is NOT named as closed, and the padel-specific Skedda booking site remains live, consistent with padel continuing. The heuristic "category Playground, no padel signal" is incorrect; there is a strong padel signal for this exact venue. Could not confirm a live bookable padel slot in real time, hence medium confidence rather than high.
-

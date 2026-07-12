@@ -2,8 +2,8 @@
 """quick QA on a category's scrape: count, dedupe, geo-accuracy, recall.
 
 usage:
-  python3 analyze.py out/padel                      # just stats
-  python3 analyze.py out/padel ../data/padel_ground_truth.json   # + recall
+  python3 analyze.py out/<category>                         # just stats
+  python3 analyze.py out/<category> ../data/<category>_ground_truth.json   # + recall
 """
 
 import json
@@ -44,7 +44,7 @@ def norm(s: str) -> str:
 
 
 def main() -> None:
-    folder = sys.argv[1] if len(sys.argv) > 1 else "out/padel"
+    folder = sys.argv[1] if len(sys.argv) > 1 else "out/cinemas"
     rows = load(folder)
     by_pid = {r.get("place_id"): r for r in rows if r.get("place_id")}
 

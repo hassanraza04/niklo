@@ -7,6 +7,9 @@ const pageSource = readFileSync(join(process.cwd(), "app", "page.tsx"), "utf8");
 const venuesSource = readFileSync(join(process.cwd(), "lib", "venues.ts"), "utf8");
 const finderSource = readFileSync(join(process.cwd(), "components", "TonightFinder.tsx"), "utf8");
 const layoutSource = readFileSync(join(process.cwd(), "app", "layout.tsx"), "utf8");
+const headerSource = readFileSync(join(process.cwd(), "components", "SiteHeader.tsx"), "utf8");
+const footerSource = readFileSync(join(process.cwd(), "components", "SiteFooter.tsx"), "utf8");
+const searchSource = readFileSync(join(process.cwd(), "app", "search", "page.tsx"), "utf8");
 
 test("home page puts browsing before the Tonight Finder without Niklo picks", () => {
   assert.ok(pageSource.indexOf("Browse by type") < pageSource.indexOf("<TonightFinder"));
@@ -39,4 +42,20 @@ test("Tonight Finder keeps its filters in a stable row below the title", () => {
 test("Niklo uses its own SVG tab icon", () => {
   assert.match(layoutSource, /icons:\s*\{\s*icon:\s*"\/icon\.svg"/);
   assert.match(readFileSync(join(process.cwd(), "app", "icon.svg"), "utf8"), /Niklo favicon/);
+});
+
+test("public navigation does not default visitors to padel", () => {
+  assert.doesNotMatch(headerSource, /\/c\/sports-active\/padel/);
+  assert.doesNotMatch(searchSource, /\/c\/sports-active\/padel|Browse padel instead/);
+  assert.match(searchSource, /Browse all types/);
+});
+
+test("footer links to the public repository instead of the retired review queue", () => {
+  assert.match(footerSource, /https:\/\/github\.com\/hassanraza04\/niklo/);
+  assert.doesNotMatch(footerSource, /href="\/review"/);
+});
+
+test("tab title describes Niklo without search-query wording", () => {
+  assert.match(layoutSource, /default: "Niklo: Karachi plans"/);
+  assert.doesNotMatch(layoutSource, /things to do in Karachi/);
 });

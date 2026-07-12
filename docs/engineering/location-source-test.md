@@ -1,7 +1,7 @@
-# scraping from a karachi home line, what actually worked
+# Location Source Test
 
 Notes from setting up the gosom scrape and settling the "where do I run this from"
-question before doing the big backfill. Padel was the guinea-pig category.
+question before doing the big backfill. One sport category was the initial test case.
 
 ## the question
 

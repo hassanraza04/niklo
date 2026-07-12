@@ -18,3 +18,11 @@ test("crowd favourites are ordered by popularity", () => {
 
   assert.match(topVenuesSource, /order by review_count desc nulls last, rating desc nulls last, name/);
 });
+
+test("Tonight Finder queries every eligible listing before filtering", () => {
+  const start = venuesSource.indexOf("export async function listFinderVenues");
+  const end = venuesSource.indexOf("export async function getVenuesBySlugs");
+  const finderSource = venuesSource.slice(start, end);
+
+  assert.doesNotMatch(finderSource, /limit = 160|limit \?|\.bind\(limit\)/);
+});

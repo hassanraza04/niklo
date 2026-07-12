@@ -1,6 +1,11 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { filterVenuesForDisplay, moodMatchesVenue, tonightPicks } from "./venueFilters.ts";
+import {
+  filterVenuesForDisplay,
+  moodMatchesVenue,
+  tonightPickPage,
+  tonightPicks,
+} from "./venueFilters.ts";
 import type { Venue } from "./types.ts";
 
 function venue(overrides: Partial<Venue>): Venue {
@@ -112,4 +117,26 @@ test("tonightPicks returns a short balanced list sorted by quality", () => {
   );
 
   assert.deepEqual(picks.map((v) => v.name), ["Better", "Strong"]);
+});
+
+test("tonightPickPage shows filtered matches five at a time", () => {
+  const venues = Array.from({ length: 7 }, (_, index) =>
+    venue({
+      venue_id: `venue-${index + 1}`,
+      name: `Venue ${index + 1}`,
+      review_count: 100 - index,
+    }),
+  );
+
+  const firstPage = tonightPickPage(venues, { minRating: 4.2 }, null, 0);
+  const secondPage = tonightPickPage(venues, { minRating: 4.2 }, null, 1);
+
+  assert.equal(firstPage.totalMatches, 7);
+  assert.equal(firstPage.pageCount, 2);
+  assert.equal(firstPage.picks.length, 5);
+  assert.equal(secondPage.picks.length, 2);
+  assert.deepEqual(
+    [...firstPage.picks, ...secondPage.picks].map((venue) => venue.venue_id).sort(),
+    venues.map((venue) => venue.venue_id).sort(),
+  );
 });

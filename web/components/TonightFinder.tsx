@@ -9,13 +9,14 @@ import {
   USER_LOCATION_REFERENCE_ID,
 } from "@/lib/locationReference";
 import { useUserLocation } from "@/lib/useUserLocation";
-import { tonightPicks, type VenueFilters } from "@/lib/venueFilters";
+import { tonightPickPage, type VenueFilters } from "@/lib/venueFilters";
 import { VenueCard } from "./VenueCard";
 
 export function TonightFinder({ venues }: { venues: Venue[] }) {
   const [openNow, setOpenNow] = useState(false);
   const [maxDistance, setMaxDistance] = useState("");
   const [distanceReference, setDistanceReference] = useState(USER_LOCATION_REFERENCE_ID);
+  const [page, setPage] = useState(0);
   const { location, status, requestLocation } = useUserLocation();
   const distanceCenter = useMemo(
     () => distanceReferenceCoordinates(distanceReference, location),
@@ -33,18 +34,20 @@ export function TonightFinder({ venues }: { venues: Venue[] }) {
     [openNow, maxDistance],
   );
 
-  const picks = useMemo(
-    () => tonightPicks(venues, filters, distanceCenter, 5),
-    [venues, filters, distanceCenter],
+  const resultPage = useMemo(
+    () => tonightPickPage(venues, filters, distanceCenter, page),
+    [venues, filters, distanceCenter, page],
   );
 
   function onDistance(next: string) {
     setMaxDistance(next);
+    setPage(0);
     if (next && needsUserLocation) requestLocation();
   }
 
   function onDistanceReference(next: string) {
     setDistanceReference(next);
+    setPage(0);
     if (next === USER_LOCATION_REFERENCE_ID && !location && maxDistance) {
       requestLocation();
     }
@@ -65,7 +68,10 @@ export function TonightFinder({ venues }: { venues: Venue[] }) {
               <input
                 type="checkbox"
                 checked={openNow}
-                onChange={(event) => setOpenNow(event.target.checked)}
+                onChange={(event) => {
+                  setOpenNow(event.target.checked);
+                  setPage(0);
+                }}
                 className="h-4 w-4 accent-pine"
               />
               Open now
@@ -131,16 +137,38 @@ export function TonightFinder({ venues }: { venues: Venue[] }) {
           <p className="mt-3 text-sm text-clay-dark">Location blocked</p>
         )}
 
-        {picks.length > 0 ? (
-          <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-5">
-            {picks.map((venue) => (
-              <VenueCard
-                key={venue.venue_id}
-                venue={venue}
-                distanceFrom={distanceCenter}
-              />
-            ))}
-          </div>
+        {resultPage.picks.length > 0 ? (
+          <>
+            <div className="mt-5 flex items-center justify-between gap-3 text-sm text-ink-soft">
+              <span>
+                {resultPage.currentPage * 5 + 1}-
+                {resultPage.currentPage * 5 + resultPage.picks.length} of {resultPage.totalMatches}
+              </span>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => setPage(resultPage.currentPage - 1)}
+                  disabled={resultPage.currentPage === 0}
+                  className="rounded-full border border-line bg-paper px-3 py-1.5 font-semibold text-ink disabled:cursor-not-allowed disabled:opacity-45"
+                >
+                  Previous
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setPage(resultPage.currentPage + 1)}
+                  disabled={resultPage.currentPage >= resultPage.pageCount - 1}
+                  className="rounded-full border border-line bg-paper px-3 py-1.5 font-semibold text-ink disabled:cursor-not-allowed disabled:opacity-45"
+                >
+                  Next
+                </button>
+              </div>
+            </div>
+            <div className="mt-3 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-5">
+              {resultPage.picks.map((venue) => (
+                <VenueCard key={venue.venue_id} venue={venue} distanceFrom={distanceCenter} />
+              ))}
+            </div>
+          </>
         ) : (
           <div className="mt-5 rounded-[var(--radius-card)] border border-dashed border-line bg-paper p-8 text-center text-ink-soft">
             No places match these choices.

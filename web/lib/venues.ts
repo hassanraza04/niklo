@@ -125,7 +125,7 @@ export async function listAllVenues(): Promise<Venue[]> {
   return results ?? [];
 }
 
-export async function listFinderVenues(limit = 160): Promise<Venue[]> {
+export async function listFinderVenues(): Promise<Venue[]> {
   const db = await getDb();
   const { results } = await db
     .prepare(
@@ -136,10 +136,8 @@ export async function listFinderVenues(limit = 160): Promise<Venue[]> {
               is_open, source_query, last_verified, review_level, review_flag
        from venues
        where rating is not null
-       order by rating desc nulls last, review_count desc nulls last, name
-       limit ?`,
+       order by rating desc nulls last, review_count desc nulls last, name`,
     )
-    .bind(limit)
     .all<Venue>();
   return results ?? [];
 }

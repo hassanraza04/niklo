@@ -138,17 +138,44 @@ function qualityScore(venue: Venue): number {
   return rating * 20 + reviews * 4;
 }
 
-export function tonightPicks<T extends Venue>(
+function rankedTonightMatches<T extends Venue>(
   venues: T[],
   filters: VenueFilters,
   location: Coordinates | null,
-  limit = 5,
 ): T[] {
   return filterVenuesForDisplay(venues, filters, location)
     .sort((a, b) => {
       const byScore = qualityScore(b) - qualityScore(a);
       if (byScore !== 0) return byScore;
       return (b.review_count ?? 0) - (a.review_count ?? 0);
-    })
-    .slice(0, limit);
+    });
+}
+
+export function tonightPicks<T extends Venue>(
+  venues: T[],
+  filters: VenueFilters,
+  location: Coordinates | null,
+  limit = 5,
+): T[] {
+  return rankedTonightMatches(venues, filters, location).slice(0, limit);
+}
+
+export function tonightPickPage<T extends Venue>(
+  venues: T[],
+  filters: VenueFilters,
+  location: Coordinates | null,
+  page: number,
+  pageSize = 5,
+) {
+  const matches = rankedTonightMatches(venues, filters, location);
+  const pageCount = Math.ceil(matches.length / pageSize);
+  const currentPage = pageCount === 0 ? 0 : Math.min(Math.max(page, 0), pageCount - 1);
+  const start = currentPage * pageSize;
+
+  return {
+    currentPage,
+    pageCount,
+    picks: matches.slice(start, start + pageSize),
+    totalMatches: matches.length,
+  };
 }

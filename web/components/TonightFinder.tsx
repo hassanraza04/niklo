@@ -56,15 +56,14 @@ export function TonightFinder({ venues }: { venues: Venue[] }) {
   return (
     <section className="mx-auto max-w-6xl px-5 py-12">
       <div className="rounded-[var(--radius-card)] border border-line bg-card p-5 shadow-sm">
-        <div className="flex flex-wrap items-end justify-between gap-4">
-          <div>
-            <p className="font-display text-lg italic text-clay">Tonight</p>
-            <h2 className="font-display text-2xl font-semibold text-ink">
-              Find something that fits
-            </h2>
-          </div>
-          <div className="flex flex-wrap items-center gap-3 text-sm">
-            <label className="flex items-center gap-2 text-ink-soft">
+        <div>
+          <p className="font-display text-lg italic text-clay">Tonight</p>
+          <h2 className="font-display text-2xl font-semibold text-ink">
+            Find something that fits
+          </h2>
+        </div>
+        <div className="mt-5 flex flex-wrap items-center gap-3 text-sm">
+          <label className="flex items-center gap-2 text-ink-soft">
               <input
                 type="checkbox"
                 checked={openNow}
@@ -75,62 +74,61 @@ export function TonightFinder({ venues }: { venues: Venue[] }) {
                 className="h-4 w-4 accent-pine"
               />
               Open now
-            </label>
-            <label className="flex items-center gap-2 text-ink-soft">
-              Within
-              <input
-                type="number"
-                value={maxDistance}
-                onChange={(event) => onDistance(event.target.value)}
-                min="1"
-                max="80"
-                step="1"
-                placeholder="Any"
-                className="w-20 rounded-full border border-line bg-paper px-3 py-1.5 font-medium text-ink outline-none focus:border-clay/50"
-              />
-              km
-            </label>
-            <label className="flex items-center gap-2 text-ink-soft">
-              From
-              <select
-                value={distanceReference}
-                onChange={(event) => onDistanceReference(event.target.value)}
-                className="rounded-full border border-line bg-paper px-3 py-1.5 font-medium text-ink outline-none focus:border-clay/50"
-              >
-                <option value={USER_LOCATION_REFERENCE_ID}>My location</option>
-                {LANDMARK_REFERENCES.map((reference) => (
-                  <option key={reference.id} value={reference.id}>
-                    {reference.name}
-                  </option>
-                ))}
-              </select>
-            </label>
-            {maxDistance && needsUserLocation && (
-              <button
-                type="button"
-                onClick={requestLocation}
-                disabled={status === "loading"}
-                className="rounded-full bg-pine px-3.5 py-1.5 font-semibold text-paper disabled:opacity-60"
-              >
-                {status === "loading" ? "Finding you..." : "Use location"}
-              </button>
-            )}
-            {maxDistance && distanceReference === USER_LOCATION_REFERENCE_ID && location && (
-              <button
-                type="button"
-                onClick={requestLocation}
-                disabled={status === "loading"}
-                className="rounded-full border border-line bg-paper px-3.5 py-1.5 font-semibold text-ink disabled:opacity-60"
-              >
-                {status === "loading" ? "Updating..." : "Update location"}
-              </button>
-            )}
-            {maxDistance && distanceCenter && (
-              <span className="text-pine">
-                Distance from {distanceReferenceName(distanceReference)}
-              </span>
-            )}
-          </div>
+          </label>
+          <label className="flex items-center gap-2 text-ink-soft">
+            Within
+            <input
+              type="number"
+              value={maxDistance}
+              onChange={(event) => onDistance(event.target.value)}
+              min="1"
+              max="80"
+              step="1"
+              placeholder="Any"
+              className="w-20 rounded-full border border-line bg-paper px-3 py-1.5 font-medium text-ink outline-none focus:border-clay/50"
+            />
+            km
+          </label>
+          <label className="flex items-center gap-2 text-ink-soft">
+            From
+            <select
+              value={distanceReference}
+              onChange={(event) => onDistanceReference(event.target.value)}
+              className="rounded-full border border-line bg-paper px-3 py-1.5 font-medium text-ink outline-none focus:border-clay/50"
+            >
+              <option value={USER_LOCATION_REFERENCE_ID}>My location</option>
+              {LANDMARK_REFERENCES.map((reference) => (
+                <option key={reference.id} value={reference.id}>
+                  {reference.name}
+                </option>
+              ))}
+            </select>
+          </label>
+          {maxDistance && needsUserLocation && (
+            <button
+              type="button"
+              onClick={requestLocation}
+              disabled={status === "loading"}
+              className="rounded-full bg-pine px-3.5 py-1.5 font-semibold text-paper disabled:opacity-60"
+            >
+              {status === "loading" ? "Finding you..." : "Use location"}
+            </button>
+          )}
+          {maxDistance && distanceReference === USER_LOCATION_REFERENCE_ID && location && (
+            <button
+              type="button"
+              onClick={requestLocation}
+              disabled={status === "loading"}
+              className="rounded-full border border-line bg-paper px-3.5 py-1.5 font-semibold text-ink disabled:opacity-60"
+            >
+              {status === "loading" ? "Updating..." : "Update location"}
+            </button>
+          )}
+          {maxDistance && distanceCenter && (
+            <span className="text-pine">
+              Distance from {distanceReferenceName(distanceReference)}
+            </span>
+          )}
         </div>
 
         {status === "denied" && maxDistance && (

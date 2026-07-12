@@ -179,8 +179,8 @@ export function MapMode({
         </div>
       </div>
 
-      <div className="mt-6 grid gap-4 lg:grid-cols-[320px_1fr]">
-        <aside className="rounded-[var(--radius-card)] border border-line bg-card p-4">
+      <div className="mt-6 grid min-w-0 gap-4 lg:grid-cols-[320px_1fr]">
+        <aside className="min-w-0 rounded-[var(--radius-card)] border border-line bg-card p-4">
           <h2 className="font-display text-xl font-semibold text-ink">Types</h2>
           <div className="mt-4 space-y-2">
             {categories.map((category) => {
@@ -309,8 +309,8 @@ export function MapMode({
           )}
         </aside>
 
-        <section className="grid gap-4 xl:items-start xl:grid-cols-[1fr_320px]">
-          <div className="relative overflow-hidden rounded-[var(--radius-card)] border border-line bg-paper-2 shadow-sm">
+        <section className="grid min-w-0 gap-4 xl:items-start xl:grid-cols-[1fr_320px]">
+          <div className="relative min-w-0 overflow-hidden rounded-[var(--radius-card)] border border-line bg-paper-2 shadow-sm">
             <LeafletVenueMap
               venues={visibleVenues}
               userLocation={location}
@@ -328,7 +328,7 @@ export function MapMode({
             )}
           </div>
 
-          <aside className="self-start rounded-[var(--radius-card)] border border-line bg-card p-4">
+          <aside className="min-w-0 self-start rounded-[var(--radius-card)] border border-line bg-card p-4">
             {activeVenue ? (
               <>
                 <div className="flex items-start justify-between gap-3">

@@ -12,11 +12,11 @@ export function CategoryCard({
   return (
     <Link
       href={`/c/${category.slug}`}
-      className="group flex flex-col gap-3 rounded-[var(--radius-card)] border border-line bg-card p-5 shadow-sm transition-all hover:-translate-y-1 hover:border-clay/40 hover:shadow-md"
+      className="group flex min-w-0 flex-col gap-3 rounded-[var(--radius-card)] border border-line bg-card p-5 shadow-sm transition-all hover:-translate-y-1 hover:border-clay/40 hover:shadow-md"
     >
       <span className="text-3xl">{categoryIcon(category.slug)}</span>
-      <div>
-        <h3 className="font-display text-xl font-semibold text-ink group-hover:text-clay">
+      <div className="min-w-0">
+        <h3 className="break-words font-display text-xl font-semibold text-ink group-hover:text-clay">
           {category.name}
         </h3>
         {category.blurb && (

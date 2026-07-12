@@ -10,6 +10,7 @@ const layoutSource = readFileSync(join(process.cwd(), "app", "layout.tsx"), "utf
 const headerSource = readFileSync(join(process.cwd(), "components", "SiteHeader.tsx"), "utf8");
 const footerSource = readFileSync(join(process.cwd(), "components", "SiteFooter.tsx"), "utf8");
 const searchSource = readFileSync(join(process.cwd(), "app", "search", "page.tsx"), "utf8");
+const categoryCardSource = readFileSync(join(process.cwd(), "components", "CategoryCard.tsx"), "utf8");
 
 test("home page puts browsing before the Tonight Finder without Niklo picks", () => {
   assert.ok(pageSource.indexOf("Browse by type") < pageSource.indexOf("<TonightFinder"));
@@ -58,4 +59,9 @@ test("footer links to the public repository instead of the retired review queue"
 test("tab title describes Niklo without search-query wording", () => {
   assert.match(layoutSource, /default: "Niklo: Karachi plans"/);
   assert.doesNotMatch(layoutSource, /things to do in Karachi/);
+});
+
+test("category cards can shrink and wrap on small phones", () => {
+  assert.match(categoryCardSource, /className="group flex min-w-0 flex-col/);
+  assert.match(categoryCardSource, /className="break-words font-display text-xl/);
 });

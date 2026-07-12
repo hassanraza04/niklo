@@ -54,7 +54,7 @@ export function SpinWheel({
 
   return (
     <div className="flex flex-col items-center">
-      <div className="relative" style={{ width: 340, height: 360 }}>
+      <div className="relative aspect-[17/18] w-full max-w-[340px]">
         {/* pointer */}
         <div className="absolute left-1/2 top-1 z-10 -translate-x-1/2">
           <div className="h-0 w-0 border-x-[12px] border-t-[20px] border-x-transparent border-t-clay drop-shadow" />
@@ -62,8 +62,7 @@ export function SpinWheel({
 
         <svg
           viewBox="0 0 340 340"
-          width="340"
-          height="340"
+          className="block aspect-square w-full"
           style={{
             transform: `rotate(${rotation}deg)`,
             transition: spinning

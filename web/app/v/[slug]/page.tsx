@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import {
   catalogBySubcategory,
-  catalogSlugs as staticCatalogSlugs,
+  catalogSlugs,
   getCatalogVenue,
 } from "@/lib/catalog";
 import { findSubcategory } from "@/lib/taxonomy";
@@ -14,10 +14,6 @@ import { VenueMap } from "@/components/VenueMap";
 import { VenueCard } from "@/components/VenueCard";
 import { SaveButton } from "@/components/SaveButton";
 import { VenueDistance } from "@/components/VenueDistance";
-
-function catalogSlugs() {
-  return staticCatalogSlugs;
-}
 
 export function generateStaticParams() {
   return catalogSlugs().map((slug) => ({ slug }));

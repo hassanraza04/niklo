@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { canonicalArea } from "@/lib/areas";
 import { loadClientCatalog, searchClientCatalog } from "@/lib/clientCatalog";
 import type { CatalogCardVenue } from "@/lib/types";
 
@@ -133,31 +134,34 @@ export function SearchBox({
       {open && hits.length > 0 && (
         <div className="absolute left-0 right-0 top-full z-40 mt-2 overflow-hidden rounded-2xl border border-line bg-card shadow-lg">
           <ul>
-            {hits.map((h, i) => (
-              <li key={h.slug}>
-                <Link
-                  href={`/v/${h.slug}`}
-                  onMouseEnter={() => setActive(i)}
-                  onClick={() => setOpen(false)}
-                  className={`flex w-full items-center justify-between gap-3 px-4 py-2.5 text-left transition-colors ${
-                    active === i ? "bg-paper-2" : "hover:bg-paper-2"
-                  }`}
-                >
-                  <span className="min-w-0">
-                    <span className="block truncate font-medium text-ink">{h.name}</span>
-                    <span className="block truncate text-xs text-ink-soft">
-                      {h.subcategory_name}
-                      {h.area ? ` · ${h.area}` : ""}
+            {hits.map((h, i) => {
+              const area = canonicalArea(h) ?? h.area;
+              return (
+                <li key={h.slug}>
+                  <Link
+                    href={`/v/${h.slug}`}
+                    onMouseEnter={() => setActive(i)}
+                    onClick={() => setOpen(false)}
+                    className={`flex w-full items-center justify-between gap-3 px-4 py-2.5 text-left transition-colors ${
+                      active === i ? "bg-paper-2" : "hover:bg-paper-2"
+                    }`}
+                  >
+                    <span className="min-w-0">
+                      <span className="block truncate font-medium text-ink">{h.name}</span>
+                      <span className="block truncate text-xs text-ink-soft">
+                        {h.subcategory_name}
+                        {area ? ` · ${area}` : ""}
+                      </span>
                     </span>
-                  </span>
-                  {h.rating != null && (
-                    <span className="shrink-0 text-sm font-semibold text-pine">
-                      <span className="text-marigold">★</span> {h.rating.toFixed(1)}
-                    </span>
-                  )}
-                </Link>
-              </li>
-            ))}
+                    {h.rating != null && (
+                      <span className="shrink-0 text-sm font-semibold text-pine">
+                        <span className="text-marigold">★</span> {h.rating.toFixed(1)}
+                      </span>
+                    )}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
           <Link
             href={`/search?q=${encodeURIComponent(q.trim())}`}

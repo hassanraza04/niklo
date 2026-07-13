@@ -75,6 +75,7 @@ test("catalog counts trim csv values and count multi-membership", () => {
 
 test("catalog slug selectors preserve requested order and skip unknown slugs", () => {
   const venues = [fixtureVenue({ slug: "first" }), fixtureVenue({ slug: "second" })];
+  assert.deepEqual(catalogSlugs(venues), ["first", "second"]);
   assert.equal(getCatalogVenue("first", venues)?.slug, "first");
   assert.equal(getCatalogVenue("missing", venues), null);
   assert.deepEqual(catalogBySlugs(["second", "missing", "first"], venues).map((venue) => venue.slug), ["second", "first"]);
@@ -82,6 +83,6 @@ test("catalog slug selectors preserve requested order and skip unknown slugs", (
 
 test("catalog exports the generated static data", () => {
   assert.equal(catalog.length, 452);
-  assert.equal(catalogSlugs.length, catalog.length);
-  assert.equal(catalogSlugs[0], catalog[0]?.slug);
+  assert.equal(catalogSlugs().length, catalog.length);
+  assert.equal(catalogSlugs()[0], catalog[0]?.slug);
 });

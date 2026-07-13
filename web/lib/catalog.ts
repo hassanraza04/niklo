@@ -58,7 +58,9 @@ export function catalogTopVenues(limit = 8, venues: readonly Venue[] = catalog):
   return [...venues].filter((venue) => venue.review_count != null).sort(popularityOrder).slice(0, limit);
 }
 
-export const catalogSlugs = catalog.map((venue) => venue.slug);
+export function catalogSlugs(venues: readonly Venue[] = catalog): string[] {
+  return venues.map((venue) => venue.slug);
+}
 
 export function catalogBySlugs(slugs: readonly string[], venues: readonly Venue[] = catalog): Venue[] {
   const bySlug = new Map(venues.map((venue) => [venue.slug, venue]));

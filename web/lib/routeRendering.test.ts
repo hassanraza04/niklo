@@ -45,7 +45,9 @@ test("venue routes enumerate the reviewed catalog at build time", () => {
   const source = readFileSync(join(process.cwd(), "app", "v", "[slug]", "page.tsx"), "utf8");
 
   assert.match(source, /export function generateStaticParams/);
-  assert.match(source, /catalogSlugs\(\)/);
+  assert.match(source, /\bcatalogSlugs,?\s*\n?\s*getCatalogVenue/);
+  assert.doesNotMatch(source, /catalogSlugs as|function catalogSlugs/);
+  assert.match(source, /return catalogSlugs\(\)\.map/);
 });
 
 test("venue pages describe the Maps date as a source check", () => {

@@ -35,7 +35,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
   ]);
 
-  const venueRoutes: MetadataRoute.Sitemap = catalogSlugs.map((slug) => ({
+  const venueRoutes: MetadataRoute.Sitemap = catalogSlugs().map((slug) => ({
     url: url(`/v/${slug}`),
     lastModified: now,
     changeFrequency: "monthly" as const,

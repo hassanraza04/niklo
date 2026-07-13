@@ -76,7 +76,10 @@ test("OpenNext intercepts static catalog cache entries before NextServer", () =>
   const config = readFileSync(join(process.cwd(), "open-next.config.ts"), "utf8");
 
   assert.match(config, /static-assets-incremental-cache/);
-  assert.match(config, /incrementalCache:\s*staticAssetsIncrementalCache/);
+  assert.match(config, /get:\s*staticAssetsIncrementalCache\.get\.bind/);
+  assert.match(config, /set:\s*async\s*\(\)\s*=>\s*\{\}/);
+  assert.match(config, /delete:\s*async\s*\(\)\s*=>\s*\{\}/);
+  assert.match(config, /incrementalCache:\s*readOnlyStaticAssetsCache/);
   assert.match(config, /enableCacheInterception:\s*true/);
 });
 

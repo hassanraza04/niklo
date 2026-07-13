@@ -7,6 +7,7 @@ const root = process.cwd();
 const savedListPath = join(root, "components", "SavedList.tsx");
 const contactPagePath = join(root, "app", "contact", "page.tsx");
 const contactFormPath = join(root, "components", "ContactForm.tsx");
+const turnstileWidgetPath = join(root, "components", "TurnstileWidget.tsx");
 const contactRoutePath = join(root, "app", "api", "contact", "route.ts");
 const footerSource = readFileSync(join(root, "components", "SiteFooter.tsx"), "utf8");
 const dataNotesSource = readFileSync(join(root, "app", "data", "page.tsx"), "utf8");
@@ -54,6 +55,12 @@ test("contact form submits a Turnstile token and verifies it before Resend", () 
   assert.match(formSource, /TurnstileWidget/);
   assert.match(routeSource, /TURNSTILE_SECRET_KEY/);
   assert.match(routeSource, /verifyTurnstileToken/);
+});
+
+test("Turnstile script loading can retry after a failed load", () => {
+  const source = readFileSync(turnstileWidgetPath, "utf8");
+  assert.match(source, /turnstileScript = undefined/);
+  assert.match(source, /script\.remove\(\)/);
 });
 
 test("data notes acknowledge that listings can still be imperfect", () => {

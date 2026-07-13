@@ -30,7 +30,7 @@ function loadTurnstile() {
   if (window.turnstile) return Promise.resolve(window.turnstile);
   if (turnstileScript) return turnstileScript;
 
-  turnstileScript = new Promise<TurnstileApi>((resolve, reject) => {
+  const scriptPromise = new Promise<TurnstileApi>((resolve, reject) => {
     const existingScript = document.getElementById(SCRIPT_ID) as HTMLScriptElement | null;
     const script = existingScript || document.createElement("script");
 
@@ -52,6 +52,13 @@ function loadTurnstile() {
       script.defer = true;
       document.head.append(script);
     }
+  });
+
+  turnstileScript = scriptPromise;
+  void scriptPromise.catch(() => {
+    if (turnstileScript !== scriptPromise) return;
+    turnstileScript = undefined;
+    script.remove();
   });
 
   return turnstileScript;

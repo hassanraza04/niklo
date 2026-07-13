@@ -33,10 +33,10 @@ Data guardrails live one level up:
 
 ```bash
 cd ..
-python3 pipeline/seed_checks.py
-python3 pipeline/customer_flow_checks.py
-python3 pipeline/release_checks.py
-python3 -m unittest discover -s tests -v
+pipeline/.venv/bin/python pipeline/seed_checks.py
+pipeline/.venv/bin/python pipeline/customer_flow_checks.py
+pipeline/.venv/bin/python pipeline/release_checks.py
+pipeline/.venv/bin/python -m unittest discover -s tests -v
 ```
 
 ## Production Notes
@@ -50,9 +50,14 @@ python3 -m unittest discover -s tests -v
 
 - `/`
 - `/search`
+- `/map`
 - `/c/[category]`
 - `/c/[category]/[subcategory]`
 - `/v/[slug]`
 - `/spin`
 - `/saved`
 - `/plan?v=slug-a,slug-b`
+- `/data`
+- `/contact`
+- `/privacy`
+- `/terms`

@@ -2,7 +2,6 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import {
   filterVenuesForDisplay,
-  moodMatchesVenue,
   tonightPickPage,
   tonightPicks,
 } from "./venueFilters.ts";
@@ -41,20 +40,7 @@ function venue(overrides: Partial<Venue>): Venue {
   };
 }
 
-test("moodMatchesVenue maps existing categories into user friendly moods", () => {
-  assert.equal(moodMatchesVenue(venue({ subcategories: "padel" }), "active"), true);
-  assert.equal(
-    moodMatchesVenue(
-      venue({ category_slug: "creative-chill", category_slugs: "creative-chill" }),
-      "chill",
-    ),
-    true,
-  );
-  assert.equal(moodMatchesVenue(venue({ subcategories: "parks" }), "outdoor"), true);
-  assert.equal(moodMatchesVenue(venue({ subcategories: "cinemas" }), "indoor"), true);
-});
-
-test("filterVenuesForDisplay filters by rating, mood, and distance", () => {
+test("filterVenuesForDisplay filters by rating and distance", () => {
   const venues = [
     venue({ name: "Near Padel", subcategories: "padel", rating: 4.8 }),
     venue({
@@ -77,7 +63,7 @@ test("filterVenuesForDisplay filters by rating, mood, and distance", () => {
 
   const filtered = filterVenuesForDisplay(
     venues,
-    { minRating: 4.5, mood: "active", maxDistanceKm: 5 },
+    { minRating: 4.5, maxDistanceKm: 5 },
     { latitude: 24.8138, longitude: 67.0305 },
   );
 

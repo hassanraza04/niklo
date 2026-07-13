@@ -32,7 +32,6 @@ const CATEGORY_STYLES: Record<string, { pin: string; dot: string }> = {
   "sports-active": { pin: "bg-pine text-paper", dot: "bg-pine" },
   entertainment: { pin: "bg-clay text-paper", dot: "bg-clay" },
   "outdoors-adventure": { pin: "bg-marigold text-ink", dot: "bg-marigold" },
-  "creative-chill": { pin: "bg-ink text-paper", dot: "bg-ink" },
   culture: { pin: "bg-paper-2 text-ink", dot: "bg-paper-2" },
 };
 

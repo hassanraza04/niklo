@@ -17,7 +17,6 @@ function heroVenuePhotos(venues: Venue[]): Venue[] {
     "padel",
     "arcades",
     "paintball",
-    "music-rooms",
   ];
   const seen = new Set<string>();
   const picked: Venue[] = [];

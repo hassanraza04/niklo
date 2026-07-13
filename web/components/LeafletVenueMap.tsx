@@ -23,7 +23,6 @@ const CATEGORY_CLASS: Record<string, string> = {
   "sports-active": "sports",
   entertainment: "entertainment",
   "outdoors-adventure": "outdoors",
-  "creative-chill": "creative",
   culture: "culture",
 };
 

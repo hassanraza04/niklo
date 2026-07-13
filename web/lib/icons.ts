@@ -3,7 +3,6 @@ const CATEGORY: Record<string, string> = {
   "sports-active": "🏃",
   entertainment: "🎬",
   "outdoors-adventure": "⛰️",
-  "creative-chill": "🎨",
   culture: "🏛️",
 };
 
@@ -25,17 +24,10 @@ const SUBCATEGORY: Record<string, string> = {
   vr: "🥽",
   "laser-tag": "🎯",
   billiards: "🎱",
-  "mini-golf": "⛳",
-  "theme-parks": "🎢",
   parks: "🌳",
   beaches: "🏖️",
   boating: "⛵",
   "adventure-parks": "🪂",
-  "pottery-art": "🏺",
-  "board-game-paint-cafe": "🎲",
-  "music-rooms": "🎸",
-  "cooking-classes": "🍳",
-  shisha: "💨",
   "museums-galleries": "🏛️",
   heritage: "🕌",
 };

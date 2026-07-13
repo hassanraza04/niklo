@@ -10,6 +10,7 @@ data/discovery/*
 !data/discovery/.gitkeep
 pipeline/**/target/
 pipeline/**/logs/
+pipeline/transform/.user.yml
 pipeline/.dlt/secrets.toml
 *.json.gz
 

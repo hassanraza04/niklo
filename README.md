@@ -25,7 +25,7 @@ public listing data -> local scraper -> DuckDB + dbt cleanup -> D1 seed -> Next.
 - `pipeline/` loads, cleans, validates, and exports the public venue dataset.
 - `scraper/` holds the query sets used for deliberate local collection runs.
 - `infra/d1/` contains the reproducible D1 schema and generated seed.
-- `data/` stores the live-listing lock, taxonomy, search regressions, and review outputs.
+- `data/` stores the live-listing lock, search regressions, and review outputs.
 - `docs/` contains operations, engineering notes, and clearly marked historical research.
 
 Niklo uses public business facts such as venue names, addresses, hours, ratings, and

@@ -71,8 +71,7 @@ curated as (
 ),
 
 -- venues that clear the quality bar. this is the canonical set, and it also
--- defines which subcategories are "live" (have at least one home venue) so a
--- dead category like mini-golf can't sneak back in via a multi-sport venue.
+-- defines which subcategories are "live" (have at least one home venue).
 kept as (
     select c.*
     from corrected c
@@ -99,9 +98,8 @@ from_gcat as (
 ),
 
 -- many-to-many membership: every category a venue was scraped under, plus its
--- corrected primary, plus what google's categories[] imply, minus dead categories
--- and the hand-pruned misfiles in venue_category_excludes (e.g. a padel court that
--- false-matched a bowling query).
+-- corrected primary, plus what google's categories[] imply, minus labels outside
+-- the current taxonomy and hand-pruned misfiles.
 member_src as (
     select distinct place_id as venue_id, subcategory_slug
     from {{ ref('stg_venues') }}
@@ -116,14 +114,10 @@ members_raw as (
     select m.venue_id, m.subcategory_slug
     from member_src m
     join live_subs ls on m.subcategory_slug = ls.subcategory_slug
+    join tax t on m.subcategory_slug = t.subcategory_slug
     left join {{ ref('venue_category_excludes') }} x
            on x.venue_id = m.venue_id and x.subcategory = m.subcategory_slug
     where x.venue_id is null
-      -- retired categories (removed from the directory)
-      and m.subcategory_slug not in (
-          'theatre', 'bookstore-cafe', 'camping', 'climbing', 'mini-golf', 'theme-parks',
-          'pottery-art', 'board-game-paint-cafe', 'music-rooms', 'cooking-classes', 'shisha'
-      )
 ),
 
 -- google maps treats padel as "padel tennis", so tennis queries drag in padel
@@ -143,20 +137,17 @@ members as (
 ),
 
 -- the venue's primary subcategory drives its breadcrumb and "more nearby". keep the
--- curated/deduped pick when it's still a live membership; otherwise (e.g. its category
--- was retired) fall back to the lowest-priority remaining membership. venues left with
--- no live membership at all are dropped (the join below is what removes them).
+-- curated/deduped pick when it remains a live membership; otherwise fall back to
+-- the lowest-priority remaining membership. Venues without a live membership drop out.
 member_pri as (
     select venue_id, subcategory_slug,
         case subcategory_slug
             when 'padel' then 1 when 'box-cricket' then 2 when 'tennis' then 3
             when 'squash' then 4 when 'swimming' then 5 when 'bowling' then 6
-            when 'karting' then 7 when 'trampoline' then 8 when 'climbing' then 9
+            when 'karting' then 7 when 'trampoline' then 8
             when 'skating' then 10 when 'paintball' then 11 when 'escape-rooms' then 12
             when 'cinemas' then 13 when 'vr' then 14 when 'laser-tag' then 15
-            when 'arcades' then 16 when 'mini-golf' then 17 when 'billiards' then 18
-            when 'futsal' then 19 when 'shisha' then 20 when 'board-game-paint-cafe' then 21
-            when 'pottery-art' then 22 when 'music-rooms' then 24 when 'cooking-classes' then 25
+            when 'arcades' then 16 when 'billiards' then 18 when 'futsal' then 19
             when 'museums-galleries' then 27 when 'heritage' then 29 when 'parks' then 31
             when 'beaches' then 32 when 'boating' then 33 when 'adventure-parks' then 34
             else 99

@@ -17,6 +17,26 @@ class PublicSurfaceTest(unittest.TestCase):
         self.assertNotIn("review_level", schema)
         self.assertNotIn("review_flag", schema)
 
+    def test_retired_sources_are_not_kept_as_active_inputs(self) -> None:
+        self.assertFalse((ROOT / "data" / "taxonomy.json").exists())
+        self.assertFalse((ROOT / "scraper" / "analyze.py").exists())
+        for filename in (
+            "board-game-cafe.txt",
+            "bookstore-cafe.txt",
+            "camping.txt",
+            "climbing.txt",
+            "cooking-classes.txt",
+            "hikes.txt",
+            "mini-golf.txt",
+            "music-rooms.txt",
+            "paint-cafe.txt",
+            "pottery-art.txt",
+            "shisha.txt",
+            "theatre.txt",
+        ):
+            self.assertFalse((ROOT / "scraper" / "queries" / filename).exists())
+        self.assertTrue((ROOT / "scraper" / "queries" / "parks.txt").exists())
+
 
 if __name__ == "__main__":
     unittest.main()

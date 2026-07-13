@@ -1,18 +1,15 @@
 import type { MetadataRoute } from "next";
 import { categories } from "@/lib/taxonomy";
-import { allVenueSlugs } from "@/lib/venues";
+import { catalogSlugs } from "@/lib/catalog";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://niklo.pk";
-
-export const dynamic = "force-dynamic";
 
 function url(path: string) {
   return `${siteUrl}${path}`;
 }
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
-  const venueSlugs = await allVenueSlugs();
 
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: url("/"), lastModified: now, changeFrequency: "weekly", priority: 1 },
@@ -38,7 +35,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
   ]);
 
-  const venueRoutes: MetadataRoute.Sitemap = venueSlugs.map((slug) => ({
+  const venueRoutes: MetadataRoute.Sitemap = catalogSlugs.map((slug) => ({
     url: url(`/v/${slug}`),
     lastModified: now,
     changeFrequency: "monthly" as const,

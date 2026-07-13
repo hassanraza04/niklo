@@ -1,12 +1,10 @@
 import Link from "next/link";
 import { categories } from "@/lib/taxonomy";
-import { countsByCategory, listFinderVenues, topVenues } from "@/lib/venues";
+import { catalog, catalogCountsByCategory, catalogTopVenues } from "@/lib/catalog";
 import { CategoryCard } from "@/components/CategoryCard";
 import { VenueCard } from "@/components/VenueCard";
 import { TonightFinder } from "@/components/TonightFinder";
 import type { Venue } from "@/lib/types";
-
-export const dynamic = "force-dynamic";
 
 function heroVenuePhotos(venues: Venue[]): Venue[] {
   const wanted = [
@@ -36,13 +34,10 @@ function heroVenuePhotos(venues: Venue[]): Venue[] {
   return picked;
 }
 
-export default async function Home() {
-  const [counts, featured, allVenues] = await Promise.all([
-    countsByCategory(),
-    topVenues(8),
-    listFinderVenues(),
-  ]);
-  const heroPhotos = heroVenuePhotos(allVenues);
+export default function Home() {
+  const counts = catalogCountsByCategory();
+  const featured = catalogTopVenues(8);
+  const heroPhotos = heroVenuePhotos(catalog);
 
   return (
     <div>
@@ -102,7 +97,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <TonightFinder venues={allVenues} />
+      <TonightFinder />
 
       {/* featured */}
       {featured.length > 0 && (

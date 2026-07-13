@@ -1,12 +1,14 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getCategory } from "@/lib/taxonomy";
-import { countsBySubcategory, listVenuesByCategory } from "@/lib/venues";
+import { categories, getCategory } from "@/lib/taxonomy";
+import { catalogByCategory, catalogCountsBySubcategory } from "@/lib/catalog";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { categoryIcon, subcategoryIcon } from "@/lib/icons";
 import { SortableVenueGrid } from "@/components/SortableVenueGrid";
 
-export const dynamic = "force-dynamic";
+export function generateStaticParams() {
+  return categories.map((category) => ({ category: category.slug }));
+}
 
 export async function generateMetadata({
   params,
@@ -27,10 +29,8 @@ export default async function CategoryPage({
   const category = getCategory(slug);
   if (!category) notFound();
 
-  const [counts, venues] = await Promise.all([
-    countsBySubcategory(),
-    listVenuesByCategory(slug),
-  ]);
+  const counts = catalogCountsBySubcategory();
+  const venues = catalogByCategory(slug);
 
   return (
     <div className="mx-auto max-w-6xl px-5 py-8">

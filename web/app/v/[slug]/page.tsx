@@ -1,5 +1,9 @@
 import { notFound } from "next/navigation";
-import { getVenueBySlug, listVenuesBySubcategory } from "@/lib/venues";
+import {
+  catalogBySubcategory,
+  catalogSlugs as staticCatalogSlugs,
+  getCatalogVenue,
+} from "@/lib/catalog";
 import { findSubcategory } from "@/lib/taxonomy";
 import { canonicalArea } from "@/lib/areas";
 import { isOpenNow } from "@/lib/hours";
@@ -11,7 +15,13 @@ import { VenueCard } from "@/components/VenueCard";
 import { SaveButton } from "@/components/SaveButton";
 import { VenueDistance } from "@/components/VenueDistance";
 
-export const dynamic = "force-dynamic";
+function catalogSlugs() {
+  return staticCatalogSlugs;
+}
+
+export function generateStaticParams() {
+  return catalogSlugs().map((slug) => ({ slug }));
+}
 
 export async function generateMetadata({
   params,
@@ -19,7 +29,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const v = await getVenueBySlug(slug);
+  const v = getCatalogVenue(slug);
   return { title: v ? v.name : "Venue" };
 }
 
@@ -40,7 +50,7 @@ export default async function VenuePage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const venue = await getVenueBySlug(slug);
+  const venue = getCatalogVenue(slug);
   if (!venue) notFound();
 
   const found = venue.subcategory_slug ? findSubcategory(venue.subcategory_slug) : null;
@@ -55,7 +65,7 @@ export default async function VenuePage({
   const open = isOpenNow(venue.hours);
   const checked = checkedOn(venue.last_verified);
 
-  const similar = (await listVenuesBySubcategory(venue.subcategory_slug))
+  const similar = catalogBySubcategory(venue.subcategory_slug)
     .filter((v) => v.venue_id !== venue.venue_id)
     .slice(0, 4);
 

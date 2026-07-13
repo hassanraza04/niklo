@@ -1,13 +1,11 @@
-import { countsBySubcategory } from "@/lib/venues";
+import { catalogCountsBySubcategory } from "@/lib/catalog";
 import { categories } from "@/lib/taxonomy";
 import { SpinBuilder, type Activity } from "@/components/SpinBuilder";
 
-export const dynamic = "force-dynamic";
-
 export const metadata = { title: "Can't decide? Spin" };
 
-export default async function SpinPage() {
-  const counts = await countsBySubcategory();
+export default function SpinPage() {
+  const counts = catalogCountsBySubcategory();
 
   // every activity we actually have venues for, busiest first
   const available: Activity[] = categories

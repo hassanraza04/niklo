@@ -62,6 +62,11 @@ test("the deployed Worker has no D1 binding after catalog migration", () => {
   assert.doesNotMatch(config, /d1_databases|"DB"/);
 });
 
+test("generated Worker bindings do not retain D1", () => {
+  const bindings = readFileSync(join(process.cwd(), "cloudflare-env.d.ts"), "utf8");
+  assert.doesNotMatch(bindings, /\bDB\s*:|\bD1Database\b/);
+});
+
 test("only contact routes remain dynamic", () => {
   const contact = readFileSync(join(process.cwd(), "app", "contact", "page.tsx"), "utf8");
   const contactApi = readFileSync(join(process.cwd(), "app", "api", "contact", "route.ts"), "utf8");

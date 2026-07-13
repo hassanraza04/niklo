@@ -1,7 +1,8 @@
 # Niklo Web
 
-The Next.js application for Niklo. It reads the generated venue seed through Cloudflare
-D1 in production and Wrangler's local D1 emulator during development.
+The Next.js application for Niklo. It serves the generated public catalog as static files
+through Cloudflare's CDN. D1 remains a reviewed seed export and validation source, not a
+runtime dependency of the deployed site.
 
 ## Local Setup
 
@@ -9,16 +10,16 @@ From this folder:
 
 ```bash
 npm ci
-npm run db:reset
 npm run dev
 ```
 
 Then open `http://localhost:3000`.
 
-After `infra/d1/seed.sql` changes, reset the local database before testing:
+After `infra/d1/seed.sql` changes, regenerate the static catalog before testing:
 
 ```bash
-npm run db:reset
+cd ..
+python pipeline/export_catalog.py
 ```
 
 ## Checks
@@ -42,7 +43,6 @@ pipeline/.venv/bin/python -m unittest discover -s tests -v
 ## Production Notes
 
 - `NEXT_PUBLIC_SITE_URL` controls sitemap and robots URLs.
-- `wrangler.jsonc` needs the real D1 database id before deployment.
 - Add `RESEND_API_KEY` as a Cloudflare Worker secret for the contact form. Do not place it
   in `wrangler.jsonc` or commit it to Git.
 - Set `RESEND_FROM_EMAIL` to a sender address verified in Resend. Until then, the form uses
@@ -54,8 +54,7 @@ pipeline/.venv/bin/python -m unittest discover -s tests -v
 - `npm run deploy` runs OpenNext and then Wrangler. `keep_vars: true` in `wrangler.jsonc`
   retains dashboard-managed Worker variables and secrets during that deployment. Keep their
   values out of Git and configure them in Cloudflare before the first deploy.
-- Cloudflare provisioning and remote seeding are manual. See the root [launch
-  checklist](../docs/operations/launch-checklist.md).
+- Cloudflare provisioning is manual. See the root [launch checklist](../docs/operations/launch-checklist.md).
 
 ## Key Routes
 

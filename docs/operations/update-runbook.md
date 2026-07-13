@@ -2,6 +2,8 @@
 
 Niklo has two intentionally separate data workflows. Neither can silently publish a new listing.
 
+Niklo builds the public catalog from `infra/d1/seed.sql`. D1 is a reviewed data export and validation source, not a runtime dependency of the deployed site.
+
 ## Daily Safe Refresh
 
 This workflow refreshes a deterministic batch of existing listings. It uses the existing Maps place id as the safety boundary, so a returned place can only update Niklo when it is already in the live listing lock.
@@ -30,7 +32,7 @@ Review `data/verification/YYYY-MM-DD/` after each run:
 - `report/pending_review_changes.csv`: risky changes held for manual review
 - `report/applied_summary.md`: daily update totals
 
-The daily job updates only ratings, review counts, hours, phone numbers, websites, and the source-check timestamp for exact existing matches. It rewrites `infra/d1/seed.sql`, refreshes `data/live_listings.csv`, regenerates `web/data/catalog.json` and `web/public/catalog-client.json`, and reloads the local preview database. Commit those generated catalog files with the reviewed safe updates so they reach the live site through the Git build.
+The daily job updates only ratings, review counts, hours, phone numbers, websites, and the source-check timestamp for exact existing matches. It rewrites `infra/d1/seed.sql`, refreshes `data/live_listings.csv`, and regenerates `web/data/catalog.json` and `web/public/catalog-client.json`. Commit those generated catalog files with the reviewed safe updates so they reach the live site through the Git build.
 
 It does not deploy, write to remote Cloudflare D1, add a new place, or automatically accept a name, address, coordinate, category, status, or closure change. Those changes remain in `pending_review_changes.csv` for a manual decision.
 
@@ -52,13 +54,11 @@ It cannot export `infra/d1/seed.sql`, alter `data/live_listings.csv`, or reload 
 
 ## Approved Curation Rebuild
 
-After reviewing a daily report or a discovery candidate, make the approved curation changes, then run the full build and refresh the local preview database. A full rebuild is not needed for routine safe daily facts because the daily command already updates the seed and local preview.
+After reviewing a daily report or a discovery candidate, make the approved curation changes, then run the full build. A full rebuild is not needed for routine safe daily facts because the daily command already updates the seed and static catalog files.
 
 ```bash
 cd pipeline
 ./run.sh
-cd ../web
-npm run db:reset
 ```
 
 Finish with the release checks:

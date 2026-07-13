@@ -31,10 +31,4 @@ python3 "$ROOT/pipeline/apply_daily_updates.py" \
   --refreshed "$OUTDIR/report/refreshed_known_rows.ndjson" \
   --output-dir "$OUTDIR/report"
 
-echo ">> reload local preview database"
-(
-  cd "$ROOT/web"
-  npm run db:reset
-)
-
 echo ">> safe daily refresh complete: $OUTDIR/report"

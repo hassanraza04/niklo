@@ -3,6 +3,8 @@ import { NextResponse } from "next/server";
 
 import { verifyTurnstileToken } from "@/lib/turnstile";
 
+export const dynamic = "force-dynamic";
+
 const RECIPIENT = "hassanraza0406@gmail.com";
 const DEFAULT_SENDER = "Niklo <onboarding@resend.dev>";
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

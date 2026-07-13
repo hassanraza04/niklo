@@ -18,19 +18,24 @@ cached, and makes it easy to find options by type, rating, popularity, and dista
 ## How it is built
 
 ```text
-public listing data -> local scraper -> DuckDB + dbt cleanup -> D1 seed -> Next.js app
+public listing data -> local scraper -> DuckDB + dbt cleanup -> D1 seed -> static catalog files -> CDN
 ```
 
-- `web/` contains the Next.js application, local D1 tooling, and cached venue images.
+- `web/` contains the Next.js application, generated static catalog files, and cached venue images.
 - `pipeline/` loads, cleans, validates, and exports the public venue dataset.
 - `scraper/` holds the query sets used for deliberate local collection runs.
-- `infra/d1/` contains the reproducible D1 schema and generated seed.
+- `infra/d1/` contains the reproducible D1 schema and generated seed used to validate and export the catalog.
 - `data/` stores the live-listing lock, search regressions, and review outputs.
 - `docs/` contains operations, engineering notes, and clearly marked historical research.
 
 Niklo uses public business facts such as venue names, addresses, hours, ratings, and
 review counts. It does not rehost review text. Images served by the app are downloaded
 into the repository rather than hotlinked from Maps or venue websites.
+
+The public catalog is generated from `infra/d1/seed.sql` into static files that Cloudflare
+serves from the CDN. The contact page and `/api/contact` remain dynamic so Turnstile can
+verify submissions and the site can deliver email. D1 is a reviewed data export and
+validation source, not a runtime dependency of the deployed site.
 
 ## Run locally
 
@@ -39,7 +44,6 @@ Requirements: Node.js 22+, Python 3.12+, and [uv](https://docs.astral.sh/uv/).
 ```bash
 cd web
 npm ci
-npm run db:reset
 npm run dev
 ```
 
@@ -71,7 +75,8 @@ pipeline/.venv/bin/python pipeline/release_checks.py
 ```
 
 GitHub Actions runs the same public-data and web-build checks for pushes and pull
-requests.
+requests. Commits to `main` publish reviewed listing updates through the Cloudflare build,
+which serves the generated catalog from the CDN.
 
 ## Data operations
 

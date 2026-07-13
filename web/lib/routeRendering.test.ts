@@ -56,3 +56,15 @@ test("venue pages describe the Maps date as a source check", () => {
   assert.match(route, /Last checked/);
   assert.doesNotMatch(route, /Last verified/);
 });
+
+test("the deployed Worker has no D1 binding after catalog migration", () => {
+  const config = readFileSync(join(process.cwd(), "wrangler.jsonc"), "utf8");
+  assert.doesNotMatch(config, /d1_databases|"DB"/);
+});
+
+test("only contact routes remain dynamic", () => {
+  const contact = readFileSync(join(process.cwd(), "app", "contact", "page.tsx"), "utf8");
+  const contactApi = readFileSync(join(process.cwd(), "app", "api", "contact", "route.ts"), "utf8");
+  assert.match(contact, /force-dynamic/);
+  assert.match(contactApi, /force-dynamic/);
+});

@@ -1,7 +1,9 @@
 # Niklo Launch Checklist
 
-Use this before a manual Cloudflare deployment. Cloudflare account setup, D1 ids, remote
-seeding, and the final deploy stay separate from this repository check.
+Use this before a manual Cloudflare deployment. Cloudflare account setup, dynamic contact
+configuration, and the final deploy stay separate from this repository check.
+
+Niklo builds the public catalog from `infra/d1/seed.sql`. D1 is a reviewed data export and validation source, not a runtime dependency of the deployed site.
 
 ## Data
 
@@ -32,7 +34,7 @@ seeding, and the final deploy stay separate from this repository check.
 
 ## Local Preview
 
-- After changing `infra/d1/seed.sql`, run `cd web && npm run db:reset` before testing.
+- After changing `infra/d1/seed.sql`, run `python pipeline/export_catalog.py` before testing.
 - Search for the regression cases in `data/search_regressions.csv` to confirm exact venue matches lead.
 - Confirm a removed low-review listing does not resolve to a venue page.
 
@@ -54,7 +56,6 @@ seeding, and the final deploy stay separate from this repository check.
 - Use `cd web && npm run deploy` for production deployment. Its Wrangler configuration has
   `keep_vars: true`, which retains dashboard-managed Worker variables and secrets.
 - Review `compatibility_date` in `web/wrangler.jsonc` against Cloudflare's current guidance.
-- After Cloudflare is configured, run the remote D1 schema and seed from the README.
 - After deploy, run the same page checks against the live URL.
 - Open `https://niklo.pk/contact` and submit a valid test message. Confirm the form reports
   success and the message arrives through the existing contact delivery path.

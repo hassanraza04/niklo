@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import type { PropsWithChildren } from "react";
+import type { PointerEventHandler, PropsWithChildren } from "react";
 import { usePathname } from "next/navigation";
 import { scrollToBrowse } from "@/lib/browseLink";
 
@@ -10,15 +10,22 @@ export { scrollToBrowse } from "@/lib/browseLink";
 type BrowseLinkProps = PropsWithChildren<{
   className?: string;
   onClick?: () => void;
+  onPointerDown?: PointerEventHandler<HTMLAnchorElement>;
 }>;
 
-export function BrowseLink({ children, className, onClick }: BrowseLinkProps) {
+export function BrowseLink({
+  children,
+  className,
+  onClick,
+  onPointerDown,
+}: BrowseLinkProps) {
   const pathname = usePathname();
 
   return (
     <Link
       href="/#browse"
       className={className}
+      onPointerDown={onPointerDown}
       onClick={(event) => {
         onClick?.();
         if (pathname !== "/") return;

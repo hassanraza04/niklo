@@ -62,6 +62,13 @@ test("compact navigation keeps Saved and Map reachable", () => {
   assert.match(headerSource, /z-\[1000\]/);
 });
 
+test("mobile Browse preserves its activation before closing the menu", () => {
+  assert.match(
+    headerSource,
+    /<BrowseLink\s+className="block[^>]+onPointerDown=\{\(event\) => event\.stopPropagation\(\)\}[^>]+onClick=\{\(\) => setMenuOpen\(false\)\}/,
+  );
+});
+
 test("location prompts remain above the elevated mobile header", () => {
   const modalLayers = locationPromptSource.match(/z-\[1100\]/g) ?? [];
   assert.equal(modalLayers.length, 2);

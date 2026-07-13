@@ -6,7 +6,7 @@ test("browse scrolls when the home hash is already present", () => {
   const calls: ScrollIntoViewOptions[] = [];
   const target = {
     scrollIntoView: (options: ScrollIntoViewOptions) => calls.push(options),
-  } as Element;
+  } as unknown as Element;
 
   scrollToBrowse(target, false);
   scrollToBrowse(target, false);
@@ -21,7 +21,7 @@ test("browse respects reduced motion", () => {
   const calls: ScrollIntoViewOptions[] = [];
   const target = {
     scrollIntoView: (options: ScrollIntoViewOptions) => calls.push(options),
-  } as Element;
+  } as unknown as Element;
 
   scrollToBrowse(target, true);
 

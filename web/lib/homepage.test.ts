@@ -4,6 +4,7 @@ import { join } from "node:path";
 import test from "node:test";
 
 const pageSource = readFileSync(join(process.cwd(), "app", "page.tsx"), "utf8");
+const catalogSource = readFileSync(join(process.cwd(), "lib", "catalog.ts"), "utf8");
 const venuesSource = readFileSync(join(process.cwd(), "lib", "venues.ts"), "utf8");
 const finderSource = readFileSync(join(process.cwd(), "components", "TonightFinder.tsx"), "utf8");
 const layoutSource = readFileSync(join(process.cwd(), "app", "layout.tsx"), "utf8");
@@ -19,11 +20,13 @@ test("home page puts browsing before the Tonight Finder without Niklo picks", ()
 });
 
 test("crowd favourites are ordered by popularity", () => {
-  const start = venuesSource.indexOf("export async function topVenues");
-  const end = venuesSource.indexOf("export async function countsBySubcategory");
-  const topVenuesSource = venuesSource.slice(start, end);
+  const start = catalogSource.indexOf("function popularityOrder");
+  const end = catalogSource.indexOf("export function getCatalogVenue");
+  const topVenuesSource = catalogSource.slice(start, end);
 
-  assert.match(topVenuesSource, /order by review_count desc nulls last, rating desc nulls last, name/);
+  assert.match(topVenuesSource, /review_count/);
+  assert.match(topVenuesSource, /rating/);
+  assert.match(topVenuesSource, /name\.localeCompare/);
 });
 
 test("Tonight Finder queries every eligible listing before filtering", () => {

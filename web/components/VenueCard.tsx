@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Rating } from "./Rating";
 import type { Coordinates } from "@/lib/geo";
-import type { Venue } from "@/lib/types";
+import type { CatalogCardVenue } from "@/lib/types";
 import { canonicalArea } from "@/lib/areas";
 import { isOpenNow } from "@/lib/hours";
 import { VenueDistance } from "./VenueDistance";
@@ -10,7 +10,7 @@ export function VenueCard({
   venue,
   distanceFrom,
 }: {
-  venue: Venue;
+  venue: CatalogCardVenue;
   distanceFrom?: Coordinates | null;
 }) {
   const area = canonicalArea(venue);

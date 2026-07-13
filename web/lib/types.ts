@@ -29,6 +29,28 @@ export type Venue = {
   last_verified: string | null;
 };
 
+export type CatalogCardVenue = Pick<
+  Venue,
+  | "venue_id"
+  | "name"
+  | "slug"
+  | "subcategory_slug"
+  | "subcategory_name"
+  | "category_slug"
+  | "category_name"
+  | "subcategories"
+  | "category_slugs"
+  | "rating"
+  | "review_count"
+  | "latitude"
+  | "longitude"
+  | "area"
+  | "address"
+  | "hours"
+  | "photo_url"
+  | "is_open"
+>;
+
 export type OpenHours = Record<string, string[]>;
 
 export function parseHours(raw: string | null): OpenHours | null {

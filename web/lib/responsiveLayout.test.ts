@@ -17,3 +17,12 @@ test("spin wheel uses the available width instead of a fixed phone overflow", ()
   assert.match(spinWheelSource, /className="block aspect-square w-full"/);
   assert.doesNotMatch(spinWheelSource, /style=\{\{ width: 340, height: 360 \}\}/);
 });
+
+test("wheel results open in a dismissible dialog", () => {
+  assert.match(spinWheelSource, /role="dialog"/);
+  assert.match(spinWheelSource, /aria-modal="true"/);
+  assert.match(spinWheelSource, /event\.key === "Escape"/);
+  assert.match(spinWheelSource, /event\.target === event\.currentTarget/);
+  assert.match(spinWheelSource, /ref=\{closeButtonRef\}/);
+  assert.match(spinWheelSource, /<X aria-hidden/);
+});

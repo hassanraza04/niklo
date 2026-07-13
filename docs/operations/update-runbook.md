@@ -56,6 +56,15 @@ It cannot export `infra/d1/seed.sql`, alter `data/live_listings.csv`, or reload 
 
 After reviewing a daily report or a discovery candidate, make the approved curation changes, then run the full build. A full rebuild is not needed for routine safe daily facts because the daily command already updates the seed and static catalog files.
 
+For an approved removal or subcategory correction, update the appropriate curation CSV under
+`pipeline/transform/seeds/`, then apply those controls to the reviewed seed and generated catalog:
+
+```bash
+python pipeline/apply_manual_curation.py
+```
+
+Run `./run.sh` when the raw scrape inputs are available and the wider data model also needs rebuilding.
+
 ```bash
 cd pipeline
 ./run.sh

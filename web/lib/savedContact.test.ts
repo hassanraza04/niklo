@@ -9,6 +9,8 @@ const contactPagePath = join(root, "app", "contact", "page.tsx");
 const contactFormPath = join(root, "components", "ContactForm.tsx");
 const turnstileWidgetPath = join(root, "components", "TurnstileWidget.tsx");
 const contactRoutePath = join(root, "app", "api", "contact", "route.ts");
+const saveButtonPath = join(root, "components", "SaveButton.tsx");
+const venueCardPath = join(root, "components", "VenueCard.tsx");
 const footerSource = readFileSync(join(root, "components", "SiteFooter.tsx"), "utf8");
 const dataNotesSource = readFileSync(join(root, "app", "data", "page.tsx"), "utf8");
 const venuePageSource = readFileSync(join(root, "app", "v", "[slug]", "page.tsx"), "utf8");
@@ -20,6 +22,21 @@ test("saved places can show a distance for both new and older saves", () => {
   assert.match(source, /venueCoordinates\[i\.slug\]/);
   assert.match(venuePageSource, /latitude: venue\.latitude/);
   assert.match(venuePageSource, /longitude: venue\.longitude/);
+});
+
+test("listing cards save from a quiet control in the title row", () => {
+  const saveButton = readFileSync(saveButtonPath, "utf8");
+  const venueCard = readFileSync(venueCardPath, "utf8");
+
+  assert.match(saveButton, /variant\?: "default" \| "icon"/);
+  assert.match(saveButton, /event\.preventDefault\(\)/);
+  assert.match(saveButton, /event\.stopPropagation\(\)/);
+  assert.match(saveButton, /strokeWidth=\{1\.5\}/);
+  assert.match(saveButton, /border-transparent bg-transparent/);
+  assert.match(venueCard, /<SaveButton[\s\S]*?variant="icon"/);
+  assert.match(venueCard, /<article/);
+  assert.match(venueCard, /flex items-start justify-between gap-3/);
+  assert.match(venueCard, /<Link[^>]*className="min-w-0 flex-1"[\s\S]*?<h3/);
 });
 
 test("footer offers contact and LinkedIn links", () => {

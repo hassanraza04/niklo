@@ -1,10 +1,10 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { categories, findSubcategory } from "@/lib/taxonomy";
 import { catalogBySubcategory } from "@/lib/catalog";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { subcategoryIcon } from "@/lib/icons";
 import { SubcategoryResults } from "@/components/SubcategoryResults";
+import { BrowseLink } from "@/components/BrowseLink";
 
 export function generateStaticParams() {
   return categories.flatMap((category) =>
@@ -71,12 +71,11 @@ export default async function SubcategoryPage({
           <p className="mt-2 text-ink-soft">
             Try another type, or browse everything Niklo has mapped so far.
           </p>
-          <Link
-            href="/#browse"
+          <BrowseLink
             className="mt-5 inline-block rounded-full bg-clay px-5 py-2.5 font-semibold text-paper"
           >
             Browse all types
-          </Link>
+          </BrowseLink>
         </div>
       )}
     </div>

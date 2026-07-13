@@ -5,6 +5,7 @@ import Link from "next/link";
 import type { Coordinates } from "@/lib/geo";
 import { type SavedItem, readSaved, removeSaved, SAVED_EVENT } from "@/lib/saved";
 import { SpinWheel } from "@/components/SpinWheel";
+import { BrowseLink } from "@/components/BrowseLink";
 import { VenueDistance } from "@/components/VenueDistance";
 import { CatalogError, CatalogLoading, useClientCatalog } from "./CatalogLoader";
 
@@ -97,12 +98,11 @@ export function SavedList() {
           <p className="mt-2 text-ink-soft">
             Hit &ldquo;Save to list&rdquo; on any venue and it&apos;ll show up here.
           </p>
-          <Link
-            href="/#browse"
+          <BrowseLink
             className="mt-5 inline-block rounded-full bg-clay px-5 py-2.5 font-semibold text-paper"
           >
             Start browsing
-          </Link>
+          </BrowseLink>
         </div>
       ) : (
         <ul className="mt-6 space-y-3">

@@ -4,6 +4,7 @@ import { catalog, catalogCountsByCategory, catalogTopVenues } from "@/lib/catalo
 import { CategoryCard } from "@/components/CategoryCard";
 import { VenueCard } from "@/components/VenueCard";
 import { TonightFinder } from "@/components/TonightFinder";
+import { BrowseLink } from "@/components/BrowseLink";
 import type { Venue } from "@/lib/types";
 
 function heroVenuePhotos(venues: readonly Venue[]): Venue[] {
@@ -75,12 +76,11 @@ export default function Home() {
             >
               Can&apos;t decide? Spin 🎡
             </Link>
-            <Link
-              href="/#browse"
+            <BrowseLink
               className="rounded-full border border-line bg-card px-6 py-3 font-semibold text-ink transition-colors hover:border-clay/40"
             >
               Browse all
-            </Link>
+            </BrowseLink>
           </div>
         </div>
       </section>

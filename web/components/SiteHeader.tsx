@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Menu } from "lucide-react";
 import { useEffect, useState } from "react";
+import { BrowseLink } from "./BrowseLink";
 import { SearchBox } from "./SearchBox";
 
 export function SiteHeader() {
@@ -59,12 +60,12 @@ export function SiteHeader() {
                 id="mobile-navigation"
                 className="absolute right-0 top-[calc(100%+0.5rem)] w-36 rounded-[var(--radius-card)] border border-line bg-card p-1 shadow-md"
               >
-                <Link
-                  href="/#browse"
+                <BrowseLink
                   className="block rounded-md px-3 py-2 text-sm font-medium text-ink hover:bg-paper-2"
+                  onClick={() => setMenuOpen(false)}
                 >
                   Browse
-                </Link>
+                </BrowseLink>
                 <Link
                   href="/saved"
                   className="block rounded-md px-3 py-2 text-sm font-medium text-ink hover:bg-paper-2"
@@ -80,12 +81,11 @@ export function SiteHeader() {
               </div>
             )}
           </div>
-          <Link
-            href="/#browse"
+          <BrowseLink
             className="hidden rounded-full px-3 py-1.5 text-sm font-medium text-ink-soft transition-colors hover:bg-paper-2 hover:text-ink md:inline-block"
           >
             Browse
-          </Link>
+          </BrowseLink>
           <Link
             href="/saved"
             className="hidden rounded-full px-3 py-1.5 text-sm font-medium text-ink-soft transition-colors hover:bg-paper-2 hover:text-ink md:inline-block"

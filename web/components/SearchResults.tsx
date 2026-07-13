@@ -1,7 +1,6 @@
 "use client";
 
 import { Suspense, useMemo } from "react";
-import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { searchClientCatalog } from "@/lib/clientCatalog";
 import type { Venue } from "@/lib/types";
@@ -9,6 +8,7 @@ import { Breadcrumb } from "./Breadcrumb";
 import { CatalogError, CatalogLoading, useClientCatalog } from "./CatalogLoader";
 import { SearchBox } from "./SearchBox";
 import { SortableVenueGrid } from "./SortableVenueGrid";
+import { BrowseLink } from "./BrowseLink";
 
 function SearchResultsContent() {
   const searchParams = useSearchParams();
@@ -67,12 +67,11 @@ function SearchResultsContent() {
               <p className="mt-2 text-ink-soft">
                 Try a venue name, an area like Clifton or DHA, or browse by type.
               </p>
-              <Link
-                href="/#browse"
+              <BrowseLink
                 className="mt-5 inline-block rounded-full bg-clay px-5 py-2.5 font-semibold text-paper"
               >
                 Browse all types
-              </Link>
+              </BrowseLink>
             </div>
           ) : (
             <p className="mt-6 text-ink-soft">

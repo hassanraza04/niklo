@@ -51,6 +51,8 @@ seeding, and the final deploy stay separate from this repository check.
 - Add `TURNSTILE_SITE_KEY` as a public Worker runtime variable.
 - Add `TURNSTILE_SECRET_KEY` as a Worker runtime secret.
 - Do not add either Turnstile value to Cloudflare Settings > Build > Build Variables and Secrets.
+- Use `cd web && npm run deploy` for production deployment. Its Wrangler configuration has
+  `keep_vars: true`, which retains dashboard-managed Worker variables and secrets.
 - Review `compatibility_date` in `web/wrangler.jsonc` against Cloudflare's current guidance.
 - After Cloudflare is configured, run the remote D1 schema and seed from the README.
 - After deploy, run the same page checks against the live URL.

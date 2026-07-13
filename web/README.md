@@ -51,8 +51,11 @@ pipeline/.venv/bin/python -m unittest discover -s tests -v
 - Add `TURNSTILE_SITE_KEY` as a public Worker runtime variable.
 - Add `TURNSTILE_SECRET_KEY` as a Worker runtime secret.
 - Do not add either Turnstile value to Cloudflare Settings > Build > Build Variables and Secrets.
-- Cloudflare provisioning, remote seeding, and deployment are manual. See the root
-  [launch checklist](../docs/operations/launch-checklist.md).
+- `npm run deploy` runs OpenNext and then Wrangler. `keep_vars: true` in `wrangler.jsonc`
+  retains dashboard-managed Worker variables and secrets during that deployment. Keep their
+  values out of Git and configure them in Cloudflare before the first deploy.
+- Cloudflare provisioning and remote seeding are manual. See the root [launch
+  checklist](../docs/operations/launch-checklist.md).
 
 ## Key Routes
 

@@ -50,19 +50,6 @@ test("venue routes enumerate the reviewed catalog at build time", () => {
   assert.match(source, /return catalogSlugs\(\)\.map/);
 });
 
-test("generated catalog routes reject unknown parameters", () => {
-  const routes = [
-    "app/v/[slug]/page.tsx",
-    "app/c/[category]/page.tsx",
-    "app/c/[category]/[subcategory]/page.tsx",
-  ];
-
-  for (const path of routes) {
-    const source = readFileSync(join(process.cwd(), path), "utf8");
-    assert.match(source, /export const dynamicParams = false/);
-  }
-});
-
 test("venue pages describe the Maps date as a source check", () => {
   const route = readFileSync(join(process.cwd(), "app", "v", "[slug]", "page.tsx"), "utf8");
 

@@ -15,8 +15,6 @@ import { VenueCard } from "@/components/VenueCard";
 import { SaveButton } from "@/components/SaveButton";
 import { VenueDistance } from "@/components/VenueDistance";
 
-export const dynamicParams = false;
-
 export function generateStaticParams() {
   return catalogSlugs().map((slug) => ({ slug }));
 }

@@ -6,8 +6,6 @@ import { subcategoryIcon } from "@/lib/icons";
 import { SubcategoryResults } from "@/components/SubcategoryResults";
 import { BrowseLink } from "@/components/BrowseLink";
 
-export const dynamicParams = false;
-
 export function generateStaticParams() {
   return categories.flatMap((category) =>
     category.subcategories.map((subcategory) => ({

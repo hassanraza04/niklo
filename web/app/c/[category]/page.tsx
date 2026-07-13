@@ -6,8 +6,6 @@ import { Breadcrumb } from "@/components/Breadcrumb";
 import { categoryIcon, subcategoryIcon } from "@/lib/icons";
 import { SortableVenueGrid } from "@/components/SortableVenueGrid";
 
-export const dynamicParams = false;
-
 export function generateStaticParams() {
   return categories.map((category) => ({ category: category.slug }));
 }

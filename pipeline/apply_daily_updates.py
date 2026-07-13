@@ -15,10 +15,12 @@ from pathlib import Path
 from urllib.parse import urlparse
 
 try:
+    from pipeline.export_catalog import export_catalog
     from pipeline.export_live_listings import export_live_listings
     from pipeline.export_to_d1 import COLUMNS, write_seed
     from pipeline.seed_checks import load_seed_database
 except ModuleNotFoundError:
+    from export_catalog import export_catalog
     from export_live_listings import export_live_listings
     from export_to_d1 import COLUMNS, write_seed
     from seed_checks import load_seed_database
@@ -201,6 +203,13 @@ def apply_daily_updates(
 
     write_seed(rows, str(seed_path))
     export_live_listings(schema_path, seed_path, live_listings_path)
+    if seed_path.resolve() == (ROOT / "infra" / "d1" / "seed.sql").resolve():
+        export_catalog(
+            schema_path,
+            seed_path,
+            ROOT / "web" / "data" / "catalog.json",
+            ROOT / "web" / "public" / "catalog-client.json",
+        )
     write_csv(
         output_dir / "applied_safe_updates.csv",
         ["venue_id", "field", "old_value", "new_value"],

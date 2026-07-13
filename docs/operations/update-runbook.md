@@ -30,7 +30,7 @@ Review `data/verification/YYYY-MM-DD/` after each run:
 - `report/pending_review_changes.csv`: risky changes held for manual review
 - `report/applied_summary.md`: daily update totals
 
-The daily job updates only ratings, review counts, hours, phone numbers, websites, and the source-check timestamp for exact existing matches. It rewrites `infra/d1/seed.sql`, refreshes `data/live_listings.csv`, and reloads the local preview database.
+The daily job updates only ratings, review counts, hours, phone numbers, websites, and the source-check timestamp for exact existing matches. It rewrites `infra/d1/seed.sql`, refreshes `data/live_listings.csv`, regenerates `web/data/catalog.json` and `web/public/catalog-client.json`, and reloads the local preview database. Commit those generated catalog files with the reviewed safe updates so they reach the live site through the Git build.
 
 It does not deploy, write to remote Cloudflare D1, add a new place, or automatically accept a name, address, coordinate, category, status, or closure change. Those changes remain in `pending_review_changes.csv` for a manual decision.
 

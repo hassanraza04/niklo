@@ -22,6 +22,9 @@ PHOTOS_DIR="$PHOTO_DIR" uv run python photos.py | tail -1
 echo ">> export dim_venue -> d1 seed"
 R2_PUBLIC_BASE="$PHOTO_BASE" uv run python export_to_d1.py | tail -1
 
+echo ">> export static web catalog"
+uv run python export_catalog.py | tail -1
+
 echo ">> prune orphaned photos"
 uv run python -c "import duckdb,os,glob; ids={r[0] for r in duckdb.connect('warehouse.duckdb',read_only=True).execute('select venue_id from main.dim_venue').fetchall()}; n=[os.remove(f) for f in glob.glob('$PHOTO_DIR/*') if os.path.isfile(f) and os.path.splitext(os.path.basename(f))[0] not in ids]; print(f'  pruned {len(n)}')"
 

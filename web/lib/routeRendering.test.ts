@@ -72,6 +72,22 @@ test("generated Worker bindings do not retain D1", () => {
   assert.doesNotMatch(bindings, /\bDB\s*:|\bD1Database\b/);
 });
 
+test("OpenNext intercepts static catalog cache entries before NextServer", () => {
+  const config = readFileSync(join(process.cwd(), "open-next.config.ts"), "utf8");
+
+  assert.match(config, /static-assets-incremental-cache/);
+  assert.match(config, /incrementalCache:\s*staticAssetsIncrementalCache/);
+  assert.match(config, /enableCacheInterception:\s*true/);
+});
+
+test("generated preview output is ignored by lint and Git", () => {
+  const eslint = readFileSync(join(process.cwd(), "eslint.config.mjs"), "utf8");
+  const gitignore = readFileSync(join(process.cwd(), ".gitignore"), "utf8");
+
+  assert.match(eslint, /"\.wrangler\/\*\*"/);
+  assert.match(gitignore, /^\/?\.wrangler\/$/m);
+});
+
 test("only contact routes remain dynamic", () => {
   const contact = readFileSync(join(process.cwd(), "app", "contact", "page.tsx"), "utf8");
   const contactApi = readFileSync(join(process.cwd(), "app", "api", "contact", "route.ts"), "utf8");

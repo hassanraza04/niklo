@@ -33,9 +33,11 @@ review counts. It does not rehost review text. Images served by the app are down
 into the repository rather than hotlinked from Maps or venue websites.
 
 The public catalog is generated from `infra/d1/seed.sql` into static files that Cloudflare
-serves from the CDN. The contact page and `/api/contact` remain dynamic so Turnstile can
-verify submissions and the site can deliver email. D1 is a reviewed data export and
-validation source, not a runtime dependency of the deployed site.
+serves from the CDN. OpenNext serves its prerendered public pages from a read-only Static
+Assets incremental cache and intercepts those cache hits before loading NextServer. The
+contact page and `/api/contact` remain dynamic so Turnstile can verify submissions and the
+site can deliver email. D1 is a reviewed data export and validation source, not a runtime
+dependency of the deployed site.
 
 ## Run locally
 

@@ -4,6 +4,10 @@ The Next.js application for Niklo. It serves the generated public catalog as sta
 through Cloudflare's CDN. D1 remains a reviewed seed export and validation source, not a
 runtime dependency of the deployed site.
 
+OpenNext stores prerendered public pages in its read-only Static Assets incremental cache.
+Cache interception serves those entries before NextServer loads. The contact page and
+`/api/contact` remain dynamic for Turnstile verification and email delivery.
+
 ## Local Setup
 
 From this folder:

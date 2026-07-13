@@ -47,6 +47,13 @@ seeding, and the final deploy stay separate from this repository check.
 - Add `RESEND_API_KEY` as a Worker secret for the contact form. Keep it out of Git and
   browser-accessible variables.
 - Set `RESEND_FROM_EMAIL` to a verified Resend sender before public launch.
+- Create a managed Turnstile widget named `Niklo contact` for the live hostname `niklo.pk`.
+- Add `TURNSTILE_SITE_KEY` as a public Worker runtime variable.
+- Add `TURNSTILE_SECRET_KEY` as a Worker runtime secret.
+- Do not add either Turnstile value to Cloudflare Settings > Build > Build Variables and Secrets.
 - Review `compatibility_date` in `web/wrangler.jsonc` against Cloudflare's current guidance.
 - After Cloudflare is configured, run the remote D1 schema and seed from the README.
 - After deploy, run the same page checks against the live URL.
+- Open `https://niklo.pk/contact` and submit a valid test message. Confirm the form reports
+  success and the message arrives through the existing contact delivery path.
+- Confirm `/api/contact` remains dynamic in the production bundle after the OpenNext build.

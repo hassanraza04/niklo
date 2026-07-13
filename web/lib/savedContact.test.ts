@@ -57,6 +57,12 @@ test("contact form submits a Turnstile token and verifies it before Resend", () 
   assert.match(routeSource, /verifyTurnstileToken/);
 });
 
+test("production notes document Turnstile runtime bindings", () => {
+  const source = readFileSync(join(root, "README.md"), "utf8");
+  assert.match(source, /TURNSTILE_SITE_KEY/);
+  assert.match(source, /TURNSTILE_SECRET_KEY/);
+});
+
 test("Turnstile script loading can retry after a failed load", () => {
   const source = readFileSync(turnstileWidgetPath, "utf8");
   assert.match(source, /turnstileScript = undefined/);

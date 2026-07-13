@@ -47,6 +47,10 @@ pipeline/.venv/bin/python -m unittest discover -s tests -v
   in `wrangler.jsonc` or commit it to Git.
 - Set `RESEND_FROM_EMAIL` to a sender address verified in Resend. Until then, the form uses
   Resend's `onboarding@resend.dev` sender for account-owner testing.
+- Create a managed Turnstile widget named `Niklo contact` for the live hostname `niklo.pk`.
+- Add `TURNSTILE_SITE_KEY` as a public Worker runtime variable.
+- Add `TURNSTILE_SECRET_KEY` as a Worker runtime secret.
+- Do not add either Turnstile value to Cloudflare Settings > Build > Build Variables and Secrets.
 - Cloudflare provisioning, remote seeding, and deployment are manual. See the root
   [launch checklist](../docs/operations/launch-checklist.md).
 

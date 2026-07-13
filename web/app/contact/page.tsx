@@ -1,11 +1,18 @@
+import { getCloudflareContext } from "@opennextjs/cloudflare";
+
 import { ContactForm } from "@/components/ContactForm";
+
+export const dynamic = "force-dynamic";
 
 export const metadata = {
   title: "Contact",
   description: "Send feedback, suggestions, or questions about Niklo.",
 };
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const { env } = await getCloudflareContext({ async: true });
+  const siteKey = (env as { TURNSTILE_SITE_KEY?: string }).TURNSTILE_SITE_KEY || "";
+
   return (
     <div className="mx-auto max-w-3xl px-5 py-10">
       <p className="font-display text-lg italic text-clay">Contact</p>
@@ -20,7 +27,7 @@ export default function ContactPage() {
         </a>
         .
       </p>
-      <ContactForm />
+      <ContactForm siteKey={siteKey} />
     </div>
   );
 }

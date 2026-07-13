@@ -1,6 +1,8 @@
 import { getCloudflareContext } from "@opennextjs/cloudflare";
 import { NextResponse } from "next/server";
 
+import { verifyTurnstileToken } from "@/lib/turnstile";
+
 const RECIPIENT = "hassanraza0406@gmail.com";
 const DEFAULT_SENDER = "Niklo <onboarding@resend.dev>";
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -13,11 +15,13 @@ type ContactPayload = {
   email?: unknown;
   message?: unknown;
   company?: unknown;
+  turnstileToken?: unknown;
 };
 
 type ContactBindings = {
   RESEND_API_KEY?: string;
   RESEND_FROM_EMAIL?: string;
+  TURNSTILE_SECRET_KEY?: string;
 };
 
 function textValue(value: unknown) {
@@ -63,8 +67,29 @@ export async function POST(request: Request) {
   const name = textValue(payload.name);
   const email = textValue(payload.email);
   const message = textValue(payload.message);
+  const turnstileToken = textValue(payload.turnstileToken);
   const { env } = await getCloudflareContext({ async: true });
   const bindings = env as CloudflareEnv & ContactBindings;
+
+  if (!bindings.TURNSTILE_SECRET_KEY || !turnstileToken) {
+    return NextResponse.json({ error: "Please complete the verification and try again." }, { status: 400 });
+  }
+
+  let validTurnstileToken = false;
+  try {
+    validTurnstileToken = await verifyTurnstileToken({
+      token: turnstileToken,
+      secret: bindings.TURNSTILE_SECRET_KEY,
+      hostname: new URL(request.url).hostname,
+      remoteIp: request.headers.get("CF-Connecting-IP") || undefined,
+    });
+  } catch {
+    console.error("Turnstile verification failed.");
+  }
+
+  if (!validTurnstileToken) {
+    return NextResponse.json({ error: "Verification expired. Please try again." }, { status: 400 });
+  }
 
   if (!bindings.RESEND_API_KEY) {
     console.error("Contact form is missing its Resend API key.");

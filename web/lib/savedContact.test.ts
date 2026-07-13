@@ -47,6 +47,15 @@ test("contact feedback is delivered through a server-side Resend route", () => {
   assert.doesNotMatch(formSource, /RESEND_API_KEY/);
 });
 
+test("contact form submits a Turnstile token and verifies it before Resend", () => {
+  const formSource = readFileSync(contactFormPath, "utf8");
+  const routeSource = readFileSync(contactRoutePath, "utf8");
+  assert.match(formSource, /turnstileToken/);
+  assert.match(formSource, /TurnstileWidget/);
+  assert.match(routeSource, /TURNSTILE_SECRET_KEY/);
+  assert.match(routeSource, /verifyTurnstileToken/);
+});
+
 test("data notes acknowledge that listings can still be imperfect", () => {
   assert.match(dataNotesSource, /mistakes can\s+still slip through/i);
 });

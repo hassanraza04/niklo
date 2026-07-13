@@ -1,14 +1,29 @@
 "use client";
 
-import { type FormEvent, useState } from "react";
+import { type FormEvent, useCallback, useState } from "react";
 
-export function ContactForm() {
+import { TurnstileWidget } from "@/components/TurnstileWidget";
+
+type ContactFormProps = {
+  siteKey: string;
+};
+
+export function ContactForm({ siteKey }: ContactFormProps) {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [error, setError] = useState("");
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const [widgetVersion, setWidgetVersion] = useState(0);
+  const resetTurnstile = useCallback(() => setTurnstileToken(""), []);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!event.currentTarget.reportValidity()) return;
+
+    if (!turnstileToken) {
+      setError("Please complete the verification and try again.");
+      setStatus("error");
+      return;
+    }
 
     const form = event.currentTarget;
     const formData = new FormData(form);
@@ -24,6 +39,7 @@ export function ContactForm() {
           email: formData.get("email"),
           message: formData.get("message"),
           company: formData.get("company"),
+          turnstileToken,
         }),
       });
       const result = (await response.json()) as { error?: string };
@@ -39,6 +55,9 @@ export function ContactForm() {
     } catch {
       setError("Your message could not be sent. Please check your connection and try again.");
       setStatus("error");
+    } finally {
+      resetTurnstile();
+      setWidgetVersion((version) => version + 1);
     }
   }
 
@@ -82,6 +101,12 @@ export function ContactForm() {
           className="resize-y rounded-lg border border-line bg-paper px-3 py-2.5 font-normal text-ink outline-none focus:border-clay/50"
         />
       </label>
+      <TurnstileWidget
+        key={widgetVersion}
+        siteKey={siteKey}
+        onToken={setTurnstileToken}
+        onReset={resetTurnstile}
+      />
       <div className="flex flex-wrap items-center gap-3">
         <button
           type="submit"

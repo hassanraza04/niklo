@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 
 // a wheel segment is just a label, with an optional link to "go there" and an
@@ -33,9 +34,24 @@ export function SpinWheel({
   const [rotation, setRotation] = useState(0);
   const [spinning, setSpinning] = useState(false);
   const [result, setResult] = useState<Seg | null>(null);
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (!dialogOpen) return;
+
+    closeButtonRef.current?.focus();
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") setDialogOpen(false);
+    }
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [dialogOpen]);
 
   function spin() {
     if (spinning || n === 0) return;
+    setDialogOpen(false);
     setResult(null);
     setSpinning(true);
     const idx = Math.floor(Math.random() * n);
@@ -45,7 +61,12 @@ export function SpinWheel({
     window.setTimeout(() => {
       setSpinning(false);
       setResult(segs[idx]);
+      setDialogOpen(true);
     }, 4300);
+  }
+
+  function closeDialog() {
+    setDialogOpen(false);
   }
 
   const cx = 170,
@@ -113,29 +134,51 @@ export function SpinWheel({
         {spinning ? "Spinning…" : result ? "Spin again" : "Spin the wheel"}
       </button>
 
-      {result && !spinning && (
-        <div className="mt-6 w-full max-w-sm rounded-[var(--radius-card)] border border-line bg-card p-6 text-center shadow-md">
-          <p className="text-sm text-ink-soft">{lead}</p>
-          <p className="mt-1 font-display text-2xl font-semibold text-ink">
-            {result.label}
-          </p>
-          {result.tag && <p className="text-ink-soft">{result.tag}</p>}
-          <div className="mt-5 flex justify-center gap-3">
-            {result.href && (
-              <Link
-                href={result.href}
-                className="rounded-full bg-pine px-5 py-2.5 font-semibold text-paper"
-              >
-                {goLabel}
-              </Link>
-            )}
+      {result && dialogOpen && !spinning && (
+        <div
+          className="fixed inset-0 z-[70] flex items-center justify-center bg-ink/45 p-5"
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) closeDialog();
+          }}
+        >
+          <section
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="wheel-result-title"
+            className="relative w-full max-w-md rounded-[var(--radius-card)] border border-line bg-card p-6 text-center shadow-xl"
+          >
             <button
-              onClick={spin}
-              className="rounded-full border border-line px-5 py-2.5 font-semibold text-ink hover:border-clay/40"
+              ref={closeButtonRef}
+              type="button"
+              onClick={closeDialog}
+              aria-label="Close result"
+              className="absolute right-3 top-3 rounded-full p-2 text-ink-soft transition-colors hover:bg-paper-2 hover:text-ink"
             >
-              {result.href ? "Nah, again" : "Spin again"}
+              <X aria-hidden className="h-5 w-5" />
             </button>
-          </div>
+            <p className="text-sm text-ink-soft">{lead}</p>
+            <h2 id="wheel-result-title" className="mt-1 font-display text-2xl font-semibold text-ink">
+              {result.label}
+            </h2>
+            {result.tag && <p className="text-ink-soft">{result.tag}</p>}
+            <div className="mt-5 flex flex-wrap justify-center gap-3">
+              {result.href && (
+                <Link
+                  href={result.href}
+                  className="rounded-full bg-pine px-5 py-2.5 font-semibold text-paper"
+                >
+                  {goLabel}
+                </Link>
+              )}
+              <button
+                type="button"
+                onClick={spin}
+                className="rounded-full border border-line px-5 py-2.5 font-semibold text-ink hover:border-clay/40"
+              >
+                {result.href ? "Nah, again" : "Spin again"}
+              </button>
+            </div>
+          </section>
         </div>
       )}
     </div>

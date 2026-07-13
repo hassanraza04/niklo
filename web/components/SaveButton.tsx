@@ -33,13 +33,17 @@ export function SaveButton({
         aria-pressed={saved}
         aria-label={`${saved ? "Remove" : "Save"} ${item.name}`}
         title={saved ? "Remove from shortlist" : "Save to shortlist"}
-        className={`rounded-full border p-2 shadow-sm transition-colors ${
+        className={`grid h-9 w-9 shrink-0 place-items-center rounded-full border border-transparent bg-transparent transition-colors ${
           saved
-            ? "border-clay bg-clay text-paper"
-            : "border-line bg-card text-ink hover:border-clay/40"
+            ? "text-clay"
+            : "text-ink-soft hover:bg-paper-2 hover:text-clay"
         }`}
       >
-        <Heart aria-hidden className={`h-5 w-5 ${saved ? "fill-current" : ""}`} />
+        <Heart
+          aria-hidden
+          strokeWidth={1.5}
+          className={`h-[1.15rem] w-[1.15rem] ${saved ? "fill-current" : ""}`}
+        />
       </button>
     );
   }

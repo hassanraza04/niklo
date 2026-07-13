@@ -24,16 +24,19 @@ test("saved places can show a distance for both new and older saves", () => {
   assert.match(venuePageSource, /longitude: venue\.longitude/);
 });
 
-test("listing cards save without nesting a button in their venue link", () => {
+test("listing cards save from a quiet control in the title row", () => {
   const saveButton = readFileSync(saveButtonPath, "utf8");
   const venueCard = readFileSync(venueCardPath, "utf8");
 
   assert.match(saveButton, /variant\?: "default" \| "icon"/);
   assert.match(saveButton, /event\.preventDefault\(\)/);
   assert.match(saveButton, /event\.stopPropagation\(\)/);
+  assert.match(saveButton, /strokeWidth=\{1\.5\}/);
+  assert.match(saveButton, /border-transparent bg-transparent/);
   assert.match(venueCard, /<SaveButton[\s\S]*?variant="icon"/);
   assert.match(venueCard, /<article/);
-  assert.match(venueCard, /<\/Link>\s*<div[^>]*>\s*<SaveButton/);
+  assert.match(venueCard, /flex items-start justify-between gap-3/);
+  assert.match(venueCard, /<Link[^>]*className="min-w-0 flex-1"[\s\S]*?<h3/);
 });
 
 test("footer offers contact and LinkedIn links", () => {

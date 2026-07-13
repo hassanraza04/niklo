@@ -17,11 +17,8 @@ export function VenueCard({
   const area = canonicalArea(venue);
   const open = isOpenNow(venue.hours);
   return (
-    <article className="group relative min-w-0">
-      <Link
-        href={`/v/${venue.slug}`}
-        className="flex h-full min-w-0 flex-col overflow-hidden rounded-[var(--radius-card)] border border-line bg-card shadow-sm transition-all hover:-translate-y-1 hover:shadow-md active:translate-y-0"
-      >
+    <article className="group flex min-w-0 flex-col overflow-hidden rounded-[var(--radius-card)] border border-line bg-card shadow-sm transition-all hover:-translate-y-1 hover:shadow-md active:translate-y-0">
+      <Link href={`/v/${venue.slug}`} className="block">
         <div className="relative aspect-[16/10] overflow-hidden bg-paper-2 sm:aspect-[4/3]">
           {/* gradient + initial sit behind, so the card never flashes blank while
               the photo lazy-loads, and shows through if a photo is missing */}
@@ -48,9 +45,11 @@ export function VenueCard({
             </span>
           )}
         </div>
+      </Link>
 
-        <div className="flex flex-1 flex-col gap-2 p-4">
-          <div className="min-w-0">
+      <div className="flex flex-1 flex-col gap-2 p-4">
+        <div className="flex items-start justify-between gap-3">
+          <Link href={`/v/${venue.slug}`} className="min-w-0 flex-1">
             <h3 className="break-words font-display text-base font-semibold leading-snug text-ink group-hover:text-clay sm:text-lg">
               {venue.name}
             </h3>
@@ -64,33 +63,34 @@ export function VenueCard({
               referenceLocation={distanceFrom}
               className="mt-1 block text-xs font-medium text-pine"
             />
-          </div>
-          <div className="mt-auto flex flex-wrap items-center justify-between gap-2 pt-1">
-            <Rating rating={venue.rating} reviewCount={venue.review_count} />
-            {open === true && (
-              <span className="shrink-0 text-xs font-semibold text-pine">● Open</span>
-            )}
-            {open === false && (
-              <span className="shrink-0 text-xs text-ink-soft">Closed now</span>
-            )}
-          </div>
+          </Link>
+          <SaveButton
+            item={{
+              slug: venue.slug,
+              name: venue.name,
+              sub: venue.subcategory_name,
+              area,
+              rating: venue.rating,
+              reviews: venue.review_count,
+              photo: venue.photo_url,
+              latitude: venue.latitude,
+              longitude: venue.longitude,
+            }}
+            variant="icon"
+          />
         </div>
-      </Link>
-      <div className="absolute right-3 top-3 z-10">
-        <SaveButton
-          item={{
-            slug: venue.slug,
-            name: venue.name,
-            sub: venue.subcategory_name,
-            area,
-            rating: venue.rating,
-            reviews: venue.review_count,
-            photo: venue.photo_url,
-            latitude: venue.latitude,
-            longitude: venue.longitude,
-          }}
-          variant="icon"
-        />
+        <Link
+          href={`/v/${venue.slug}`}
+          className="mt-auto flex flex-wrap items-center justify-between gap-2 pt-1"
+        >
+          <Rating rating={venue.rating} reviewCount={venue.review_count} />
+          {open === true && (
+            <span className="shrink-0 text-xs font-semibold text-pine">● Open</span>
+          )}
+          {open === false && (
+            <span className="shrink-0 text-xs text-ink-soft">Closed now</span>
+          )}
+        </Link>
       </div>
     </article>
   );

@@ -34,6 +34,8 @@ export default async function PlanPage({
     rating: vn.rating,
     reviews: vn.review_count,
     photo: vn.photo_url,
+    latitude: vn.latitude,
+    longitude: vn.longitude,
   }));
 
   return (

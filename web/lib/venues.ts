@@ -1,4 +1,5 @@
 import { getDb } from "./db";
+import type { Coordinates } from "./geo";
 import type { Venue } from "./types";
 import { buildVenueSearchPlan } from "./venueSearchPlan";
 
@@ -111,6 +112,19 @@ export async function listAllVenues(): Promise<Venue[]> {
   const db = await getDb();
   const { results } = await db.prepare(`select * from venues ${ORDER}`).all<Venue>();
   return results ?? [];
+}
+
+export async function listVenueCoordinates(): Promise<Record<string, Coordinates>> {
+  const db = await getDb();
+  const { results } = await db
+    .prepare(`select slug, latitude, longitude from venues where latitude is not null and longitude is not null`)
+    .all<{ slug: string; latitude: number; longitude: number }>();
+  return Object.fromEntries(
+    (results ?? []).map((venue) => [
+      venue.slug,
+      { latitude: venue.latitude, longitude: venue.longitude },
+    ]),
+  );
 }
 
 export async function listFinderVenues(): Promise<Venue[]> {

@@ -157,6 +157,8 @@ export default async function VenuePage({
                 rating: venue.rating,
                 reviews: venue.review_count,
                 photo: venue.photo_url,
+                latitude: venue.latitude,
+                longitude: venue.longitude,
               }}
             />
             {venue.phone && (

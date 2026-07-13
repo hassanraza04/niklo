@@ -15,8 +15,10 @@ export default function DataNotesPage() {
         </p>
         <p>
           Listings are cleaned for duplicates, category mistakes, low-quality imports, and missing location
-          data before they appear here. The daily verification workflow checks existing listings only. New
-          places stay in a separate review queue until they are manually approved.
+          data before they appear here. We try to catch issues before a place is published, but mistakes can
+          still slip through as venues change or public details become outdated. The daily verification workflow
+          checks existing listings only. New places stay in a separate review queue until they are manually
+          approved.
         </p>
         <p>
           Hours, pricing, availability, and ratings can change. Treat Niklo as a useful starting point and

@@ -8,6 +8,8 @@ export type SavedItem = {
   rating: number | null;
   reviews: number | null;
   photo: string | null;
+  latitude?: number | null;
+  longitude?: number | null;
 };
 
 const KEY = "niklo:saved";

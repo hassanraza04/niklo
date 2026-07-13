@@ -26,6 +26,9 @@ export function SiteFooter() {
           <Link href="/data" className="hover:text-clay">
             Data notes
           </Link>
+          <Link href="/contact" className="hover:text-clay">
+            Contact
+          </Link>
           <a
             href="https://github.com/hassanraza04/niklo"
             target="_blank"
@@ -33,6 +36,14 @@ export function SiteFooter() {
             className="hover:text-clay"
           >
             GitHub
+          </a>
+          <a
+            href="https://www.linkedin.com/in/hassanraza04/"
+            target="_blank"
+            rel="noreferrer"
+            className="hover:text-clay"
+          >
+            LinkedIn
           </a>
         </nav>
       </div>

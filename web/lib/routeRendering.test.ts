@@ -67,6 +67,13 @@ test("the Worker uses the installed Wrangler compatibility date", () => {
   assert.match(config, /"compatibility_date": "2026-07-02"/);
 });
 
+test("the Worker keeps dashboard observability settings in Wrangler", () => {
+  const config = readFileSync(join(process.cwd(), "wrangler.jsonc"), "utf8");
+  assert.match(config, /"observability": \{/);
+  assert.match(config, /"logs": \{[\s\S]*?"invocation_logs": true/);
+  assert.match(config, /"traces": \{[\s\S]*?"persist": true/);
+});
+
 test("generated Worker bindings do not retain D1", () => {
   const bindings = readFileSync(join(process.cwd(), "cloudflare-env.d.ts"), "utf8");
   assert.doesNotMatch(bindings, /\bDB\s*:|\bD1Database\b/);

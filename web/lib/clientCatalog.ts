@@ -3,7 +3,7 @@ import type { CatalogCardVenue } from "./types";
 let catalogPromise: Promise<readonly CatalogCardVenue[]> | null = null;
 
 export function loadClientCatalog(): Promise<readonly CatalogCardVenue[]> {
-  catalogPromise ??= fetch("/catalog-client.json", { cache: "force-cache" }).then(
+  catalogPromise ??= fetch("/catalog-client.json", { cache: "no-cache" }).then(
     (response) => {
       if (!response.ok) throw new Error("Could not load Niklo's catalog.");
       return response.json() as Promise<CatalogCardVenue[]>;

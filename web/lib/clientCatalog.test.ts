@@ -70,7 +70,7 @@ test("client catalog fetches the static asset once per browser session", async (
   globalThis.fetch = async (input, init) => {
     calls += 1;
     assert.equal(input, "/catalog-client.json");
-    assert.deepEqual(init, { cache: "force-cache" });
+    assert.deepEqual(init, { cache: "no-cache" });
     return Response.json([fixture()]);
   };
 

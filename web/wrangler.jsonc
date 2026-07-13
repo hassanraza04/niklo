@@ -12,8 +12,7 @@
     {
       "binding": "DB",
       "database_name": "niklo",
-      // local dev ignores this; replace with the real id after `wrangler d1 create niklo`
-      "database_id": "local-dev-placeholder"
+      "database_id": "fda6a86b-63c5-426c-9dd4-ac46419de570"
     }
   ]
 }

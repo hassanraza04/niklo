@@ -17,10 +17,10 @@ export function SiteHeader() {
       if (event.key === "Escape") closeMenu();
     };
 
-    document.addEventListener("pointerdown", closeMenu);
+    document.addEventListener("click", closeMenu);
     document.addEventListener("keydown", closeOnEscape);
     return () => {
-      document.removeEventListener("pointerdown", closeMenu);
+      document.removeEventListener("click", closeMenu);
       document.removeEventListener("keydown", closeOnEscape);
     };
   }, [menuOpen]);
@@ -46,7 +46,6 @@ export function SiteHeader() {
               aria-label="Open navigation"
               aria-expanded={menuOpen}
               aria-controls="mobile-navigation"
-              onPointerDown={(event) => event.stopPropagation()}
               onClick={(event) => {
                 event.stopPropagation();
                 setMenuOpen((open) => !open);
@@ -62,7 +61,6 @@ export function SiteHeader() {
               >
                 <BrowseLink
                   className="block rounded-md px-3 py-2 text-sm font-medium text-ink hover:bg-paper-2"
-                  onPointerDown={(event) => event.stopPropagation()}
                   onClick={() => setMenuOpen(false)}
                 >
                   Browse
@@ -70,12 +68,14 @@ export function SiteHeader() {
                 <Link
                   href="/saved"
                   className="block rounded-md px-3 py-2 text-sm font-medium text-ink hover:bg-paper-2"
+                  onClick={() => setMenuOpen(false)}
                 >
                   Saved
                 </Link>
                 <Link
                   href="/map"
                   className="block rounded-md px-3 py-2 text-sm font-medium text-ink hover:bg-paper-2"
+                  onClick={() => setMenuOpen(false)}
                 >
                   Map
                 </Link>

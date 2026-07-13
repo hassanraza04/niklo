@@ -54,8 +54,8 @@ test("public navigation does not default visitors to padel", () => {
 
 test("compact navigation keeps Saved and Map reachable", () => {
   assert.match(headerSource, /"use client"/);
-  assert.match(headerSource, /document\.addEventListener\("pointerdown", closeMenu\)/);
-  assert.match(headerSource, /onPointerDown=\{\(event\) => event\.stopPropagation\(\)\}/);
+  assert.match(headerSource, /document\.addEventListener\("click", closeMenu\)/);
+  assert.doesNotMatch(headerSource, /document\.addEventListener\("pointerdown", closeMenu\)/);
   assert.match(headerSource, /aria-label="Open navigation"/);
   assert.match(headerSource, /href="\/saved"/);
   assert.match(headerSource, /href="\/map"/);
@@ -65,7 +65,21 @@ test("compact navigation keeps Saved and Map reachable", () => {
 test("mobile Browse preserves its activation before closing the menu", () => {
   assert.match(
     headerSource,
-    /<BrowseLink\s+className="block[^>]+onPointerDown=\{\(event\) => event\.stopPropagation\(\)\}[^>]+onClick=\{\(\) => setMenuOpen\(false\)\}/,
+    /<BrowseLink\s+className="block[^>]+onClick=\{\(\) => setMenuOpen\(false\)\}/,
+  );
+});
+
+test("mobile Saved preserves navigation before closing the menu", () => {
+  assert.match(
+    headerSource,
+    /<Link\s+href="\/saved"[\s\S]*?onClick=\{\(\) => setMenuOpen\(false\)\}/,
+  );
+});
+
+test("mobile Map preserves navigation before closing the menu", () => {
+  assert.match(
+    headerSource,
+    /<Link\s+href="\/map"[\s\S]*?onClick=\{\(\) => setMenuOpen\(false\)\}/,
   );
 });
 

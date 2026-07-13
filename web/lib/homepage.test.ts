@@ -51,6 +51,17 @@ test("public navigation does not default visitors to padel", () => {
   assert.match(searchSource, /Browse all types/);
 });
 
+test("compact navigation keeps Saved and Map reachable", () => {
+  const compactStart = headerSource.indexOf('<details className="relative md:hidden">');
+  const compactEnd = headerSource.indexOf("</details>", compactStart);
+  const compactNavigation = headerSource.slice(compactStart, compactEnd);
+
+  assert.notEqual(-1, compactStart);
+  assert.match(compactNavigation, /aria-label="Open navigation"/);
+  assert.match(compactNavigation, /href="\/saved"/);
+  assert.match(compactNavigation, /href="\/map"/);
+});
+
 test("footer links to the public repository instead of the retired review queue", () => {
   assert.match(footerSource, /https:\/\/github\.com\/hassanraza04\/niklo/);
   assert.doesNotMatch(footerSource, /href="\/review"/);

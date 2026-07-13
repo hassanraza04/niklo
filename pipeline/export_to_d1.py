@@ -13,8 +13,6 @@ import csv
 import json
 import os
 
-import duckdb
-
 HERE = os.path.dirname(os.path.abspath(__file__))
 DUCKDB_PATH = os.environ.get(
     "NIKLO_DUCKDB", os.path.normpath(os.path.join(HERE, "warehouse.duckdb"))
@@ -113,6 +111,8 @@ def write_seed(rows: list[list], seed_path: str) -> None:
 
 
 def main() -> None:
+    import duckdb
+
     con = duckdb.connect(DUCKDB_PATH, read_only=True)
     rows = [list(r) for r in con.execute(
         f"select {', '.join(COLUMNS)} from main.dim_venue order by venue_id"

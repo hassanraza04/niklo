@@ -40,6 +40,7 @@ web/worker-configuration.d.ts
 
 # local tooling (not part of the project)
 .claude/
+.worktrees/
 
 # misc
 .DS_Store

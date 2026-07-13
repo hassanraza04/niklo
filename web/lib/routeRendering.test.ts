@@ -16,6 +16,31 @@ test("directory routes are static and do not import D1", () => {
   }
 });
 
+test("browser directory routes render static client shells", () => {
+  const shells = {
+    "app/map/page.tsx": "MapMode",
+    "app/saved/page.tsx": "SavedList",
+    "app/search/page.tsx": "SearchResults",
+    "app/plan/page.tsx": "PlanResults",
+  };
+
+  for (const [path, component] of Object.entries(shells)) {
+    const source = readFileSync(join(process.cwd(), path), "utf8");
+    assert.doesNotMatch(source, /searchParams/);
+    assert.match(source, new RegExp(`return <${component}`));
+  }
+});
+
+test("tonight finder loads its own client catalog without a required venues prop", () => {
+  const source = readFileSync(
+    join(process.cwd(), "components", "TonightFinder.tsx"),
+    "utf8",
+  );
+
+  assert.match(source, /useClientCatalog\(\)/);
+  assert.match(source, /export function TonightFinder\(\)/);
+});
+
 test("venue routes enumerate the reviewed catalog at build time", () => {
   const source = readFileSync(join(process.cwd(), "app", "v", "[slug]", "page.tsx"), "utf8");
 

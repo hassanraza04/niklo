@@ -14,7 +14,9 @@ import {
   type MapVenue,
 } from "@/lib/mapMode";
 import type { Category } from "@/lib/taxonomy";
+import type { CatalogCardVenue } from "@/lib/types";
 import { useUserLocation } from "@/lib/useUserLocation";
+import { CatalogError, CatalogLoading, useClientCatalog } from "./CatalogLoader";
 
 const LeafletVenueMap = dynamic(
   () => import("./LeafletVenueMap").then((mod) => mod.LeafletVenueMap),
@@ -43,7 +45,7 @@ function venueLabel(venue: MapVenue) {
   return [venue.subcategory_name, venue.area].filter(Boolean).join(" · ");
 }
 
-export function MapMode({
+function MapModeContent({
   venues,
   categories,
 }: {
@@ -402,4 +404,44 @@ export function MapMode({
       </div>
     </div>
   );
+}
+
+export function MapMode({ categories }: { categories: Category[] }) {
+  const { venues: catalog, loading, error, retry } = useClientCatalog();
+  const venues = useMemo(
+    () =>
+      catalog
+        .filter(
+          (
+            venue,
+          ): venue is CatalogCardVenue & { latitude: number; longitude: number } =>
+            venue.latitude != null && venue.longitude != null,
+        )
+        .map(
+          (venue): MapVenue => ({
+            slug: venue.slug,
+            name: venue.name,
+            category_slug: venue.category_slug,
+            category_name: venue.category_name,
+            subcategory_slug: venue.subcategory_slug,
+            subcategory_name: venue.subcategory_name,
+            category_slugs: venue.category_slugs,
+            subcategories: venue.subcategories,
+            latitude: venue.latitude,
+            longitude: venue.longitude,
+            area: venue.area,
+            rating: venue.rating,
+            review_count: venue.review_count,
+          }),
+        ),
+    [catalog],
+  );
+
+  if (loading) {
+    return <CatalogLoading className="mx-auto mt-8 max-w-7xl" />;
+  }
+  if (error) {
+    return <CatalogError retry={retry} className="mx-auto mt-8 max-w-7xl" />;
+  }
+  return <MapModeContent venues={venues} categories={categories} />;
 }

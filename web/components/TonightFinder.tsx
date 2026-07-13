@@ -10,9 +10,11 @@ import {
 } from "@/lib/locationReference";
 import { useUserLocation } from "@/lib/useUserLocation";
 import { tonightPickPage, type VenueFilters } from "@/lib/venueFilters";
+import { CatalogError, CatalogLoading, useClientCatalog } from "./CatalogLoader";
 import { VenueCard } from "./VenueCard";
 
-export function TonightFinder({ venues }: { venues: Venue[] }) {
+export function TonightFinder() {
+  const { venues, loading, error, retry } = useClientCatalog();
   const [openNow, setOpenNow] = useState(false);
   const [maxDistance, setMaxDistance] = useState("");
   const [distanceReference, setDistanceReference] = useState(USER_LOCATION_REFERENCE_ID);
@@ -35,7 +37,7 @@ export function TonightFinder({ venues }: { venues: Venue[] }) {
   );
 
   const resultPage = useMemo(
-    () => tonightPickPage(venues, filters, distanceCenter, page),
+    () => tonightPickPage([...venues] as Venue[], filters, distanceCenter, page),
     [venues, filters, distanceCenter, page],
   );
 
@@ -51,6 +53,21 @@ export function TonightFinder({ venues }: { venues: Venue[] }) {
     if (next === USER_LOCATION_REFERENCE_ID && !location && maxDistance) {
       requestLocation();
     }
+  }
+
+  if (loading) {
+    return (
+      <section className="mx-auto max-w-6xl px-5 py-12">
+        <CatalogLoading />
+      </section>
+    );
+  }
+  if (error) {
+    return (
+      <section className="mx-auto max-w-6xl px-5 py-12">
+        <CatalogError retry={retry} />
+      </section>
+    );
   }
 
   return (

@@ -6,7 +6,7 @@ import { VenueCard } from "@/components/VenueCard";
 import { TonightFinder } from "@/components/TonightFinder";
 import type { Venue } from "@/lib/types";
 
-function heroVenuePhotos(venues: Venue[]): Venue[] {
+function heroVenuePhotos(venues: readonly Venue[]): Venue[] {
   const wanted = [
     "cinemas",
     "bowling",

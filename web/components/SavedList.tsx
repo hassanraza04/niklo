@@ -1,20 +1,30 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import type { Coordinates } from "@/lib/geo";
 import { type SavedItem, readSaved, removeSaved, SAVED_EVENT } from "@/lib/saved";
 import { SpinWheel } from "@/components/SpinWheel";
 import { VenueDistance } from "@/components/VenueDistance";
+import { CatalogError, CatalogLoading, useClientCatalog } from "./CatalogLoader";
 
-export function SavedList({
-  venueCoordinates,
-}: {
-  venueCoordinates: Record<string, Coordinates>;
-}) {
+export function SavedList() {
+  const { venues, loading, error, retry } = useClientCatalog();
   const [items, setItems] = useState<SavedItem[]>([]);
   const [copied, setCopied] = useState(false);
   const [showWheel, setShowWheel] = useState(false);
+  const venueCoordinates = useMemo(() => {
+    const coordinates: Record<string, Coordinates> = {};
+    for (const venue of venues) {
+      if (venue.latitude != null && venue.longitude != null) {
+        coordinates[venue.slug] = {
+          latitude: venue.latitude,
+          longitude: venue.longitude,
+        };
+      }
+    }
+    return coordinates;
+  }, [venues]);
 
   useEffect(() => {
     const refresh = () => setItems(readSaved());
@@ -29,6 +39,13 @@ export function SavedList({
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     });
+  }
+
+  if (loading) {
+    return <CatalogLoading className="mx-auto mt-10 max-w-3xl" />;
+  }
+  if (error) {
+    return <CatalogError retry={retry} className="mx-auto mt-10 max-w-3xl" />;
   }
 
   return (

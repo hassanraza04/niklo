@@ -1,7 +1,6 @@
 import { getDb } from "./db";
 import type { Coordinates } from "./geo";
 import type { Venue } from "./types";
-import { buildVenueSearchPlan } from "./venueSearchPlan";
 
 // default sort: most-rated first (popularity), so established venues lead instead of
 // a tiny place with a perfect score from a handful of reviews. rating breaks ties.
@@ -74,22 +73,6 @@ export async function countsByCategory(): Promise<Record<string, number>> {
     .prepare(`select category_slugs as csv from venues`)
     .all<{ csv: string | null }>();
   return tallyCsv(results ?? []);
-}
-
-export async function searchVenues(q: string, limit = 60): Promise<Venue[]> {
-  const db = await getDb();
-  async function runSearch(includeAddress: boolean): Promise<Venue[]> {
-    const plan = buildVenueSearchPlan(q, includeAddress, limit);
-    if (!plan) return [];
-    const { results } = await db
-      .prepare(plan.statement)
-      .bind(...plan.binds)
-      .all<Venue>();
-    return results ?? [];
-  }
-
-  const strongResults = await runSearch(false);
-  return strongResults.length ? strongResults : runSearch(true);
 }
 
 export async function spinPool(

@@ -5,13 +5,12 @@ import test from "node:test";
 
 const pageSource = readFileSync(join(process.cwd(), "app", "page.tsx"), "utf8");
 const catalogSource = readFileSync(join(process.cwd(), "lib", "catalog.ts"), "utf8");
-const venuesSource = readFileSync(join(process.cwd(), "lib", "venues.ts"), "utf8");
 const finderSource = readFileSync(join(process.cwd(), "components", "TonightFinder.tsx"), "utf8");
 const layoutSource = readFileSync(join(process.cwd(), "app", "layout.tsx"), "utf8");
 const headerSource = readFileSync(join(process.cwd(), "components", "SiteHeader.tsx"), "utf8");
 const locationPromptSource = readFileSync(join(process.cwd(), "components", "LocationBootPrompt.tsx"), "utf8");
 const footerSource = readFileSync(join(process.cwd(), "components", "SiteFooter.tsx"), "utf8");
-const searchSource = readFileSync(join(process.cwd(), "app", "search", "page.tsx"), "utf8");
+const searchSource = readFileSync(join(process.cwd(), "components", "SearchResults.tsx"), "utf8");
 const categoryCardSource = readFileSync(join(process.cwd(), "components", "CategoryCard.tsx"), "utf8");
 
 test("home page puts browsing before the Tonight Finder without Niklo picks", () => {
@@ -30,11 +29,9 @@ test("crowd favourites are ordered by popularity", () => {
 });
 
 test("Tonight Finder queries every eligible listing before filtering", () => {
-  const start = venuesSource.indexOf("export async function listFinderVenues");
-  const end = venuesSource.indexOf("export async function getVenuesBySlugs");
-  const finderSource = venuesSource.slice(start, end);
-
-  assert.doesNotMatch(finderSource, /limit = 160|limit \?|\.bind\(limit\)/);
+  assert.match(finderSource, /useClientCatalog\(\)/);
+  assert.match(finderSource, /tonightPickPage\(\[\.\.\.venues\]/);
+  assert.doesNotMatch(finderSource, /slice\(0,\s*160\)/);
 });
 
 test("Tonight Finder keeps its filters in a stable row below the title", () => {

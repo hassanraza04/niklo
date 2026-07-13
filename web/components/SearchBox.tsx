@@ -3,15 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-
-type Hit = {
-  slug: string;
-  name: string;
-  area: string | null;
-  subcategory_name: string | null;
-  rating: number | null;
-  review_count: number | null;
-};
+import { loadClientCatalog, searchClientCatalog } from "@/lib/clientCatalog";
+import type { CatalogCardVenue } from "@/lib/types";
 
 export function SearchBox({
   defaultValue = "",
@@ -25,16 +18,15 @@ export function SearchBox({
   const big = size === "lg";
   const router = useRouter();
   const [q, setQ] = useState(defaultValue);
-  const [hits, setHits] = useState<Hit[]>([]);
+  const [hits, setHits] = useState<CatalogCardVenue[]>([]);
   const [total, setTotal] = useState(0);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(-1);
   const wrapRef = useRef<HTMLDivElement>(null);
-  const abortRef = useRef<AbortController | null>(null);
 
-  // debounced live fetch
   useEffect(() => {
     const term = q.trim();
+    let active = true;
     const t = setTimeout(async () => {
       if (term.length < 2) {
         setHits([]);
@@ -42,23 +34,22 @@ export function SearchBox({
         setOpen(false);
         return;
       }
-      abortRef.current?.abort();
-      const ac = new AbortController();
-      abortRef.current = ac;
       try {
-        const res = await fetch(`/api/search?q=${encodeURIComponent(term)}`, {
-          signal: ac.signal,
-        });
-        const data = (await res.json()) as { hits: Hit[]; total: number };
-        setHits(data.hits);
-        setTotal(data.total);
+        const catalog = await loadClientCatalog();
+        if (!active) return;
+        const suggestions = searchClientCatalog(term, catalog, 7);
+        setHits(suggestions);
+        setTotal(searchClientCatalog(term, catalog).length);
         setActive(-1);
         setOpen(true);
       } catch {
-        /* aborted or failed; ignore */
+        if (active) setOpen(false);
       }
     }, 150);
-    return () => clearTimeout(t);
+    return () => {
+      active = false;
+      clearTimeout(t);
+    };
   }, [q]);
 
   // close on outside click

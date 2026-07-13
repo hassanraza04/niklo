@@ -6,5 +6,6 @@ Tracked files in this directory are deliberate inputs or release locks:
 - `search_regressions.csv` supports the customer-flow release checks.
 - `review_resolutions.csv` records final owner decisions made after a review.
 
-Generated daily verification reports and rare discovery candidates are intentionally
-ignored by Git. They stay local until a human approves a specific data change.
+Generated daily reports and rare discovery candidates are intentionally ignored by
+Git. Safe, exact-match daily facts are written to the seed and live listing lock;
+anything riskier stays in the local report until a human approves it.

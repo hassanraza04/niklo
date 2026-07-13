@@ -2,7 +2,7 @@
 
 Run this after a local gosom refresh. It compares scrape JSON against
 `data/live_listings.csv`, writes known rows to a review artifact, and parks new
-place ids in an ignored report. It does not mutate the D1 seed.
+place ids in an ignored report. It does not mutate the D1 seed itself.
 """
 
 from __future__ import annotations
@@ -196,7 +196,7 @@ def run_verification(
                 f"- Ignored new place ids: {summary.ignored_new_count}",
                 f"- Missing from refresh: {summary.missing_count}",
                 "",
-                "No production data was changed by this run.",
+                "The verifier itself does not change public data. The daily updater may apply safe facts from this report.",
             ]
         )
         + "\n",
@@ -234,4 +234,3 @@ def main(argv: list[str] | None = None) -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
-

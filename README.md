@@ -77,8 +77,9 @@ requests.
 
 Niklo has two separate workflows by design:
 
-1. **Daily refresh** checks a rotating batch of existing listings. It never publishes a
-   new place automatically.
+1. **Daily refresh** checks a rotating batch of existing listings and updates safe
+   facts for exact Maps matches. It never publishes a new place automatically, and
+   identity, location, category, and status changes stay in review.
 2. **Rare discovery** produces a separate candidate queue. Every candidate needs manual
    evidence review before it can join the live listing lock.
 

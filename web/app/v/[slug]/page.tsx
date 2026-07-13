@@ -23,7 +23,7 @@ export async function generateMetadata({
   return { title: v ? v.name : "Venue" };
 }
 
-function verifiedOn(iso: string | null): string | null {
+function checkedOn(iso: string | null): string | null {
   if (!iso) return null;
   const d = new Date(iso);
   if (isNaN(d.getTime())) return null;
@@ -53,7 +53,7 @@ export default async function VenuePage({
     .filter((x): x is NonNullable<typeof x> => !!x);
   const area = canonicalArea(venue);
   const open = isOpenNow(venue.hours);
-  const verified = verifiedOn(venue.last_verified);
+  const checked = checkedOn(venue.last_verified);
 
   const similar = (await listVenuesBySubcategory(venue.subcategory_slug))
     .filter((v) => v.venue_id !== venue.venue_id)
@@ -213,9 +213,9 @@ export default async function VenuePage({
             )}
           </div>
 
-          {verified && (
+          {checked && (
             <p className="px-1 text-xs text-ink-soft">
-              ✓ Last verified {verified} · from public Google Maps data
+              ✓ Last checked {checked} · from public Google Maps data
             </p>
           )}
         </aside>

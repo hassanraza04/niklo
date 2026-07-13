@@ -8,3 +8,10 @@ test("map route is rendered at request time", () => {
 
   assert.match(route, /export const dynamic = "force-dynamic";/);
 });
+
+test("venue pages describe the Maps date as a source check", () => {
+  const route = readFileSync(join(process.cwd(), "app", "v", "[slug]", "page.tsx"), "utf8");
+
+  assert.match(route, /Last checked/);
+  assert.doesNotMatch(route, /Last verified/);
+});

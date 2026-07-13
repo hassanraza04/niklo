@@ -1,4 +1,4 @@
-"""Create a small, deterministic batch for the safe daily refresh workflow."""
+"""Create a bounded, deterministic batch for the safe daily refresh workflow."""
 
 from __future__ import annotations
 
@@ -92,7 +92,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--live-listings", default=str(ROOT / "data" / "live_listings.csv"))
     parser.add_argument("--output-dir", required=True)
     parser.add_argument("--date", default=date.today().isoformat())
-    parser.add_argument("--batch-size", type=int, default=20)
+    parser.add_argument("--batch-size", type=int, default=50)
     args = parser.parse_args(argv)
 
     plan = build_plan(Path(args.live_listings), date.fromisoformat(args.date), args.batch_size)

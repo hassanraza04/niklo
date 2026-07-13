@@ -8,6 +8,7 @@ const venuesSource = readFileSync(join(process.cwd(), "lib", "venues.ts"), "utf8
 const finderSource = readFileSync(join(process.cwd(), "components", "TonightFinder.tsx"), "utf8");
 const layoutSource = readFileSync(join(process.cwd(), "app", "layout.tsx"), "utf8");
 const headerSource = readFileSync(join(process.cwd(), "components", "SiteHeader.tsx"), "utf8");
+const locationPromptSource = readFileSync(join(process.cwd(), "components", "LocationBootPrompt.tsx"), "utf8");
 const footerSource = readFileSync(join(process.cwd(), "components", "SiteFooter.tsx"), "utf8");
 const searchSource = readFileSync(join(process.cwd(), "app", "search", "page.tsx"), "utf8");
 const categoryCardSource = readFileSync(join(process.cwd(), "components", "CategoryCard.tsx"), "utf8");
@@ -52,14 +53,18 @@ test("public navigation does not default visitors to padel", () => {
 });
 
 test("compact navigation keeps Saved and Map reachable", () => {
-  const compactStart = headerSource.indexOf('<details className="relative md:hidden">');
-  const compactEnd = headerSource.indexOf("</details>", compactStart);
-  const compactNavigation = headerSource.slice(compactStart, compactEnd);
+  assert.match(headerSource, /"use client"/);
+  assert.match(headerSource, /document\.addEventListener\("pointerdown", closeMenu\)/);
+  assert.match(headerSource, /onPointerDown=\{\(event\) => event\.stopPropagation\(\)\}/);
+  assert.match(headerSource, /aria-label="Open navigation"/);
+  assert.match(headerSource, /href="\/saved"/);
+  assert.match(headerSource, /href="\/map"/);
+  assert.match(headerSource, /z-\[1000\]/);
+});
 
-  assert.notEqual(-1, compactStart);
-  assert.match(compactNavigation, /aria-label="Open navigation"/);
-  assert.match(compactNavigation, /href="\/saved"/);
-  assert.match(compactNavigation, /href="\/map"/);
+test("location prompts remain above the elevated mobile header", () => {
+  const modalLayers = locationPromptSource.match(/z-\[1100\]/g) ?? [];
+  assert.equal(modalLayers.length, 2);
 });
 
 test("footer links to the public repository instead of the retired review queue", () => {

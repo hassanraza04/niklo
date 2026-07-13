@@ -1,10 +1,31 @@
+"use client";
+
 import Link from "next/link";
 import { Menu } from "lucide-react";
+import { useEffect, useState } from "react";
 import { SearchBox } from "./SearchBox";
 
 export function SiteHeader() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const closeMenu = () => setMenuOpen(false);
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") closeMenu();
+    };
+
+    document.addEventListener("pointerdown", closeMenu);
+    document.addEventListener("keydown", closeOnEscape);
+    return () => {
+      document.removeEventListener("pointerdown", closeMenu);
+      document.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [menuOpen]);
+
   return (
-    <header className="sticky top-0 z-30 border-b border-line bg-paper/85 backdrop-blur">
+    <header className="sticky top-0 z-[1000] border-b border-line bg-paper/85 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center gap-3 px-5 py-3">
         <Link
           href="/"
@@ -18,34 +39,47 @@ export function SiteHeader() {
         </div>
 
         <nav className="flex shrink-0 items-center gap-1.5" aria-label="Primary">
-          <details className="relative md:hidden">
-            <summary
+          <div className="relative md:hidden">
+            <button
+              type="button"
               aria-label="Open navigation"
-              className="flex h-9 w-9 cursor-pointer list-none items-center justify-center rounded-full border border-line bg-card text-ink shadow-sm transition-colors hover:bg-paper-2 [&::-webkit-details-marker]:hidden"
+              aria-expanded={menuOpen}
+              aria-controls="mobile-navigation"
+              onPointerDown={(event) => event.stopPropagation()}
+              onClick={(event) => {
+                event.stopPropagation();
+                setMenuOpen((open) => !open);
+              }}
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-line bg-card text-ink shadow-sm transition-colors hover:bg-paper-2"
             >
               <Menu aria-hidden="true" size={19} strokeWidth={2.25} />
-            </summary>
-            <div className="absolute right-0 top-[calc(100%+0.5rem)] z-40 w-36 rounded-[var(--radius-card)] border border-line bg-card p-1 shadow-md">
-              <Link
-                href="/#browse"
-                className="block rounded-md px-3 py-2 text-sm font-medium text-ink hover:bg-paper-2"
+            </button>
+            {menuOpen && (
+              <div
+                id="mobile-navigation"
+                className="absolute right-0 top-[calc(100%+0.5rem)] w-36 rounded-[var(--radius-card)] border border-line bg-card p-1 shadow-md"
               >
-                Browse
-              </Link>
-              <Link
-                href="/saved"
-                className="block rounded-md px-3 py-2 text-sm font-medium text-ink hover:bg-paper-2"
-              >
-                Saved
-              </Link>
-              <Link
-                href="/map"
-                className="block rounded-md px-3 py-2 text-sm font-medium text-ink hover:bg-paper-2"
-              >
-                Map
-              </Link>
-            </div>
-          </details>
+                <Link
+                  href="/#browse"
+                  className="block rounded-md px-3 py-2 text-sm font-medium text-ink hover:bg-paper-2"
+                >
+                  Browse
+                </Link>
+                <Link
+                  href="/saved"
+                  className="block rounded-md px-3 py-2 text-sm font-medium text-ink hover:bg-paper-2"
+                >
+                  Saved
+                </Link>
+                <Link
+                  href="/map"
+                  className="block rounded-md px-3 py-2 text-sm font-medium text-ink hover:bg-paper-2"
+                >
+                  Map
+                </Link>
+              </div>
+            )}
+          </div>
           <Link
             href="/#browse"
             className="hidden rounded-full px-3 py-1.5 text-sm font-medium text-ink-soft transition-colors hover:bg-paper-2 hover:text-ink md:inline-block"

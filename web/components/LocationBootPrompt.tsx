@@ -78,7 +78,7 @@ export function LocationBootPrompt() {
   return (
     <>
       {showIntroPrompt && (
-        <div className="fixed inset-0 z-50 flex items-end justify-center bg-ink/45 px-4 py-6 sm:items-center">
+        <div className="fixed inset-0 z-[1100] flex items-end justify-center bg-ink/45 px-4 py-6 sm:items-center">
           <section
             aria-labelledby="location-intro-title"
             aria-modal="true"
@@ -119,7 +119,7 @@ export function LocationBootPrompt() {
       )}
 
       {showDeniedPrompt && (
-        <div className="fixed inset-0 z-50 flex items-end justify-center bg-ink/45 px-4 py-6 sm:items-center">
+        <div className="fixed inset-0 z-[1100] flex items-end justify-center bg-ink/45 px-4 py-6 sm:items-center">
           <section
             aria-labelledby="location-denied-title"
             aria-modal="true"

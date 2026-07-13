@@ -30,10 +30,10 @@ function loadTurnstile() {
   if (window.turnstile) return Promise.resolve(window.turnstile);
   if (turnstileScript) return turnstileScript;
 
+  const existingScript = document.getElementById(SCRIPT_ID) as HTMLScriptElement | null;
+  const script = existingScript || document.createElement("script");
+  const createdScript = !existingScript;
   const scriptPromise = new Promise<TurnstileApi>((resolve, reject) => {
-    const existingScript = document.getElementById(SCRIPT_ID) as HTMLScriptElement | null;
-    const script = existingScript || document.createElement("script");
-
     const handleLoad = () => {
       if (window.turnstile) {
         resolve(window.turnstile);
@@ -45,7 +45,7 @@ function loadTurnstile() {
     script.addEventListener("load", handleLoad, { once: true });
     script.addEventListener("error", () => reject(new Error("Turnstile failed to load.")), { once: true });
 
-    if (!existingScript) {
+    if (createdScript) {
       script.id = SCRIPT_ID;
       script.src = SCRIPT_URL;
       script.async = true;
@@ -58,7 +58,7 @@ function loadTurnstile() {
   void scriptPromise.catch(() => {
     if (turnstileScript !== scriptPromise) return;
     turnstileScript = undefined;
-    script.remove();
+    if (createdScript) script.remove();
   });
 
   return turnstileScript;

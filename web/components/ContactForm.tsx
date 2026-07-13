@@ -3,12 +3,43 @@
 import { type FormEvent, useState } from "react";
 
 export function ContactForm() {
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [error, setError] = useState("");
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!event.currentTarget.reportValidity()) return;
-    setSubmitted(true);
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    setStatus("sending");
+    setError("");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.get("name"),
+          email: formData.get("email"),
+          message: formData.get("message"),
+          company: formData.get("company"),
+        }),
+      });
+      const result = (await response.json()) as { error?: string };
+
+      if (!response.ok) {
+        setError(result.error || "Your message could not be sent. Please try again shortly.");
+        setStatus("error");
+        return;
+      }
+
+      form.reset();
+      setStatus("sent");
+    } catch {
+      setError("Your message could not be sent. Please check your connection and try again.");
+      setStatus("error");
+    }
   }
 
   return (
@@ -16,6 +47,13 @@ export function ContactForm() {
       className="mt-8 space-y-5 rounded-[var(--radius-card)] border border-line bg-card p-5 sm:p-6"
       onSubmit={handleSubmit}
     >
+      <input
+        name="company"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        className="pointer-events-none absolute h-px w-px opacity-0"
+      />
       <div className="grid gap-5 sm:grid-cols-2">
         <label className="grid gap-2 text-sm font-semibold text-ink">
           Name <span className="font-normal text-ink-soft">Optional</span>
@@ -47,16 +85,17 @@ export function ContactForm() {
       <div className="flex flex-wrap items-center gap-3">
         <button
           type="submit"
+          disabled={status === "sending"}
           className="rounded-full bg-clay px-5 py-2.5 font-semibold text-paper transition-transform hover:-translate-y-0.5"
         >
-          Send feedback
+          {status === "sending" ? "Sending..." : "Send feedback"}
         </button>
-        {submitted && (
+        {status === "sent" && (
           <p className="text-sm text-ink-soft" role="status">
-            The contact inbox is being connected. Your message has not been sent yet, so please use the
-            email link above for now.
+            Thanks. Your message has been sent.
           </p>
         )}
+        {status === "error" && <p className="text-sm text-clay-dark" role="alert">{error}</p>}
       </div>
     </form>
   );

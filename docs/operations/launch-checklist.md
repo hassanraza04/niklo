@@ -44,6 +44,9 @@ seeding, and the final deploy stay separate from this repository check.
 ## Production Handoff
 
 - Set `NEXT_PUBLIC_SITE_URL` to the real site URL before production.
+- Add `RESEND_API_KEY` as a Worker secret for the contact form. Keep it out of Git and
+  browser-accessible variables.
+- Set `RESEND_FROM_EMAIL` to a verified Resend sender before public launch.
 - Review `compatibility_date` in `web/wrangler.jsonc` against Cloudflare's current guidance.
 - After Cloudflare is configured, run the remote D1 schema and seed from the README.
 - After deploy, run the same page checks against the live URL.

@@ -43,6 +43,10 @@ pipeline/.venv/bin/python -m unittest discover -s tests -v
 
 - `NEXT_PUBLIC_SITE_URL` controls sitemap and robots URLs.
 - `wrangler.jsonc` needs the real D1 database id before deployment.
+- Add `RESEND_API_KEY` as a Cloudflare Worker secret for the contact form. Do not place it
+  in `wrangler.jsonc` or commit it to Git.
+- Set `RESEND_FROM_EMAIL` to a sender address verified in Resend. Until then, the form uses
+  Resend's `onboarding@resend.dev` sender for account-owner testing.
 - Cloudflare provisioning, remote seeding, and deployment are manual. See the root
   [launch checklist](../docs/operations/launch-checklist.md).
 

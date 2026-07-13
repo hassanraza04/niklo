@@ -7,6 +7,7 @@ const root = process.cwd();
 const savedListPath = join(root, "components", "SavedList.tsx");
 const contactPagePath = join(root, "app", "contact", "page.tsx");
 const contactFormPath = join(root, "components", "ContactForm.tsx");
+const contactRoutePath = join(root, "app", "api", "contact", "route.ts");
 const footerSource = readFileSync(join(root, "components", "SiteFooter.tsx"), "utf8");
 const dataNotesSource = readFileSync(join(root, "app", "data", "page.tsx"), "utf8");
 const venuePageSource = readFileSync(join(root, "app", "v", "[slug]", "page.tsx"), "utf8");
@@ -30,9 +31,20 @@ test("contact page has direct email and a browser-validated feedback form", () =
   assert.ok(existsSync(contactFormPath));
   const source = readFileSync(contactPagePath, "utf8");
   const formSource = readFileSync(contactFormPath, "utf8");
-  assert.match(source, /mailto:hr2616@nyu\.edu/);
+  assert.match(source, /mailto:hassanraza0406@gmail\.com/);
   assert.match(formSource, /type="email"/);
   assert.match(formSource, /Feedback, suggestions, or questions/);
+});
+
+test("contact feedback is delivered through a server-side Resend route", () => {
+  assert.ok(existsSync(contactRoutePath));
+  const formSource = readFileSync(contactFormPath, "utf8");
+  const routeSource = readFileSync(contactRoutePath, "utf8");
+  assert.match(formSource, /fetch\("\/api\/contact"/);
+  assert.match(routeSource, /https:\/\/api\.resend\.com\/emails/);
+  assert.match(routeSource, /RESEND_API_KEY/);
+  assert.match(routeSource, /hassanraza0406@gmail\.com/);
+  assert.doesNotMatch(formSource, /RESEND_API_KEY/);
 });
 
 test("data notes acknowledge that listings can still be imperfect", () => {

@@ -1,0 +1,102 @@
+import { getCloudflareContext } from "@opennextjs/cloudflare";
+import { NextResponse } from "next/server";
+
+const RECIPIENT = "hassanraza0406@gmail.com";
+const DEFAULT_SENDER = "Niklo <onboarding@resend.dev>";
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const MAX_NAME_LENGTH = 100;
+const MAX_EMAIL_LENGTH = 254;
+const MAX_MESSAGE_LENGTH = 4_000;
+
+type ContactPayload = {
+  name?: unknown;
+  email?: unknown;
+  message?: unknown;
+  company?: unknown;
+};
+
+type ContactBindings = {
+  RESEND_API_KEY?: string;
+  RESEND_FROM_EMAIL?: string;
+};
+
+function textValue(value: unknown) {
+  return typeof value === "string" ? value.trim() : "";
+}
+
+function validationError(payload: ContactPayload) {
+  const name = textValue(payload.name);
+  const email = textValue(payload.email);
+  const message = textValue(payload.message);
+
+  if (textValue(payload.company)) return "Unable to send this message.";
+  if (name.length > MAX_NAME_LENGTH) return "Please keep your name under 100 characters.";
+  if (email.length > MAX_EMAIL_LENGTH || (email && !EMAIL_PATTERN.test(email))) {
+    return "Please enter a valid email address.";
+  }
+  if (!message) return "Please add a message.";
+  if (message.length > MAX_MESSAGE_LENGTH) return "Please keep your message under 4,000 characters.";
+
+  return null;
+}
+
+function isSameOriginRequest(request: Request) {
+  const origin = request.headers.get("origin");
+  return !origin || origin === new URL(request.url).origin;
+}
+
+export async function POST(request: Request) {
+  if (!isSameOriginRequest(request)) {
+    return NextResponse.json({ error: "Invalid request origin." }, { status: 403 });
+  }
+
+  let payload: ContactPayload;
+  try {
+    payload = (await request.json()) as ContactPayload;
+  } catch {
+    return NextResponse.json({ error: "Please complete the form and try again." }, { status: 400 });
+  }
+
+  const error = validationError(payload);
+  if (error) return NextResponse.json({ error }, { status: 400 });
+
+  const name = textValue(payload.name);
+  const email = textValue(payload.email);
+  const message = textValue(payload.message);
+  const { env } = await getCloudflareContext({ async: true });
+  const bindings = env as CloudflareEnv & ContactBindings;
+
+  if (!bindings.RESEND_API_KEY) {
+    console.error("Contact form is missing its Resend API key.");
+    return NextResponse.json({ error: "The contact form is unavailable right now. Please email directly." }, { status: 503 });
+  }
+
+  const response = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${bindings.RESEND_API_KEY}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      from: bindings.RESEND_FROM_EMAIL || DEFAULT_SENDER,
+      to: [RECIPIENT],
+      reply_to: email || undefined,
+      subject: name ? `Niklo feedback from ${name}` : "Niklo feedback",
+      text: [
+        "Niklo contact form submission",
+        `Name: ${name || "Not provided"}`,
+        `Email: ${email || "Not provided"}`,
+        "",
+        "Message:",
+        message,
+      ].join("\n"),
+    }),
+  });
+
+  if (!response.ok) {
+    console.error("Resend rejected a Niklo contact message.", response.status);
+    return NextResponse.json({ error: "Your message could not be sent. Please try again shortly." }, { status: 502 });
+  }
+
+  return NextResponse.json({ ok: true });
+}

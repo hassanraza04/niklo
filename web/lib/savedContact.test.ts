@@ -31,7 +31,7 @@ test("contact page has direct email and a browser-validated feedback form", () =
   assert.ok(existsSync(contactFormPath));
   const source = readFileSync(contactPagePath, "utf8");
   const formSource = readFileSync(contactFormPath, "utf8");
-  assert.match(source, /mailto:hassanraza0406@gmail\.com/);
+  assert.match(source, /mailto:hr2616@nyu\.edu/);
   assert.match(formSource, /type="email"/);
   assert.match(formSource, /Feedback, suggestions, or questions/);
 });

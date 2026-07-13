@@ -15,8 +15,8 @@ export default function ContactPage() {
       <p className="mt-4 max-w-2xl leading-relaxed text-ink-soft">
         Found something that needs fixing, have an idea, or just want to share feedback? You can email me
         directly at{" "}
-        <a href="mailto:hassanraza0406@gmail.com" className="font-medium text-clay hover:text-clay-dark">
-          hassanraza0406@gmail.com
+        <a href="mailto:hr2616@nyu.edu" className="font-medium text-clay hover:text-clay-dark">
+          hr2616@nyu.edu
         </a>
         .
       </p>

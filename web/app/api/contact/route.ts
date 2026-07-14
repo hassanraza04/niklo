@@ -1,6 +1,12 @@
 import { getCloudflareContext } from "@opennextjs/cloudflare";
 import { NextResponse } from "next/server";
 
+import {
+  isJsonContactRequest,
+  isReasonablySizedContactRequest,
+  isSameOriginRequest,
+  parseContactJson,
+} from "@/lib/contactRequest";
 import { verifyTurnstileToken } from "@/lib/turnstile";
 
 export const dynamic = "force-dynamic";
@@ -36,7 +42,9 @@ function validationError(payload: ContactPayload) {
   const message = textValue(payload.message);
 
   if (textValue(payload.company)) return "Unable to send this message.";
-  if (name.length > MAX_NAME_LENGTH) return "Please keep your name under 100 characters.";
+  if (name.length > MAX_NAME_LENGTH || /[\r\n]/.test(name)) {
+    return "Please keep your name under 100 characters.";
+  }
   if (email.length > MAX_EMAIL_LENGTH || (email && !EMAIL_PATTERN.test(email))) {
     return "Please enter a valid email address.";
   }
@@ -46,20 +54,26 @@ function validationError(payload: ContactPayload) {
   return null;
 }
 
-function isSameOriginRequest(request: Request) {
-  const origin = request.headers.get("origin");
-  return !origin || origin === new URL(request.url).origin;
-}
-
 export async function POST(request: Request) {
   if (!isSameOriginRequest(request)) {
     return NextResponse.json({ error: "Invalid request origin." }, { status: 403 });
   }
 
+  if (!isJsonContactRequest(request)) {
+    return NextResponse.json({ error: "Invalid request format." }, { status: 415 });
+  }
+
+  if (!isReasonablySizedContactRequest(request)) {
+    return NextResponse.json({ error: "Your message is too large." }, { status: 413 });
+  }
+
   let payload: ContactPayload;
   try {
-    payload = (await request.json()) as ContactPayload;
-  } catch {
+    payload = (await parseContactJson(request)) as ContactPayload;
+  } catch (error) {
+    if (error instanceof RangeError) {
+      return NextResponse.json({ error: "Your message is too large." }, { status: 413 });
+    }
     return NextResponse.json({ error: "Please complete the form and try again." }, { status: 400 });
   }
 

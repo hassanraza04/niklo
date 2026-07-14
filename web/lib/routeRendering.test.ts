@@ -104,3 +104,30 @@ test("only contact routes remain dynamic", () => {
   assert.match(contact, /force-dynamic/);
   assert.match(contactApi, /force-dynamic/);
 });
+
+test("the application sends strict browser security headers", () => {
+  const config = readFileSync(join(process.cwd(), "next.config.ts"), "utf8");
+
+  assert.match(config, /Content-Security-Policy/);
+  assert.match(config, /frame-ancestors 'none'/);
+  assert.match(config, /X-Content-Type-Options/);
+  assert.match(config, /Permissions-Policy/);
+  assert.match(config, /poweredByHeader:\s*false/);
+  assert.doesNotMatch(config, /remotePatterns/);
+});
+
+test("production metadata defaults to the live Workers hostname", () => {
+  for (const path of ["app/layout.tsx", "app/robots.ts", "app/sitemap.ts", ".env.example"]) {
+    const source = readFileSync(join(process.cwd(), path), "utf8");
+    assert.match(source, /https:\/\/niklo\.nikloapp\.workers\.dev/);
+  }
+});
+
+test("robots keeps raw catalog data and write routes out of search indexes", () => {
+  const robots = readFileSync(join(process.cwd(), "app", "robots.ts"), "utf8");
+
+  assert.match(robots, /"\/api\/"/);
+  assert.match(robots, /"\/catalog-client\.json"/);
+  assert.match(robots, /"\/contact"/);
+  assert.match(robots, /"\/saved"/);
+});

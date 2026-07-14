@@ -1,5 +1,7 @@
 # Niklo
 
+Live site: [niklo.nikloapp.workers.dev](https://niklo.nikloapp.workers.dev)
+
 **Niklo is a carefully cleaned guide to making plans in Karachi.** It brings sport,
 screens, games, parks, culture, and other good options into one browsable directory.
 
@@ -26,7 +28,7 @@ public listing data -> local scraper -> DuckDB + dbt cleanup -> D1 seed -> stati
 - `scraper/` holds the query sets used for deliberate local collection runs.
 - `infra/d1/` contains the reproducible D1 schema and generated seed used to validate and export the catalog.
 - `data/` stores the live-listing lock, search regressions, and review outputs.
-- `docs/` contains operations, engineering notes, and clearly marked historical research.
+- `docs/operations/update-runbook.md` explains the active listing-update workflows.
 
 Niklo uses public business facts such as venue names, addresses, hours, ratings, and
 review counts. It does not rehost review text. Images served by the app are downloaded
@@ -80,6 +82,14 @@ GitHub Actions runs the same public-data and web-build checks for pushes and pul
 requests. Commits to `main` publish reviewed listing updates through the Cloudflare build,
 which serves the generated catalog from the CDN.
 
+## Runtime configuration
+
+Set `NEXT_PUBLIC_SITE_URL` as a Cloudflare build variable so static URLs use the live
+hostname. The contact form uses Worker runtime bindings: `RESEND_API_KEY` and
+`TURNSTILE_SECRET_KEY` are secrets, while `RESEND_FROM_EMAIL` and `TURNSTILE_SITE_KEY`
+are normal variables. Keep all of them out of Git. Do not put contact-form values in
+Cloudflare build variables.
+
 ## Data operations
 
 Niklo has two separate workflows by design:
@@ -91,8 +101,8 @@ Niklo has two separate workflows by design:
    evidence review before it can join the live listing lock.
 
 Read [the update runbook](docs/operations/update-runbook.md) before touching public
-data. The [launch checklist](docs/operations/launch-checklist.md) covers the final
-pre-deployment handoff. Cloudflare provisioning and deployment are intentionally manual.
+data. Safe updates and approved curation changes are committed to `main`, where the
+Cloudflare Git build publishes the updated static catalog.
 
 ## Contributing
 

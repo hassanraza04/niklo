@@ -4,6 +4,7 @@ import { join } from "node:path";
 import test from "node:test";
 
 const root = process.cwd();
+const repoRoot = join(root, "..");
 const savedListPath = join(root, "components", "SavedList.tsx");
 const contactPagePath = join(root, "app", "contact", "page.tsx");
 const contactFormPath = join(root, "components", "ContactForm.tsx");
@@ -75,7 +76,7 @@ test("contact form submits a Turnstile token and verifies it before Resend", () 
 });
 
 test("production notes document Turnstile runtime bindings", () => {
-  const source = readFileSync(join(root, "README.md"), "utf8");
+  const source = readFileSync(join(repoRoot, "README.md"), "utf8");
   assert.match(source, /TURNSTILE_SITE_KEY/);
   assert.match(source, /TURNSTILE_SECRET_KEY/);
 });

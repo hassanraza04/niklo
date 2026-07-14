@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { categories } from "@/lib/taxonomy";
 import { catalogSlugs } from "@/lib/catalog";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://niklo.pk";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://niklo.nikloapp.workers.dev";
 
 function url(path: string) {
   return `${siteUrl}${path}`;

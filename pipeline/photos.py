@@ -9,9 +9,11 @@ from __future__ import annotations
 import argparse
 import csv
 import hashlib
+import ipaddress
 import os
 import urllib.request
 from pathlib import Path
+from urllib.parse import urlsplit
 
 import duckdb
 
@@ -23,12 +25,39 @@ MANIFEST = ROOT / "data" / "photo_manifest.csv"
 # Static deployments serve cached venue photos straight from the app's public folder.
 CACHE = os.environ.get("PHOTOS_DIR", str(ROOT / "web" / "public" / "venues"))
 PHOTO_SOURCE_OVERRIDES = HERE / "transform" / "seeds" / "photo_source_overrides.csv"
-UA = "Mozilla/5.0 (Niklo image cache; +https://niklo.pk)"
+UA = "Mozilla/5.0 (Niklo image cache; +https://niklo.nikloapp.workers.dev)"
 CONTENT_TYPES = {
     "image/jpeg": ("jpg", "image/jpeg"),
     "image/png": ("png", "image/png"),
     "image/webp": ("webp", "image/webp"),
 }
+MAX_IMAGE_BYTES = 10 * 1024 * 1024
+
+
+class NoRedirect(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, *args, **kwargs):  # type: ignore[no-untyped-def]
+        return None
+
+
+PHOTO_OPENER = urllib.request.build_opener(NoRedirect())
+
+
+def validate_photo_url(url: str) -> str:
+    parsed = urlsplit(url)
+    hostname = parsed.hostname
+    if parsed.scheme != "https" or not hostname or parsed.username or parsed.password:
+        raise ValueError("Photo URL must be a public HTTPS URL.")
+
+    try:
+        address = ipaddress.ip_address(hostname)
+    except ValueError:
+        if hostname == "localhost" or hostname.endswith(".localhost"):
+            raise ValueError("Photo URL cannot target localhost.") from None
+    else:
+        if not address.is_global:
+            raise ValueError("Photo URL cannot target a private address.")
+
+    return url
 
 
 def load_manifest() -> dict[str, dict[str, str]]:
@@ -39,11 +68,19 @@ def load_manifest() -> dict[str, dict[str, str]]:
 
 
 def fetch(url: str) -> tuple[bytes, str, str]:
-    req = urllib.request.Request(url, headers={"User-Agent": UA})
-    with urllib.request.urlopen(req, timeout=20) as response:
+    req = urllib.request.Request(validate_photo_url(url), headers={"User-Agent": UA})
+    with PHOTO_OPENER.open(req, timeout=20) as response:
         content_type = response.headers.get_content_type().lower()
-        extension, managed_type = CONTENT_TYPES.get(content_type, ("jpg", "image/jpeg"))
-        return response.read(), extension, managed_type
+        if content_type not in CONTENT_TYPES:
+            raise ValueError(f"Unsupported image content type: {content_type}")
+        content_length = response.headers.get("Content-Length")
+        if content_length and int(content_length) > MAX_IMAGE_BYTES:
+            raise ValueError("Image is too large to cache.")
+        data = response.read(MAX_IMAGE_BYTES + 1)
+        if len(data) > MAX_IMAGE_BYTES:
+            raise ValueError("Image is too large to cache.")
+        extension, managed_type = CONTENT_TYPES[content_type]
+        return data, extension, managed_type
 
 
 def r2_client():

@@ -40,6 +40,7 @@ web/worker-configuration.d.ts
 
 # local tooling (not part of the project)
 .claude/
+.superpowers/
 .worktrees/
 
 # misc

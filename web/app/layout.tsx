@@ -18,7 +18,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://niklo.pk"),
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://niklo.nikloapp.workers.dev",
+  ),
   title: {
     default: "Niklo: Karachi plans",
     template: "%s · Niklo",

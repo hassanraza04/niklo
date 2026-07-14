@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import re
 import sys
 import tempfile
 from dataclasses import dataclass
@@ -29,6 +30,7 @@ ROOT = Path(__file__).resolve().parents[1]
 class ManualCurationSummary:
     removed_count: int
     membership_removed_count: int
+    added_count: int
 
 
 def csv_values(value: object) -> list[str]:
@@ -51,6 +53,17 @@ def read_membership_exclusions(path: Path) -> dict[str, set[str]]:
     return exclusions
 
 
+def read_category_overrides(path: Path | None) -> dict[str, str]:
+    if path is None or not path.exists():
+        return {}
+    with path.open(newline="", encoding="utf-8") as f:
+        return {
+            row["venue_id"].strip(): row["subcategory"].strip()
+            for row in csv.DictReader(f)
+            if row.get("venue_id", "").strip() and row.get("subcategory", "").strip()
+        }
+
+
 def taxonomy_entries(path: Path) -> dict[str, tuple[str, str, str]]:
     raw = json.loads(path.read_text(encoding="utf-8"))
     entries: dict[str, tuple[str, str]] = {}
@@ -58,6 +71,32 @@ def taxonomy_entries(path: Path) -> dict[str, tuple[str, str, str]]:
         for subcategory in category["subcategories"]:
             entries[subcategory["slug"]] = (subcategory["name"], category["slug"], category["name"])
     return entries
+
+
+def curated_rows(path: Path, existing_ids: set[str]) -> list[list]:
+    if not path.exists():
+        return []
+
+    indexes = {column: index for index, column in enumerate(COLUMNS)}
+    rows: list[list] = []
+    with path.open(newline="", encoding="utf-8") as f:
+        for record in csv.DictReader(f):
+            venue_id = record.get("venue_id", "").strip()
+            if not venue_id or venue_id in existing_ids:
+                continue
+            name = record.get("name", "").strip()
+            if not name:
+                raise ValueError(f"curated venue {venue_id} is missing a name")
+            slug = re.sub(r"(^-|-$)", "", re.sub(r"[^a-z0-9]+", "-", name.lower()))
+            values = [record.get(column, "") or None for column in COLUMNS]
+            values[indexes["slug"]] = f"{slug}-{venue_id[3:9].lower()}"
+            for column, caster in (("rating", float), ("review_count", int), ("latitude", float), ("longitude", float)):
+                value = values[indexes[column]]
+                if value is not None:
+                    values[indexes[column]] = caster(value)
+            values[indexes["is_open"]] = int(values[indexes["is_open"]] or 0)
+            rows.append(values)
+    return rows
 
 
 def unique(values: list[str]) -> list[str]:
@@ -70,9 +109,11 @@ def apply_manual_curation(
     excluded_venues_path: Path,
     membership_exclusions_path: Path,
     taxonomy_path: Path,
+    curated_venues_path: Path,
     live_listings_path: Path,
     catalog_path: Path,
     client_catalog_path: Path,
+    category_overrides_path: Path | None = None,
 ) -> ManualCurationSummary:
     with tempfile.TemporaryDirectory() as tmp:
         conn = load_seed_database(schema_path, seed_path, Path(tmp) / "niklo.db")
@@ -82,10 +123,13 @@ def apply_manual_curation(
             conn.close()
 
     indexes = {column: index for index, column in enumerate(COLUMNS)}
+    existing_ids = {str(row[indexes["venue_id"]]) for row in rows}
+    rows.extend(curated_rows(curated_venues_path, existing_ids))
     excluded_ids = read_excluded_ids(excluded_venues_path)
     membership_exclusions = read_membership_exclusions(membership_exclusions_path)
+    category_overrides = read_category_overrides(category_overrides_path)
     taxonomy = taxonomy_entries(taxonomy_path)
-    curated_rows: list[list] = []
+    public_rows: list[list] = []
     removed_count = 0
     membership_removed_count = 0
 
@@ -95,15 +139,18 @@ def apply_manual_curation(
             removed_count += 1
             continue
 
-        excluded_memberships = membership_exclusions.get(venue_id, set())
         memberships = csv_values(row[indexes["subcategories"]])
+        override = category_overrides.get(venue_id)
+        if override and override not in memberships:
+            memberships.insert(0, override)
+        excluded_memberships = membership_exclusions.get(venue_id, set())
         remaining = [membership for membership in memberships if membership not in excluded_memberships]
         membership_removed_count += len(memberships) - len(remaining)
 
         if not remaining:
             raise ValueError(f"manual curation removes every membership from {venue_id}")
 
-        primary = str(row[indexes["subcategory_slug"]])
+        primary = override or str(row[indexes["subcategory_slug"]])
         if primary not in remaining:
             primary = remaining[0]
         memberships = [primary, *[membership for membership in remaining if membership != primary]]
@@ -120,12 +167,12 @@ def apply_manual_curation(
         row[indexes["category_name"]] = primary_category_name
         row[indexes["subcategories"]] = ",".join(memberships)
         row[indexes["category_slugs"]] = ",".join(category_slugs)
-        curated_rows.append(row)
+        public_rows.append(row)
 
-    write_seed(curated_rows, str(seed_path))
+    write_seed(public_rows, str(seed_path))
     export_live_listings(schema_path, seed_path, live_listings_path)
     export_catalog(schema_path, seed_path, catalog_path, client_catalog_path)
-    return ManualCurationSummary(removed_count, membership_removed_count)
+    return ManualCurationSummary(removed_count, membership_removed_count, len(rows) - len(existing_ids))
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -141,6 +188,14 @@ def main(argv: list[str] | None = None) -> int:
         default=str(ROOT / "pipeline" / "transform" / "seeds" / "venue_category_excludes.csv"),
     )
     parser.add_argument("--taxonomy", default=str(ROOT / "web" / "lib" / "taxonomy.json"))
+    parser.add_argument(
+        "--curated-venues",
+        default=str(ROOT / "pipeline" / "transform" / "seeds" / "curated_venues.csv"),
+    )
+    parser.add_argument(
+        "--category-overrides",
+        default=str(ROOT / "pipeline" / "transform" / "seeds" / "category_overrides.csv"),
+    )
     parser.add_argument("--live-listings", default=str(ROOT / "data" / "live_listings.csv"))
     parser.add_argument("--catalog", default=str(ROOT / "web" / "data" / "catalog.json"))
     parser.add_argument("--client-catalog", default=str(ROOT / "web" / "public" / "catalog-client.json"))
@@ -152,11 +207,16 @@ def main(argv: list[str] | None = None) -> int:
         excluded_venues_path=Path(args.excluded_venues),
         membership_exclusions_path=Path(args.membership_exclusions),
         taxonomy_path=Path(args.taxonomy),
+        curated_venues_path=Path(args.curated_venues),
         live_listings_path=Path(args.live_listings),
         catalog_path=Path(args.catalog),
         client_catalog_path=Path(args.client_catalog),
+        category_overrides_path=Path(args.category_overrides),
     )
-    print(f"removed={summary.removed_count} memberships_removed={summary.membership_removed_count}")
+    print(
+        f"added={summary.added_count} removed={summary.removed_count} "
+        f"memberships_removed={summary.membership_removed_count}"
+    )
     return 0
 
 

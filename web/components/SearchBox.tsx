@@ -132,7 +132,7 @@ export function SearchBox({
       </form>
 
       {open && hits.length > 0 && (
-        <div className="absolute left-0 right-0 top-full z-40 mt-2 overflow-hidden rounded-2xl border border-line bg-card shadow-lg">
+        <div className="absolute left-0 right-0 top-full z-40 mt-2 max-h-[min(28rem,calc(100dvh-6rem))] overflow-y-auto rounded-2xl border border-line bg-card shadow-lg max-md:fixed max-md:inset-x-3 max-md:top-[calc(4.5rem+env(safe-area-inset-top))] max-md:mt-0">
           <ul>
             {hits.map((h, i) => {
               const area = canonicalArea(h) ?? h.area;
@@ -142,13 +142,15 @@ export function SearchBox({
                     href={`/v/${h.slug}`}
                     onMouseEnter={() => setActive(i)}
                     onClick={() => setOpen(false)}
-                    className={`flex w-full items-center justify-between gap-3 px-4 py-2.5 text-left transition-colors ${
+                    className={`flex w-full items-start justify-between gap-3 px-4 py-3 text-left transition-colors ${
                       active === i ? "bg-paper-2" : "hover:bg-paper-2"
                     }`}
                   >
                     <span className="min-w-0">
-                      <span className="block truncate font-medium text-ink">{h.name}</span>
-                      <span className="block truncate text-xs text-ink-soft">
+                      <span className="block overflow-hidden font-medium leading-tight text-ink [-webkit-box-orient:vertical] [-webkit-line-clamp:2] [display:-webkit-box] md:truncate md:[display:block]">
+                        {h.name}
+                      </span>
+                      <span className="mt-1 block overflow-hidden text-xs text-ink-soft [-webkit-box-orient:vertical] [-webkit-line-clamp:1] [display:-webkit-box] md:truncate md:[display:block]">
                         {h.subcategory_name}
                         {area ? ` · ${area}` : ""}
                       </span>

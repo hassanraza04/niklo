@@ -32,3 +32,11 @@ test("search suggestions use canonical DHA and PECHS labels", () => {
   assert.match(component, /const area = canonicalArea\(h\) \?\? h\.area;/);
   assert.match(component, /\{area \? ` · \$\{area\}` : ""\}/);
 });
+
+test("mobile search suggestions use the viewport and preserve readable labels", () => {
+  const component = readFileSync(join(process.cwd(), "components", "SearchBox.tsx"), "utf8");
+
+  assert.match(component, /max-md:fixed max-md:inset-x-3/);
+  assert.match(component, /-webkit-line-clamp:2/);
+  assert.match(component, /-webkit-line-clamp:1/);
+});

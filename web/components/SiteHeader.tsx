@@ -27,7 +27,7 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-[1000] border-b border-line bg-paper/85 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center gap-3 px-5 py-3">
+      <div className="mx-auto flex max-w-6xl items-center gap-2 px-3 py-3 sm:gap-3 sm:px-5">
         <Link
           href="/"
           className="shrink-0 font-display text-2xl font-semibold tracking-tight text-clay"
@@ -35,7 +35,7 @@ export function SiteHeader() {
           Niklo
         </Link>
 
-        <div className="mx-auto min-w-0 w-full max-w-xs sm:max-w-sm">
+        <div className="min-w-0 flex-1 md:mx-auto md:max-w-sm">
           <SearchBox />
         </div>
 

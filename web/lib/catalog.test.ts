@@ -82,7 +82,7 @@ test("catalog slug selectors preserve requested order and skip unknown slugs", (
 });
 
 test("catalog exports the generated static data", () => {
-  assert.equal(catalog.length, 451);
+  assert.equal(catalog.length, 463);
   assert.equal(catalogSlugs().length, catalog.length);
   assert.equal(catalogSlugs()[0], catalog[0]?.slug);
 });

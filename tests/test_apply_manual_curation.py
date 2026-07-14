@@ -54,6 +54,7 @@ class ApplyManualCurationTest(unittest.TestCase):
             seed = root / "seed.sql"
             exclusions = root / "excluded.csv"
             membership_exclusions = root / "membership-exclusions.csv"
+            curated = root / "curated.csv"
             taxonomy = root / "taxonomy.json"
             live = root / "live.csv"
             catalog = root / "catalog.json"
@@ -86,6 +87,10 @@ class ApplyManualCurationTest(unittest.TestCase):
             )
             exclusions.write_text('venue_id,name,reason\ncapri,Capri Cinema,remove\n', encoding="utf-8")
             membership_exclusions.write_text('venue_id,subcategory\npark,skating\n', encoding="utf-8")
+            curated.write_text(
+                "venue_id,name,subcategory_slug,subcategory_name,category_slug,category_name,subcategories,category_slugs,google_category,rating,review_count,latitude,longitude,area,address,city,price_level,website,phone,hours,photo_url,photos,google_url,status,is_open,source_query,last_verified,evidence_url\n",
+                encoding="utf-8",
+            )
             write_seed(
                 [
                     self.venue_row(
@@ -108,6 +113,7 @@ class ApplyManualCurationTest(unittest.TestCase):
                 excluded_venues_path=exclusions,
                 membership_exclusions_path=membership_exclusions,
                 taxonomy_path=taxonomy,
+                curated_venues_path=curated,
                 live_listings_path=live,
                 catalog_path=catalog,
                 client_catalog_path=client_catalog,

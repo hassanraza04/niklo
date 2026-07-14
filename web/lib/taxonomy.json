@@ -194,6 +194,15 @@
             "adventure park",
             "zip line"
           ]
+        },
+        {
+          "slug": "waterparks",
+          "name": "Water Parks",
+          "synonyms": [
+            "water park",
+            "waterpark",
+            "water slides"
+          ]
         }
       ]
     },

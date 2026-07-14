@@ -150,6 +150,7 @@ member_pri as (
             when 'arcades' then 16 when 'billiards' then 18 when 'futsal' then 19
             when 'museums-galleries' then 27 when 'heritage' then 29 when 'parks' then 31
             when 'beaches' then 32 when 'boating' then 33 when 'adventure-parks' then 34
+            when 'waterparks' then 35
             else 99
         end as pri
     from members

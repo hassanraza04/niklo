@@ -20,7 +20,8 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
 DUCKDB = os.environ.get("NIKLO_DUCKDB", str(HERE / "warehouse.duckdb"))
 MANIFEST = ROOT / "data" / "photo_manifest.csv"
-CACHE = os.environ.get("PHOTOS_DIR", str(HERE / "photos_cache"))
+# Static deployments serve cached venue photos straight from the app's public folder.
+CACHE = os.environ.get("PHOTOS_DIR", str(ROOT / "web" / "public" / "venues"))
 PHOTO_SOURCE_OVERRIDES = HERE / "transform" / "seeds" / "photo_source_overrides.csv"
 UA = "Mozilla/5.0 (Niklo image cache; +https://niklo.pk)"
 CONTENT_TYPES = {

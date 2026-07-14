@@ -25,9 +25,25 @@ CLEANUP_MEMBERSHIPS = {
     "ChIJN3aGHwA_sz4RJGfeyavNsOs": "padel",  # Padel at JKC
     "ChIJ7XPvCQA_sz4RAotqaTRB3GY": "padel",  # Power padel arena
     "ChIJ6er1u_Q-sz4RMFo272tdDTc": "tennis,skating,swimming",  # Karachi Sports Complex
-    "ChIJJVijrUM_sz4RioywLBqHK4o": "adventure-parks",  # Aquatic Adventureland
+    "ChIJJVijrUM_sz4RioywLBqHK4o": "waterparks",  # Aquatic Adventureland
     "ChIJ_8SHnl86sz4RXmPa0OAzKlw": "parks",  # Model Family Park Korangi 5
 }
+APPROVED_WATERPARK_IDS = {
+    "ChIJZUmDF-VIsz4RWyxdHJ3aUyE",  # Wild Venture Water Park
+    "ChIJJVijrUM_sz4RioywLBqHK4o",  # Aquatic Adventureland
+    "ChIJd0OQyja1TDkRgQIDyvP4wsg",  # The Great Fiesta
+    "ChIJHYxbRttHsz4R-41FGsnmZPM",  # Al Mehran Water Park
+    "ChIJ_an4YA02sz4RJshJzOK26Zs",  # Picnic World Water Park
+    "ChIJLRmR0lVPsz4RVscYrkU0vLA",  # Cosy Water Park
+    "ChIJiXWgBQA3sz4Rxbg-AAYMZfI",  # Water World Water Park
+    "ChIJY-1omhlGsz4Rnl-l9BzDOVw",  # Sun Rise Water Park
+    "ChIJETewpq3QTDkRfJGdL9YnkMU",  # Paradise Island Water Park Gharo
+    "ChIJO_Xoa2JPsz4RnowXIK0GTxw",  # Cheeku Water Park
+    "ChIJ47oyLQBBsz4RjRUsJbfKLOk",  # Dreamers Arena Aqua Water Park
+    "ChIJzWP8uF9Psz4Rn6YJSCHqK_c",  # Samzu Park
+    "ChIJaxk2tGo2sz4RsE5nT70iqjs",  # KITRAWP
+}
+TDF_GHAR_ID = "ChIJj_X1Z1w-sz4ReCUDgrzrY9M"
 
 
 class SeedChecksTest(unittest.TestCase):
@@ -157,6 +173,32 @@ class SeedChecksTest(unittest.TestCase):
 
         self.assertEqual(0, retired)
         self.assertEqual(("escape-rooms",), escapistan)
+
+    def test_approved_waterparks_and_tdf_ghar_are_public(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            conn = seed_checks.load_seed_database(
+                ROOT / "infra" / "d1" / "schema.sql",
+                ROOT / "infra" / "d1" / "seed.sql",
+                Path(tmp) / "niklo.db",
+            )
+            try:
+                waterpark_rows = conn.execute(
+                    "select venue_id, subcategories from venues where venue_id in ({})".format(
+                        ", ".join("?" for _ in APPROVED_WATERPARK_IDS)
+                    ),
+                    tuple(APPROVED_WATERPARK_IDS),
+                ).fetchall()
+                tdf = conn.execute(
+                    "select subcategories from venues where venue_id = ?", (TDF_GHAR_ID,)
+                ).fetchone()
+            finally:
+                conn.close()
+
+        self.assertEqual(
+            APPROVED_WATERPARK_IDS,
+            {venue_id for venue_id, subcategories in waterpark_rows if subcategories == "waterparks"},
+        )
+        self.assertEqual(("heritage",), tdf)
 
     def test_curated_venues_cannot_be_reexcluded(self):
         curated_path = ROOT / "pipeline" / "transform" / "seeds" / "curated_venues.csv"

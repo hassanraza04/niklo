@@ -53,7 +53,7 @@ export function SavedList() {
     <div className="mx-auto max-w-3xl px-5 py-10">
       <h1 className="font-display text-3xl font-semibold text-ink">Your shortlist</h1>
       <p className="mt-2 text-ink-soft">
-        The places you saved for tonight. Share the link and let your friends vote with their feet.
+        The places you saved for tonight. Share the link so your group can see the same shortlist.
       </p>
 
       {items.length > 0 && (

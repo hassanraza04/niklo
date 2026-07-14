@@ -28,6 +28,7 @@ const SUBCATEGORY: Record<string, string> = {
   beaches: "🏖️",
   boating: "⛵",
   "adventure-parks": "🪂",
+  waterparks: "🌊",
   "museums-galleries": "🏛️",
   heritage: "🕌",
 };

@@ -15,8 +15,6 @@ import urllib.request
 from pathlib import Path
 from urllib.parse import urlsplit
 
-import duckdb
-
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
@@ -98,6 +96,8 @@ def r2_client():
 
 
 def dim_sources() -> dict[str, str]:
+    import duckdb
+
     con = duckdb.connect(DUCKDB, read_only=True)
     try:
         rows = con.execute(

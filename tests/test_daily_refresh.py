@@ -41,6 +41,17 @@ class DailyRefreshPlanTest(unittest.TestCase):
         self.assertEqual(["First, Karachi", "Second, Karachi"], queries)
         self.assertEqual(["a", "b"], [row["venue_id"] for row in batch])
 
+    def test_scheduled_workflow_runs_safe_refresh_and_keeps_review_artifacts(self):
+        workflow = (
+            Path(__file__).resolve().parents[1] / ".github" / "workflows" / "daily-refresh.yml"
+        )
+        text = workflow.read_text(encoding="utf-8")
+
+        self.assertIn("schedule:", text)
+        self.assertIn("pipeline/daily_refresh.sh", text)
+        self.assertIn("actions/upload-artifact", text)
+        self.assertIn("contents: write", text)
+
 
 if __name__ == "__main__":
     unittest.main()

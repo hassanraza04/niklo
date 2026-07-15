@@ -94,9 +94,10 @@ Cloudflare build variables.
 
 Niklo has two separate workflows by design:
 
-1. **Daily refresh** checks a rotating batch of existing listings and updates safe
-   facts for exact Maps matches. It never publishes a new place automatically, and
-   identity, location, category, and status changes stay in review.
+1. **Daily refresh** runs nightly at 2:00 AM Karachi time. It checks a rotating batch
+   of existing listings and updates safe facts for exact Maps matches. It never
+   publishes a new place automatically, and identity, location, category, and status
+   changes stay in review. Each run keeps its report as a GitHub Actions artifact.
 2. **Rare discovery** produces a separate candidate queue. Every candidate needs manual
    evidence review before it can join the live listing lock.
 

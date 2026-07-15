@@ -1,0 +1,70 @@
+name: Daily listing refresh
+
+on:
+  schedule:
+    # 02:00 Asia/Karachi. GitHub Actions schedules are UTC.
+    - cron: "0 21 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-listing-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    if: github.repository == 'hassanraza04/niklo'
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    env:
+      TZ: Asia/Karachi
+      DAILY_BATCH_SIZE: "50"
+      PAUSE_MIN: "25"
+      PAUSE_MAX: "50"
+      CONC: "2"
+      DEPTH: "10"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.24.x"
+
+      - name: Install Maps scraper
+        run: go install github.com/gosom/google-maps-scraper@latest
+
+      - name: Refresh existing listings
+        run: ./pipeline/daily_refresh.sh
+
+      - name: Check generated public data
+        run: |
+          python pipeline/seed_checks.py
+          python pipeline/customer_flow_checks.py
+          python pipeline/release_checks.py
+
+      - name: Save refresh report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: daily-refresh-${{ github.run_id }}
+          path: data/verification/
+          if-no-files-found: ignore
+
+      - name: Commit safe updates
+        run: |
+          if git diff --quiet -- infra/d1/seed.sql data/live_listings.csv web/data/catalog.json web/public/catalog-client.json; then
+            exit 0
+          fi
+          git config user.name "niklo refresh"
+          git config user.email "actions@github.com"
+          git add infra/d1/seed.sql data/live_listings.csv web/data/catalog.json web/public/catalog-client.json
+          git commit -m "daily refresh"
+          git push

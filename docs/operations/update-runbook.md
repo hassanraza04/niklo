@@ -6,7 +6,7 @@ Niklo builds the public catalog from `infra/d1/seed.sql`. D1 is a reviewed data 
 
 ## Daily Safe Refresh
 
-This workflow refreshes a deterministic batch of existing listings. It uses the existing Maps place id as the safety boundary, so a returned place can only update Niklo when it is already in the live listing lock.
+This workflow runs nightly at 2:00 AM Karachi time through GitHub Actions. It refreshes a deterministic batch of existing listings. It uses the existing Maps place id as the safety boundary, so a returned place can only update Niklo when it is already in the live listing lock.
 
 ```bash
 pipeline/daily_refresh.sh
@@ -18,7 +18,7 @@ The default batch is 50 listings, which rotates through the allowlist in roughly
 DAILY_BATCH_SIZE=75 pipeline/daily_refresh.sh
 ```
 
-Review `data/verification/YYYY-MM-DD/` after each run:
+For a local run, review `data/verification/YYYY-MM-DD/`. For the scheduled run, download the `daily-refresh-<run id>` artifact from the GitHub Actions job:
 
 - `plan.md` and `batch.csv`: the existing listings selected for that day
 - `report/summary.md`: refresh coverage
@@ -32,7 +32,7 @@ Review `data/verification/YYYY-MM-DD/` after each run:
 - `report/pending_review_changes.csv`: risky changes held for manual review
 - `report/applied_summary.md`: daily update totals
 
-The daily job updates only ratings, review counts, hours, phone numbers, websites, and the source-check timestamp for exact existing matches. It rewrites `infra/d1/seed.sql`, refreshes `data/live_listings.csv`, and regenerates `web/data/catalog.json` and `web/public/catalog-client.json`. Commit those generated catalog files with the reviewed safe updates so they reach the live site through the Git build.
+The daily job updates only ratings, review counts, hours, phone numbers, websites, and the source-check timestamp for exact existing matches. It rewrites `infra/d1/seed.sql`, refreshes `data/live_listings.csv`, and regenerates `web/data/catalog.json` and `web/public/catalog-client.json`. The scheduled workflow commits those safe generated updates to `main`, so the Cloudflare Git build can publish them.
 
 It does not deploy, write to remote Cloudflare D1, add a new place, or automatically accept a name, address, coordinate, category, status, or closure change. Those changes remain in `pending_review_changes.csv` for a manual decision.
 

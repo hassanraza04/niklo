@@ -75,7 +75,7 @@
     "longitude": 67.0988015,
     "area": "Block 7 Gulshan-e-Iqbal",
     "address": "1st & Top Floor &, 786 Shender-2 Snooker Academy, Shahji Workshop, Block 7 Gulshan-e-Iqbal, Karachi, 75300, Pakistan",
-    "hours": "{\"Friday\":[\"Open 24 hours\"],\"Monday\":[\"Open 24 hours\"],\"Saturday\":[\"Open 24 hours\"],\"Sunday\":[\"Open 24 hours\"],\"Thursday\":[\"Open 24 hours\"],\"Tuesday\":[\"Open 24 hours\"],\"Wednesday\":[\"Open 24 hours\"]}",
+    "hours": "{\"Wednesday\":[\"Open 24 hours\"]}",
     "photo_url": "/venues/ChIJte6e6rU4sz4RyWkqWTzngjc.jpg",
     "is_open": 1
   },
@@ -255,7 +255,7 @@
     "longitude": 67.0755951,
     "area": "Federal B Area Naseerabad Block 14 Gulberg Town",
     "address": "Fatima Family Park, Plot ST 17B, Federal B Area Naseerabad Block 14 Gulberg Town, Karachi, Pakistan",
-    "hours": "{\"Friday\":[\"Open 24 hours\"],\"Monday\":[\"Open 24 hours\"],\"Saturday\":[\"Open 24 hours\"],\"Sunday\":[\"Open 24 hours\"],\"Thursday\":[\"Open 24 hours\"],\"Tuesday\":[\"Open 24 hours\"],\"Wednesday\":[\"Open 24 hours\"]}",
+    "hours": "{\"Wednesday\":[\"Open 24 hours\"]}",
     "photo_url": "/venues/ChIJv93QAwA_sz4Rfcv5NP4ROUc.jpg",
     "is_open": 1
   },
@@ -675,7 +675,7 @@
     "longitude": 67.075482,
     "area": "Sector Sector B Akhtar Colony",
     "address": "B, Street Number 10, Sector Sector B Akhtar Colony, Karachi, 07564, Pakistan",
-    "hours": "{\"Friday\":[\"10 AM–3 AM\"],\"Monday\":[\"10 AM–3 AM\"],\"Saturday\":[\"10 AM–3:30 AM\"],\"Sunday\":[\"10 AM–3 AM\"],\"Thursday\":[\"10 AM–3 AM\"],\"Tuesday\":[\"10 AM–3 AM\"],\"Wednesday\":[\"10 AM–3 AM\"]}",
+    "hours": "{\"Wednesday\":[\"10 AM–3 AM\"]}",
     "photo_url": "/venues/ChIJv9oHHRQ8sz4RbAJbFAR_qX8.jpg",
     "is_open": 1
   },
@@ -735,7 +735,7 @@
     "longitude": 67.0673295,
     "area": "Phase 6 Defence Housing Authority",
     "address": "R388+XW8 Badar/Hilal Futsal Court DHA Phase 6, Phase 6 Defence Housing Authority, Karachi, 75500, Pakistan",
-    "hours": "{\"Friday\":[\"Open 24 hours\"],\"Monday\":[\"Open 24 hours\"],\"Saturday\":[\"Open 24 hours\"],\"Sunday\":[\"Open 24 hours\"],\"Thursday\":[\"Open 24 hours\"],\"Tuesday\":[\"Open 24 hours\"],\"Wednesday\":[\"Open 24 hours\"]}",
+    "hours": "{\"Wednesday\":[\"Open 24 hours\"]}",
     "photo_url": "/venues/ChIJue4rzV08sz4RjfHRAsmM7hI.jpg",
     "is_open": 1
   },
@@ -775,7 +775,7 @@
     "longitude": 67.02523699999999,
     "area": "Block 3 Clifton",
     "address": "near the Clifton Beach, Block 3 Clifton, Karachi, 75600, Pakistan",
-    "hours": "{\"Friday\":[\"9 AM–10 PM\"],\"Monday\":[\"9 AM–10 PM\"],\"Saturday\":[\"9 AM–10 PM\"],\"Sunday\":[\"Open 24 hours\"],\"Thursday\":[\"9 AM–10 PM\"],\"Tuesday\":[\"9 AM–10 PM\"],\"Wednesday\":[\"9 AM–10 PM\"]}",
+    "hours": "{\"Wednesday\":[\"9 AM–10 PM\"]}",
     "photo_url": "/venues/ChIJv73nAgA9sz4RN5q3u1gTKbg.jpg",
     "is_open": 1
   },
@@ -2315,7 +2315,7 @@
     "longitude": 67.0505645,
     "area": "DHA Phase 5 Stadium Commercial Area Commercial Area Khadda Market",
     "address": "Plot No 20-C, Fine Arts Pakistan, Shop#4 Stadium Lane 1, DHA Phase 5 Stadium Commercial Area Commercial Area Khadda Market, Karachi, 74800, Pakistan",
-    "hours": "{\"Friday\":[\"11 AM–9 PM\"],\"Monday\":[\"11 AM–9 PM\"],\"Saturday\":[\"11 AM–9 PM\"],\"Sunday\":[\"Closed\"],\"Thursday\":[\"11 AM–9 PM\"],\"Tuesday\":[\"11 AM–9 PM\"],\"Wednesday\":[\"11 AM–9 PM\"]}",
+    "hours": "{\"Wednesday\":[\"11 AM–9 PM\"]}",
     "photo_url": "/venues/ChIJubA8uZs9sz4Roe0XMNor3cY.jpg",
     "is_open": 1
   },
@@ -3115,7 +3115,7 @@
     "longitude": 67.0582838,
     "area": "Phase 2 Defence Housing Authority",
     "address": "Service Rd, Phase 2 Defence Housing Authority, Karachi, 75500, Pakistan",
-    "hours": "{\"Friday\":[\"Open 24 hours\"],\"Monday\":[\"Open 24 hours\"],\"Saturday\":[\"Open 24 hours\"],\"Sunday\":[\"Open 24 hours\"],\"Thursday\":[\"Open 24 hours\"],\"Tuesday\":[\"Open 24 hours\"],\"Wednesday\":[\"Open 24 hours\"]}",
+    "hours": "{\"Wednesday\":[\"Open 24 hours\"]}",
     "photo_url": "/venues/ChIJud7UhzA8sz4RBq5PGAnT_LM.jpg",
     "is_open": 1
   },
@@ -7075,7 +7075,7 @@
     "longitude": 67.0133232,
     "area": "Narayan Pura Ranchore Lane",
     "address": "V287+484 Sabri Ground, Narayan Pura Ranchore Lane, Karachi, Pakistan",
-    "hours": "{\"Friday\":[\"6 AM–12 AM\"],\"Monday\":[\"6 AM–12 AM\"],\"Saturday\":[\"6 AM–12 AM\"],\"Sunday\":[\"6 AM–12 AM\"],\"Thursday\":[\"6 AM–12 AM\"],\"Tuesday\":[\"6 AM–12 AM\"],\"Wednesday\":[\"6 AM–12 AM\"]}",
+    "hours": "{\"Wednesday\":[\"6 AM–12 AM\"]}",
     "photo_url": "/venues/ChIJu9ZUHxc-sz4RMs_fkIseDlw.jpg",
     "is_open": 1
   },
@@ -8795,7 +8795,7 @@
     "longitude": 67.0780407,
     "area": "Cp & Berar Chs",
     "address": "Villa 21A 42 Amir Khusro Road, Block 7 8 BYJS, Cp & Berar Chs, Karachi, 00000, Pakistan",
-    "hours": "{\"Friday\":[\"12 PM–3 AM\"],\"Monday\":[\"12 PM–3 AM\"],\"Saturday\":[\"12 PM–3 AM\"],\"Sunday\":[\"12 PM–3 AM\"],\"Thursday\":[\"12 PM–3 AM\"],\"Tuesday\":[\"12 PM–3 AM\"],\"Wednesday\":[\"12 PM–3 AM\"]}",
+    "hours": "{\"Wednesday\":[\"12 PM–3 AM\"]}",
     "photo_url": "/venues/ChIJuWh3-jM_sz4RmB3WI0foffw.jpg",
     "is_open": 1
   },
@@ -9035,7 +9035,7 @@
     "longitude": 67.0253484,
     "area": "Block 5 Clifton",
     "address": "R28G+W49 Viva Padel Club, Shaheed Hosh Muhammad Sheedi Park, Block 5 Clifton, Karachi, 75600, Pakistan",
-    "hours": "{}",
+    "hours": "{\"Wednesday\":[\"7 AM–3 AM\"]}",
     "photo_url": "/venues/ChIJu8UERwA9sz4RTfK-EZo2dNo.jpg",
     "is_open": 1
   },

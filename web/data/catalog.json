@@ -3641,7 +3641,7 @@
     "category_slugs": "outdoors-adventure",
     "google_category": "Amusement park",
     "rating": 4.7,
-    "review_count": 188,
+    "review_count": 190,
     "latitude": 24.925229299999998,
     "longitude": 67.1091331,
     "area": "Gulshan-e-Iqbal",
@@ -3650,14 +3650,14 @@
     "price_level": null,
     "website": "http://www.flysafari.pk/",
     "phone": "+92 311 2856001",
-    "hours": "{\"Friday\":[\"9 AM–9 PM\"],\"Monday\":[\"9 AM–9 PM\"],\"Saturday\":[\"9 AM–9 PM\"],\"Sunday\":[\"9 AM–9 PM\"],\"Thursday\":[\"9 AM–9 PM\"],\"Tuesday\":[\"9 AM–9 PM\"],\"Wednesday\":[\"9 AM–9 PM\"]}",
+    "hours": "{\"Friday\":[\"9 AM to 9 PM\"],\"Monday\":[\"9 AM to 9 PM\"],\"Saturday\":[\"9 AM to 9 PM\"],\"Sunday\":[\"9 AM to 9 PM\"],\"Thursday\":[\"9 AM to 9 PM\"],\"Tuesday\":[\"9 AM to 9 PM\"],\"Wednesday\":[\"9 AM to 9 PM\"]}",
     "photo_url": "/venues/ChIJwzEzFgA5sz4RfW94uL683qk.jpg",
     "photos": "[]",
     "google_url": "https://www.google.com/maps/place/Fly+Safari+Karachi/data=!4m7!3m6!1s0x3eb33900163331c3:0xa9debcbeb8786f7d!8m2!3d24.9252293!4d67.1091331!16s%2Fg%2F11w9fb0w8d!19sChIJwzEzFgA5sz4RfW94uL683qk?authuser=0&hl=en&rclk=1",
     "status": null,
     "is_open": 1,
     "source_query": "climbing_gym_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-07-16T01:13:58+05:00"
   },
   {
     "venue_id": "ChIJpYhYon0_sz4RB5J-yrwwNnE",

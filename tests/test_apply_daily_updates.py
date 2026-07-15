@@ -52,6 +52,69 @@ class ApplyDailyUpdatesTest(unittest.TestCase):
             "Sunday": ["Closed"],
         }
 
+    def test_hours_equivalence_ignores_display_formatting(self):
+        current = {
+            "Monday": ["9\u202fAM–9\u202fPM"],
+            "Tuesday": ["9\u202fAM–9\u202fPM"],
+        }
+        refreshed = {
+            "Tuesday": ["9 AM to 9 PM"],
+            "Monday": ["9 AM to 9 PM"],
+        }
+
+        self.assertTrue(apply_daily_updates.hours_equivalent(current, refreshed))
+        self.assertFalse(
+            apply_daily_updates.hours_equivalent(
+                current,
+                {"Monday": ["10 AM to 9 PM"], "Tuesday": ["9 AM to 9 PM"]},
+            )
+        )
+
+    def test_daily_updates_do_not_record_equivalent_hours_as_a_change(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            schema = root / "schema.sql"
+            seed = root / "seed.sql"
+            refreshed = root / "refreshed.ndjson"
+            report = root / "report"
+            live = root / "live.csv"
+            schema.write_text(
+                (Path(__file__).resolve().parents[1] / "infra" / "d1" / "schema.sql").read_text(),
+                encoding="utf-8",
+            )
+            row = self.venue_row("known-1", "Known One")
+            row[COLUMNS.index("hours")] = json.dumps(
+                {day: ["9\u202fAM–9\u202fPM"] for day in self.full_week_hours()},
+                ensure_ascii=False,
+            )
+            write_seed([row], str(seed))
+            refreshed.write_text(
+                json.dumps(
+                    {
+                        "place_id": "known-1",
+                        "review_rating": 4.5,
+                        "review_count": 10,
+                        "open_hours": {day: ["9 AM to 9 PM"] for day in self.full_week_hours()},
+                    }
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            apply_daily_updates.apply_daily_updates(
+                schema_path=schema,
+                seed_path=seed,
+                refreshed_path=refreshed,
+                output_dir=report,
+                live_listings_path=live,
+                checked_at="2026-07-16T01:00:00+05:00",
+            )
+
+            with (report / "applied_safe_updates.csv").open(newline="", encoding="utf-8") as f:
+                fields = {item["field"] for item in csv.DictReader(f)}
+
+        self.assertNotIn("hours", fields)
+
     def test_daily_updates_apply_safe_fields_and_hold_risky_changes(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

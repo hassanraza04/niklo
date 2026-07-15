@@ -9,6 +9,8 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import re
+import unicodedata
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
@@ -121,6 +123,35 @@ def complete_week_hours(value: object) -> str | None:
     return json.dumps(parsed, ensure_ascii=False, separators=(",", ":"), sort_keys=True)
 
 
+def normalized_hours(value: object) -> dict[str, list[str]] | None:
+    serialized = optional_hours(value)
+    if serialized is None:
+        return None
+    parsed = json.loads(serialized)
+    if not isinstance(parsed, dict):
+        return None
+
+    normalized: dict[str, list[str]] = {}
+    for day, slots in parsed.items():
+        if not isinstance(day, str) or not isinstance(slots, list):
+            return None
+        normalized_slots: list[str] = []
+        for slot in slots:
+            if not isinstance(slot, str):
+                return None
+            label = unicodedata.normalize("NFKC", slot)
+            label = re.sub(r"\s+", " ", label).strip().casefold()
+            normalized_slots.append(re.sub(r"\s*(?:to|[-–—])\s*", "-", label))
+        normalized[day] = normalized_slots
+    return normalized
+
+
+def hours_equivalent(current: object, refreshed: object) -> bool:
+    current_hours = normalized_hours(current)
+    refreshed_hours = normalized_hours(refreshed)
+    return current_hours is not None and current_hours == refreshed_hours
+
+
 def source_checked_at(row: dict, fallback: str) -> str:
     candidate = text(row.get("_loaded_at"))
     if not candidate:
@@ -217,7 +248,7 @@ def apply_daily_updates(
         current_hours = optional_hours(current[indexes["hours"]])
         if refreshed_hours is not None and safe_values:
             safe_values["hours"] = refreshed_hours
-        elif reported_hours is not None and current_hours != reported_hours:
+        elif reported_hours is not None and not hours_equivalent(current_hours, reported_hours):
             record_change(
                 pending_review,
                 venue_id,
@@ -230,7 +261,8 @@ def apply_daily_updates(
             if new_value is None:
                 continue
             index = indexes[field]
-            if current[index] != new_value:
+            is_unchanged_hours = field == "hours" and hours_equivalent(current[index], new_value)
+            if current[index] != new_value and not is_unchanged_hours:
                 record_change(applied, venue_id, field, current[index], new_value)
                 current[index] = new_value
 

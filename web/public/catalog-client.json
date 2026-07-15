@@ -8360,6 +8360,26 @@
     "is_open": 1
   },
   {
+    "venue_id": "manual-teen-talwar",
+    "name": "Teen Talwar Monument",
+    "slug": "teen-talwar-monument-ual-te",
+    "subcategory_slug": "heritage",
+    "subcategory_name": "Heritage",
+    "category_slug": "culture",
+    "category_name": "Culture",
+    "subcategories": "heritage",
+    "category_slugs": "culture",
+    "rating": 4.5,
+    "review_count": 1500,
+    "latitude": 24.8338694,
+    "longitude": 67.03365,
+    "area": "Clifton",
+    "address": "Teen Talwar, Khayaban-e-Iqbal, Clifton, Karachi, Pakistan",
+    "hours": "{}",
+    "photo_url": null,
+    "is_open": 1
+  },
+  {
     "venue_id": "ChIJabOZXsw-sz4RSqEP2o1KKBM",
     "name": "Tennis Court",
     "slug": "tennis-court-jabozx",

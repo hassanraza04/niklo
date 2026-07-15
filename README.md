@@ -51,7 +51,7 @@ npm ci
 npm run dev
 ```
 
-Open `http://localhost:3000`.
+Open the local URL printed by Next. It normally uses `http://localhost:3000`, but it will choose another available port when `3000` is already in use.
 
 To run the pipeline checks from a fresh clone, create its managed environment once:
 

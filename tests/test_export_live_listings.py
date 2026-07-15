@@ -23,8 +23,8 @@ class ExportLiveListingsTest(unittest.TestCase):
                 rows = list(csv.DictReader(f))
             raw = out.read_bytes()
 
-        self.assertEqual(463, count)
-        self.assertEqual(463, len(rows))
+        self.assertEqual(464, count)
+        self.assertEqual(464, len(rows))
         self.assertNotIn(b"\r\n", raw)
         self.assertEqual(
             [

@@ -73,7 +73,7 @@ def taxonomy_entries(path: Path) -> dict[str, tuple[str, str, str]]:
     return entries
 
 
-def curated_rows(path: Path, existing_ids: set[str]) -> list[list]:
+def curated_rows(path: Path) -> list[list]:
     if not path.exists():
         return []
 
@@ -82,7 +82,7 @@ def curated_rows(path: Path, existing_ids: set[str]) -> list[list]:
     with path.open(newline="", encoding="utf-8") as f:
         for record in csv.DictReader(f):
             venue_id = record.get("venue_id", "").strip()
-            if not venue_id or venue_id in existing_ids:
+            if not venue_id:
                 continue
             name = record.get("name", "").strip()
             if not name:
@@ -123,8 +123,17 @@ def apply_manual_curation(
             conn.close()
 
     indexes = {column: index for index, column in enumerate(COLUMNS)}
+    curated = curated_rows(curated_venues_path)
+    curated_ids = {str(row[indexes["venue_id"]]) for row in curated}
+    prior_manual_ids = {
+        str(row[indexes["venue_id"]])
+        for row in rows
+        if str(row[indexes["venue_id"]]) in curated_ids
+        and row[indexes["source_query"]] == "manual-curation"
+    }
+    rows = [row for row in rows if str(row[indexes["venue_id"]]) not in prior_manual_ids]
     existing_ids = {str(row[indexes["venue_id"]]) for row in rows}
-    rows.extend(curated_rows(curated_venues_path, existing_ids))
+    rows.extend(row for row in curated if str(row[indexes["venue_id"]]) not in existing_ids)
     excluded_ids = read_excluded_ids(excluded_venues_path)
     membership_exclusions = read_membership_exclusions(membership_exclusions_path)
     category_overrides = read_category_overrides(category_overrides_path)

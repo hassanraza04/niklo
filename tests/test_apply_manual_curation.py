@@ -80,6 +80,11 @@ class ApplyManualCurationTest(unittest.TestCase):
                                 "name": "Entertainment",
                                 "subcategories": [{"slug": "cinemas", "name": "Cinemas"}],
                             },
+                            {
+                                "slug": "culture",
+                                "name": "Culture",
+                                "subcategories": [{"slug": "heritage", "name": "Heritage"}],
+                            },
                         ]
                     }
                 ),
@@ -87,10 +92,19 @@ class ApplyManualCurationTest(unittest.TestCase):
             )
             exclusions.write_text('venue_id,name,reason\ncapri,Capri Cinema,remove\n', encoding="utf-8")
             membership_exclusions.write_text('venue_id,subcategory\npark,skating\n', encoding="utf-8")
-            curated.write_text(
-                "venue_id,name,subcategory_slug,subcategory_name,category_slug,category_name,subcategories,category_slugs,google_category,rating,review_count,latitude,longitude,area,address,city,price_level,website,phone,hours,photo_url,photos,google_url,status,is_open,source_query,last_verified,evidence_url\n",
-                encoding="utf-8",
+            curated_record = dict(
+                zip(
+                    COLUMNS,
+                    self.venue_row("curated", "Teen Talwar Monument", "heritage", "culture", "heritage", "culture"),
+                )
             )
+            curated_record["source_query"] = "manual-curation"
+            with curated.open("w", newline="", encoding="utf-8") as f:
+                writer = csv.DictWriter(f, fieldnames=COLUMNS)
+                writer.writeheader()
+                writer.writerow(curated_record)
+            prior_curated = self.venue_row("curated", "Old Teen Talwar", "parks", "outdoors-adventure", "parks", "outdoors-adventure")
+            prior_curated[COLUMNS.index("source_query")] = "manual-curation"
             write_seed(
                 [
                     self.venue_row(
@@ -103,6 +117,7 @@ class ApplyManualCurationTest(unittest.TestCase):
                     ),
                     self.venue_row("rink", "Shaheen Park Skating Rink", "skating", "sports-active", "skating", "sports-active"),
                     self.venue_row("capri", "Capri Cinema", "cinemas", "entertainment", "cinemas", "entertainment"),
+                    prior_curated,
                 ],
                 str(seed),
             )
@@ -131,15 +146,16 @@ class ApplyManualCurationTest(unittest.TestCase):
             self.assertEqual(1, summary.membership_removed_count)
             self.assertEqual(
                 [
+                    ("curated", "heritage", "Heritage", "culture", "Culture", "heritage", "culture"),
                     ("park", "parks", "Parks", "outdoors-adventure", "Outdoors & Adventure", "parks", "outdoors-adventure"),
                     ("rink", "skating", "Skating", "sports-active", "Sports & Active", "skating", "sports-active"),
                 ],
                 rows,
             )
             with live.open(newline="", encoding="utf-8") as f:
-                self.assertEqual(["park", "rink"], [row["venue_id"] for row in csv.DictReader(f)])
-            self.assertEqual(["park", "rink"], [row["venue_id"] for row in json.loads(catalog.read_text())])
-            self.assertEqual(["park", "rink"], [row["venue_id"] for row in json.loads(client_catalog.read_text())])
+                self.assertEqual(["park", "rink", "curated"], [row["venue_id"] for row in csv.DictReader(f)])
+            self.assertEqual(["park", "rink", "curated"], [row["venue_id"] for row in json.loads(catalog.read_text())])
+            self.assertEqual(["park", "rink", "curated"], [row["venue_id"] for row in json.loads(client_catalog.read_text())])
 
 
 if __name__ == "__main__":

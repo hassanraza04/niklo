@@ -14,6 +14,8 @@ pipeline/daily_refresh.sh
 
 The default batch is 20 listings, which rotates through the allowlist in roughly 24 days while staying within the GitHub runner time limit. Override the batch size only when you are ready for a longer scrape.
 
+An empty scrape fails the job and still keeps its artifact. A batch can never be marked verified when the scraper did not return any Maps rows.
+
 ```bash
 DAILY_BATCH_SIZE=30 pipeline/daily_refresh.sh
 ```

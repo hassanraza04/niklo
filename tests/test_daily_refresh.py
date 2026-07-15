@@ -52,9 +52,22 @@ class DailyRefreshPlanTest(unittest.TestCase):
         self.assertIn("actions/upload-artifact", text)
         self.assertIn("contents: write", text)
         self.assertIn('DAILY_BATCH_SIZE: "20"', text)
-        self.assertIn(
-            "google-maps-scraper@0ef302ecc72a8872d5dac68cbbeab78800f80fdd", text
-        )
+        self.assertIn("./scraper/install_maps_scraper.sh", text)
+
+    def test_daily_refresh_rejects_an_empty_scrape(self):
+        script = Path(__file__).resolve().parents[1] / "pipeline" / "daily_refresh.sh"
+        text = script.read_text(encoding="utf-8")
+
+        self.assertIn('MIN_RAW_ROWS="${MIN_RAW_ROWS:-1}"', text)
+        self.assertIn("scrape returned $RAW_ROWS raw rows", text)
+
+    def test_maps_scraper_build_is_pinned_and_uses_the_maintained_driver(self):
+        script = Path(__file__).resolve().parents[1] / "scraper" / "install_maps_scraper.sh"
+        text = script.read_text(encoding="utf-8")
+
+        self.assertIn("0ef302ecc72a8872d5dac68cbbeab78800f80fdd", text)
+        self.assertIn("af95abbeadcea50227be15bbe3cb2864c378b3d0", text)
+        self.assertIn("github.com/mxschmitt/playwright-go", text)
         self.assertIn("PLAYWRIGHT_INSTALL_ONLY=1", text)
 
 

@@ -7,6 +7,7 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 RUN_DATE="${1:-$(date +%F)}"
 OUTDIR="${DAILY_OUTPUT_DIR:-$ROOT/data/verification/$RUN_DATE}"
 BATCH_SIZE="${DAILY_BATCH_SIZE:-50}"
+MIN_RAW_ROWS="${MIN_RAW_ROWS:-1}"
 LABEL="daily-${RUN_DATE//-/}"
 
 mkdir -p "$OUTDIR"
@@ -20,6 +21,12 @@ echo ">> scrape existing batch only"
   cd "$ROOT/scraper"
   OUT_ROOT="$OUTDIR/scrape" ./sweep.sh "$OUTDIR/queries.txt" "$LABEL"
 )
+
+RAW_ROWS="$(find "$OUTDIR/scrape/$LABEL" -type f -name '*.json' -exec cat {} + | wc -l | tr -d ' ')"
+if [ "$RAW_ROWS" -lt "$MIN_RAW_ROWS" ]; then
+  echo "!! scrape returned $RAW_ROWS raw rows; expected at least $MIN_RAW_ROWS" >&2
+  exit 1
+fi
 
 echo ">> compare with the live allowlist"
 python3 "$ROOT/pipeline/verify_existing.py" \

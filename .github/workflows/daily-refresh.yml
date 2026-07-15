@@ -40,13 +40,8 @@ jobs:
           go-version: "1.26.5"
           cache: false
 
-      - name: Install Maps scraper
-        # This commit uses Playwright's supported package distribution. Older releases
-        # download their driver from retired Azure Edge URLs.
-        run: go install github.com/gosom/google-maps-scraper@0ef302ecc72a8872d5dac68cbbeab78800f80fdd
-
-      - name: Install Maps browser driver
-        run: PLAYWRIGHT_INSTALL_ONLY=1 "$HOME/go/bin/google-maps-scraper"
+      - name: Build Maps scraper
+        run: ./scraper/install_maps_scraper.sh
 
       - name: Refresh existing listings
         run: ./pipeline/daily_refresh.sh

@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
-# Build the pinned Maps scraper with its browser dependency updated to Playwright 1.61.
+# Build the current upstream Maps scraper with its browser dependency updated to Playwright 1.61.
 set -euo pipefail
 
-GOSOM_REF="0ef302ecc72a8872d5dac68cbbeab78800f80fdd"
-SCRAPEMATE_REF="af95abbeadcea50227be15bbe3cb2864c378b3d0"
 BIN_DIR="${GOBIN:-$HOME/go/bin}"
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 WORKDIR="$(mktemp -d)"
@@ -15,12 +13,13 @@ cleanup() {
 }
 trap cleanup EXIT
 
-git clone --quiet https://github.com/gosom/google-maps-scraper.git "$GOSOM_DIR"
-git -C "$GOSOM_DIR" checkout --quiet "$GOSOM_REF"
+# Maps markup changes frequently. Build the latest upstream main branch on
+# every refresh, then fail closed if either Niklo compatibility patch no
+# longer applies or its focused Go tests fail.
+git clone --quiet --depth 1 --branch main https://github.com/gosom/google-maps-scraper.git "$GOSOM_DIR"
 git -C "$GOSOM_DIR" apply --check "$SCRIPT_DIR/patches/gosom-live-fields.patch"
 git -C "$GOSOM_DIR" apply "$SCRIPT_DIR/patches/gosom-live-fields.patch"
-git clone --quiet https://github.com/gosom/scrapemate.git "$SCRAPEMATE_DIR"
-git -C "$SCRAPEMATE_DIR" checkout --quiet "$SCRAPEMATE_REF"
+git clone --quiet --depth 1 --branch main https://github.com/gosom/scrapemate.git "$SCRAPEMATE_DIR"
 
 # The newer response position carries only today's hours. Prefer the older
 # weekly timetable and retain the newer value only when the weekly structure

@@ -81,12 +81,14 @@ class DailyRefreshPlanTest(unittest.TestCase):
         self.assertIn('MIN_RAW_ROWS="${MIN_RAW_ROWS:-1}"', text)
         self.assertIn("scrape returned $RAW_ROWS raw rows", text)
 
-    def test_maps_scraper_build_is_pinned_and_uses_the_maintained_driver(self):
+    def test_maps_scraper_build_uses_latest_main_and_the_maintained_driver(self):
         script = Path(__file__).resolve().parents[1] / "scraper" / "install_maps_scraper.sh"
         text = script.read_text(encoding="utf-8")
 
-        self.assertIn("0ef302ecc72a8872d5dac68cbbeab78800f80fdd", text)
-        self.assertIn("af95abbeadcea50227be15bbe3cb2864c378b3d0", text)
+        self.assertIn("--branch main", text)
+        self.assertIn("--depth 1", text)
+        self.assertNotIn("GOSOM_REF=", text)
+        self.assertNotIn("SCRAPEMATE_REF=", text)
         self.assertIn("github.com/mxschmitt/playwright-go", text)
         self.assertIn("PLAYWRIGHT_INSTALL_ONLY=1", text)
         self.assertIn("Prefer the weekly timetable", text)

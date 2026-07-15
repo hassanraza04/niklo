@@ -170,18 +170,18 @@ def apply_daily_updates(
         refreshed_count += 1
         refreshed_rating = optional_rating(fresh.get("review_rating"))
         refreshed_review_count = optional_review_count(fresh.get("review_count"))
-        safe_values = {
-            "phone": text(fresh.get("phone")) or None,
-            "website": optional_url(fresh.get("web_site")),
-            "hours": optional_hours(fresh.get("open_hours")),
-            # The existing schema field is named last_verified, but it records
-            # the most recent successful public-source check.
-            "last_verified": source_checked_at(fresh, checked_at),
-        }
         if refreshed_rating is not None and refreshed_review_count is not None:
-            safe_values["rating"] = refreshed_rating
-            safe_values["review_count"] = refreshed_review_count
+            safe_values = {
+                "rating": refreshed_rating,
+                "review_count": refreshed_review_count,
+                "phone": text(fresh.get("phone")) or None,
+                "website": optional_url(fresh.get("web_site")),
+                # A listing is verified only when Maps returned a usable
+                # popularity pair for the exact place.
+                "last_verified": source_checked_at(fresh, checked_at),
+            }
         elif fresh.get("review_rating") is not None or fresh.get("review_count") is not None:
+            safe_values = {}
             record_change(
                 pending_review,
                 venue_id,
@@ -189,6 +189,21 @@ def apply_daily_updates(
                 f"rating={current[indexes['rating']]}; review_count={current[indexes['review_count']]}",
                 f"rating={text(fresh.get('review_rating'))}; review_count={text(fresh.get('review_count'))}",
             )
+        else:
+            safe_values = {}
+
+        # Maps can expose only today's hours in a response. Opening hours are
+        # therefore review-only until they are explicitly curated.
+        refreshed_hours = optional_hours(fresh.get("open_hours"))
+        if refreshed_hours is not None and current[indexes["hours"]] != refreshed_hours:
+            record_change(
+                pending_review,
+                venue_id,
+                "hours",
+                current[indexes["hours"]],
+                refreshed_hours,
+            )
+
         for field, new_value in safe_values.items():
             if new_value is None:
                 continue

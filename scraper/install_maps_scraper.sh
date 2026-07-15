@@ -19,6 +19,15 @@ git -C "$GOSOM_DIR" checkout --quiet "$GOSOM_REF"
 git clone --quiet https://github.com/gosom/scrapemate.git "$SCRAPEMATE_DIR"
 git -C "$SCRAPEMATE_DIR" checkout --quiet "$SCRAPEMATE_REF"
 
+# The newer response position carries only today's hours. Prefer the older
+# weekly timetable and retain the newer value only when the weekly structure
+# is unavailable.
+perl -0pi -e 's#// Try new structure first \(as of Nov 2025\) - darray\[203\]\[0\]\n\titems := getNthElementAndCast\[\[\]any\]\(darray, 203, 0\)\n\tif len\(items\) == 0 \{\n\t\t// Fall back to old structure - darray\[34\]\[1\]\n\t\titems = getNthElementAndCast\[\[\]any\]\(darray, 34, 1\)\n\t\}#// Prefer the weekly timetable at darray[34][1].\n\titems := getNthElementAndCast[[]any](darray, 34, 1)\n\tif len(items) == 0 {\n\t\t// darray[203][0] is a current-day fallback.\n\t\titems = getNthElementAndCast[[]any](darray, 203, 0)\n\t}#s' "$GOSOM_DIR/gmaps/entry.go"
+if ! grep -Fq "Prefer the weekly timetable at darray[34][1]." "$GOSOM_DIR/gmaps/entry.go"; then
+  echo "could not apply the Maps weekly-hours patch" >&2
+  exit 1
+fi
+
 # Scrapemate still imports a retired Playwright driver package. Its public API
 # is compatible with the maintained module used by the scraper's installer.
 find "$SCRAPEMATE_DIR" -name '*.go' -print0 | xargs -0 perl -pi -e \

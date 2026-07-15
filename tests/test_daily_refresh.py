@@ -89,6 +89,8 @@ class DailyRefreshPlanTest(unittest.TestCase):
         self.assertIn("af95abbeadcea50227be15bbe3cb2864c378b3d0", text)
         self.assertIn("github.com/mxschmitt/playwright-go", text)
         self.assertIn("PLAYWRIGHT_INSTALL_ONLY=1", text)
+        self.assertIn("Prefer the weekly timetable", text)
+        self.assertIn("could not apply the Maps weekly-hours patch", text)
 
 
 if __name__ == "__main__":

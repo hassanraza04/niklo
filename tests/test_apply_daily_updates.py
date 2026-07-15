@@ -104,8 +104,8 @@ class ApplyDailyUpdatesTest(unittest.TestCase):
 
             self.assertEqual(1, summary.refreshed_count)
             self.assertEqual(1, summary.ignored_non_live_count)
-            self.assertEqual(6, summary.applied_field_count)
-            self.assertEqual(5, summary.review_field_count)
+            self.assertEqual(5, summary.applied_field_count)
+            self.assertEqual(6, summary.review_field_count)
             self.assertEqual(1, count)
             self.assertEqual(
                 (
@@ -114,7 +114,7 @@ class ApplyDailyUpdatesTest(unittest.TestCase):
                     125,
                     "+92 300 1111111",
                     "https://new.example",
-                    '{"Monday":["10 AM-6 PM"]}',
+                    '{"Monday":["9 AM-5 PM"]}',
                     "Old address",
                     24.8,
                     67.0,
@@ -128,13 +128,13 @@ class ApplyDailyUpdatesTest(unittest.TestCase):
             with (report / "applied_safe_updates.csv").open(newline="", encoding="utf-8") as f:
                 applied = list(csv.DictReader(f))
             self.assertEqual(
-                {"rating", "review_count", "phone", "website", "hours", "last_verified"},
+                {"rating", "review_count", "phone", "website", "last_verified"},
                 {row["field"] for row in applied},
             )
             with (report / "pending_review_changes.csv").open(newline="", encoding="utf-8") as f:
                 review = list(csv.DictReader(f))
             self.assertEqual(
-                {"name", "address", "latitude", "longitude", "status"},
+                {"name", "address", "latitude", "longitude", "status", "hours"},
                 {row["field"] for row in review},
             )
             with live.open(newline="", encoding="utf-8") as f:
@@ -142,7 +142,7 @@ class ApplyDailyUpdatesTest(unittest.TestCase):
             self.assertEqual("4.8", live_rows[0]["rating"])
             self.assertEqual("2026-07-13T10:00:00+05:00", live_rows[0]["last_verified"])
 
-    def test_daily_updates_retain_popularity_when_maps_has_too_few_reviews(self):
+    def test_daily_updates_hold_partial_results_without_marking_them_verified(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             schema = root / "schema.sql"
@@ -161,6 +161,7 @@ class ApplyDailyUpdatesTest(unittest.TestCase):
                         "place_id": "known-1",
                         "review_rating": 0,
                         "review_count": 0,
+                        "open_hours": {"Wednesday": ["Open 24 hours"]},
                         "_loaded_at": "2026-07-15T12:00:00+05:00",
                     }
                 )
@@ -184,8 +185,11 @@ class ApplyDailyUpdatesTest(unittest.TestCase):
                 ).fetchone()
             finally:
                 conn.close()
+            with (report / "pending_review_changes.csv").open(newline="", encoding="utf-8") as f:
+                pending = {item["field"] for item in csv.DictReader(f)}
 
-        self.assertEqual((4.5, 10, "2026-07-15T12:00:00+05:00"), row)
+        self.assertEqual((4.5, 10, "2026-06-30T00:00:00+05:00"), row)
+        self.assertEqual({"hours", "popularity"}, pending)
 
 
 if __name__ == "__main__":

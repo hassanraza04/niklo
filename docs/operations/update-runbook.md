@@ -35,7 +35,7 @@ For a local run, review `data/verification/YYYY-MM-DD/`. For the scheduled run, 
 - `report/pending_review_changes.csv`: risky changes held for manual review
 - `report/applied_summary.md`: daily update totals
 
-The daily job updates only ratings, review counts, hours, phone numbers, websites, and the source-check timestamp for exact existing matches. It rewrites `infra/d1/seed.sql`, refreshes `data/live_listings.csv`, and regenerates `web/data/catalog.json` and `web/public/catalog-client.json`. The scheduled workflow commits those safe generated updates to `main`, so the Cloudflare Git build can publish them.
+The daily job can update ratings, review counts, phone numbers, websites, and the source-check timestamp for exact existing matches. It holds opening-hour changes for manual review because Maps responses can contain a current-day schedule rather than a complete weekly timetable. It rewrites `infra/d1/seed.sql`, refreshes `data/live_listings.csv`, and regenerates `web/data/catalog.json` and `web/public/catalog-client.json`. The scheduled workflow commits only the safe generated updates to `main`, so the Cloudflare Git build can publish them.
 
 Ratings and review counts are applied together only when Maps returns a valid rating and at least five reviews. Incomplete popularity data stays in `pending_review_changes.csv` and cannot lower Niklo's public quality floor.
 

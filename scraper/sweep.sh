@@ -18,7 +18,7 @@ mkdir -p "$OUTDIR"
 i=0
 total_rows=0
 while IFS= read -r q || [ -n "$q" ]; do
-  q="$(echo "$q" | xargs)"            # trim
+  q="$(printf '%s\n' "$q" | sed 's/^[[:space:]]*//; s/[[:space:]]*$//')"
   [ -z "$q" ] && continue
   i=$((i + 1))
   slug="$(echo "$q" | tr '[:upper:]' '[:lower:]' | tr ' ' '_' | tr -cd 'a-z0-9_')"

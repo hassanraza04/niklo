@@ -3,6 +3,6 @@ version: 2
 sources:
   - name: raw
     schema: raw
-    description: raw gosom scrape rows loaded by dlt
+    description: raw gosom scrape rows loaded by the ingestion script
     tables:
       - name: venues

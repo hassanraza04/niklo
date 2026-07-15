@@ -51,6 +51,9 @@ class DailyRefreshPlanTest(unittest.TestCase):
         self.assertIn("pipeline/daily_refresh.sh", text)
         self.assertIn("actions/upload-artifact", text)
         self.assertIn("contents: write", text)
+        self.assertIn('DAILY_BATCH_SIZE: "20"', text)
+        self.assertIn("google-maps-scraper@v1.15.0", text)
+        self.assertIn("PLAYWRIGHT_INSTALL_ONLY=1", text)
 
 
 if __name__ == "__main__":

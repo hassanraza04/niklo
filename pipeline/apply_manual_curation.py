@@ -14,12 +14,12 @@ from pathlib import Path
 try:
     from pipeline.export_catalog import export_catalog
     from pipeline.export_live_listings import export_live_listings
-    from pipeline.export_to_d1 import COLUMNS, write_seed
+    from pipeline.export_to_d1 import COLUMNS, apply_cached_photos, write_seed
     from pipeline.seed_checks import load_seed_database
 except ModuleNotFoundError:
     from export_catalog import export_catalog
     from export_live_listings import export_live_listings
-    from export_to_d1 import COLUMNS, write_seed
+    from export_to_d1 import COLUMNS, apply_cached_photos, write_seed
     from seed_checks import load_seed_database
 
 
@@ -114,6 +114,8 @@ def apply_manual_curation(
     catalog_path: Path,
     client_catalog_path: Path,
     category_overrides_path: Path | None = None,
+    manifest_path: Path | None = None,
+    photo_root: Path | None = None,
 ) -> ManualCurationSummary:
     with tempfile.TemporaryDirectory() as tmp:
         conn = load_seed_database(schema_path, seed_path, Path(tmp) / "niklo.db")
@@ -178,6 +180,12 @@ def apply_manual_curation(
         row[indexes["category_slugs"]] = ",".join(category_slugs)
         public_rows.append(row)
 
+    apply_cached_photos(
+        public_rows,
+        str(manifest_path or ROOT / "data" / "photo_manifest.csv"),
+        "/",
+        str(photo_root or ROOT / "web" / "public" / "venues"),
+    )
     write_seed(public_rows, str(seed_path))
     export_live_listings(schema_path, seed_path, live_listings_path)
     export_catalog(schema_path, seed_path, catalog_path, client_catalog_path)
@@ -208,6 +216,8 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--live-listings", default=str(ROOT / "data" / "live_listings.csv"))
     parser.add_argument("--catalog", default=str(ROOT / "web" / "data" / "catalog.json"))
     parser.add_argument("--client-catalog", default=str(ROOT / "web" / "public" / "catalog-client.json"))
+    parser.add_argument("--manifest", default=str(ROOT / "data" / "photo_manifest.csv"))
+    parser.add_argument("--photo-root", default=str(ROOT / "web" / "public" / "venues"))
     args = parser.parse_args(argv)
 
     summary = apply_manual_curation(
@@ -221,6 +231,8 @@ def main(argv: list[str] | None = None) -> int:
         catalog_path=Path(args.catalog),
         client_catalog_path=Path(args.client_catalog),
         category_overrides_path=Path(args.category_overrides),
+        manifest_path=Path(args.manifest),
+        photo_root=Path(args.photo_root),
     )
     print(
         f"added={summary.added_count} removed={summary.removed_count} "

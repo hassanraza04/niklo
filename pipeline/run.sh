@@ -1,16 +1,12 @@
 #!/usr/bin/env bash
 # full local pipeline: scrape json -> duckdb -> dbt -> mirror photos -> d1 seed.
 # run after a scrape (or any seed/override edit). from the pipeline/ dir: ./run.sh
-#
-# r2: set R2_PUBLIC_BASE to your r2 domain (and R2_* creds for photos.py) to serve
-# photos from r2 instead of the local web/public/venues folder.
 set -euo pipefail
 cd "$(dirname "$0")"
 
-PHOTO_BASE="${R2_PUBLIC_BASE:-/}"          # default: local /venues static files
 PHOTO_DIR="${PHOTOS_DIR:-../web/public/venues}"
 
-echo ">> dlt load (scrape json -> duckdb)"
+echo ">> load scrape json -> duckdb"
 uv run python ingest/load.py >/dev/null
 
 echo ">> dbt build (dedupe, bbox, >=5 filter, excludes, overrides, tests)"
@@ -20,7 +16,7 @@ echo ">> mirror photos -> $PHOTO_DIR"
 PHOTOS_DIR="$PHOTO_DIR" uv run python photos.py | tail -1
 
 echo ">> export dim_venue -> d1 seed"
-R2_PUBLIC_BASE="$PHOTO_BASE" uv run python export_to_d1.py | tail -1
+uv run python export_to_d1.py | tail -1
 
 echo ">> export static web catalog"
 uv run python export_catalog.py | tail -1

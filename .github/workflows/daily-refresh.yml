@@ -20,7 +20,8 @@ jobs:
     timeout-minutes: 55
     env:
       TZ: Asia/Karachi
-      DAILY_BATCH_SIZE: "50"
+      # One Maps lookup per listing keeps the refresh traceable and within the runner limit.
+      DAILY_BATCH_SIZE: "20"
       PAUSE_MIN: "25"
       PAUSE_MAX: "50"
       CONC: "2"
@@ -36,10 +37,13 @@ jobs:
 
       - uses: actions/setup-go@v5
         with:
-          go-version: "1.24.x"
+          go-version: "1.26.5"
 
       - name: Install Maps scraper
-        run: go install github.com/gosom/google-maps-scraper@latest
+        run: go install github.com/gosom/google-maps-scraper@v1.15.0
+
+      - name: Install Maps browser driver
+        run: PLAYWRIGHT_INSTALL_ONLY=1 "$HOME/go/bin/google-maps-scraper"
 
       - name: Refresh existing listings
         run: ./pipeline/daily_refresh.sh

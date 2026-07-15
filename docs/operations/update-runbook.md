@@ -12,10 +12,10 @@ This workflow runs nightly at 2:00 AM Karachi time through GitHub Actions. It re
 pipeline/daily_refresh.sh
 ```
 
-The default batch is 50 listings, which rotates through the allowlist in roughly ten days. Override the batch size only when you are ready for a longer scrape.
+The default batch is 20 listings, which rotates through the allowlist in roughly 24 days while staying within the GitHub runner time limit. Override the batch size only when you are ready for a longer scrape.
 
 ```bash
-DAILY_BATCH_SIZE=75 pipeline/daily_refresh.sh
+DAILY_BATCH_SIZE=30 pipeline/daily_refresh.sh
 ```
 
 For a local run, review `data/verification/YYYY-MM-DD/`. For the scheduled run, download the `daily-refresh-<run id>` artifact from the GitHub Actions job:
@@ -62,6 +62,8 @@ For an approved removal or subcategory correction, update the appropriate curati
 ```bash
 python pipeline/apply_manual_curation.py
 ```
+
+This also refreshes each listing's local image path from the downloaded photo cache, so there is no separate media rebuild command.
 
 Run `./run.sh` when the raw scrape inputs are available and the wider data model also needs rebuilding.
 

@@ -59,6 +59,11 @@ class ApplyManualCurationTest(unittest.TestCase):
             live = root / "live.csv"
             catalog = root / "catalog.json"
             client_catalog = root / "catalog-client.json"
+            manifest = root / "photo_manifest.csv"
+            photo_root = root / "venues"
+            photo_root.mkdir()
+            (photo_root / "park.jpg").write_bytes(b"photo")
+            manifest.write_text("venue_id,key,src_hash\n", encoding="utf-8")
 
             schema.write_text((ROOT / "infra" / "d1" / "schema.sql").read_text(), encoding="utf-8")
             taxonomy.write_text(
@@ -132,12 +137,14 @@ class ApplyManualCurationTest(unittest.TestCase):
                 live_listings_path=live,
                 catalog_path=catalog,
                 client_catalog_path=client_catalog,
+                manifest_path=manifest,
+                photo_root=photo_root,
             )
 
             conn = load_seed_database(schema, seed, root / "niklo.db")
             try:
                 rows = conn.execute(
-                    "select venue_id, subcategory_slug, subcategory_name, category_slug, category_name, subcategories, category_slugs from venues order by venue_id"
+                    "select venue_id, subcategory_slug, subcategory_name, category_slug, category_name, subcategories, category_slugs, photo_url from venues order by venue_id"
                 ).fetchall()
             finally:
                 conn.close()
@@ -146,9 +153,9 @@ class ApplyManualCurationTest(unittest.TestCase):
             self.assertEqual(1, summary.membership_removed_count)
             self.assertEqual(
                 [
-                    ("curated", "heritage", "Heritage", "culture", "Culture", "heritage", "culture"),
-                    ("park", "parks", "Parks", "outdoors-adventure", "Outdoors & Adventure", "parks", "outdoors-adventure"),
-                    ("rink", "skating", "Skating", "sports-active", "Sports & Active", "skating", "sports-active"),
+                    ("curated", "heritage", "Heritage", "culture", "Culture", "heritage", "culture", None),
+                    ("park", "parks", "Parks", "outdoors-adventure", "Outdoors & Adventure", "parks", "outdoors-adventure", "/venues/park.jpg"),
+                    ("rink", "skating", "Skating", "sports-active", "Sports & Active", "skating", "sports-active", None),
                 ],
                 rows,
             )

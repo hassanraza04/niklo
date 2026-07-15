@@ -81,20 +81,6 @@ def fetch(url: str) -> tuple[bytes, str, str]:
         return data, extension, managed_type
 
 
-def r2_client():
-    if not os.environ.get("R2_ACCOUNT_ID"):
-        return None
-    import boto3  # lazy: only needed when actually pushing to r2
-
-    return boto3.client(
-        "s3",
-        endpoint_url=f"https://{os.environ['R2_ACCOUNT_ID']}.r2.cloudflarestorage.com",
-        aws_access_key_id=os.environ["R2_ACCESS_KEY_ID"],
-        aws_secret_access_key=os.environ["R2_SECRET_ACCESS_KEY"],
-        region_name="auto",
-    )
-
-
 def dim_sources() -> dict[str, str]:
     import duckdb
 
@@ -128,17 +114,15 @@ def cache_sources(sources: dict[str, str], cache: Path, limit: int) -> None:
     if limit:
         sources = dict(sorted(sources.items())[:limit])
     manifest = load_manifest()
-    r2 = r2_client()
-    bucket = os.environ.get("R2_BUCKET")
     cache.mkdir(parents=True, exist_ok=True)
-    print(f"r2 mode -> bucket '{bucket}'" if r2 else f"local cache mode ({cache})")
+    print(f"local cache mode ({cache})")
 
     done = skipped = failed = 0
     for venue_id, url in sorted(sources.items()):
         src_hash = hashlib.sha1(url.encode()).hexdigest()[:12]
         prior = manifest.get(venue_id)
         prior_path = local_path(cache, prior["key"]) if prior else None
-        if prior and prior.get("src_hash") == src_hash and (r2 or prior_path.exists()):
+        if prior and prior.get("src_hash") == src_hash and prior_path.exists():
             skipped += 1
             continue
         try:
@@ -148,10 +132,7 @@ def cache_sources(sources: dict[str, str], cache: Path, limit: int) -> None:
             failed += 1
             continue
         key = f"venues/{venue_id}.{extension}"
-        if r2:
-            r2.put_object(Bucket=bucket, Key=key, Body=data, ContentType=content_type)
-        else:
-            local_path(cache, key).write_bytes(data)
+        local_path(cache, key).write_bytes(data)
         manifest[venue_id] = {"venue_id": venue_id, "key": key, "src_hash": src_hash}
         done += 1
 

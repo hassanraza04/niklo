@@ -1,13 +1,11 @@
 [project]
 name = "niklo-pipeline"
 version = "0.1.0"
-description = "scrape -> dedupe -> dim_venue, then push to d1"
+description = "scrape -> dedupe -> dim_venue, then export a static catalog"
 requires-python = ">=3.12"
 dependencies = [
-    "dlt[duckdb]>=1.5",
     "dbt-duckdb>=1.9",
     "duckdb>=1.1",
-    "boto3>=1.35",
 ]
 
 [tool.uv]

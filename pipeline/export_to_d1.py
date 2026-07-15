@@ -118,11 +118,10 @@ def main() -> None:
         f"select {', '.join(COLUMNS)} from main.dim_venue order by venue_id"
     ).fetchall()]
 
-    # Public data must never hotlink Maps images. The default uses bundled static
-    # files; R2_PUBLIC_BASE points at the same downloaded cache in production.
-    photo_base = os.environ.get("R2_PUBLIC_BASE", "/")
+    # Public data must never hotlink Maps images. All served files are bundled
+    # under web/public/venues and deployed with the app.
     manifest = os.path.normpath(os.path.join(HERE, "..", "data", "photo_manifest.csv"))
-    cached, missing = apply_cached_photos(rows, manifest, photo_base)
+    cached, missing = apply_cached_photos(rows, manifest, "/")
     print(f"serving {cached} downloaded photos; {missing} fall back to gradient")
 
     write_seed(rows, SEED_PATH)

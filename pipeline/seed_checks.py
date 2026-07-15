@@ -7,7 +7,6 @@ SQLite database, then checks the invariants the public site relies on.
 from __future__ import annotations
 
 import json
-import os
 import sqlite3
 import sys
 import tempfile
@@ -142,7 +141,7 @@ def run_checks(
         )
     )
 
-    managed_prefix = os.environ.get("R2_PUBLIC_BASE", "/").rstrip("/") + "/venues/"
+    managed_prefix = "/venues/"
     bad_photo_urls = 0
     missing_photos = 0
     external_gallery_urls = 0

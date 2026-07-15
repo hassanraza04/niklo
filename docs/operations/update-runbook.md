@@ -27,6 +27,7 @@ For a local run, review `data/verification/YYYY-MM-DD/`. For the scheduled run, 
 - `report/refreshed_known_rows.ndjson`: fresh Maps records for known place ids
 - `report/ignored_new_place_ids.csv`: new ids quarantined from the daily workflow
 - `report/missing_in_refresh.csv`: listings that did not return
+- `report/invalid_popularity_records.csv`: matched listings where Maps returned an unusable rating or review count, with the exact saved and scraped URLs for investigation
 - `report/changed_popularity.csv`: rating and review-count changes
 - `report/changed_core_fields.csv`: name, phone, website, and address changes
 - `report/possible_closed.csv`: Maps closures

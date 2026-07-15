@@ -111,6 +111,7 @@ class VerifyExistingTest(unittest.TestCase):
             self.assertEqual(1, summary.refreshed_count)
             self.assertEqual(1, summary.ignored_new_count)
             self.assertEqual(1, summary.missing_count)
+            self.assertEqual(0, summary.invalid_popularity_count)
 
             with (output_dir / "ignored_new_place_ids.csv").open(newline="", encoding="utf-8") as f:
                 ignored = list(csv.DictReader(f))
@@ -119,6 +120,36 @@ class VerifyExistingTest(unittest.TestCase):
             known_lines = (output_dir / "refreshed_known_rows.ndjson").read_text().strip().splitlines()
             self.assertEqual(1, len(known_lines))
             self.assertEqual("known-1", json.loads(known_lines[0])["place_id"])
+
+    def test_invalid_popularity_is_named_in_the_verification_report(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            live = base / "live.csv"
+            scrape_dir = base / "scrape"
+            scrape_dir.mkdir()
+            output_dir = base / "run"
+            self.write_live(live)
+            (scrape_dir / "sample.json").write_text(
+                json.dumps(
+                    {
+                        "place_id": "known-1",
+                        "title": "Known One",
+                        "review_rating": 0,
+                        "review_count": 0,
+                        "link": "https://maps.example/known-1/fresh",
+                    }
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            summary = verify_existing.run_verification(live, scrape_dir, output_dir)
+
+            self.assertEqual(1, summary.invalid_popularity_count)
+            with (output_dir / "invalid_popularity_records.csv").open(newline="", encoding="utf-8") as f:
+                invalid = list(csv.DictReader(f))
+            self.assertEqual("known-1", invalid[0]["venue_id"])
+            self.assertEqual("0", invalid[0]["review_count"])
 
 
 if __name__ == "__main__":

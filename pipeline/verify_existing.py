@@ -26,6 +26,7 @@ class VerificationSummary:
     refreshed_count: int
     ignored_new_count: int
     missing_count: int
+    invalid_popularity_count: int
     output_dir: Path
 
 
@@ -52,6 +53,15 @@ def iter_scrape_rows(scrape_dir: Path) -> Iterable[dict]:
 def row_place_id(row: dict) -> str | None:
     place_id = row.get("place_id")
     return str(place_id).strip() if place_id else None
+
+
+def has_valid_popularity(row: dict) -> bool:
+    try:
+        rating = float(row.get("review_rating"))
+        review_count = int(row.get("review_count"))
+    except (TypeError, ValueError):
+        return False
+    return 0 < rating <= 5 and review_count >= 5
 
 
 def write_csv(path: Path, fieldnames: list[str], rows: Iterable[dict]) -> int:
@@ -116,6 +126,33 @@ def run_verification(
         output_dir / "missing_in_refresh.csv",
         ["venue_id", "slug", "name", "primary_subcategory", "subcategories", "google_url"],
         missing,
+    )
+
+    invalid_popularity = [
+        {
+            "venue_id": venue_id,
+            "name": live[venue_id].get("name", ""),
+            "review_rating": row.get("review_rating", ""),
+            "review_count": row.get("review_count", ""),
+            "google_url": live[venue_id].get("google_url", ""),
+            "scraped_url": row.get("link", ""),
+            "source_file": row.get("_source_file", ""),
+        }
+        for venue_id, row in sorted(known_rows.items())
+        if not has_valid_popularity(row)
+    ]
+    invalid_popularity_count = write_csv(
+        output_dir / "invalid_popularity_records.csv",
+        [
+            "venue_id",
+            "name",
+            "review_rating",
+            "review_count",
+            "google_url",
+            "scraped_url",
+            "source_file",
+        ],
+        invalid_popularity,
     )
 
     changed_popularity = []
@@ -184,6 +221,7 @@ def run_verification(
         refreshed_count=len(known_rows),
         ignored_new_count=ignored_count,
         missing_count=missing_count,
+        invalid_popularity_count=invalid_popularity_count,
         output_dir=output_dir,
     )
     (output_dir / "summary.md").write_text(
@@ -195,6 +233,7 @@ def run_verification(
                 f"- Refreshed known listings: {summary.refreshed_count}",
                 f"- Ignored new place ids: {summary.ignored_new_count}",
                 f"- Missing from refresh: {summary.missing_count}",
+                f"- Invalid rating or review-count records: {summary.invalid_popularity_count}",
                 "",
                 "The verifier itself does not change public data. The daily updater may apply safe facts from this report.",
             ]
@@ -228,7 +267,8 @@ def main(argv: list[str] | None = None) -> int:
     summary = run_verification(live_listings, scrape_dir, output_dir)
     print(f"wrote verification report -> {summary.output_dir}")
     print(f"live={summary.live_count} refreshed={summary.refreshed_count} "
-          f"ignored_new={summary.ignored_new_count} missing={summary.missing_count}")
+          f"ignored_new={summary.ignored_new_count} missing={summary.missing_count} "
+          f"invalid_popularity={summary.invalid_popularity_count}")
     return 0
 
 

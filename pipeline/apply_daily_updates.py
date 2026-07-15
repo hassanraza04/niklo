@@ -63,7 +63,7 @@ def optional_rating(value: object) -> float | None:
         rating = float(value)
     except (TypeError, ValueError):
         return None
-    return rating if 0 <= rating <= 5 else None
+    return rating if 0 < rating <= 5 else None
 
 
 def optional_review_count(value: object) -> int | None:
@@ -71,7 +71,7 @@ def optional_review_count(value: object) -> int | None:
         count = int(value)
     except (TypeError, ValueError):
         return None
-    return count if count >= 0 else None
+    return count if count >= 5 else None
 
 
 def optional_coordinate(value: object) -> float | None:
@@ -168,9 +168,9 @@ def apply_daily_updates(
             continue
 
         refreshed_count += 1
+        refreshed_rating = optional_rating(fresh.get("review_rating"))
+        refreshed_review_count = optional_review_count(fresh.get("review_count"))
         safe_values = {
-            "rating": optional_rating(fresh.get("review_rating")),
-            "review_count": optional_review_count(fresh.get("review_count")),
             "phone": text(fresh.get("phone")) or None,
             "website": optional_url(fresh.get("web_site")),
             "hours": optional_hours(fresh.get("open_hours")),
@@ -178,6 +178,17 @@ def apply_daily_updates(
             # the most recent successful public-source check.
             "last_verified": source_checked_at(fresh, checked_at),
         }
+        if refreshed_rating is not None and refreshed_review_count is not None:
+            safe_values["rating"] = refreshed_rating
+            safe_values["review_count"] = refreshed_review_count
+        elif fresh.get("review_rating") is not None or fresh.get("review_count") is not None:
+            record_change(
+                pending_review,
+                venue_id,
+                "popularity",
+                f"rating={current[indexes['rating']]}; review_count={current[indexes['review_count']]}",
+                f"rating={text(fresh.get('review_rating'))}; review_count={text(fresh.get('review_count'))}",
+            )
         for field, new_value in safe_values.items():
             if new_value is None:
                 continue

@@ -36,6 +36,8 @@ For a local run, review `data/verification/YYYY-MM-DD/`. For the scheduled run, 
 
 The daily job updates only ratings, review counts, hours, phone numbers, websites, and the source-check timestamp for exact existing matches. It rewrites `infra/d1/seed.sql`, refreshes `data/live_listings.csv`, and regenerates `web/data/catalog.json` and `web/public/catalog-client.json`. The scheduled workflow commits those safe generated updates to `main`, so the Cloudflare Git build can publish them.
 
+Ratings and review counts are applied together only when Maps returns a valid rating and at least five reviews. Incomplete popularity data stays in `pending_review_changes.csv` and cannot lower Niklo's public quality floor.
+
 It does not deploy, write to remote Cloudflare D1, add a new place, or automatically accept a name, address, coordinate, category, status, or closure change. Those changes remain in `pending_review_changes.csv` for a manual decision.
 
 ## Rare Discovery

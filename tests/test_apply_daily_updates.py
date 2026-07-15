@@ -142,6 +142,51 @@ class ApplyDailyUpdatesTest(unittest.TestCase):
             self.assertEqual("4.8", live_rows[0]["rating"])
             self.assertEqual("2026-07-13T10:00:00+05:00", live_rows[0]["last_verified"])
 
+    def test_daily_updates_retain_popularity_when_maps_has_too_few_reviews(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            schema = root / "schema.sql"
+            seed = root / "seed.sql"
+            refreshed = root / "refreshed.ndjson"
+            report = root / "report"
+            live = root / "live.csv"
+            schema.write_text(
+                (Path(__file__).resolve().parents[1] / "infra" / "d1" / "schema.sql").read_text(),
+                encoding="utf-8",
+            )
+            write_seed([self.venue_row("known-1", "Known One")], str(seed))
+            refreshed.write_text(
+                json.dumps(
+                    {
+                        "place_id": "known-1",
+                        "review_rating": 0,
+                        "review_count": 0,
+                        "_loaded_at": "2026-07-15T12:00:00+05:00",
+                    }
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            apply_daily_updates.apply_daily_updates(
+                schema_path=schema,
+                seed_path=seed,
+                refreshed_path=refreshed,
+                output_dir=report,
+                live_listings_path=live,
+                checked_at="2026-07-15T13:00:00+05:00",
+            )
+
+            conn = load_seed_database(schema, seed, root / "niklo.db")
+            try:
+                row = conn.execute(
+                    "select rating, review_count, last_verified from venues where venue_id = 'known-1'"
+                ).fetchone()
+            finally:
+                conn.close()
+
+        self.assertEqual((4.5, 10, "2026-07-15T12:00:00+05:00"), row)
+
 
 if __name__ == "__main__":
     unittest.main()

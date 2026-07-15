@@ -10,10 +10,16 @@ from pipeline import plan_daily_refresh
 class DailyRefreshPlanTest(unittest.TestCase):
     def write_live(self, path: Path) -> None:
         with path.open("w", newline="", encoding="utf-8") as f:
-            writer = csv.DictWriter(f, fieldnames=["venue_id", "name"])
+            writer = csv.DictWriter(f, fieldnames=["venue_id", "name", "google_url"])
             writer.writeheader()
             for venue_id, name in [("c", "Third"), ("a", "First"), ("b", "Second")]:
-                writer.writerow({"venue_id": venue_id, "name": name})
+                writer.writerow(
+                    {
+                        "venue_id": venue_id,
+                        "name": name,
+                        "google_url": f"https://www.google.com/maps/place/{name}",
+                    }
+                )
 
     def test_daily_plan_rotates_only_existing_listings(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -25,7 +31,7 @@ class DailyRefreshPlanTest(unittest.TestCase):
         self.assertEqual(2, plan.batch_count)
         self.assertEqual(["a", "b"], [row["venue_id"] for row in plan.listings])
 
-    def test_daily_plan_writes_precise_existing_listing_queries(self):
+    def test_daily_plan_uses_each_listing_canonical_maps_url(self):
         with tempfile.TemporaryDirectory() as tmp:
             base = Path(tmp)
             live = base / "live.csv"
@@ -38,8 +44,18 @@ class DailyRefreshPlanTest(unittest.TestCase):
             with (out / "batch.csv").open(newline="", encoding="utf-8") as f:
                 batch = list(csv.DictReader(f))
 
-        self.assertEqual(["First, Karachi", "Second, Karachi"], queries)
+        self.assertEqual(
+            [
+                "https://www.google.com/maps/place/First",
+                "https://www.google.com/maps/place/Second",
+            ],
+            queries,
+        )
         self.assertEqual(["a", "b"], [row["venue_id"] for row in batch])
+
+    def test_daily_plan_rejects_a_listing_without_a_canonical_maps_url(self):
+        with self.assertRaisesRegex(ValueError, "missing google_url"):
+            plan_daily_refresh.maps_lookup({"venue_id": "known-1", "name": "Known"})
 
     def test_scheduled_workflow_runs_safe_refresh_and_keeps_review_artifacts(self):
         workflow = (

@@ -6,7 +6,7 @@ Niklo builds the public catalog from `infra/d1/seed.sql`. D1 is a reviewed data 
 
 ## Daily Safe Refresh
 
-This workflow runs nightly at 2:00 AM Karachi time through GitHub Actions. It refreshes a deterministic batch of existing listings. It uses the existing Maps place id as the safety boundary, so a returned place can only update Niklo when it is already in the live listing lock.
+This workflow runs nightly at 2:00 AM Karachi time through GitHub Actions. It refreshes a deterministic batch of existing listings through each listing's reviewed Google Maps URL. This avoids repeating an ambiguous name search. The existing Maps place id remains the safety boundary, so a returned place can only update Niklo when it is already in the live listing lock.
 
 ```bash
 pipeline/daily_refresh.sh

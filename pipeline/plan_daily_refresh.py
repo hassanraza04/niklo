@@ -45,17 +45,24 @@ def build_plan(live_listings_path: Path, run_date: date, batch_size: int) -> Dai
     )
 
 
-def search_query(listing: dict[str, str]) -> str:
-    # The place id remains the safety boundary. This query is just a focused way to
-    # retrieve current public Maps facts for that existing venue.
-    return f'{listing["name"]}, Karachi'
+def maps_lookup(listing: dict[str, str]) -> str:
+    """Return the canonical Maps URL for a reviewed live listing.
+
+    Daily verification must not search by venue name again. Name search can be
+    ambiguous or return an incomplete Maps result, while this URL identifies the
+    exact place that was reviewed into Niklo.
+    """
+    google_url = listing.get("google_url", "").strip()
+    if not google_url:
+        raise ValueError(f'live listing {listing["venue_id"]} is missing google_url')
+    return google_url
 
 
 def write_plan(plan: DailyRefreshPlan, output_dir: Path) -> None:
     output_dir.mkdir(parents=True, exist_ok=True)
     with (output_dir / "queries.txt").open("w", encoding="utf-8") as f:
         for listing in plan.listings:
-            f.write(search_query(listing) + "\n")
+            f.write(maps_lookup(listing) + "\n")
 
     with (output_dir / "batch.csv").open("w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=["venue_id", "name", "query"])
@@ -65,7 +72,7 @@ def write_plan(plan: DailyRefreshPlan, output_dir: Path) -> None:
                 {
                     "venue_id": listing["venue_id"],
                     "name": listing["name"],
-                    "query": search_query(listing),
+                    "query": maps_lookup(listing),
                 }
             )
 

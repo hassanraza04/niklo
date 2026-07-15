@@ -110,14 +110,14 @@
     "price_level": "$$",
     "website": null,
     "phone": "+92 321 8790304",
-    "hours": "{\"Wednesday\":[\"Open 24 hours\"]}",
+    "hours": "{\"Friday\":[\"Open 24 hours\"],\"Monday\":[\"Open 24 hours\"],\"Saturday\":[\"Open 24 hours\"],\"Sunday\":[\"Open 24 hours\"],\"Thursday\":[\"Open 24 hours\"],\"Tuesday\":[\"Open 24 hours\"],\"Wednesday\":[\"Open 24 hours\"]}",
     "photo_url": "/venues/ChIJte6e6rU4sz4RyWkqWTzngjc.jpg",
     "photos": "[]",
     "google_url": "https://www.google.com/maps/place/786+Shender-2+Snooker+Academy/data=!4m7!3m6!1s0x3eb338b5ea9eeeb5:0x3782e73c592a69c9!8m2!3d24.9294308!4d67.0988015!16s%2Fg%2F11f5dt_r3h!19sChIJte6e6rU4sz4RyWkqWTzngjc?authuser=0&hl=en&rclk=1",
     "status": null,
     "is_open": 1,
     "source_query": "snooker_club_karachi",
-    "last_verified": "2026-07-15T21:49:11+05:00"
+    "last_verified": "2026-06-30 01:27:43.983847+05:00"
   },
   {
     "venue_id": "ChIJI1RZBAU9sz4RMHq_6trYEDg",
@@ -380,14 +380,14 @@
     "price_level": null,
     "website": null,
     "phone": "+92 318 2587778",
-    "hours": "{\"Wednesday\":[\"Open 24 hours\"]}",
+    "hours": "{\"Friday\":[\"Open 24 hours\"],\"Monday\":[\"Open 24 hours\"],\"Saturday\":[\"Open 24 hours\"],\"Sunday\":[\"Open 24 hours\"],\"Thursday\":[\"Open 24 hours\"],\"Tuesday\":[\"Open 24 hours\"],\"Wednesday\":[\"Open 24 hours\"]}",
     "photo_url": "/venues/ChIJv93QAwA_sz4Rfcv5NP4ROUc.jpg",
     "photos": "[]",
     "google_url": "https://www.google.com/maps/place/Al+HAMRA+Sports+Club/data=!4m7!3m6!1s0x3eb33f0003d0ddbf:0x473911fe34f9cb7d!8m2!3d24.9320888!4d67.0755951!16s%2Fg%2F11x2vvr0xx!19sChIJv93QAwA_sz4Rfcv5NP4ROUc?authuser=0&hl=en&rclk=1",
     "status": null,
     "is_open": 1,
     "source_query": "indoor_cricket_karachi",
-    "last_verified": "2026-07-15T21:49:11+05:00"
+    "last_verified": "2026-06-30 01:27:43.983847+05:00"
   },
   {
     "venue_id": "ChIJHYxbRttHsz4R-41FGsnmZPM",
@@ -1010,14 +1010,14 @@
     "price_level": null,
     "website": null,
     "phone": "+92 321 2204289",
-    "hours": "{\"Wednesday\":[\"10 AM–3 AM\"]}",
+    "hours": "{\"Friday\":[\"10 AM–3 AM\"],\"Monday\":[\"10 AM–3 AM\"],\"Saturday\":[\"10 AM–3:30 AM\"],\"Sunday\":[\"10 AM–3 AM\"],\"Thursday\":[\"10 AM–3 AM\"],\"Tuesday\":[\"10 AM–3 AM\"],\"Wednesday\":[\"10 AM–3 AM\"]}",
     "photo_url": "/venues/ChIJv9oHHRQ8sz4RbAJbFAR_qX8.jpg",
     "photos": "[]",
     "google_url": "https://www.google.com/maps/place/Baba+Snooker+Zone/data=!4m7!3m6!1s0x3eb33c141d07dabf:0x7fa97f04145b026c!8m2!3d24.8401744!4d67.075482!16s%2Fg%2F11fzf64kqf!19sChIJv9oHHRQ8sz4RbAJbFAR_qX8?authuser=0&hl=en&rclk=1",
     "status": null,
     "is_open": 1,
     "source_query": "snooker_club_karachi",
-    "last_verified": "2026-07-15T21:49:11+05:00"
+    "last_verified": "2026-06-30 01:27:43.983847+05:00"
   },
   {
     "venue_id": "ChIJ1UWQtqU_sz4R0l-KmwremeA",
@@ -1100,14 +1100,14 @@
     "price_level": null,
     "website": null,
     "phone": null,
-    "hours": "{\"Wednesday\":[\"Open 24 hours\"]}",
+    "hours": "{\"Friday\":[\"Open 24 hours\"],\"Monday\":[\"Open 24 hours\"],\"Saturday\":[\"Open 24 hours\"],\"Sunday\":[\"Open 24 hours\"],\"Thursday\":[\"Open 24 hours\"],\"Tuesday\":[\"Open 24 hours\"],\"Wednesday\":[\"Open 24 hours\"]}",
     "photo_url": "/venues/ChIJue4rzV08sz4RjfHRAsmM7hI.jpg",
     "photos": "[]",
     "google_url": "https://www.google.com/maps/place/Badar%2FHilal+Futsal+Court+DHA+Phase+6/data=!4m7!3m6!1s0x3eb33c5dcd2beeb9:0x12ee8cc902d1f18d!8m2!3d24.8174232!4d67.0673295!16s%2Fg%2F11g68tn68s!19sChIJue4rzV08sz4RjfHRAsmM7hI?authuser=0&hl=en&rclk=1",
     "status": null,
     "is_open": 1,
     "source_query": "futsal_karachi",
-    "last_verified": "2026-07-15T21:49:11+05:00"
+    "last_verified": "2026-06-30 01:27:43.983847+05:00"
   },
   {
     "venue_id": "ChIJE_fhTnU-sz4RrXMo7ZCO7EE",
@@ -1160,14 +1160,14 @@
     "price_level": null,
     "website": null,
     "phone": null,
-    "hours": "{\"Wednesday\":[\"9 AM–10 PM\"]}",
+    "hours": "{\"Friday\":[\"9 AM–10 PM\"],\"Monday\":[\"9 AM–10 PM\"],\"Saturday\":[\"9 AM–10 PM\"],\"Sunday\":[\"Open 24 hours\"],\"Thursday\":[\"9 AM–10 PM\"],\"Tuesday\":[\"9 AM–10 PM\"],\"Wednesday\":[\"9 AM–10 PM\"]}",
     "photo_url": "/venues/ChIJv73nAgA9sz4RN5q3u1gTKbg.jpg",
     "photos": "[]",
     "google_url": "https://www.google.com/maps/place/Bagh+Ibn-e-Qasim+Park/data=!4m7!3m6!1s0x3eb33d0002e7bdbf:0xb8291358bbb79a37!8m2!3d24.8102003!4d67.025237!16s%2Fm%2F02ps_rq!19sChIJv73nAgA9sz4RN5q3u1gTKbg?authuser=0&hl=en&rclk=1",
     "status": null,
     "is_open": 1,
     "source_query": "adventure_park_karachi",
-    "last_verified": "2026-07-15T21:49:11+05:00"
+    "last_verified": "2026-06-30 01:27:43.983847+05:00"
   },
   {
     "venue_id": "ChIJsQhKcgAVsz4RiyPM15swIfI",
@@ -3470,14 +3470,14 @@
     "price_level": null,
     "website": null,
     "phone": null,
-    "hours": "{\"Wednesday\":[\"11 AM–9 PM\"]}",
+    "hours": "{\"Friday\":[\"11 AM–9 PM\"],\"Monday\":[\"11 AM–9 PM\"],\"Saturday\":[\"11 AM–9 PM\"],\"Sunday\":[\"Closed\"],\"Thursday\":[\"11 AM–9 PM\"],\"Tuesday\":[\"11 AM–9 PM\"],\"Wednesday\":[\"11 AM–9 PM\"]}",
     "photo_url": "/venues/ChIJubA8uZs9sz4Roe0XMNor3cY.jpg",
     "photos": "[]",
     "google_url": "https://www.google.com/maps/place/Fine+Arts+Pakistan/data=!4m7!3m6!1s0x3eb33d9bb93cb0b9:0xc6dd2bda3017eda1!8m2!3d24.8143488!4d67.0505645!16s%2Fg%2F11rgp2w3hv!19sChIJubA8uZs9sz4Roe0XMNor3cY?authuser=0&hl=en&rclk=1",
     "status": null,
     "is_open": 1,
     "source_query": "performing_arts_karachi",
-    "last_verified": "2026-07-15T21:49:11+05:00"
+    "last_verified": "2026-06-30 01:27:43.983847+05:00"
   },
   {
     "venue_id": "ChIJDy2PVO45sz4R56MGXiO62mM",
@@ -4497,7 +4497,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "snooker_club_karachi",
-    "last_verified": "2026-07-15T21:49:11+05:00"
+    "last_verified": "2026-06-30 01:27:43.983847+05:00"
   },
   {
     "venue_id": "ChIJ-5Sxyq8Tsz4RRWGOEp9ckcU",
@@ -4670,14 +4670,14 @@
     "price_level": null,
     "website": "http://ismaili.net/heritage/node/10388",
     "phone": null,
-    "hours": "{\"Wednesday\":[\"Open 24 hours\"]}",
+    "hours": "{\"Friday\":[\"Open 24 hours\"],\"Monday\":[\"Open 24 hours\"],\"Saturday\":[\"Open 24 hours\"],\"Sunday\":[\"Open 24 hours\"],\"Thursday\":[\"Open 24 hours\"],\"Tuesday\":[\"Open 24 hours\"],\"Wednesday\":[\"Open 24 hours\"]}",
     "photo_url": "/venues/ChIJud7UhzA8sz4RBq5PGAnT_LM.jpg",
     "photos": "[]",
     "google_url": "https://www.google.com/maps/place/Honeymoon+Lodge/data=!4m7!3m6!1s0x3eb33c3087d4deb9:0xb3fcd309184fae06!8m2!3d24.8400422!4d67.0582838!16s%2Fg%2F1td9z4nf!19sChIJud7UhzA8sz4RBq5PGAnT_LM?authuser=0&hl=en&rclk=1",
     "status": null,
     "is_open": 1,
     "source_query": "heritage_site_karachi",
-    "last_verified": "2026-07-15T21:49:11+05:00"
+    "last_verified": "2026-06-30 01:27:43.983847+05:00"
   },
   {
     "venue_id": "ChIJl0Jb8M49sz4Ryojv-WCAvzs",
@@ -5997,7 +5997,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "heritage_site_karachi",
-    "last_verified": "2026-07-15T21:49:11+05:00"
+    "last_verified": "2026-06-30 01:27:43.983847+05:00"
   },
   {
     "venue_id": "ChIJZ32FgJ5Asz4R4hRIPSL6C0Y",
@@ -6267,7 +6267,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "futsal_karachi",
-    "last_verified": "2026-07-15T21:49:11+05:00"
+    "last_verified": "2026-06-30 01:27:43.983847+05:00"
   },
   {
     "venue_id": "ChIJU_n-mUw_sz4R-_sK8mYBudg",
@@ -8097,7 +8097,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "island_trip_karachi",
-    "last_verified": "2026-07-15T21:49:11+05:00"
+    "last_verified": "2026-06-30 01:27:43.983847+05:00"
   },
   {
     "venue_id": "ChIJAee0NvMVsz4RdfDIrqAEVwQ",
@@ -10317,7 +10317,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "snooker_club_karachi",
-    "last_verified": "2026-07-15T21:49:11+05:00"
+    "last_verified": "2026-06-30 01:27:43.983847+05:00"
   },
   {
     "venue_id": "ChIJ6TQhT-ZBsz4RNBL2bUnAZCI",
@@ -10610,14 +10610,14 @@
     "price_level": null,
     "website": null,
     "phone": "+92 315 2862002",
-    "hours": "{\"Wednesday\":[\"6 AM–12 AM\"]}",
+    "hours": "{\"Friday\":[\"6 AM–12 AM\"],\"Monday\":[\"6 AM–12 AM\"],\"Saturday\":[\"6 AM–12 AM\"],\"Sunday\":[\"6 AM–12 AM\"],\"Thursday\":[\"6 AM–12 AM\"],\"Tuesday\":[\"6 AM–12 AM\"],\"Wednesday\":[\"6 AM–12 AM\"]}",
     "photo_url": "/venues/ChIJu9ZUHxc-sz4RMs_fkIseDlw.jpg",
     "photos": "[]",
     "google_url": "https://www.google.com/maps/place/Sabri+Ground/data=!4m7!3m6!1s0x3eb33e171f54d6bb:0x5c0e1e8b90dfcf32!8m2!3d24.8652517!4d67.0133232!16s%2Fg%2F11c1mz7_v0!19sChIJu9ZUHxc-sz4RMs_fkIseDlw?authuser=0&hl=en&rclk=1",
     "status": null,
     "is_open": 1,
     "source_query": "football_ground_karachi",
-    "last_verified": "2026-07-15T21:49:11+05:00"
+    "last_verified": "2026-06-30 01:27:43.983847+05:00"
   },
   {
     "venue_id": "ChIJsySCQek_sz4Rp9BsOB7tiHU",
@@ -13190,14 +13190,14 @@
     "price_level": null,
     "website": "https://titansarena.com/",
     "phone": "+92 345 8207290",
-    "hours": "{\"Wednesday\":[\"12 PM–3 AM\"]}",
+    "hours": "{\"Friday\":[\"12 PM–3 AM\"],\"Monday\":[\"12 PM–3 AM\"],\"Saturday\":[\"12 PM–3 AM\"],\"Sunday\":[\"12 PM–3 AM\"],\"Thursday\":[\"12 PM–3 AM\"],\"Tuesday\":[\"12 PM–3 AM\"],\"Wednesday\":[\"12 PM–3 AM\"]}",
     "photo_url": "/venues/ChIJuWh3-jM_sz4RmB3WI0foffw.jpg",
     "photos": "[]",
     "google_url": "https://www.google.com/maps/place/Titans+Arena/data=!4m7!3m6!1s0x3eb33f33fa7768b9:0xfc7de84723d61d98!8m2!3d24.8760239!4d67.0780407!16s%2Fg%2F11wxpn2hss!19sChIJuWh3-jM_sz4RmB3WI0foffw?authuser=0&hl=en&rclk=1",
     "status": null,
     "is_open": 1,
     "source_query": "padel_dha_karachi",
-    "last_verified": "2026-07-15T21:49:11+05:00"
+    "last_verified": "2026-06-30 01:27:43.983847+05:00"
   },
   {
     "venue_id": "ChIJmS1PUOMTsz4RDOWqgkacVGk",
@@ -13550,14 +13550,14 @@
     "price_level": null,
     "website": null,
     "phone": "+92 300 8482969",
-    "hours": "{\"Wednesday\":[\"7 AM–3 AM\"]}",
+    "hours": "{}",
     "photo_url": "/venues/ChIJu8UERwA9sz4RTfK-EZo2dNo.jpg",
     "photos": "[]",
     "google_url": "https://www.google.com/maps/place/Viva+Padel+Club/data=!4m7!3m6!1s0x3eb33d004704c5bb:0xda74369a11bef24d!8m2!3d24.8172962!4d67.0253484!16s%2Fg%2F11yc54nb2v!19sChIJu8UERwA9sz4RTfK-EZo2dNo?authuser=0&hl=en&rclk=1",
     "status": null,
     "is_open": 1,
     "source_query": "padel_dha_karachi",
-    "last_verified": "2026-07-15T21:49:11+05:00"
+    "last_verified": "2026-06-30 01:27:43.983847+05:00"
   },
   {
     "venue_id": "ChIJQe3X4MM-sz4RCtecIE8NGbw",

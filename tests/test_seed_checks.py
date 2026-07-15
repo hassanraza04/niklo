@@ -44,6 +44,12 @@ APPROVED_WATERPARK_IDS = {
     "ChIJaxk2tGo2sz4RsE5nT70iqjs",  # KITRAWP
 }
 TDF_GHAR_ID = "ChIJj_X1Z1w-sz4ReCUDgrzrY9M"
+TEEN_TALWAR_ID = "ChIJQc9u2wk9sz4Rfh9ioYYxhY8"
+TEEN_TALWAR_MAPS_URL = (
+    "https://www.google.com/maps/place/Teen+Talwar+Monument/"
+    "data=!4m7!3m6!1s0x3eb33d09db6ecf41:0x8f853186a1621f7e!8m2!3d24.833831!"
+    "4d67.0336717!16s%2Fg%2F11y1c096yg!19sChIJQc9u2wk9sz4Rfh9ioYYxhY8?authuser=0&hl=en&rclk=1"
+)
 
 
 class SeedChecksTest(unittest.TestCase):
@@ -199,6 +205,31 @@ class SeedChecksTest(unittest.TestCase):
             {venue_id for venue_id, subcategories in waterpark_rows if subcategories == "waterparks"},
         )
         self.assertEqual(("heritage",), tdf)
+
+    def test_teen_talwar_uses_verified_maps_record_and_cached_photo(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            conn = seed_checks.load_seed_database(
+                ROOT / "infra" / "d1" / "schema.sql",
+                ROOT / "infra" / "d1" / "seed.sql",
+                Path(tmp) / "niklo.db",
+            )
+            try:
+                teen_talwar = conn.execute(
+                    "select name, subcategories, google_url, photo_url from venues where venue_id = ?",
+                    (TEEN_TALWAR_ID,),
+                ).fetchone()
+            finally:
+                conn.close()
+
+        self.assertEqual(
+            (
+                "Teen Talwar Monument",
+                "heritage",
+                TEEN_TALWAR_MAPS_URL,
+                f"/venues/{TEEN_TALWAR_ID}.jpg",
+            ),
+            teen_talwar,
+        )
 
     def test_curated_venues_cannot_be_reexcluded(self):
         curated_path = ROOT / "pipeline" / "transform" / "seeds" / "curated_venues.csv"

@@ -21,11 +21,12 @@ jobs:
     env:
       TZ: Asia/Karachi
       # One Maps lookup per listing keeps the refresh traceable and within the runner limit.
-      DAILY_BATCH_SIZE: "20"
-      PAUSE_MIN: "25"
-      PAUSE_MAX: "50"
+      DAILY_BATCH_SIZE: "15"
+      PAUSE_MIN: "15"
+      PAUSE_MAX: "30"
       CONC: "2"
-      DEPTH: "10"
+      DEPTH: "1"
+      QUERY_TIMEOUT_SECONDS: "120"
     steps:
       - uses: actions/checkout@v4
         with:

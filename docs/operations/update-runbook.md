@@ -12,7 +12,7 @@ This workflow runs nightly at 2:00 AM Karachi time through GitHub Actions. It re
 pipeline/daily_refresh.sh
 ```
 
-The default batch is 20 listings, which rotates through the allowlist in roughly 24 days while staying within the GitHub runner time limit. Override the batch size only when you are ready for a longer scrape.
+The default batch is 15 listings, which rotates through the allowlist in roughly 31 days while staying within the GitHub runner time limit. Each exact lookup is shallow and has a two-minute ceiling, so a slow Maps response cannot cancel the entire job. Override the batch size only when you are ready for a longer scrape.
 
 An empty scrape fails the job and still keeps its artifact. A batch can never be marked verified when the scraper did not return any Maps rows.
 

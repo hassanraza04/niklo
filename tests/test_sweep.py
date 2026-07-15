@@ -10,6 +10,12 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class SweepScriptTest(unittest.TestCase):
+    def test_bounds_each_maps_query(self):
+        script = (ROOT / "scraper" / "sweep.sh").read_text(encoding="utf-8")
+
+        self.assertIn('QUERY_TIMEOUT_SECONDS="${QUERY_TIMEOUT_SECONDS:-120}"', script)
+        self.assertIn('timeout "$QUERY_TIMEOUT_SECONDS"', script)
+
     def test_handles_queries_with_apostrophes(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

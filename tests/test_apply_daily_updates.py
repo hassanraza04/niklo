@@ -40,6 +40,18 @@ class ApplyDailyUpdatesTest(unittest.TestCase):
         }
         return [values.get(column) for column in COLUMNS]
 
+    @staticmethod
+    def full_week_hours() -> dict[str, list[str]]:
+        return {
+            "Monday": ["10 AM-6 PM"],
+            "Tuesday": ["10 AM-6 PM"],
+            "Wednesday": ["10 AM-6 PM"],
+            "Thursday": ["10 AM-6 PM"],
+            "Friday": ["10 AM-6 PM"],
+            "Saturday": ["10 AM-6 PM"],
+            "Sunday": ["Closed"],
+        }
+
     def test_daily_updates_apply_safe_fields_and_hold_risky_changes(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
@@ -64,7 +76,7 @@ class ApplyDailyUpdatesTest(unittest.TestCase):
                             "review_count": 125,
                             "phone": "+92 300 1111111",
                             "web_site": "https://new.example",
-                            "open_hours": {"Monday": ["10 AM-6 PM"]},
+                            "open_hours": self.full_week_hours(),
                             "address": "New address",
                             "latitude": 24.9,
                             "longitude": 67.1,
@@ -104,8 +116,8 @@ class ApplyDailyUpdatesTest(unittest.TestCase):
 
             self.assertEqual(1, summary.refreshed_count)
             self.assertEqual(1, summary.ignored_non_live_count)
-            self.assertEqual(5, summary.applied_field_count)
-            self.assertEqual(6, summary.review_field_count)
+            self.assertEqual(6, summary.applied_field_count)
+            self.assertEqual(5, summary.review_field_count)
             self.assertEqual(1, count)
             self.assertEqual(
                 (
@@ -114,7 +126,7 @@ class ApplyDailyUpdatesTest(unittest.TestCase):
                     125,
                     "+92 300 1111111",
                     "https://new.example",
-                    '{"Monday":["9 AM-5 PM"]}',
+                    '{"Friday":["10 AM-6 PM"],"Monday":["10 AM-6 PM"],"Saturday":["10 AM-6 PM"],"Sunday":["Closed"],"Thursday":["10 AM-6 PM"],"Tuesday":["10 AM-6 PM"],"Wednesday":["10 AM-6 PM"]}',
                     "Old address",
                     24.8,
                     67.0,
@@ -128,13 +140,13 @@ class ApplyDailyUpdatesTest(unittest.TestCase):
             with (report / "applied_safe_updates.csv").open(newline="", encoding="utf-8") as f:
                 applied = list(csv.DictReader(f))
             self.assertEqual(
-                {"rating", "review_count", "phone", "website", "last_verified"},
+                {"rating", "review_count", "phone", "website", "hours", "last_verified"},
                 {row["field"] for row in applied},
             )
             with (report / "pending_review_changes.csv").open(newline="", encoding="utf-8") as f:
                 review = list(csv.DictReader(f))
             self.assertEqual(
-                {"name", "address", "latitude", "longitude", "status", "hours"},
+                {"name", "address", "latitude", "longitude", "status"},
                 {row["field"] for row in review},
             )
             with live.open(newline="", encoding="utf-8") as f:

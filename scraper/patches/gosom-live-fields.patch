@@ -1,0 +1,158 @@
+diff --git a/gmaps/place.go b/gmaps/place.go
+index b7eca86..c70599f 100644
+--- a/gmaps/place.go
++++ b/gmaps/place.go
+@@ -2,6 +2,7 @@ package gmaps
+ 
+ import (
+ 	"context"
++	"encoding/json"
+ 	"fmt"
+ 	"strings"
+ 	"time"
+@@ -24,6 +25,30 @@ type PlaceJob struct {
+ 	WriterManagedCompletion bool
+ }
+ 
++type livePlaceFields struct {
++	ReviewCount int                 `json:"review_count"`
++	OpenHours   map[string][]string `json:"open_hours"`
++}
++
++var weekdays = map[string]struct{}{
++	"Monday": {}, "Tuesday": {}, "Wednesday": {}, "Thursday": {},
++	"Friday": {}, "Saturday": {}, "Sunday": {},
++}
++
++func hasCompleteWeek(hours map[string][]string) bool {
++	if len(hours) != len(weekdays) {
++		return false
++	}
++
++	for day, slots := range hours {
++		if _, ok := weekdays[day]; !ok || len(slots) == 0 {
++			return false
++		}
++	}
++
++	return true
++}
++
+ func NewPlaceJob(parentID, langCode, u string, extractEmail, extraExtraReviews bool, opts ...PlaceJobOptions) *PlaceJob {
+ 	const (
+ 		defaultPrio       = scrapemate.PriorityMedium
+@@ -104,6 +129,15 @@ func (j *PlaceJob) Process(_ context.Context, resp *scrapemate.Response) (any, [
+ 
+ 	entry.ID = j.ParentID
+ 
++	if fields, ok := resp.Meta["live_place_fields"].(livePlaceFields); ok {
++		if fields.ReviewCount >= 5 {
++			entry.ReviewCount = fields.ReviewCount
++		}
++		if hasCompleteWeek(fields.OpenHours) {
++			entry.OpenHours = fields.OpenHours
++		}
++	}
++
+ 	if entry.Link == "" {
+ 		entry.Link = j.GetURL()
+ 	}
+@@ -176,6 +210,9 @@ func (j *PlaceJob) BrowserActions(ctx context.Context, page scrapemate.BrowserPa
+ 	}
+ 
+ 	resp.Meta["json"] = raw
++	if fields := j.extractLivePlaceFields(page); fields.ReviewCount >= 5 || hasCompleteWeek(fields.OpenHours) {
++		resp.Meta["live_place_fields"] = fields
++	}
+ 
+ 	if j.ExtractExtraReviews {
+ 		reviewCount := j.getReviewCount(raw)
+@@ -290,6 +327,27 @@ func (j *PlaceJob) getReviewCount(data []byte) int {
+ 	return tmpEntry.ReviewCount
+ }
+ 
++func (j *PlaceJob) extractLivePlaceFields(page scrapemate.BrowserPage) livePlaceFields {
++	const attempts = 20
++
++	for range attempts {
++		raw, err := page.Eval(livePlaceFieldsJS)
++		if err == nil {
++			if value, ok := raw.(string); ok && value != "" {
++				var fields livePlaceFields
++				if json.Unmarshal([]byte(value), &fields) == nil &&
++					(fields.ReviewCount >= 5 || hasCompleteWeek(fields.OpenHours)) {
++					return fields
++				}
++			}
++		}
++
++		page.WaitForTimeout(250 * time.Millisecond)
++	}
++
++	return livePlaceFields{}
++}
++
+ func (j *PlaceJob) UseInResults() bool {
+ 	return j.UsageInResults
+ }
+@@ -317,3 +375,30 @@ const js = `
+ 	return null;
+ })()
+ `
++
++const livePlaceFieldsJS = `
++(function() {
++	const labels = [...document.querySelectorAll('[aria-label]')]
++		.map((element) => element.getAttribute('aria-label') || '');
++	const weekPattern = /^(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday),\s*(.+),\s*Copy open hours$/;
++	const hasVisibleWeekday = labels.some((label) => weekPattern.test(label));
++	if (!hasVisibleWeekday) {
++		const toggle = [...document.querySelectorAll('[aria-label]')]
++			.find((element) => element.getAttribute('aria-label') === 'Show open hours for the week');
++		if (toggle) toggle.click();
++	}
++
++	const hours = {};
++	for (const label of labels) {
++		const match = label.match(weekPattern);
++		if (match) hours[match[1]] = [match[2].trim()];
++	}
++
++	const reviewLabel = labels.find((label) => /^\d[\d,]* reviews?$/.test(label));
++	const reviewMatch = reviewLabel && reviewLabel.match(/^(\d[\d,]*) reviews?$/);
++	return JSON.stringify({
++		review_count: reviewMatch ? Number(reviewMatch[1].replaceAll(',', '')) : 0,
++		open_hours: hours,
++	});
++})()
++`
+diff --git a/gmaps/place_live_fields_test.go b/gmaps/place_live_fields_test.go
+new file mode 100644
+index 0000000..d9f73cb
+--- /dev/null
++++ b/gmaps/place_live_fields_test.go
+@@ -0,0 +1,24 @@
++package gmaps
++
++import "testing"
++
++func TestHasCompleteWeek(t *testing.T) {
++	complete := map[string][]string{
++		"Monday": {"9 AM-5 PM"},
++		"Tuesday": {"9 AM-5 PM"},
++		"Wednesday": {"9 AM-5 PM"},
++		"Thursday": {"9 AM-5 PM"},
++		"Friday": {"9 AM-5 PM"},
++		"Saturday": {"9 AM-5 PM"},
++		"Sunday": {"Closed"},
++	}
++
++	if !hasCompleteWeek(complete) {
++		t.Fatal("expected a seven-day timetable to be complete")
++	}
++
++	delete(complete, "Sunday")
++	if hasCompleteWeek(complete) {
++		t.Fatal("expected a partial timetable to be rejected")
++	}
++}

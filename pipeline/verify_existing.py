@@ -30,6 +30,13 @@ class VerificationSummary:
     output_dir: Path
 
 
+def require_usable_popularity(summary: VerificationSummary) -> None:
+    if summary.refreshed_count and summary.invalid_popularity_count == summary.refreshed_count:
+        raise ValueError(
+            "no usable popularity was returned for the matched listings; refusing to apply the batch"
+        )
+
+
 def read_live(path: Path) -> dict[str, dict[str, str]]:
     with path.open(newline="", encoding="utf-8") as f:
         return {row["venue_id"]: row for row in csv.DictReader(f)}
@@ -252,6 +259,7 @@ def main(argv: list[str] | None = None) -> int:
         "--output-dir",
         default=str(ROOT / "data" / "verification" / datetime.now().strftime("%Y-%m-%d")),
     )
+    parser.add_argument("--require-usable-popularity", action="store_true")
     args = parser.parse_args(argv)
 
     live_listings = Path(args.live_listings)
@@ -269,6 +277,12 @@ def main(argv: list[str] | None = None) -> int:
     print(f"live={summary.live_count} refreshed={summary.refreshed_count} "
           f"ignored_new={summary.ignored_new_count} missing={summary.missing_count} "
           f"invalid_popularity={summary.invalid_popularity_count}")
+    if args.require_usable_popularity:
+        try:
+            require_usable_popularity(summary)
+        except ValueError as exc:
+            print(f"verification quality gate failed: {exc}", file=sys.stderr)
+            return 1
     return 0
 
 

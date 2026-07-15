@@ -31,7 +31,8 @@ fi
 echo ">> compare with the live allowlist"
 python3 "$ROOT/pipeline/verify_existing.py" \
   --scrape-dir "$OUTDIR/scrape/$LABEL" \
-  --output-dir "$OUTDIR/report"
+  --output-dir "$OUTDIR/report" \
+  --require-usable-popularity
 
 echo ">> apply safe updates to matched live listings"
 python3 "$ROOT/pipeline/apply_daily_updates.py" \

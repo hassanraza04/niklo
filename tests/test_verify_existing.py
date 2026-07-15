@@ -151,6 +151,30 @@ class VerifyExistingTest(unittest.TestCase):
             self.assertEqual("known-1", invalid[0]["venue_id"])
             self.assertEqual("0", invalid[0]["review_count"])
 
+    def test_rejects_a_batch_when_every_known_listing_has_invalid_popularity(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            live = base / "live.csv"
+            scrape_dir = base / "scrape"
+            scrape_dir.mkdir()
+            self.write_live(live)
+            (scrape_dir / "sample.json").write_text(
+                json.dumps(
+                    {
+                        "place_id": "known-1",
+                        "review_rating": 4.2,
+                        "review_count": 0,
+                    }
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            summary = verify_existing.run_verification(live, scrape_dir, base / "report")
+
+        with self.assertRaisesRegex(ValueError, "no usable popularity"):
+            verify_existing.require_usable_popularity(summary)
+
 
 if __name__ == "__main__":
     unittest.main()

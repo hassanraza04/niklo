@@ -27,6 +27,9 @@ except ModuleNotFoundError:
 
 
 ROOT = Path(__file__).resolve().parents[1]
+WEEKDAYS = frozenset(
+    {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"}
+)
 
 
 @dataclass(frozen=True)
@@ -99,6 +102,23 @@ def optional_hours(value: object) -> str | None:
     except json.JSONDecodeError:
         return None
     return json.dumps(parsed, ensure_ascii=False, separators=(",", ":")) if isinstance(parsed, (dict, list)) else None
+
+
+def complete_week_hours(value: object) -> str | None:
+    serialized = optional_hours(value)
+    if serialized is None:
+        return None
+    parsed = json.loads(serialized)
+    if not isinstance(parsed, dict) or set(parsed) != WEEKDAYS:
+        return None
+    if any(
+        not isinstance(slots, list)
+        or not slots
+        or any(not isinstance(slot, str) or not slot.strip() for slot in slots)
+        for slots in parsed.values()
+    ):
+        return None
+    return json.dumps(parsed, ensure_ascii=False, separators=(",", ":"), sort_keys=True)
 
 
 def source_checked_at(row: dict, fallback: str) -> str:
@@ -192,16 +212,18 @@ def apply_daily_updates(
         else:
             safe_values = {}
 
-        # Maps can expose only today's hours in a response. Opening hours are
-        # therefore review-only until they are explicitly curated.
-        refreshed_hours = optional_hours(fresh.get("open_hours"))
-        if refreshed_hours is not None and current[indexes["hours"]] != refreshed_hours:
+        reported_hours = optional_hours(fresh.get("open_hours"))
+        refreshed_hours = complete_week_hours(fresh.get("open_hours"))
+        current_hours = optional_hours(current[indexes["hours"]])
+        if refreshed_hours is not None and safe_values:
+            safe_values["hours"] = refreshed_hours
+        elif reported_hours is not None and current_hours != reported_hours:
             record_change(
                 pending_review,
                 venue_id,
                 "hours",
                 current[indexes["hours"]],
-                refreshed_hours,
+                reported_hours,
             )
 
         for field, new_value in safe_values.items():

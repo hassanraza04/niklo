@@ -2561,7 +2561,7 @@
     "category_slugs": "sports-active,entertainment",
     "google_category": "Club",
     "rating": 4.3,
-    "review_count": 2234,
+    "review_count": 2238,
     "latitude": 24.835938,
     "longitude": 67.0561189,
     "area": "D.H.A. Phase 2 Phase 2 Defence Housing Authority",
@@ -2577,7 +2577,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "padel_dha_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-07-18T02:50:59+05:00"
   },
   {
     "venue_id": "ChIJzUMppJE8sz4Rvki_okEtB14",
@@ -5591,7 +5591,7 @@
     "category_slugs": "culture",
     "google_category": "Heritage building",
     "rating": 4.6,
-    "review_count": 581,
+    "review_count": 582,
     "latitude": 24.847361199999998,
     "longitude": 66.9931896,
     "area": "West Wharf",
@@ -5607,7 +5607,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "heritage_site_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-07-18T02:50:59+05:00"
   },
   {
     "venue_id": "ChIJLe76ZrU_sz4RDKYi3uLK9m4",

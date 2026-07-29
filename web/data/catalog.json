@@ -1527,7 +1527,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "trekking_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-07-30T02:54:13+05:00"
   },
   {
     "venue_id": "ChIJTyBdTY8_sz4R5NO6mDsQ-ow",
@@ -1781,14 +1781,14 @@
     "category_slugs": "outdoors-adventure",
     "google_category": "Water park",
     "rating": 3.6,
-    "review_count": 136,
+    "review_count": 137,
     "latitude": 25.0845902,
     "longitude": 67.190647,
     "area": "Gadap Town",
     "address": "35MR+R7J Cheeku Water Park and Farm House, Gadap Town, Karachi, Pakistan",
     "city": "Karachi",
     "price_level": null,
-    "website": null,
+    "website": "https://www.facebook.com/Cheekuwaterpark/",
     "phone": "+92 333 2263046",
     "hours": "{\"Friday\":[\"9 AM-6 PM\"],\"Monday\":[\"9 AM-6 PM\"],\"Saturday\":[\"9 AM-6 PM\"],\"Sunday\":[\"9 AM-6 PM\"],\"Thursday\":[\"9 AM-6 PM\"],\"Tuesday\":[\"9 AM-6 PM\"],\"Wednesday\":[\"9 AM-6 PM\"]}",
     "photo_url": "/venues/ChIJO_Xoa2JPsz4RnowXIK0GTxw.jpg",
@@ -1797,7 +1797,7 @@
     "status": "Open",
     "is_open": 1,
     "source_query": "approved-waterpark-review",
-    "last_verified": "2026-07-14T00:00:00+05:00"
+    "last_verified": "2026-07-30T02:54:13+05:00"
   },
   {
     "venue_id": "ChIJj2fdREQ8sz4RzpT2nvL7suY",
@@ -2787,7 +2787,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "snooker_club_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-07-30T02:54:13+05:00"
   },
   {
     "venue_id": "ChIJ47oyLQBBsz4RjRUsJbfKLOk",
@@ -6177,7 +6177,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "futsal_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-07-30T02:54:13+05:00"
   },
   {
     "venue_id": "ChIJOWbb7mY_sz4RpgWjme9HA-M",
@@ -6207,7 +6207,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "football_ground_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-07-30T02:54:13+05:00"
   },
   {
     "venue_id": "ChIJG4494g8-sz4RrqGqUwRAQoM",
@@ -6371,7 +6371,7 @@
     "category_slugs": "sports-active",
     "google_category": "Sports club",
     "rating": 5.0,
-    "review_count": 43,
+    "review_count": 42,
     "latitude": 24.923806199999998,
     "longitude": 67.0914703,
     "area": "Block 5 Gulshan-e-Iqbal",
@@ -6379,7 +6379,7 @@
     "city": "Karachi",
     "price_level": null,
     "website": "https://www.instagram.com/kickstartsoccerschool?igsh=MXN4a3l3bjgzcDdyeA%3D%3D&utm_source=qr",
-    "phone": "+92 345 2328683",
+    "phone": "+92 330 6246486",
     "hours": "{\"Friday\":[\"5–8 PM\"],\"Monday\":[\"5–8 PM\"],\"Saturday\":[\"Closed\"],\"Sunday\":[\"Closed\"],\"Thursday\":[\"Closed\"],\"Tuesday\":[\"Closed\"],\"Wednesday\":[\"5–8 PM\"]}",
     "photo_url": "/venues/ChIJPSYxfnU_sz4RmAlsaj3jyNk.jpg",
     "photos": "[]",
@@ -6387,7 +6387,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "futsal_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-07-30T02:54:13+05:00"
   },
   {
     "venue_id": "ChIJvxIT2Cg_sz4RoU99b4teo20",
@@ -6507,7 +6507,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "pool_club_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-07-30T02:54:13+05:00"
   },
   {
     "venue_id": "ChIJ7xpSgPM-sz4Rp3NcYNwAfVs",
@@ -7257,7 +7257,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "indoor_cricket_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-07-30T02:54:13+05:00"
   },
   {
     "venue_id": "ChIJTz70zf83sz4Rz_Dw-HRHDsc",
@@ -7557,7 +7557,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "football_ground_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-07-30T02:54:13+05:00"
   },
   {
     "venue_id": "ChIJrcgVYqM-sz4R46RWJAqnaRs",
@@ -8037,7 +8037,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "football_ground_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-07-30T02:54:13+05:00"
   },
   {
     "venue_id": "ChIJW9Y_8gs-sz4RssxqSPWnQrI",
@@ -8321,7 +8321,7 @@
     "category_slugs": "outdoors-adventure",
     "google_category": "Park",
     "rating": 4.2,
-    "review_count": 5209,
+    "review_count": 5226,
     "latitude": 24.8747057,
     "longitude": 67.0332708,
     "area": "Soldier Bazaar Jamshed Town",
@@ -8337,7 +8337,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "hiking_trail_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-07-30T02:54:13+05:00"
   },
   {
     "venue_id": "ChIJxz8TzOxAsz4RX7v_nEf23ck",
@@ -10931,7 +10931,7 @@
     "category_slugs": "outdoors-adventure",
     "google_category": "SCUBA tour agency",
     "rating": 4.8,
-    "review_count": 722,
+    "review_count": 730,
     "latitude": 24.8878901,
     "longitude": 67.0779527,
     "area": "Dhoraji Kathiawar CHS",
@@ -10947,7 +10947,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "trekking_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-07-30T02:54:13+05:00"
   },
   {
     "venue_id": "ChIJjz7iPwA_sz4RiJI7D9cE4Q8",
@@ -12760,8 +12760,8 @@
     "subcategories": "billiards",
     "category_slugs": "entertainment",
     "google_category": "Pool hall",
-    "rating": 4.4,
-    "review_count": 184,
+    "rating": 4.3,
+    "review_count": 185,
     "latitude": 24.871003599999998,
     "longitude": 67.0591613,
     "area": "Block 2 P.E.C.H.S.",
@@ -12777,7 +12777,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "swimming_club_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-07-30T02:54:13+05:00"
   },
   {
     "venue_id": "ChIJLZsFFBs_sz4RHC5rG0LSakU",
@@ -13137,7 +13137,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "pool_club_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-07-30T02:54:13+05:00"
   },
   {
     "venue_id": "ChIJmZqMSyI5sz4RbGO2p-9tZuo",
@@ -13451,7 +13451,7 @@
     "category_slugs": "outdoors-adventure",
     "google_category": "Boat tour agency",
     "rating": 4.8,
-    "review_count": 153,
+    "review_count": 155,
     "latitude": 24.8183069,
     "longitude": 66.97508479999999,
     "area": "Keamari",
@@ -13467,7 +13467,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "boating_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-07-30T02:54:13+05:00"
   },
   {
     "venue_id": "ChIJLc3UCQA9sz4REn_V9JD-H_Y",

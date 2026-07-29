@@ -81,7 +81,7 @@ class DailyRefreshPlanTest(unittest.TestCase):
         self.assertIn('MIN_RAW_ROWS="${MIN_RAW_ROWS:-1}"', text)
         self.assertIn("scrape returned $RAW_ROWS raw rows", text)
 
-    def test_maps_scraper_build_uses_latest_main_and_the_maintained_driver(self):
+    def test_maps_scraper_build_uses_clean_latest_main(self):
         script = Path(__file__).resolve().parents[1] / "scraper" / "install_maps_scraper.sh"
         text = script.read_text(encoding="utf-8")
 
@@ -89,10 +89,10 @@ class DailyRefreshPlanTest(unittest.TestCase):
         self.assertIn("--depth 1", text)
         self.assertNotIn("GOSOM_REF=", text)
         self.assertNotIn("SCRAPEMATE_REF=", text)
-        self.assertIn("github.com/mxschmitt/playwright-go", text)
+        self.assertNotIn("git apply", text)
+        self.assertNotIn("go mod edit -replace", text)
+        self.assertIn("go test ./gmaps", text)
         self.assertIn("PLAYWRIGHT_INSTALL_ONLY=1", text)
-        self.assertIn("Prefer the weekly timetable", text)
-        self.assertIn("could not apply the Maps weekly-hours patch", text)
 
 
 if __name__ == "__main__":

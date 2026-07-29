@@ -1,0 +1,118 @@
+name: Maps scraper diagnostic
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: maps-scraper-diagnostic
+  cancel-in-progress: true
+
+jobs:
+  compare:
+    if: github.repository == 'hassanraza04/niklo'
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.26.5"
+          cache: false
+
+      - name: Prepare fixed canaries
+        run: |
+          mkdir -p diagnostic/meta diagnostic/clean diagnostic/niklo
+          python pipeline/scraper_diagnostic.py prepare \
+            --output diagnostic/meta
+
+      - name: Fetch current upstream
+        run: |
+          git clone --quiet --depth 1 --branch main \
+            https://github.com/gosom/google-maps-scraper.git \
+            "$RUNNER_TEMP/google-maps-scraper"
+          git -C "$RUNNER_TEMP/google-maps-scraper" rev-parse HEAD \
+            > diagnostic/meta/upstream_sha.txt
+          cp diagnostic/meta/upstream_sha.txt diagnostic/clean/upstream_sha.txt
+          git -C "$RUNNER_TEMP/google-maps-scraper" log -1 --format=fuller \
+            > diagnostic/meta/upstream_commit.txt
+
+      - name: Build clean upstream
+        id: clean-build
+        run: |
+          set +e
+          mkdir -p "$RUNNER_TEMP/bin/clean"
+          (
+            set -e
+            cd "$RUNNER_TEMP/google-maps-scraper"
+            go build -o "$RUNNER_TEMP/bin/clean/google-maps-scraper" .
+            PLAYWRIGHT_INSTALL_ONLY=1 \
+              "$RUNNER_TEMP/bin/clean/google-maps-scraper"
+          ) > diagnostic/clean/build.log 2>&1
+          rc=$?
+          echo "$rc" > diagnostic/clean/build_exit_code.txt
+          if [ "$rc" -eq 0 ]; then
+            echo "built=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "built=false" >> "$GITHUB_OUTPUT"
+          fi
+          exit 0
+
+      - name: Run clean upstream
+        if: steps.clean-build.outputs.built == 'true'
+        run: |
+          python pipeline/scraper_diagnostic.py run \
+            --binary "$RUNNER_TEMP/bin/clean/google-maps-scraper" \
+            --canaries diagnostic/meta/canaries.csv \
+            --output diagnostic/clean
+
+      - name: Build Niklo variant
+        id: niklo-build
+        run: |
+          set +e
+          mkdir -p "$RUNNER_TEMP/bin/niklo"
+          GOBIN="$RUNNER_TEMP/bin/niklo" \
+            GOSOM_COMMIT_OUTPUT="$PWD/diagnostic/niklo/upstream_sha.txt" \
+            ./scraper/install_maps_scraper.sh \
+            > diagnostic/niklo/build.log 2>&1
+          rc=$?
+          echo "$rc" > diagnostic/niklo/build_exit_code.txt
+          if [ "$rc" -eq 0 ]; then
+            echo "built=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "built=false" >> "$GITHUB_OUTPUT"
+          fi
+          exit 0
+
+      - name: Run Niklo variant
+        if: steps.niklo-build.outputs.built == 'true'
+        run: |
+          python pipeline/scraper_diagnostic.py run \
+            --binary "$RUNNER_TEMP/bin/niklo/google-maps-scraper" \
+            --canaries diagnostic/meta/canaries.csv \
+            --output diagnostic/niklo
+
+      - name: Compare evidence
+        if: always()
+        run: |
+          python pipeline/scraper_diagnostic.py summarize \
+            --canaries diagnostic/meta/canaries.csv \
+            --variant clean=diagnostic/clean \
+            --variant niklo=diagnostic/niklo \
+            --output diagnostic
+          cat diagnostic/summary.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload diagnostic evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: maps-scraper-diagnostic-${{ github.run_id }}
+          path: diagnostic/
+          if-no-files-found: error

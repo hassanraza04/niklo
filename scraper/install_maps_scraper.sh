@@ -3,6 +3,7 @@
 set -euo pipefail
 
 BIN_DIR="${GOBIN:-$HOME/go/bin}"
+GOSOM_COMMIT_OUTPUT="${GOSOM_COMMIT_OUTPUT:-}"
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 WORKDIR="$(mktemp -d)"
 GOSOM_DIR="$WORKDIR/google-maps-scraper"
@@ -17,6 +18,10 @@ trap cleanup EXIT
 # every refresh, then fail closed if either Niklo compatibility patch no
 # longer applies or its focused Go tests fail.
 git clone --quiet --depth 1 --branch main https://github.com/gosom/google-maps-scraper.git "$GOSOM_DIR"
+if [ -n "$GOSOM_COMMIT_OUTPUT" ]; then
+  mkdir -p "$(dirname "$GOSOM_COMMIT_OUTPUT")"
+  git -C "$GOSOM_DIR" rev-parse HEAD > "$GOSOM_COMMIT_OUTPUT"
+fi
 git -C "$GOSOM_DIR" apply --check "$SCRIPT_DIR/patches/gosom-live-fields.patch"
 git -C "$GOSOM_DIR" apply "$SCRIPT_DIR/patches/gosom-live-fields.patch"
 git clone --quiet --depth 1 --branch main https://github.com/gosom/scrapemate.git "$SCRAPEMATE_DIR"

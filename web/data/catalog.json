@@ -1077,7 +1077,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "indoor_cricket_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-07-29T19:07:39+05:00"
   },
   {
     "venue_id": "ChIJue4rzV08sz4RjfHRAsmM7hI",
@@ -3207,7 +3207,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "cricket_nets_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-07-29T19:07:39+05:00"
   },
   {
     "venue_id": "ChIJ5SuZqBw5sz4R_wYQiiIJjtc",
@@ -3761,7 +3761,7 @@
     "category_slugs": "sports-active",
     "google_category": "Padel court",
     "rating": 4.3,
-    "review_count": 43,
+    "review_count": 46,
     "latitude": 24.8741147,
     "longitude": 67.05859459999999,
     "area": "Block 2 P.E.C.H.S.",
@@ -3777,7 +3777,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "padel_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-07-29T19:07:39+05:00"
   },
   {
     "venue_id": "ChIJZ_ZsUQA_sz4RLvmi1ACwe3A",
@@ -5547,7 +5547,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "cricket_nets_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-07-29T19:07:39+05:00"
   },
   {
     "venue_id": "ChIJ1VICXd89sz4RAqSYHvEqIBc",
@@ -5637,7 +5637,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "football_ground_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-07-29T19:07:39+05:00"
   },
   {
     "venue_id": "ChIJ6er1u_Q-sz4RMFo272tdDTc",
@@ -5890,8 +5890,8 @@
     "subcategories": "swimming",
     "category_slugs": "sports-active",
     "google_category": "Swimming pool",
-    "rating": 3.8,
-    "review_count": 44,
+    "rating": 3.9,
+    "review_count": 45,
     "latitude": 24.882591899999998,
     "longitude": 67.0925343,
     "area": "Karsaz Faisal Cantonment",
@@ -5907,7 +5907,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "swimming_pool_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-07-29T19:07:39+05:00"
   },
   {
     "venue_id": "ChIJn3aZFaE_sz4RTEbCjjLBbIc",
@@ -8561,7 +8561,7 @@
     "category_slugs": "sports-active",
     "google_category": "Futsal court",
     "rating": 4.4,
-    "review_count": 76,
+    "review_count": 77,
     "latitude": 24.796373499999998,
     "longitude": 67.0760567,
     "area": "D.H.A. Phase 8 Zone A Phase 8 Defence Housing Authority",
@@ -8577,7 +8577,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "futsal_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-07-29T19:07:39+05:00"
   },
   {
     "venue_id": "ChIJhb25Jrg9sz4R8hSscYafAQk",
@@ -8847,7 +8847,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "padel_court_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-07-29T19:07:39+05:00"
   },
   {
     "venue_id": "ChIJN3aGHwA_sz4RJGfeyavNsOs",
@@ -8877,7 +8877,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "padel_club_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-07-29T19:07:39+05:00"
   },
   {
     "venue_id": "ChIJrQbtTQA_sz4RioPhln4VHoo",
@@ -10827,7 +10827,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "boat_ride_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-07-29T19:07:39+05:00"
   },
   {
     "venue_id": "ChIJqR_nD0E_sz4RhieaW72Mljo",
@@ -11531,7 +11531,7 @@
     "category_slugs": "sports-active",
     "google_category": "Soccer field",
     "rating": 4.1,
-    "review_count": 114,
+    "review_count": 115,
     "latitude": 24.939845299999998,
     "longitude": 67.0829688,
     "area": "Federal B Area Block 16 Gulberg Town",
@@ -11547,7 +11547,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "football_ground_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-07-29T19:07:39+05:00"
   },
   {
     "venue_id": "ChIJWckeEzY_sz4RzYpD2qQlxts",
@@ -12880,8 +12880,8 @@
     "subcategories": "box-cricket",
     "category_slugs": "sports-active",
     "google_category": "Sports complex",
-    "rating": 3.5,
-    "review_count": 15,
+    "rating": 3.6,
+    "review_count": 16,
     "latitude": 24.8730638,
     "longitude": 67.0645571,
     "area": "Delhi Mercantile Society Darul Aman Society P.E.C.H.S.",
@@ -12897,7 +12897,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "indoor_cricket_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-07-29T19:07:39+05:00"
   },
   {
     "venue_id": "ChIJsWdI6lQ5sz4RWS1Xd8yrlmo",
@@ -13497,7 +13497,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "padel_clifton_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-07-29T19:07:39+05:00"
   },
   {
     "venue_id": "ChIJlUUTPVI_sz4RqatPSV0JOIo",
@@ -13721,7 +13721,7 @@
     "category_slugs": "culture",
     "google_category": "Historical landmark",
     "rating": 4.4,
-    "review_count": 78,
+    "review_count": 82,
     "latitude": 24.8541757,
     "longitude": 66.9964736,
     "area": "Musa Lane",
@@ -13737,7 +13737,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "historical_place_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-07-29T19:07:39+05:00"
   },
   {
     "venue_id": "ChIJZUmDF-VIsz4RWyxdHJ3aUyE",

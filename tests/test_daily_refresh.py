@@ -70,6 +70,8 @@ class DailyRefreshPlanTest(unittest.TestCase):
         self.assertIn('DAILY_BATCH_SIZE: "15"', text)
         self.assertIn('PAUSE_MIN: "15"', text)
         self.assertIn('PAUSE_MAX: "30"', text)
+        self.assertIn('CONC: "1"', text)
+        self.assertNotIn('CONC: "2"', text)
         self.assertIn('DEPTH: "1"', text)
         self.assertIn('QUERY_TIMEOUT_SECONDS: "120"', text)
         self.assertIn("./scraper/install_maps_scraper.sh", text)

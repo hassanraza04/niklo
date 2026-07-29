@@ -356,6 +356,7 @@ def main(argv: list[str] | None = None) -> int:
     run.add_argument("--output", type=Path, required=True)
     run.add_argument("--timeout-seconds", type=int, default=120)
     run.add_argument("--pause-seconds", type=int, default=5)
+    run.add_argument("--concurrency", type=int, default=1)
 
     summarize = commands.add_parser("summarize")
     summarize.add_argument("--canaries", type=Path, required=True)
@@ -374,6 +375,7 @@ def main(argv: list[str] | None = None) -> int:
                 args.output,
                 timeout_seconds=args.timeout_seconds,
                 pause_seconds=args.pause_seconds,
+                concurrency=args.concurrency,
             )
             print(f"recorded {len(statuses)} scraper processes in {args.output}")
         else:

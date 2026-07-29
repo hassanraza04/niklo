@@ -91,11 +91,16 @@ print("fake stdout")
                 canaries,
                 root / "run",
                 pause_seconds=0,
+                concurrency=2,
             )
 
             self.assertEqual("0", statuses[0]["return_code"])
             self.assertEqual("1", statuses[0]["result_rows"])
             self.assertIn("fake stdout", (root / "run" / "01.stdout.log").read_text())
+            self.assertIn(
+                "-c 2",
+                (root / "run" / "01.command.txt").read_text(encoding="utf-8"),
+            )
 
     def test_comparison_matches_exact_place_id_and_checks_full_week(self):
         with tempfile.TemporaryDirectory() as tmp:

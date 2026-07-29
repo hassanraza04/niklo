@@ -97,15 +97,16 @@ jobs:
           python pipeline/scraper_diagnostic.py run \
             --binary "$RUNNER_TEMP/bin/niklo/google-maps-scraper" \
             --canaries diagnostic/meta/canaries.csv \
-            --output diagnostic/niklo
+            --output diagnostic/niklo \
+            --concurrency 2
 
       - name: Compare evidence
         if: always()
         run: |
           python pipeline/scraper_diagnostic.py summarize \
             --canaries diagnostic/meta/canaries.csv \
-            --variant clean=diagnostic/clean \
-            --variant niklo=diagnostic/niklo \
+            --variant clean-c1=diagnostic/clean \
+            --variant daily-c2=diagnostic/niklo \
             --output diagnostic
           cat diagnostic/summary.md >> "$GITHUB_STEP_SUMMARY"
 

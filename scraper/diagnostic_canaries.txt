@@ -4,3 +4,9 @@ ChIJte6e6rU4sz4RyWkqWTzngjc
 ChIJx3NdLVw8sz4RT_aQOLfN2t4
 ChIJx7OssPA9sz4RcGEIrZ8_2fM
 ChIJx9mUVxoXsz4RaIe4LQlpmdU
+
+# Listings that returned zero reviews in the 2026-07-29 daily batch.
+ChIJLc3UCQA9sz4REn_V9JD-H_Y
+ChIJLcIUXgA_sz4Rz1Rom8Eat3o
+ChIJNRFBL7M_sz4RTPLo5u6yAQk
+ChIJNYKV9AY9sz4RG-fWQRg9yrE

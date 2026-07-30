@@ -2441,7 +2441,7 @@
     "category_slugs": "entertainment",
     "google_category": "Pool hall",
     "rating": 4.6,
-    "review_count": 222,
+    "review_count": 228,
     "latitude": 24.9331355,
     "longitude": 67.0530139,
     "area": "Block H Kausar Niazi Colony",
@@ -2457,7 +2457,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "tennis_academy_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-07-31T03:06:04+05:00"
   },
   {
     "venue_id": "ChIJYVC65H8_sz4RNGp8e5xk1D0",
@@ -2727,7 +2727,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "boat_ride_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-07-31T03:06:04+05:00"
   },
   {
     "venue_id": "ChIJd7gU6AY9sz4R4jHD5nDCVIE",
@@ -2951,7 +2951,7 @@
     "category_slugs": "culture",
     "google_category": "Historical landmark",
     "rating": 4.0,
-    "review_count": 28,
+    "review_count": 29,
     "latitude": 24.8501473,
     "longitude": 67.02994919999999,
     "area": "Civil Lines",
@@ -2967,7 +2967,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "heritage_site_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-07-31T03:06:04+05:00"
   },
   {
     "venue_id": "ChIJ4yAMArE_sz4RiXbFFGb0qAw",
@@ -3387,7 +3387,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "tennis_court_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-07-31T03:06:04+05:00"
   },
   {
     "venue_id": "ChIJ0cWdDrw9sz4RupEb5Ec8M_M",
@@ -4151,7 +4151,7 @@
     "category_slugs": "sports-active",
     "google_category": "Sports club",
     "rating": 4.2,
-    "review_count": 448,
+    "review_count": 449,
     "latitude": 24.815555399999997,
     "longitude": 67.0447836,
     "area": "Defence V Defence Housing Authority",
@@ -4167,7 +4167,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "football_ground_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-07-31T03:06:04+05:00"
   },
   {
     "venue_id": "ChIJZZIPYmJGsz4R1JL_GhVFoEA",
@@ -6701,7 +6701,7 @@
     "category_slugs": "sports-active",
     "google_category": "Stadium",
     "rating": 4.2,
-    "review_count": 347,
+    "review_count": 348,
     "latitude": 24.850873,
     "longitude": 66.9914525,
     "area": "West Wharf",
@@ -6717,7 +6717,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "futsal_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-07-31T03:06:04+05:00"
   },
   {
     "venue_id": "ChIJQyQ0olcVsz4R2Kvk18XmJps",
@@ -6747,7 +6747,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "tennis_court_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-07-31T03:06:04+05:00"
   },
   {
     "venue_id": "ChIJo_hK5sU9sz4R1x0-ASXpbUI",
@@ -9100,8 +9100,8 @@
     "subcategories": "padel",
     "category_slugs": "sports-active",
     "google_category": "Padel court",
-    "rating": 4.7,
-    "review_count": 40,
+    "rating": 4.5,
+    "review_count": 44,
     "latitude": 24.917717,
     "longitude": 67.0745282,
     "area": "Federal B Area Gulshan e Shamim",
@@ -9117,7 +9117,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "padel_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-07-31T03:06:04+05:00"
   },
   {
     "venue_id": "ChIJ6egOPSs9sz4R-BuRhhNSC6E",
@@ -9820,8 +9820,8 @@
     "subcategories": "heritage",
     "category_slugs": "culture",
     "google_category": "Historical landmark",
-    "rating": 4.4,
-    "review_count": 8,
+    "rating": 4.1,
+    "review_count": 13,
     "latitude": 24.863726999999997,
     "longitude": 67.0138992,
     "area": "",
@@ -9837,7 +9837,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "historical_place_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-07-31T03:06:04+05:00"
   },
   {
     "venue_id": "ChIJTQOElP0Vsz4RQAzqKJupTqM",
@@ -11367,7 +11367,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "art_studio_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-07-31T03:06:04+05:00"
   },
   {
     "venue_id": "ChIJpSamZNg9sz4RD7JMhPM6QpI",
@@ -11860,8 +11860,8 @@
     "subcategories": "padel",
     "category_slugs": "sports-active",
     "google_category": "Sports club",
-    "rating": 4.3,
-    "review_count": 9,
+    "rating": 4.2,
+    "review_count": 13,
     "latitude": 24.8453125,
     "longitude": 67.0509375,
     "area": "Pakistan Railways Housing Society Karachi Cantonment",
@@ -11877,7 +11877,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "padel_dha_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-07-31T03:06:04+05:00"
   },
   {
     "venue_id": "ChIJs_AUEgA_sz4RuX2mrEHEdd4",
@@ -12340,8 +12340,8 @@
     "subcategories": "swimming",
     "category_slugs": "sports-active",
     "google_category": "Swimming pool",
-    "rating": 3.9,
-    "review_count": 12,
+    "rating": 4.0,
+    "review_count": 13,
     "latitude": 24.9458801,
     "longitude": 67.0754777,
     "area": "Block 18 Gulberg Town",
@@ -12357,7 +12357,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "swimming_pool_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-07-31T03:06:04+05:00"
   },
   {
     "venue_id": "ChIJ2el21h5Bsz4R6eNwkKe-Um4",
@@ -12551,7 +12551,7 @@
     "category_slugs": "culture",
     "google_category": "Historical landmark",
     "rating": 4.5,
-    "review_count": 2507,
+    "review_count": 2547,
     "latitude": 24.833831,
     "longitude": 67.0336717,
     "area": "Clifton",
@@ -12567,7 +12567,7 @@
     "status": "Open",
     "is_open": 1,
     "source_query": "approved-heritage-review",
-    "last_verified": "2026-07-15T14:13:45+05:00"
+    "last_verified": "2026-07-31T03:06:04+05:00"
   },
   {
     "venue_id": "ChIJabOZXsw-sz4RSqEP2o1KKBM",
@@ -13571,7 +13571,7 @@
     "category_slugs": "culture",
     "google_category": "Art gallery",
     "rating": 4.5,
-    "review_count": 280,
+    "review_count": 284,
     "latitude": 24.8855895,
     "longitude": 67.074562,
     "area": "Dhoraji Cp & Berar Chs",
@@ -13587,7 +13587,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "art_cafe_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-07-31T03:06:04+05:00"
   },
   {
     "venue_id": "ChIJF3oVP_89sz4RMUaXMLKkgl4",
@@ -13647,7 +13647,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "vr_zone_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-07-31T03:06:04+05:00"
   },
   {
     "venue_id": "ChIJiXWgBQA3sz4Rxbg-AAYMZfI",

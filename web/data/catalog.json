@@ -2471,7 +2471,7 @@
     "category_slugs": "entertainment",
     "google_category": "Sports club",
     "rating": 4.5,
-    "review_count": 30,
+    "review_count": 31,
     "latitude": 24.908703799999998,
     "longitude": 67.0802789,
     "area": "Gulshan 13-B Block 13 B Gulshan-e-Iqbal",
@@ -2487,7 +2487,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "gaming_zone_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-04T03:06:24+05:00"
   },
   {
     "venue_id": "ChIJ-bwK7vU9sz4RzqT5U-PhUIs",
@@ -3071,7 +3071,7 @@
     "category_slugs": "culture",
     "google_category": "Historical market square",
     "rating": 4.2,
-    "review_count": 7693,
+    "review_count": 7773,
     "latitude": 24.862484199999997,
     "longitude": 67.0295321,
     "area": "Empress Market Saddar",
@@ -3087,7 +3087,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "heritage_site_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-04T03:06:24+05:00"
   },
   {
     "venue_id": "ChIJc_yceM04sz4R0hApZoX0c6U",
@@ -3161,7 +3161,7 @@
     "category_slugs": "entertainment",
     "google_category": "Escape room center",
     "rating": 4.4,
-    "review_count": 245,
+    "review_count": 251,
     "latitude": 24.793432,
     "longitude": 67.0663957,
     "area": "D.H.A Phase 6 Bukhari Commercial Area Phase 6 Defence Housing Authority",
@@ -3177,7 +3177,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "escape_game_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-04T03:06:24+05:00"
   },
   {
     "venue_id": "ChIJLdO0EQA_sz4RilozbCb76oE",
@@ -5501,7 +5501,7 @@
     "category_slugs": "sports-active,entertainment",
     "google_category": "Club",
     "rating": 4.4,
-    "review_count": 3708,
+    "review_count": 3711,
     "latitude": 24.840788999999997,
     "longitude": 67.000953,
     "area": "Lalazar",
@@ -5517,7 +5517,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "swimming_pool_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-04T03:06:24+05:00"
   },
   {
     "venue_id": "ChIJNYKV9AY9sz4RG-fWQRg9yrE",
@@ -6011,7 +6011,7 @@
     "category_slugs": "sports-active",
     "google_category": "Cricket ground",
     "rating": 4.1,
-    "review_count": 1091,
+    "review_count": 1096,
     "latitude": 24.9477093,
     "longitude": 67.06456519999999,
     "area": "Block N North Nazimabad Town",
@@ -6027,7 +6027,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "box_cricket_north_nazimabad_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-04T03:06:24+05:00"
   },
   {
     "venue_id": "ChIJJYFCsLc-sz4R3hn_k5e2j78",
@@ -9040,8 +9040,8 @@
     "subcategories": "padel",
     "category_slugs": "sports-active",
     "google_category": "Padel club",
-    "rating": 4.7,
-    "review_count": 10,
+    "rating": 4.6,
+    "review_count": 12,
     "latitude": 24.800816899999997,
     "longitude": 67.07672409999999,
     "area": "D.H.A. Phase 8 Zone A Phase 8 Defence Housing Authority",
@@ -9057,7 +9057,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "padel_tennis_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-04T03:06:24+05:00"
   },
   {
     "venue_id": "ChIJn6yi1PM_sz4RKsMtdZWa_8Y",
@@ -10991,7 +10991,7 @@
     "category_slugs": "sports-active,entertainment",
     "google_category": "Club",
     "rating": 4.2,
-    "review_count": 1300,
+    "review_count": 1307,
     "latitude": 24.851692,
     "longitude": 67.0299704,
     "area": "Civil Lines",
@@ -11007,7 +11007,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "squash_court_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-04T03:06:24+05:00"
   },
   {
     "venue_id": "ChIJn94cAvBpLw8RLR2t8jnLJzY",
@@ -11171,7 +11171,7 @@
     "category_slugs": "sports-active",
     "google_category": "Skatepark",
     "rating": 4.4,
-    "review_count": 34,
+    "review_count": 36,
     "latitude": 24.883436099999997,
     "longitude": 67.0670512,
     "area": "Bahadurabad BMCHS Sharafabad",
@@ -11187,7 +11187,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "ice_skating_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-04T03:06:24+05:00"
   },
   {
     "venue_id": "ChIJwTDNz38_sz4RGvY-DW6z_Xk",
@@ -11471,7 +11471,7 @@
     "category_slugs": "sports-active",
     "google_category": "Sports complex",
     "rating": 4.2,
-    "review_count": 520,
+    "review_count": 522,
     "latitude": 24.908796199999998,
     "longitude": 67.0318845,
     "area": "Block 2 Nazimabad",
@@ -11487,7 +11487,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "tennis_academy_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-04T03:06:24+05:00"
   },
   {
     "venue_id": "ChIJXxzjg1A_sz4R3R0ebMOlly4",
@@ -11517,7 +11517,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "football_ground_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-04T03:06:24+05:00"
   },
   {
     "venue_id": "ChIJM6VCj1A_sz4Rc7FcdsWk4Hw",
@@ -11651,7 +11651,7 @@
     "category_slugs": "sports-active",
     "google_category": "Padel club",
     "rating": 4.2,
-    "review_count": 74,
+    "review_count": 78,
     "latitude": 24.8789741,
     "longitude": 67.0899472,
     "area": "KDA Scheme #1 KDA Scheme 1",
@@ -11667,7 +11667,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "padel_tennis_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-04T03:06:24+05:00"
   },
   {
     "venue_id": "ChIJRd2oOuU9sz4RqXsIw4FRxOw",
@@ -12228,7 +12228,7 @@
     "address": "Shah Mureed Karachi, Gadap Hub Dureji Road, Chandna Farm House near Taiser Town, Karachi, Pakistan",
     "city": "Karachi",
     "price_level": null,
-    "website": null,
+    "website": "https://www.facebook.com/SunRise.WaterPark/",
     "phone": "+92 333 1005588",
     "hours": "{\"Friday\":[\"Open 24 hours\"],\"Monday\":[\"Open 24 hours\"],\"Saturday\":[\"Open 24 hours\"],\"Sunday\":[\"Open 24 hours\"],\"Thursday\":[\"Open 24 hours\"],\"Tuesday\":[\"Open 24 hours\"],\"Wednesday\":[\"Open 24 hours\"]}",
     "photo_url": "/venues/ChIJY-1omhlGsz4Rnl-l9BzDOVw.jpg",
@@ -12237,7 +12237,7 @@
     "status": "Open",
     "is_open": 1,
     "source_query": "approved-waterpark-review",
-    "last_verified": "2026-07-14T00:00:00+05:00"
+    "last_verified": "2026-08-04T03:06:24+05:00"
   },
   {
     "venue_id": "ChIJ9wRDKEE8sz4Rks0Qon43o8U",
@@ -12940,8 +12940,8 @@
     "subcategories": "box-cricket,futsal",
     "category_slugs": "sports-active",
     "google_category": "Indoor playground",
-    "rating": 4.5,
-    "review_count": 22,
+    "rating": 4.6,
+    "review_count": 24,
     "latitude": 24.946383899999997,
     "longitude": 67.06746679999999,
     "area": "Gulshan-e-Waseem Sector 16 A North Nazimabad Town",
@@ -12957,7 +12957,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "box_cricket_north_nazimabad_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-04T03:06:24+05:00"
   },
   {
     "venue_id": "ChIJybTEzTw7sz4RLb2PysKPyv0",
@@ -13361,7 +13361,7 @@
     "category_slugs": "sports-active,entertainment",
     "google_category": "Community center",
     "rating": 4.1,
-    "review_count": 2451,
+    "review_count": 2458,
     "latitude": 24.872775999999998,
     "longitude": 67.0664206,
     "area": "Darul Aman Society P.E.C.H.S.",
@@ -13377,7 +13377,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "tennis_court_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-04T03:06:24+05:00"
   },
   {
     "venue_id": "ChIJ-8rrWzc_sz4RXyJBWkKhv6E",
@@ -13750,8 +13750,8 @@
     "subcategories": "waterparks",
     "category_slugs": "outdoors-adventure",
     "google_category": "Water park",
-    "rating": 4.3,
-    "review_count": 3494,
+    "rating": 4.2,
+    "review_count": 3638,
     "latitude": 25.0287355,
     "longitude": 67.2272046,
     "area": "Gadap Town",
@@ -13767,7 +13767,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "adventure_park_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-04T03:06:24+05:00"
   },
   {
     "venue_id": "ChIJsfhKwCA9sz4R_rTlkG971j0",

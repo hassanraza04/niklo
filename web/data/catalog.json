@@ -1241,7 +1241,7 @@
     "category_slugs": "outdoors-adventure",
     "google_category": "Park",
     "rating": 4.3,
-    "review_count": 977,
+    "review_count": 978,
     "latitude": 24.8707745,
     "longitude": 67.0836712,
     "area": "Bangalore Town Block A Gulshan-e-Iqbal",
@@ -1257,7 +1257,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "trekking_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-06T03:13:24+05:00"
   },
   {
     "venue_id": "ChIJrdTPMQA5sz4RFyohMZeMhhw",
@@ -1437,7 +1437,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "boating_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-06T03:13:24+05:00"
   },
   {
     "venue_id": "ChIJX2QQqko_sz4RkX-69OMquBU",
@@ -3327,7 +3327,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "boat_ride_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-06T03:13:24+05:00"
   },
   {
     "venue_id": "ChIJbVv97iE-sz4RpqpQ3_qG5T4",
@@ -3357,7 +3357,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "football_ground_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-06T03:13:24+05:00"
   },
   {
     "venue_id": "ChIJQ8R6tUI-sz4RXEPzycVfYxE",
@@ -4630,8 +4630,8 @@
     "subcategories": "box-cricket,futsal",
     "category_slugs": "sports-active",
     "google_category": "Sports club",
-    "rating": 4.4,
-    "review_count": 38,
+    "rating": 4.3,
+    "review_count": 45,
     "latitude": 24.8681153,
     "longitude": 67.0704023,
     "area": "Block 6 P.E.C.H.S.",
@@ -4647,7 +4647,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "cricket_nets_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-06T03:13:24+05:00"
   },
   {
     "venue_id": "ChIJud7UhzA8sz4RBq5PGAnT_LM",
@@ -6130,8 +6130,8 @@
     "subcategories": "boating",
     "category_slugs": "outdoors-adventure",
     "google_category": "Boat tour agency",
-    "rating": 4.1,
-    "review_count": 394,
+    "rating": 4.0,
+    "review_count": 404,
     "latitude": 24.8176392,
     "longitude": 66.9754253,
     "area": "Port Of Karachi",
@@ -6147,7 +6147,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "boat_ride_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-06T03:13:24+05:00"
   },
   {
     "venue_id": "ChIJP4xk6CY_sz4RniXMTHr-MH0",
@@ -6477,7 +6477,7 @@
     "status": "Open",
     "is_open": 1,
     "source_query": "approved-waterpark-review",
-    "last_verified": "2026-07-14T00:00:00+05:00"
+    "last_verified": "2026-08-06T03:13:24+05:00"
   },
   {
     "venue_id": "ChIJPc9jL3w_sz4Rl27T-zrNrGo",
@@ -7030,8 +7030,8 @@
     "subcategories": "padel",
     "category_slugs": "sports-active",
     "google_category": "Padel club",
-    "rating": 3.7,
-    "review_count": 19,
+    "rating": 3.8,
+    "review_count": 22,
     "latitude": 24.7495786,
     "longitude": 67.0738942,
     "area": "DHA Karachi Phase VIII Zone D Zone D Phase 8 Emaar",
@@ -7047,7 +7047,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "padel_dha_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-06T03:13:24+05:00"
   },
   {
     "venue_id": "ChIJcwjzUwA3sz4RHpHmN3AU_HE",
@@ -7060,8 +7060,8 @@
     "subcategories": "padel",
     "category_slugs": "sports-active",
     "google_category": "Sports club",
-    "rating": 4.4,
-    "review_count": 20,
+    "rating": 4.5,
+    "review_count": 22,
     "latitude": 24.943994699999998,
     "longitude": 67.2016022,
     "area": "Malir Cantonment",
@@ -7077,7 +7077,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "padel_tennis_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-06T03:13:24+05:00"
   },
   {
     "venue_id": "ChIJf5Wp2949sz4RH-JIGTH6IMU",
@@ -7977,7 +7977,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "boating_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-06T03:13:24+05:00"
   },
   {
     "venue_id": "ChIJx9mUVxoXsz4RaIe4LQlpmdU",
@@ -10661,7 +10661,7 @@
     "category_slugs": "outdoors-adventure",
     "google_category": "Amusement park",
     "rating": 3.9,
-    "review_count": 487,
+    "review_count": 488,
     "latitude": 24.9259375,
     "longitude": 67.11218749999999,
     "area": "Gulshan-e-Iqbal",
@@ -10677,7 +10677,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "adventure_park_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-06T03:13:24+05:00"
   },
   {
     "venue_id": "ChIJgzbGALE_sz4RQxGpX_GO3YA",
@@ -11727,7 +11727,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "snooker_club_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-06T03:13:24+05:00"
   },
   {
     "venue_id": "ChIJFYned4E_sz4R6qhz1s_NRJU",
@@ -12597,7 +12597,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "tennis_court_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-06T03:13:24+05:00"
   },
   {
     "venue_id": "ChIJ3YgsEEY_sz4R0fv_r0eLIXw",
@@ -13691,7 +13691,7 @@
     "category_slugs": "culture",
     "google_category": "Historical place museum",
     "rating": 4.5,
-    "review_count": 1292,
+    "review_count": 1305,
     "latitude": 24.8510559,
     "longitude": 66.99750929999999,
     "area": "Kharadar Bunder Quarter",
@@ -13707,7 +13707,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "historical_place_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-06T03:13:24+05:00"
   },
   {
     "venue_id": "ChIJN02mNHcVsz4RnYlxzijiJg8",

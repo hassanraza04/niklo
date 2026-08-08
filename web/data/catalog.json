@@ -431,7 +431,7 @@
     "category_slugs": "sports-active,entertainment",
     "google_category": "Sports complex",
     "rating": 4.5,
-    "review_count": 991,
+    "review_count": 990,
     "latitude": 24.8455728,
     "longitude": 67.00410699999999,
     "area": "City Railway Colony",
@@ -447,7 +447,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "padel_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-09T02:28:20+05:00"
   },
   {
     "venue_id": "ChIJWZZ2XQA_sz4Rhkvy46GR2AI",
@@ -1571,7 +1571,7 @@
     "category_slugs": "culture",
     "google_category": "Art gallery",
     "rating": 4.4,
-    "review_count": 152,
+    "review_count": 153,
     "latitude": 24.8076175,
     "longitude": 67.0331343,
     "area": "Kehkashan Block 4 Clifton",
@@ -1587,7 +1587,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "art_studio_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-09T02:28:20+05:00"
   },
   {
     "venue_id": "ChIJr_-8DQA9sz4R85BFutZGdfI",
@@ -1811,7 +1811,7 @@
     "category_slugs": "outdoors-adventure",
     "google_category": "Amusement park",
     "rating": 4.1,
-    "review_count": 2956,
+    "review_count": 2983,
     "latitude": 24.825081599999997,
     "longitude": 67.0624764,
     "area": "D.H.A. Phase 4 Phase 4 Defence Housing Authority",
@@ -1827,7 +1827,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "adventure_park_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-09T02:28:20+05:00"
   },
   {
     "venue_id": "ChIJ4UjQrbA9sz4RctlmsMZTPiY",
@@ -2531,7 +2531,7 @@
     "category_slugs": "sports-active",
     "google_category": "Sports complex",
     "rating": 4.2,
-    "review_count": 122,
+    "review_count": 124,
     "latitude": 24.9041291,
     "longitude": 67.100426,
     "area": "Shanti Nagar",
@@ -2547,7 +2547,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "football_ground_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-09T02:28:20+05:00"
   },
   {
     "venue_id": "ChIJ-3bLaDc8sz4RP5TwGM0mSmI",
@@ -3717,7 +3717,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "football_ground_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-09T02:28:20+05:00"
   },
   {
     "venue_id": "ChIJIzn9hgBAsz4R9r3s76BVZfs",
@@ -3957,7 +3957,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "futsal_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-09T02:28:20+05:00"
   },
   {
     "venue_id": "ChIJl89lxo85sz4RM6FvN92Tf5M",
@@ -5951,7 +5951,7 @@
     "category_slugs": "sports-active,entertainment",
     "google_category": "Sports complex",
     "rating": 4.1,
-    "review_count": 1787,
+    "review_count": 1792,
     "latitude": 24.8811905,
     "longitude": 67.0535335,
     "area": "Jamshed Quarters Muslimabad",
@@ -5967,7 +5967,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "indoor_cricket_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-09T02:28:20+05:00"
   },
   {
     "venue_id": "ChIJv7gA3f4Vsz4RXh3FTZQNRXU",
@@ -8501,7 +8501,7 @@
     "category_slugs": "entertainment",
     "google_category": "Movie theater",
     "rating": 4.4,
-    "review_count": 11159,
+    "review_count": 11252,
     "latitude": 24.899564899999998,
     "longitude": 67.1167719,
     "area": "Askari IV Askari 4",
@@ -8517,7 +8517,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "cinema_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-09T02:28:20+05:00"
   },
   {
     "venue_id": "ChIJ5e8gwKg8sz4Rxgw3UyXZem0",
@@ -8607,7 +8607,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "art_studio_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-09T02:28:20+05:00"
   },
   {
     "venue_id": "ChIJmeM0M8s_sz4RYv8md4ET4VA",
@@ -9237,7 +9237,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "padel_dha_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-09T02:28:20+05:00"
   },
   {
     "venue_id": "ChIJTek-mb09sz4R7hGihrC19nM",
@@ -9417,7 +9417,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "football_ground_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-09T02:28:20+05:00"
   },
   {
     "venue_id": "ChIJI5I4mFI5sz4RYD8z8WZMOfI",
@@ -9717,7 +9717,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "indoor_cricket_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-09T02:28:20+05:00"
   },
   {
     "venue_id": "ChIJEei9Y4g_sz4R6p_NEI4646o",
@@ -10151,7 +10151,7 @@
     "category_slugs": "culture",
     "google_category": "Museum",
     "rating": 4.6,
-    "review_count": 2063,
+    "review_count": 2077,
     "latitude": 24.8512608,
     "longitude": 67.0327375,
     "area": "Karachi Cantonment",
@@ -10167,7 +10167,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "museum_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-09T02:28:20+05:00"
   },
   {
     "venue_id": "ChIJHzMsnkpKsz4RjH2WXFPbGGw",
@@ -10781,7 +10781,7 @@
     "category_slugs": "outdoors-adventure",
     "google_category": "Beach",
     "rating": 4.5,
-    "review_count": 1278,
+    "review_count": 1295,
     "latitude": 24.8404077,
     "longitude": 66.9098222,
     "area": "",
@@ -10797,7 +10797,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "beach_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-09T02:28:20+05:00"
   },
   {
     "venue_id": "ChIJM7FgShk_sz4Rcie9zNLcJ7Y",
@@ -13660,8 +13660,8 @@
     "subcategories": "waterparks",
     "category_slugs": "outdoors-adventure",
     "google_category": "Water park",
-    "rating": 4.1,
-    "review_count": 128,
+    "rating": 4.0,
+    "review_count": 138,
     "latitude": 24.957364,
     "longitude": 67.2675759,
     "area": "Damba",
@@ -13677,7 +13677,7 @@
     "status": "Open",
     "is_open": 1,
     "source_query": "approved-waterpark-review",
-    "last_verified": "2026-07-14T00:00:00+05:00"
+    "last_verified": "2026-08-09T02:28:20+05:00"
   },
   {
     "venue_id": "ChIJbTNnuPgVsz4R4f49QL8SUFc",

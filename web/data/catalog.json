@@ -177,7 +177,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "boat_ride_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-10T02:29:30+05:00"
   },
   {
     "venue_id": "ChIJJ2loV6Y9sz4Ro6tJlO5POJs",
@@ -791,7 +791,7 @@
     "category_slugs": "culture",
     "google_category": "Art gallery",
     "rating": 4.5,
-    "review_count": 98,
+    "review_count": 99,
     "latitude": 24.7945073,
     "longitude": 67.0495466,
     "area": "D.H.A Phase 6 Shahbaz Commercial Area Phase 6 Defence Housing Authority",
@@ -807,7 +807,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "art_gallery_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-10T02:29:30+05:00"
   },
   {
     "venue_id": "ChIJlzB7Qek8sz4RssgzuglFD7s",
@@ -1347,7 +1347,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "heritage_site_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-10T02:29:30+05:00"
   },
   {
     "venue_id": "ChIJB-4Ybho-sz4R-szGpnPTJWE",
@@ -2351,7 +2351,7 @@
     "category_slugs": "entertainment,sports-active",
     "google_category": "Pool billard club",
     "rating": 4.5,
-    "review_count": 131,
+    "review_count": 139,
     "latitude": 24.8810474,
     "longitude": 67.0689683,
     "area": "Bihar Muslim Society Bahadur Yar Jang CHS",
@@ -2367,7 +2367,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "tennis_academy_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-10T02:29:30+05:00"
   },
   {
     "venue_id": "ChIJvee0aIA9sz4RBi26So04XBs",
@@ -2621,7 +2621,7 @@
     "category_slugs": "outdoors-adventure",
     "google_category": "Sailing club",
     "rating": 4.3,
-    "review_count": 2320,
+    "review_count": 2338,
     "latitude": 24.796253,
     "longitude": 67.08022559999999,
     "area": "DHA Karachi Phase VIII Zone A Zone A Phase 8 Defence Housing Authority",
@@ -2637,7 +2637,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "boat_ride_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-10T02:29:30+05:00"
   },
   {
     "venue_id": "ChIJ-dMFDxA_sz4R3lhLI4sz_5w",
@@ -2831,7 +2831,7 @@
     "category_slugs": "sports-active",
     "google_category": "Sports complex",
     "rating": 4.4,
-    "review_count": 85,
+    "review_count": 86,
     "latitude": 24.9419488,
     "longitude": 67.0345316,
     "area": "Block Q North Nazimabad Town",
@@ -2847,7 +2847,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "indoor_cricket_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-10T02:29:30+05:00"
   },
   {
     "venue_id": "ChIJ9Zj0l0A-sz4R4bxic8gCe-Q",
@@ -3611,7 +3611,7 @@
     "category_slugs": "sports-active",
     "google_category": "Playground",
     "rating": 3.9,
-    "review_count": 87,
+    "review_count": 102,
     "latitude": 24.9241875,
     "longitude": 67.10856249999999,
     "area": "Gulshan-e-Iqbal",
@@ -3627,7 +3627,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "trampoline_park_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-10T02:29:30+05:00"
   },
   {
     "venue_id": "ChIJwzEzFgA5sz4RfW94uL683qk",
@@ -5397,7 +5397,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "boat_ride_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-10T02:29:30+05:00"
   },
   {
     "venue_id": "ChIJpUBvA8U9sz4RlX1Xw4bSm2w",
@@ -5860,8 +5860,8 @@
     "subcategories": "swimming",
     "category_slugs": "sports-active",
     "google_category": "Sports club",
-    "rating": 4.3,
-    "review_count": 7,
+    "rating": 4.1,
+    "review_count": 8,
     "latitude": 24.8871956,
     "longitude": 67.0958977,
     "area": "",
@@ -5877,7 +5877,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "swimming_pool_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-10T02:29:30+05:00"
   },
   {
     "venue_id": "ChIJMd7Vpzg_sz4Rh8LkpQZA3r0",
@@ -6311,7 +6311,7 @@
     "category_slugs": "sports-active",
     "google_category": "Football club",
     "rating": 4.9,
-    "review_count": 9,
+    "review_count": 10,
     "latitude": 24.8008529,
     "longitude": 67.0773469,
     "area": "D.H.A. Phase 8 Zone A Phase 8 Defence Housing Authority",
@@ -6327,7 +6327,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "5_a_side_football_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-10T02:29:30+05:00"
   },
   {
     "venue_id": "ChIJSYyiRJA_sz4RGsbHWAIvUgc",
@@ -6611,7 +6611,7 @@
     "category_slugs": "sports-active",
     "google_category": "Sports complex",
     "rating": 4.3,
-    "review_count": 487,
+    "review_count": 493,
     "latitude": 24.9286875,
     "longitude": 67.0928125,
     "area": "Block 3 Gulshan-e-Iqbal",
@@ -6620,14 +6620,14 @@
     "price_level": null,
     "website": null,
     "phone": "+92 310 2323579",
-    "hours": "{\"Friday\":[\"9 AM–5 PM\"],\"Monday\":[\"9 AM–5 PM\"],\"Saturday\":[\"Closed\"],\"Sunday\":[\"Closed\"],\"Thursday\":[\"9 AM–5 PM\"],\"Tuesday\":[\"9 AM–5 PM\"],\"Wednesday\":[\"9 AM–5 PM\"]}",
+    "hours": "{\"Friday\":[\"9 AM–5 PM\"],\"Monday\":[\"9 AM–5 PM\"],\"Saturday\":[\"Closed\"],\"Sunday\":[\"Closed\"],\"Thursday\":[\"9 AM–5 PM\"],\"Tuesday\":[\"Closed\"],\"Wednesday\":[\"9 AM–5 PM\"]}",
     "photo_url": "/venues/ChIJjyGJ6Eo_sz4RRADLVQ9Nu_4.jpg",
     "photos": "[]",
     "google_url": "https://www.google.com/maps/place/KMC+WOMEN+SPORTS+COMPLEX/data=!4m7!3m6!1s0x3eb33f4ae889218f:0xfebb4d0f55cb0044!8m2!3d24.9286875!4d67.0928125!16s%2Fm%2F02qbx1b!19sChIJjyGJ6Eo_sz4RRADLVQ9Nu_4?authuser=0&hl=en&rclk=1",
     "status": null,
     "is_open": 1,
     "source_query": "swimming_pool_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-10T02:29:30+05:00"
   },
   {
     "venue_id": "ChIJ0ftgawA_sz4R9g_BzUIdxWk",
@@ -7331,7 +7331,7 @@
     "category_slugs": "culture",
     "google_category": "Historical landmark",
     "rating": 4.4,
-    "review_count": 316,
+    "review_count": 330,
     "latitude": 24.8489421,
     "longitude": 66.99736639999999,
     "area": "Seari Quarters",
@@ -7347,7 +7347,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "heritage_site_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-10T02:29:30+05:00"
   },
   {
     "venue_id": "ChIJL4EAbwBHsz4RWKscF7zjPUg",
@@ -10960,8 +10960,8 @@
     "subcategories": "padel,box-cricket",
     "category_slugs": "sports-active",
     "google_category": "Padel court",
-    "rating": 4.2,
-    "review_count": 33,
+    "rating": 4.1,
+    "review_count": 35,
     "latitude": 24.8757794,
     "longitude": 67.03236509999999,
     "area": "Soldier Bazaar Parsi Colony Saddar",
@@ -10977,7 +10977,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "padel_dha_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-10T02:29:30+05:00"
   },
   {
     "venue_id": "ChIJXyerqa8_sz4RuNRE62byURs",
@@ -11247,7 +11247,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "snooker_club_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-10T02:29:30+05:00"
   },
   {
     "venue_id": "ChIJ0bD1opoXsz4RvXIdxy_e7qU",
@@ -12491,23 +12491,23 @@
     "category_slugs": "culture",
     "google_category": "Community center",
     "rating": 4.5,
-    "review_count": 2835,
+    "review_count": 2849,
     "latitude": 24.8778344,
     "longitude": 67.038079,
     "area": "Soldier Bazaar",
     "address": "Muhammad Ali Jinnah Rd, Soldier Bazaar Catholic Colony, Karachi, Pakistan",
     "city": "Karachi",
     "price_level": null,
-    "website": null,
+    "website": "http://www.dawoodfoundation.org/",
     "phone": "+92 301 8447051",
-    "hours": "{\"Friday\":[\"2 PM-10 PM\"],\"Monday\":[\"Closed\"],\"Saturday\":[\"2 PM-10 PM\"],\"Sunday\":[\"2 PM-10 PM\"],\"Thursday\":[\"2 PM-10 PM\"],\"Tuesday\":[\"2 PM-10 PM\"],\"Wednesday\":[\"2 PM-10 PM\"]}",
+    "hours": "{\"Friday\":[\"2–10 PM\"],\"Monday\":[\"Closed\"],\"Saturday\":[\"2–10 PM\"],\"Sunday\":[\"2–10 PM\"],\"Thursday\":[\"2–10 PM\"],\"Tuesday\":[\"2–10 PM\"],\"Wednesday\":[\"2–10 PM\"]}",
     "photo_url": "/venues/ChIJj_X1Z1w-sz4ReCUDgrzrY9M.jpg",
     "photos": "[]",
     "google_url": "https://www.google.com/maps/place/TDF+Ghar/@24.8607,67.0011,14z/data=!4m6!3m5!1s0x3eb33e5c67f5f58f:0xd363ebbc82032578!8m2!3d24.8778344!4d67.038079!16s%2Fg%2F11g9qj0s3c?hl=en&entry=ttu&g_ep=EgoyMDI2MDcwOC4wIKXMDSoASAFQAw%3D%3D",
     "status": "Open",
     "is_open": 1,
     "source_query": "approved-heritage-review",
-    "last_verified": "2026-07-14T00:00:00+05:00"
+    "last_verified": "2026-08-10T02:29:30+05:00"
   },
   {
     "venue_id": "ChIJFz1QFvc_sz4RCn8K3zfYXv4",

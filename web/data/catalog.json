@@ -1211,7 +1211,7 @@
     "category_slugs": "entertainment",
     "google_category": "Movie theater",
     "rating": 3.5,
-    "review_count": 852,
+    "review_count": 853,
     "latitude": 24.8641518,
     "longitude": 67.02536359999999,
     "area": "Preedy Quarters",
@@ -1227,7 +1227,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "cinema_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-13T02:42:38+05:00"
   },
   {
     "venue_id": "ChIJbctVFbA-sz4RlYUBU2hctcA",
@@ -1617,7 +1617,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "padel_club_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-13T02:42:38+05:00"
   },
   {
     "venue_id": "ChIJ3c2oKwA_sz4RbEn1X2i_G4U",
@@ -2247,7 +2247,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "indoor_cricket_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-13T02:42:38+05:00"
   },
   {
     "venue_id": "ChIJa--ipS49sz4RAoluCYLD4YI",
@@ -3687,7 +3687,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "football_ground_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-13T02:42:38+05:00"
   },
   {
     "venue_id": "ChIJi1OqxMc9sz4RA0563v3H-sI",
@@ -4001,7 +4001,7 @@
     "category_slugs": "sports-active,outdoors-adventure",
     "google_category": "Park",
     "rating": 4.2,
-    "review_count": 527,
+    "review_count": 528,
     "latitude": 24.8729111,
     "longitude": 67.00583449999999,
     "area": "Kalakot Kalan Kot",
@@ -4017,7 +4017,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "football_ground_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-13T02:42:38+05:00"
   },
   {
     "venue_id": "ChIJH7UXVNI_sz4RwJe9kH_aXMk",
@@ -4241,7 +4241,7 @@
     "category_slugs": "sports-active",
     "google_category": "Sports club",
     "rating": 4.6,
-    "review_count": 37,
+    "review_count": 39,
     "latitude": 24.7880906,
     "longitude": 67.0488853,
     "area": "D.H.A Phase 6 Darakhshan Villas Phase 6 Darakshan",
@@ -4257,7 +4257,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "padel_dha_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-13T02:42:38+05:00"
   },
   {
     "venue_id": "ChIJI04vaco9sz4RZ9KApkrEcb8",
@@ -4437,7 +4437,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "football_ground_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-13T02:42:38+05:00"
   },
   {
     "venue_id": "ChIJ2Wi42Sg_sz4R5JuNpT2NcUA",
@@ -4857,7 +4857,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "heritage_site_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-13T02:42:38+05:00"
   },
   {
     "venue_id": "ChIJ0U6XUs45sz4RzE6ILp_XP50",
@@ -5217,7 +5217,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "5_a_side_football_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-13T02:42:38+05:00"
   },
   {
     "venue_id": "ChIJnW5OCWo_sz4R3JHzwLXVlxs",
@@ -7797,7 +7797,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "football_ground_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-13T02:42:38+05:00"
   },
   {
     "venue_id": "ChIJIzSubQA_sz4RreuanbC_xaY",
@@ -8381,7 +8381,7 @@
     "category_slugs": "sports-active,entertainment",
     "google_category": "Sports club",
     "rating": 4.2,
-    "review_count": 1327,
+    "review_count": 1330,
     "latitude": 24.9314437,
     "longitude": 67.0486214,
     "area": "Block G North Nazimabad Town",
@@ -8397,7 +8397,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "box_cricket_north_nazimabad_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-13T02:42:38+05:00"
   },
   {
     "venue_id": "ChIJ____v30_sz4RWGycda6ytdg",
@@ -8891,14 +8891,14 @@
     "category_slugs": "sports-active",
     "google_category": "Padel court",
     "rating": 4.5,
-    "review_count": 82,
+    "review_count": 87,
     "latitude": 24.8747079,
     "longitude": 67.0640394,
     "area": "Delhi Mercantile Society P.E.C.H.S.",
     "address": "V3G7+2FF Padel at Match Point, Delhi Mercantile Society P.E.C.H.S., Karachi, Pakistan",
     "city": "Karachi",
     "price_level": null,
-    "website": null,
+    "website": "https://the-match-point.web.app/?utm_source=chatgpt.com",
     "phone": "+92 314 0867867",
     "hours": "{}",
     "photo_url": "/venues/ChIJrQbtTQA_sz4RioPhln4VHoo.jpg",
@@ -8907,7 +8907,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "padel_tennis_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-13T02:42:38+05:00"
   },
   {
     "venue_id": "ChIJ110-VwA_sz4REs53rVo-CAo",
@@ -10841,7 +10841,7 @@
     "category_slugs": "sports-active",
     "google_category": "Soccer field",
     "rating": 4.6,
-    "review_count": 77,
+    "review_count": 78,
     "latitude": 24.8750802,
     "longitude": 67.00081709999999,
     "area": "Singo Lane Lyari",
@@ -10857,7 +10857,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "football_ground_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-13T02:42:38+05:00"
   },
   {
     "venue_id": "ChIJG3jiktk_sz4RRmzHAcJU378",
@@ -12101,7 +12101,7 @@
     "category_slugs": "culture",
     "google_category": "Museum",
     "rating": 4.7,
-    "review_count": 443,
+    "review_count": 451,
     "latitude": 24.848442499999997,
     "longitude": 66.99943139999999,
     "area": "Lalazar",
@@ -12117,7 +12117,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "art_studio_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-13T02:42:38+05:00"
   },
   {
     "venue_id": "ChIJx7OssPA9sz4RcGEIrZ8_2fM",

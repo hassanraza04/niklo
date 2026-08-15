@@ -1407,7 +1407,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "snooker_club_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-16T02:20:38+05:00"
   },
   {
     "venue_id": "ChIJb1Nklwk9sz4RuIbp-mwbCi4",
@@ -2217,7 +2217,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "boat_ride_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-16T02:20:38+05:00"
   },
   {
     "venue_id": "ChIJpaVEpNVHsz4RaZn-_eiqF3k",
@@ -3641,7 +3641,7 @@
     "category_slugs": "outdoors-adventure",
     "google_category": "Amusement park",
     "rating": 4.7,
-    "review_count": 190,
+    "review_count": 193,
     "latitude": 24.925229299999998,
     "longitude": 67.1091331,
     "area": "Gulshan-e-Iqbal",
@@ -3657,7 +3657,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "climbing_gym_karachi",
-    "last_verified": "2026-07-16T01:13:58+05:00"
+    "last_verified": "2026-08-16T02:20:38+05:00"
   },
   {
     "venue_id": "ChIJpYhYon0_sz4RB5J-yrwwNnE",
@@ -3927,7 +3927,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "futsal_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-16T02:20:38+05:00"
   },
   {
     "venue_id": "ChIJh8Y6p7k9sz4RBqYgr5i6lkE",
@@ -4360,8 +4360,8 @@
     "subcategories": "futsal",
     "category_slugs": "sports-active",
     "google_category": "Soccer club",
-    "rating": 4.6,
-    "review_count": 291,
+    "rating": 4.5,
+    "review_count": 294,
     "latitude": 24.9270408,
     "longitude": 67.10443169999999,
     "area": "Block 7 Gulshan-e-Iqbal",
@@ -4377,7 +4377,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "futsal_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-16T02:20:38+05:00"
   },
   {
     "venue_id": "ChIJC_7zS4s9sz4RxpvTyKAtlJc",
@@ -5350,8 +5350,8 @@
     "subcategories": "billiards",
     "category_slugs": "entertainment",
     "google_category": "Pool hall",
-    "rating": 4.4,
-    "review_count": 12,
+    "rating": 4.2,
+    "review_count": 13,
     "latitude": 24.870576,
     "longitude": 67.0342702,
     "area": "Central Jacob Lines",
@@ -5367,7 +5367,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "swimming_pool_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-16T02:20:38+05:00"
   },
   {
     "venue_id": "ChIJkShRIzkSaUsRalpTE1pHbXw",
@@ -6400,8 +6400,8 @@
     "subcategories": "parks",
     "category_slugs": "outdoors-adventure",
     "google_category": "Hiking area",
-    "rating": 4.6,
-    "review_count": 16,
+    "rating": 4.7,
+    "review_count": 20,
     "latitude": 24.88131,
     "longitude": 67.07799059999999,
     "area": "Cp & Berar Chs",
@@ -6417,7 +6417,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "trekking_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-16T02:20:38+05:00"
   },
   {
     "venue_id": "ChIJHbu9nCg9sz4RuMLKrVJzQX0",
@@ -6911,7 +6911,7 @@
     "category_slugs": "sports-active",
     "google_category": "Stadium",
     "rating": 4.4,
-    "review_count": 159,
+    "review_count": 170,
     "latitude": 24.871187499999998,
     "longitude": 66.99193749999999,
     "area": "Panjguri Mohalla",
@@ -6927,7 +6927,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "football_ground_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-16T02:20:38+05:00"
   },
   {
     "venue_id": "ChIJT8YL130_sz4RqVn2AyQj4TI",
@@ -7721,7 +7721,7 @@
     "category_slugs": "culture,outdoors-adventure",
     "google_category": "Historical landmark",
     "rating": 4.6,
-    "review_count": 14764,
+    "review_count": 14860,
     "latitude": 24.875386799999998,
     "longitude": 67.04097209999999,
     "area": "Central Jacob Lines",
@@ -7737,7 +7737,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "historical_place_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-16T02:20:38+05:00"
   },
   {
     "venue_id": "ChIJWeRaX1w5sz4RwaxuZt0i6Pk",
@@ -8007,7 +8007,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "boat_ride_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-16T02:20:38+05:00"
   },
   {
     "venue_id": "ChIJO7LQL609sz4RpnNHlU_0wBU",
@@ -8800,8 +8800,8 @@
     "subcategories": "padel",
     "category_slugs": "sports-active",
     "google_category": "Padel court",
-    "rating": 4.4,
-    "review_count": 29,
+    "rating": 4.5,
+    "review_count": 31,
     "latitude": 24.919158,
     "longitude": 67.1251781,
     "area": "Block 14 Gulistan-e-Johar",
@@ -8817,7 +8817,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "padel_tennis_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-16T02:20:38+05:00"
   },
   {
     "venue_id": "ChIJLcIUXgA_sz4Rz1Rom8Eat3o",
@@ -9190,8 +9190,8 @@
     "subcategories": "padel",
     "category_slugs": "sports-active",
     "google_category": "Padel club",
-    "rating": 4.4,
-    "review_count": 57,
+    "rating": 4.3,
+    "review_count": 60,
     "latitude": 24.9177724,
     "longitude": 67.0832806,
     "area": "Block 13D-1 Block 13 D 1 Gulshan-e-Iqbal",
@@ -9207,7 +9207,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "padel_dha_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-16T02:20:38+05:00"
   },
   {
     "venue_id": "ChIJi3zjfx49sz4Ra7zO8SYgQg4",
@@ -11217,7 +11217,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "football_ground_karachi",
-    "last_verified": "2026-07-16T02:56:43+05:00"
+    "last_verified": "2026-08-16T02:20:38+05:00"
   },
   {
     "venue_id": "ChIJjb_gBVg_sz4R7u71qe8zYOA",
@@ -12131,7 +12131,7 @@
     "category_slugs": "sports-active",
     "google_category": "Sports club",
     "rating": 5.0,
-    "review_count": 40,
+    "review_count": 42,
     "latitude": 24.8101012,
     "longitude": 67.0217557,
     "area": "Block 3 Clifton",
@@ -12147,7 +12147,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "paintball_arena_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-16T02:20:38+05:00"
   },
   {
     "venue_id": "ChIJZdQ0BsxBsz4RfBk0ticavfs",

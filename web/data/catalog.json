@@ -2037,7 +2037,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "futsal_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-17T02:18:19+05:00"
   },
   {
     "venue_id": "ChIJH5qVMLE_sz4RMZxHRcSw6v0",
@@ -2591,7 +2591,7 @@
     "category_slugs": "sports-active,entertainment",
     "google_category": "Club",
     "rating": 4.3,
-    "review_count": 4764,
+    "review_count": 4787,
     "latitude": 24.7975533,
     "longitude": 67.0790219,
     "area": "DHA Karachi Phase VIII Zone A Zone A Phase 8 Defence Housing Authority",
@@ -2607,7 +2607,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "box_cricket_dha_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-17T02:18:19+05:00"
   },
   {
     "venue_id": "ChIJkaUULpc8sz4Rj3lC9twGOmY",
@@ -4917,7 +4917,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "snooker_club_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-17T02:18:19+05:00"
   },
   {
     "venue_id": "ChIJT3-h2B45sz4RCDYWvqcb6Cc",
@@ -5051,7 +5051,7 @@
     "category_slugs": "outdoors-adventure",
     "google_category": "Amusement park",
     "rating": 4.1,
-    "review_count": 176,
+    "review_count": 182,
     "latitude": 24.8105671,
     "longitude": 67.0288274,
     "area": "Block 3 Clifton",
@@ -5067,7 +5067,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "adventure_park_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-17T02:18:19+05:00"
   },
   {
     "venue_id": "ChIJK8uDfeg_sz4RPRfom6EwlLY",
@@ -5487,7 +5487,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "tennis_academy_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-17T02:18:19+05:00"
   },
   {
     "venue_id": "ChIJXdsSPf89sz4RtidSNO65pSQ",
@@ -6897,7 +6897,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "football_ground_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-17T02:18:19+05:00"
   },
   {
     "venue_id": "ChIJvZJlG4wVsz4Rg8W4zhDhKt4",
@@ -7900,8 +7900,8 @@
     "subcategories": "billiards",
     "category_slugs": "entertainment",
     "google_category": "Sports club",
-    "rating": 4.8,
-    "review_count": 12,
+    "rating": 4.7,
+    "review_count": 13,
     "latitude": 24.8513102,
     "longitude": 67.020702,
     "area": "Civil Lines",
@@ -7917,7 +7917,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "snooker_club_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-17T02:18:19+05:00"
   },
   {
     "venue_id": "ChIJJSFsdSY-sz4Rm5Z_DZwFTcs",
@@ -8171,7 +8171,7 @@
     "category_slugs": "sports-active",
     "google_category": "Cricket ground",
     "rating": 4.2,
-    "review_count": 587,
+    "review_count": 588,
     "latitude": 24.9520213,
     "longitude": 67.0534521,
     "area": "Block J North Nazimabad Town",
@@ -8187,7 +8187,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "box_cricket_north_nazimabad_karachi",
-    "last_verified": "2026-07-17T03:03:57+05:00"
+    "last_verified": "2026-08-17T02:18:19+05:00"
   },
   {
     "venue_id": "ChIJS1czcaM_sz4RnVDUwA1lC50",
@@ -8351,7 +8351,7 @@
     "category_slugs": "sports-active,entertainment",
     "google_category": "Sports complex",
     "rating": 4.1,
-    "review_count": 777,
+    "review_count": 780,
     "latitude": 24.9677188,
     "longitude": 67.0624979,
     "area": "Sector 11-C/1 Sector 11 C 1 North Karachi",
@@ -8367,7 +8367,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "swimming_pool_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-17T02:18:19+05:00"
   },
   {
     "venue_id": "ChIJq6pGioNAsz4R0b9CyI96cZs",
@@ -9461,7 +9461,7 @@
     "category_slugs": "culture",
     "google_category": "Maritime museum",
     "rating": 4.5,
-    "review_count": 18640,
+    "review_count": 18730,
     "latitude": 24.885636299999998,
     "longitude": 67.0899932,
     "area": "Karsaz Faisal Cantonment",
@@ -9477,7 +9477,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "museum_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-17T02:18:19+05:00"
   },
   {
     "venue_id": "ChIJ2xnYpnA-sz4R3lrSuPil6n4",
@@ -9761,7 +9761,7 @@
     "category_slugs": "outdoors-adventure",
     "google_category": "Amusement center",
     "rating": 4.7,
-    "review_count": 15,
+    "review_count": 16,
     "latitude": 24.872605699999998,
     "longitude": 67.0966756,
     "area": "Faisal Cantonment",
@@ -9777,7 +9777,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "adventure_park_karachi",
-    "last_verified": "2026-07-17T03:03:57+05:00"
+    "last_verified": "2026-08-17T02:18:19+05:00"
   },
   {
     "venue_id": "ChIJ36cyS3U-sz4Rvi1_fYCBjvQ",
@@ -10060,8 +10060,8 @@
     "subcategories": "padel",
     "category_slugs": "sports-active",
     "google_category": "Sports club",
-    "rating": 4.8,
-    "review_count": 12,
+    "rating": 4.5,
+    "review_count": 15,
     "latitude": 24.8544375,
     "longitude": 67.0276875,
     "area": "Civil Lines",
@@ -10077,7 +10077,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "padel_court_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-17T02:18:19+05:00"
   },
   {
     "venue_id": "ChIJF56oh5k9sz4RbZbIlvxAKHA",
@@ -10721,7 +10721,7 @@
     "category_slugs": "outdoors-adventure",
     "google_category": "Amusement park",
     "rating": 3.8,
-    "review_count": 363,
+    "review_count": 364,
     "latitude": 25.0732992,
     "longitude": 67.1896758,
     "area": "Gadap Town",
@@ -10737,7 +10737,7 @@
     "status": "Open",
     "is_open": 1,
     "source_query": "approved-waterpark-review",
-    "last_verified": "2026-07-14T00:00:00+05:00"
+    "last_verified": "2026-08-17T02:18:19+05:00"
   },
   {
     "venue_id": "ChIJ27GZSVc_sz4Rm3NT-fqSxHM",

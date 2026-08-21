@@ -57,7 +57,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "snooker_club_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-22T02:23:06+05:00"
   },
   {
     "venue_id": "ChIJ3wc4Emg_sz4R3fVMq-ZzzvQ",
@@ -1481,7 +1481,7 @@
     "category_slugs": "sports-active,entertainment",
     "google_category": "Entertainment agency",
     "rating": 4.3,
-    "review_count": 991,
+    "review_count": 1005,
     "latitude": 24.823888999999998,
     "longitude": 67.035556,
     "area": "Block 9 Clifton",
@@ -1497,7 +1497,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "trampoline_park_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-22T02:23:06+05:00"
   },
   {
     "venue_id": "ChIJOx8k7ws-sz4RFMjhMQyzOHA",
@@ -1961,7 +1961,7 @@
     "category_slugs": "sports-active",
     "google_category": "Sports club",
     "rating": 4.6,
-    "review_count": 11,
+    "review_count": 13,
     "latitude": 24.8146994,
     "longitude": 67.0175551,
     "area": "Block 2 Clifton",
@@ -1977,7 +1977,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "padel_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-22T02:23:06+05:00"
   },
   {
     "venue_id": "ChIJf8G51rarg4YRufvYetb6HUg",
@@ -2877,7 +2877,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "boating_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-22T02:23:06+05:00"
   },
   {
     "venue_id": "ChIJFxoYn0Q_sz4Rwq-z6BqCDz8",
@@ -4737,7 +4737,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "billiards_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-22T02:23:06+05:00"
   },
   {
     "venue_id": "ChIJeRVVOFI_sz4R-hB5vJvt5vA",
@@ -5711,7 +5711,7 @@
     "category_slugs": "sports-active",
     "google_category": "Soccer field",
     "rating": 4.4,
-    "review_count": 883,
+    "review_count": 897,
     "latitude": 24.813318799999998,
     "longitude": 67.0012861,
     "area": "Scheme 5 Block 1 Clifton",
@@ -5727,7 +5727,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "5_a_side_football_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-22T02:23:06+05:00"
   },
   {
     "venue_id": "ChIJ8ZObbEQWsz4RcTXbMZ4NAsg",
@@ -5757,7 +5757,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "boating_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-22T02:23:06+05:00"
   },
   {
     "venue_id": "ChIJrakF35Y9sz4RNoIhjzMDkbM",
@@ -6521,7 +6521,7 @@
     "category_slugs": "sports-active",
     "google_category": "Playground",
     "rating": 4.1,
-    "review_count": 198,
+    "review_count": 197,
     "latitude": 24.8786563,
     "longitude": 67.0521744,
     "area": "Jamshed Quarters Muslimabad",
@@ -6537,7 +6537,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "futsal_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-22T02:23:06+05:00"
   },
   {
     "venue_id": "ChIJ3cDIQBo-sz4R_lT0f8Wp2CE",
@@ -9880,8 +9880,8 @@
     "subcategories": "padel",
     "category_slugs": "sports-active",
     "google_category": "Sports club",
-    "rating": 4.2,
-    "review_count": 90,
+    "rating": 4.1,
+    "review_count": 92,
     "latitude": 24.878846199999998,
     "longitude": 67.06385139999999,
     "area": "Delhi Society Delhi CHS",
@@ -9897,7 +9897,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "padel_dha_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-22T02:23:06+05:00"
   },
   {
     "venue_id": "ChIJfdjoAf05sz4R6udCUb-ui2g",
@@ -10377,7 +10377,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "cinema_karachi",
-    "last_verified": "2026-07-22T03:03:22+05:00"
+    "last_verified": "2026-08-22T02:23:06+05:00"
   },
   {
     "venue_id": "ChIJt9EMyDw7sz4RV13HALMDO_c",
@@ -11950,8 +11950,8 @@
     "subcategories": "box-cricket,futsal",
     "category_slugs": "sports-active",
     "google_category": "Indoor playground",
-    "rating": 4.0,
-    "review_count": 81,
+    "rating": 3.9,
+    "review_count": 85,
     "latitude": 24.936535199999998,
     "longitude": 67.0950462,
     "area": "Block 4A Block 4 A Gulshan-e-Iqbal",
@@ -11967,7 +11967,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "box_cricket_gulshan_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-22T02:23:06+05:00"
   },
   {
     "venue_id": "ChIJdcanY60_sz4RoeZ_WOFseIc",
@@ -12010,8 +12010,8 @@
     "subcategories": "padel,box-cricket,futsal",
     "category_slugs": "sports-active",
     "google_category": "Playground",
-    "rating": 4.2,
-    "review_count": 47,
+    "rating": 4.3,
+    "review_count": 51,
     "latitude": 24.8984347,
     "longitude": 67.0725806,
     "area": "Block 14 Gulshan-e-Iqbal",
@@ -12027,7 +12027,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "padel_tennis_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-22T02:23:06+05:00"
   },
   {
     "venue_id": "ChIJXbCAGEs_sz4R2KTPQScxpC4",
@@ -12311,7 +12311,7 @@
     "category_slugs": "entertainment",
     "google_category": "Theme park",
     "rating": 4.0,
-    "review_count": 347,
+    "review_count": 368,
     "latitude": 24.909989799999998,
     "longitude": 67.1274859,
     "area": "Block 18 Gulistan-e-Johar",
@@ -12327,7 +12327,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "laser_tag_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-22T02:23:06+05:00"
   },
   {
     "venue_id": "ChIJRT7-2wY_sz4RrQ3umdifGG8",
@@ -12731,7 +12731,7 @@
     "category_slugs": "sports-active",
     "google_category": "Futsal court",
     "rating": 4.5,
-    "review_count": 13,
+    "review_count": 14,
     "latitude": 24.926926299999998,
     "longitude": 67.04404319999999,
     "area": "Block F North Nazimabad Town",
@@ -12747,7 +12747,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "futsal_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-22T02:23:06+05:00"
   },
   {
     "venue_id": "ChIJNyXBSVk_sz4ReK3GNvYka54",
@@ -13031,7 +13031,7 @@
     "category_slugs": "sports-active,entertainment",
     "google_category": "Recreation center",
     "rating": 4.0,
-    "review_count": 1919,
+    "review_count": 1944,
     "latitude": 24.791952,
     "longitude": 67.0465411,
     "area": "Off Khayaban - e - Seher Phase V Defence V Defence Housing Authority",
@@ -13047,7 +13047,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "bowling_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-22T02:23:06+05:00"
   },
   {
     "venue_id": "ChIJg1RQOwA5sz4RyyxkT6DOG3k",

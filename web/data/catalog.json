@@ -401,14 +401,14 @@
     "category_slugs": "outdoors-adventure",
     "google_category": "Water park",
     "rating": 4.1,
-    "review_count": 866,
+    "review_count": 884,
     "latitude": 24.9919602,
     "longitude": 67.1783867,
     "area": "Gadap Town",
     "address": "X5RH+Q9J Al Mehran Water Park, Karachi - Hyderabad Motorway, behind Al-Habib Restaurant, Gadap Town, Karachi, Pakistan",
     "city": "Karachi",
     "price_level": null,
-    "website": null,
+    "website": "https://www.facebook.com/pages/Al-Mehran-Water-Park/390835517650987",
     "phone": null,
     "hours": "{\"Friday\":[\"10 AM-5 PM\"],\"Monday\":[\"10 AM-5 PM\"],\"Saturday\":[\"10 AM-5 PM\"],\"Sunday\":[\"10 AM-5 PM\"],\"Thursday\":[\"10 AM-5 PM\"],\"Tuesday\":[\"10 AM-5 PM\"],\"Wednesday\":[\"10 AM-5 PM\"]}",
     "photo_url": "/venues/ChIJHYxbRttHsz4R-41FGsnmZPM.jpg",
@@ -417,7 +417,7 @@
     "status": "Open",
     "is_open": 1,
     "source_query": "approved-waterpark-review",
-    "last_verified": "2026-07-14T00:00:00+05:00"
+    "last_verified": "2026-08-26T02:25:53+05:00"
   },
   {
     "venue_id": "ChIJhczLXgc-sz4R0OEkuu5dUSw",
@@ -1301,7 +1301,7 @@
     "category_slugs": "sports-active,entertainment",
     "google_category": "Club",
     "rating": 4.2,
-    "review_count": 2252,
+    "review_count": 2265,
     "latitude": 24.783642,
     "longitude": 67.0503274,
     "area": "D.H.A Phase 6 Darakhshan Villas Phase 6 Defence Housing Authority",
@@ -1317,7 +1317,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "swimming_pool_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-26T02:25:53+05:00"
   },
   {
     "venue_id": "ChIJk_5vHAA9sz4RCZV1mtKJzdA",
@@ -2051,7 +2051,7 @@
     "category_slugs": "culture",
     "google_category": "Art gallery",
     "rating": 4.8,
-    "review_count": 71,
+    "review_count": 72,
     "latitude": 24.846411399999997,
     "longitude": 67.0044626,
     "area": "City Railway Colony",
@@ -2067,7 +2067,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "art_studio_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-26T02:25:53+05:00"
   },
   {
     "venue_id": "ChIJd7AMaQA_sz4RGgAYE5tcb9Y",
@@ -3529,7 +3529,7 @@
     "city": "Karachi",
     "price_level": null,
     "website": null,
-    "phone": "+92 346 3055952",
+    "phone": "+92 315 2494009",
     "hours": "{\"Friday\":[\"Open 24 hours\"],\"Monday\":[\"Open 24 hours\"],\"Saturday\":[\"Open 24 hours\"],\"Sunday\":[\"Open 24 hours\"],\"Thursday\":[\"Open 24 hours\"],\"Tuesday\":[\"Open 24 hours\"],\"Wednesday\":[\"Open 24 hours\"]}",
     "photo_url": "/venues/ChIJH_5KDAA5sz4R04MYfHNdh4Y.jpg",
     "photos": "[]",
@@ -3537,7 +3537,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "snooker_club_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-26T02:25:53+05:00"
   },
   {
     "venue_id": "ChIJZ_UdHSc_sz4RtVan5pMjUy8",
@@ -4030,8 +4030,8 @@
     "subcategories": "futsal",
     "category_slugs": "sports-active",
     "google_category": "Playground",
-    "rating": 4.3,
-    "review_count": 19,
+    "rating": 4.4,
+    "review_count": 20,
     "latitude": 24.857929199999997,
     "longitude": 67.0390677,
     "area": "Karachi Cantonment Fowler Lines",
@@ -4047,7 +4047,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "futsal_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-26T02:25:53+05:00"
   },
   {
     "venue_id": "ChIJ0YH-LQA_sz4RV5Z6ODdKK_E",
@@ -4781,7 +4781,7 @@
     "category_slugs": "sports-active",
     "google_category": "Sports club",
     "rating": 4.5,
-    "review_count": 1637,
+    "review_count": 1643,
     "latitude": 24.9247335,
     "longitude": 67.0963648,
     "area": "Block 6 Gulshan-e-Iqbal",
@@ -4790,14 +4790,14 @@
     "price_level": null,
     "website": null,
     "phone": "+92 300 9230055",
-    "hours": "{\"Friday\":[\"5–7 AM\",\"4–9:30 PM\"],\"Monday\":[\"5–7 AM\",\"4–9:30 PM\"],\"Saturday\":[\"5–7 AM\",\"4–9:30 PM\"],\"Sunday\":[\"5–7 AM\",\"4–9:30 PM\"],\"Thursday\":[\"5–7 AM\",\"4–9:30 PM\"],\"Tuesday\":[\"5–7 AM\",\"4–9:30 PM\"],\"Wednesday\":[\"5–7 AM\",\"4–9:30 PM\"]}",
+    "hours": "{\"Friday\":[\"5–7 AM\",\"4–10 PM\"],\"Monday\":[\"5–7 AM\",\"4–10 PM\"],\"Saturday\":[\"5–7 AM\",\"4–10 PM\"],\"Sunday\":[\"5–7 AM\",\"4–10 PM\"],\"Thursday\":[\"5–7 AM\",\"4–10 PM\"],\"Tuesday\":[\"5–7 AM\",\"4–10 PM\"],\"Wednesday\":[\"5–7 AM\",\"4–10 PM\"]}",
     "photo_url": "/venues/ChIJFydBA8s4sz4RC_V0Du4Ck-M.jpg",
     "photos": "[]",
     "google_url": "https://www.google.com/maps/place/Iftikhar+Syed+Sports+Academy/data=!4m7!3m6!1s0x3eb338cb03412717:0xe39302ee0e74f50b!8m2!3d24.9247335!4d67.0963648!16s%2Fg%2F1th61vs0!19sChIJFydBA8s4sz4RC_V0Du4Ck-M?authuser=0&hl=en&rclk=1",
     "status": null,
     "is_open": 1,
     "source_query": "tennis_academy_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-26T02:25:53+05:00"
   },
   {
     "venue_id": "ChIJE1PXLQA9sz4RAICIJld_964",
@@ -6071,7 +6071,7 @@
     "category_slugs": "sports-active",
     "google_category": "Football club",
     "rating": 4.2,
-    "review_count": 50,
+    "review_count": 51,
     "latitude": 24.8532279,
     "longitude": 67.0736398,
     "area": "Mehmoodabad",
@@ -6087,7 +6087,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "football_ground_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-26T02:25:53+05:00"
   },
   {
     "venue_id": "ChIJC78cR9MVsz4Rd-vs-aZ3lQ4",
@@ -6237,7 +6237,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "historical_place_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-26T02:25:53+05:00"
   },
   {
     "venue_id": "ChIJvQh3FqMVsz4Rttmc-LE2dXs",
@@ -6431,7 +6431,7 @@
     "category_slugs": "sports-active",
     "google_category": "Swimming pool",
     "rating": 4.5,
-    "review_count": 14,
+    "review_count": 15,
     "latitude": 24.7985761,
     "longitude": 67.0786785,
     "area": "D.H.A. Phase 8 Zone A Phase 8 Defence Housing Authority",
@@ -6447,7 +6447,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "swimming_pool_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-26T02:25:53+05:00"
   },
   {
     "venue_id": "ChIJaxk2tGo2sz4RsE5nT70iqjs",
@@ -10181,7 +10181,7 @@
     "category_slugs": "entertainment",
     "google_category": "Movie theater",
     "rating": 4.5,
-    "review_count": 2541,
+    "review_count": 2591,
     "latitude": 25.027388499999997,
     "longitude": 67.3086675,
     "area": "Phase 1 Bahria Town Karachi",
@@ -10197,7 +10197,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "cinema_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-26T02:25:53+05:00"
   },
   {
     "venue_id": "ChIJ5VCFPyw8sz4RNtYyFg4DH78",
@@ -10467,7 +10467,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "billiards_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-26T02:25:53+05:00"
   },
   {
     "venue_id": "ChIJF4C01AQ5sz4RfF70yO7q4Gc",
@@ -10887,7 +10887,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "football_ground_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-26T02:25:53+05:00"
   },
   {
     "venue_id": "ChIJBbe8DMk-sz4RtbVs9aukptM",
@@ -11321,7 +11321,7 @@
     "category_slugs": "sports-active",
     "google_category": "Swimming pool",
     "rating": 3.8,
-    "review_count": 178,
+    "review_count": 181,
     "latitude": 24.9260356,
     "longitude": 67.05163739999999,
     "area": "FB Area Block 4 Block 4 Gulberg Town",
@@ -11337,7 +11337,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "swimming_pool_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-26T02:25:53+05:00"
   },
   {
     "venue_id": "ChIJR6VLDzQ_sz4RA_88xNbuMRA",
@@ -11847,7 +11847,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "indoor_cricket_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-26T02:25:53+05:00"
   },
   {
     "venue_id": "ChIJQ7-AVgA9sz4R4kqf4uaF150",
@@ -12521,7 +12521,7 @@
     "category_slugs": "culture",
     "google_category": "Science museum",
     "rating": 4.7,
-    "review_count": 4654,
+    "review_count": 4785,
     "latitude": 24.8466483,
     "longitude": 67.0030539,
     "area": "Lalazar",
@@ -12529,15 +12529,15 @@
     "city": "Karachi",
     "price_level": null,
     "website": "https://magnifiscience.org/",
-    "phone": "+92 21 38899672",
-    "hours": "{\"Friday\":[\"Closed\"],\"Monday\":[\"9 AM–5 PM\"],\"Saturday\":[\"10 AM–7:30 PM\"],\"Sunday\":[\"10 AM–7:30 PM\"],\"Thursday\":[\"9 AM–5 PM\"],\"Tuesday\":[\"9 AM–5 PM\"],\"Wednesday\":[\"9 AM–5 PM\"]}",
+    "phone": "+92 306 6498170",
+    "hours": "{\"Friday\":[\"Closed\"],\"Monday\":[\"9 AM–5 PM\"],\"Saturday\":[\"10 AM–7:30 PM\"],\"Sunday\":[\"10 AM–7:30 PM\"],\"Thursday\":[\"9 AM–5 PM\"],\"Tuesday\":[\"9 AM–5 PM\"],\"Wednesday\":[\"Closed\"]}",
     "photo_url": "/venues/ChIJFz1QFvc_sz4RCn8K3zfYXv4.jpg",
     "photos": "[]",
     "google_url": "https://www.google.com/maps/place/TDF+Magnifi+Science+Centre/data=!4m7!3m6!1s0x3eb33ff716503d17:0xfe5ed837df0a7f0a!8m2!3d24.8466483!4d67.0030539!16s%2Fg%2F11j57w3svd!19sChIJFz1QFvc_sz4RCn8K3zfYXv4?authuser=0&hl=en&rclk=1",
     "status": null,
     "is_open": 1,
     "source_query": "museum_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-26T02:25:53+05:00"
   },
   {
     "venue_id": "ChIJQc9u2wk9sz4Rfh9ioYYxhY8",

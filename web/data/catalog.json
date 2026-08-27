@@ -131,7 +131,7 @@
     "category_slugs": "outdoors-adventure",
     "google_category": "Park",
     "rating": 4.2,
-    "review_count": 4609,
+    "review_count": 4616,
     "latitude": 24.797175499999998,
     "longitude": 67.037033,
     "area": "Defence V Defence Housing Authority",
@@ -147,7 +147,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "trekking_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-27T05:29:45+05:00"
   },
   {
     "venue_id": "ChIJk3DlQtAXsz4RuRQMW3VV_0c",
@@ -207,7 +207,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "art_gallery_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-27T05:29:45+05:00"
   },
   {
     "venue_id": "ChIJWayZStdrsz4R4of8hcUaPuk",
@@ -267,7 +267,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "cinema_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-27T05:29:45+05:00"
   },
   {
     "venue_id": "ChIJJ6p-KEE-sz4RoaCXQcO0N4k",
@@ -281,7 +281,7 @@
     "category_slugs": "sports-active,entertainment",
     "google_category": "Sports complex",
     "rating": 4.4,
-    "review_count": 1732,
+    "review_count": 1735,
     "latitude": 24.875925499999997,
     "longitude": 67.02673829999999,
     "area": "Garden East Soldier Bazaar",
@@ -297,7 +297,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "cricket_nets_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-27T05:29:45+05:00"
   },
   {
     "venue_id": "ChIJSfQE0goXsz4RRqs9HLa_yNA",
@@ -490,8 +490,8 @@
     "subcategories": "billiards",
     "category_slugs": "entertainment",
     "google_category": "Pool hall",
-    "rating": 3.9,
-    "review_count": 9,
+    "rating": 3.7,
+    "review_count": 10,
     "latitude": 24.862981599999998,
     "longitude": 67.0263528,
     "area": "Empress Market",
@@ -507,7 +507,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "snooker_club_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-27T05:29:45+05:00"
   },
   {
     "venue_id": "ChIJoWouWKQ9sz4RNQIGSqfvPIY",
@@ -2681,7 +2681,7 @@
     "category_slugs": "sports-active,entertainment",
     "google_category": "Sports club",
     "rating": 4.4,
-    "review_count": 1947,
+    "review_count": 1971,
     "latitude": 24.7799673,
     "longitude": 67.08987189999999,
     "area": "D.H.A. Phase 8 Zone B Phase 8 Defence Housing Authority",
@@ -2697,7 +2697,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "box_cricket_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-27T05:29:45+05:00"
   },
   {
     "venue_id": "ChIJQ9ftBzw8sz4RL4E6AvS-CYM",
@@ -3747,7 +3747,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "football_ground_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-27T05:29:45+05:00"
   },
   {
     "venue_id": "ChIJM4dwPQA_sz4R5CtaoSrOMFA",
@@ -4271,7 +4271,7 @@
     "category_slugs": "sports-active",
     "google_category": "Sports complex",
     "rating": 4.5,
-    "review_count": 228,
+    "review_count": 229,
     "latitude": 24.8140209,
     "longitude": 67.03854299999999,
     "area": "DHA Phase 5 Defence V Defence Housing Authority",
@@ -4287,7 +4287,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "indoor_cricket_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-27T05:29:45+05:00"
   },
   {
     "venue_id": "ChIJA2ZAEHc5sz4RMzAup3kwQ8Q",
@@ -6987,7 +6987,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "football_ground_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-27T05:29:45+05:00"
   },
   {
     "venue_id": "ChIJKUPHjNY_sz4RRjtyMkDmGYg",
@@ -7811,7 +7811,7 @@
     "category_slugs": "sports-active",
     "google_category": "Sports club",
     "rating": 4.6,
-    "review_count": 18,
+    "review_count": 19,
     "latitude": 24.9013125,
     "longitude": 67.05931249999999,
     "area": "Qasim Abad Rafiqabad",
@@ -7827,7 +7827,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "box_cricket_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-27T05:29:45+05:00"
   },
   {
     "venue_id": "ChIJ0_NilqcVsz4RhALEVkE96dM",
@@ -7930,8 +7930,8 @@
     "subcategories": "futsal,parks",
     "category_slugs": "sports-active,outdoors-adventure",
     "google_category": "Park",
-    "rating": 3.8,
-    "review_count": 392,
+    "rating": 3.9,
+    "review_count": 393,
     "latitude": 24.8776875,
     "longitude": 67.0046875,
     "area": "Noorani Colony",
@@ -7947,7 +7947,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "football_ground_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-27T05:29:45+05:00"
   },
   {
     "venue_id": "ChIJcZ99BEAWsz4R-MvfjOY4C7U",
@@ -8487,7 +8487,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "futsal_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-27T05:29:45+05:00"
   },
   {
     "venue_id": "ChIJh7fVFps_sz4RlvlUsRXugy8",
@@ -9431,7 +9431,7 @@
     "category_slugs": "culture",
     "google_category": "Museum",
     "rating": 4.6,
-    "review_count": 27442,
+    "review_count": 27687,
     "latitude": 24.871121799999997,
     "longitude": 67.0960808,
     "area": "Karsaz Flyover",
@@ -9447,7 +9447,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "museum_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-27T05:29:45+05:00"
   },
   {
     "venue_id": "ChIJy7pblcs-sz4R-u0pGTfibbk",
@@ -11441,7 +11441,7 @@
     "category_slugs": "sports-active,entertainment",
     "google_category": "Club",
     "rating": 4.3,
-    "review_count": 244,
+    "review_count": 249,
     "latitude": 24.8306547,
     "longitude": 67.0249748,
     "area": "Kehkashan Block 7 Clifton",
@@ -11457,7 +11457,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "swimming_pool_karachi",
-    "last_verified": "2026-06-30 01:27:43.983847+05:00"
+    "last_verified": "2026-08-27T05:29:45+05:00"
   },
   {
     "venue_id": "ChIJY5N1_ro_sz4RitTnQzzkiVk",

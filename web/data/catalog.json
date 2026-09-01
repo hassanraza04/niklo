@@ -1540,8 +1540,8 @@
     "subcategories": "billiards",
     "category_slugs": "entertainment",
     "google_category": "Pool hall",
-    "rating": 4.4,
-    "review_count": 7,
+    "rating": 4.5,
+    "review_count": 10,
     "latitude": 24.867789499999997,
     "longitude": 67.05294649999999,
     "area": "Block 2 P.E.C.H.S.",
@@ -1557,7 +1557,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "snooker_club_karachi",
-    "last_verified": "2026-08-02T02:51:37+05:00"
+    "last_verified": "2026-09-02T04:02:29+05:00"
   },
   {
     "venue_id": "ChIJi-JU8Kc9sz4RaKltrqvftkU",
@@ -4571,7 +4571,7 @@
     "category_slugs": "sports-active",
     "google_category": "Cricket club",
     "rating": 4.3,
-    "review_count": 660,
+    "review_count": 663,
     "latitude": 24.8689382,
     "longitude": 67.0750305,
     "area": "Karachi Memon Co-operative Housing Society Karachi Memon Society P.E.C.H.S.",
@@ -4587,7 +4587,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "indoor_cricket_karachi",
-    "last_verified": "2026-08-02T02:51:37+05:00"
+    "last_verified": "2026-09-02T04:02:29+05:00"
   },
   {
     "venue_id": "ChIJ_eBojb0-sz4Ri6Qs9OoeS38",
@@ -6281,7 +6281,7 @@
     "category_slugs": "outdoors-adventure",
     "google_category": "Park",
     "rating": 4.2,
-    "review_count": 355,
+    "review_count": 357,
     "latitude": 24.9145039,
     "longitude": 67.08474009999999,
     "area": "Block 13D-1 Block 13 D 1 Gulshan-e-Iqbal",
@@ -6297,7 +6297,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "hiking_trail_karachi",
-    "last_verified": "2026-08-02T02:51:37+05:00"
+    "last_verified": "2026-09-02T04:02:29+05:00"
   },
   {
     "venue_id": "ChIJjcJJ4UI9sz4RIHDa8879N7k",
@@ -6820,8 +6820,8 @@
     "subcategories": "box-cricket",
     "category_slugs": "sports-active",
     "google_category": "Sports club",
-    "rating": 4.5,
-    "review_count": 41,
+    "rating": 4.4,
+    "review_count": 43,
     "latitude": 24.9576747,
     "longitude": 67.0730081,
     "area": "Sector 16-A/4 Sector 16 A Buffer Zone",
@@ -6837,7 +6837,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "indoor_cricket_karachi",
-    "last_verified": "2026-08-02T02:51:37+05:00"
+    "last_verified": "2026-09-02T04:02:29+05:00"
   },
   {
     "venue_id": "ChIJ3V31n_s4sz4RyxLEGhG6Yoc",
@@ -7181,7 +7181,7 @@
     "category_slugs": "sports-active",
     "google_category": "Playground",
     "rating": 4.0,
-    "review_count": 373,
+    "review_count": 374,
     "latitude": 24.8985928,
     "longitude": 67.0654533,
     "area": "Essa Nagri Eissa Nagri",
@@ -7197,7 +7197,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "football_ground_karachi",
-    "last_verified": "2026-08-02T02:51:37+05:00"
+    "last_verified": "2026-09-02T04:02:29+05:00"
   },
   {
     "venue_id": "ChIJRcKO5aIXsz4RSTG4iET4zds",
@@ -7287,7 +7287,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "padel_karachi",
-    "last_verified": "2026-08-02T02:51:37+05:00"
+    "last_verified": "2026-09-02T04:02:29+05:00"
   },
   {
     "venue_id": "ChIJEypmRiI5sz4R-kr-rf0oYhg",
@@ -8441,7 +8441,7 @@
     "category_slugs": "sports-active",
     "google_category": "Football club",
     "rating": 4.6,
-    "review_count": 57,
+    "review_count": 58,
     "latitude": 24.887629,
     "longitude": 67.09855069999999,
     "area": "Karsaz Faisal Cantonment",
@@ -8457,7 +8457,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "football_ground_karachi",
-    "last_verified": "2026-08-02T02:51:37+05:00"
+    "last_verified": "2026-09-02T04:02:29+05:00"
   },
   {
     "venue_id": "ChIJIcKiyNM-sz4Rzpv6NuJXQLM",
@@ -8950,8 +8950,8 @@
     "subcategories": "padel",
     "category_slugs": "sports-active",
     "google_category": "Sports club",
-    "rating": 4.4,
-    "review_count": 11,
+    "rating": 4.3,
+    "review_count": 12,
     "latitude": 24.900751099999997,
     "longitude": 67.1211876,
     "area": "Askari IV Askari 4",
@@ -8967,7 +8967,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "padel_karachi",
-    "last_verified": "2026-08-02T02:51:37+05:00"
+    "last_verified": "2026-09-02T04:02:29+05:00"
   },
   {
     "venue_id": "ChIJ__5xfQA7sz4RKcQ7AQPrblo",
@@ -9250,8 +9250,8 @@
     "subcategories": "padel",
     "category_slugs": "sports-active",
     "google_category": "Sports club",
-    "rating": 4.6,
-    "review_count": 39,
+    "rating": 4.5,
+    "review_count": 40,
     "latitude": 24.845242,
     "longitude": 67.0383894,
     "area": "Karachi Cantonment Askari 2 Karachi Cantonment",
@@ -9267,7 +9267,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "padel_clifton_karachi",
-    "last_verified": "2026-08-02T02:51:37+05:00"
+    "last_verified": "2026-09-02T04:02:29+05:00"
   },
   {
     "venue_id": "ChIJZVVQQ8o5sz4R9wIAXEj5ecc",
@@ -9851,7 +9851,7 @@
     "category_slugs": "outdoors-adventure",
     "google_category": "Recreation center",
     "rating": 4.4,
-    "review_count": 30602,
+    "review_count": 30661,
     "latitude": 24.8450553,
     "longitude": 66.9908891,
     "area": "West Wharf",
@@ -9867,7 +9867,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "boat_ride_karachi",
-    "last_verified": "2026-08-02T02:51:37+05:00"
+    "last_verified": "2026-09-02T04:02:29+05:00"
   },
   {
     "venue_id": "ChIJ7XPvCQA_sz4RAotqaTRB3GY",
@@ -9940,8 +9940,8 @@
     "subcategories": "padel",
     "category_slugs": "sports-active",
     "google_category": "Sports club",
-    "rating": 4.7,
-    "review_count": 63,
+    "rating": 4.6,
+    "review_count": 69,
     "latitude": 24.8779313,
     "longitude": 67.09193379999999,
     "area": "KDA Scheme #1 Karsaz KDA Scheme 1",
@@ -9957,7 +9957,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "padel_karachi",
-    "last_verified": "2026-08-02T02:51:37+05:00"
+    "last_verified": "2026-09-02T04:02:29+05:00"
   },
   {
     "venue_id": "ChIJf4hYyaE9sz4REGF-AHVVe9Q",
@@ -10257,7 +10257,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "football_ground_karachi",
-    "last_verified": "2026-08-02T02:51:37+05:00"
+    "last_verified": "2026-09-02T04:02:29+05:00"
   },
   {
     "venue_id": "ChIJ48tanI0_sz4RSJKQa8hTv2k",
@@ -12281,7 +12281,7 @@
     "category_slugs": "sports-active,entertainment",
     "google_category": "Amusement center",
     "rating": 4.1,
-    "review_count": 304,
+    "review_count": 314,
     "latitude": 24.823888999999998,
     "longitude": 67.035556,
     "area": "Clifton Block 9 Clifton",
@@ -12290,14 +12290,14 @@
     "price_level": null,
     "website": null,
     "phone": "+92 326 8054040",
-    "hours": "{\"Friday\":[\"2–10 PM\"],\"Monday\":[\"2–10 PM\"],\"Saturday\":[\"2–10 PM\"],\"Sunday\":[\"2–10 PM\"],\"Thursday\":[\"2–10 PM\"],\"Tuesday\":[\"2–10 PM\"],\"Wednesday\":[\"2–10 PM\"]}",
+    "hours": "{\"Friday\":[\"2–11 PM\"],\"Monday\":[\"2–11 PM\"],\"Saturday\":[\"2–11 PM\"],\"Sunday\":[\"2–11 PM\"],\"Thursday\":[\"2–11 PM\"],\"Tuesday\":[\"2–11 PM\"],\"Wednesday\":[\"2–11 PM\"]}",
     "photo_url": "/venues/ChIJTdtDblE5sz4RWLOvHtCgpdE.jpg",
     "photos": "[]",
     "google_url": "https://www.google.com/maps/place/Super+Space/data=!4m7!3m6!1s0x3eb339516e43db4d:0xd1a5a0d01eafb358!8m2!3d24.823889!4d67.035556!16s%2Fg%2F11hdpksdr6!19sChIJTdtDblE5sz4RWLOvHtCgpdE?authuser=0&hl=en&rclk=1",
     "status": null,
     "is_open": 1,
     "source_query": "bowling_karachi",
-    "last_verified": "2026-08-02T02:51:37+05:00"
+    "last_verified": "2026-09-02T04:02:29+05:00"
   },
   {
     "venue_id": "ChIJ8_3IWkQ5sz4RlCk2NMUyvNc",
@@ -12717,7 +12717,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "board_game_cafe_karachi",
-    "last_verified": "2026-08-02T02:51:37+05:00"
+    "last_verified": "2026-09-02T04:02:29+05:00"
   },
   {
     "venue_id": "ChIJ7SVBDtg_sz4RErsEY9uVwxc",
@@ -13347,7 +13347,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "snooker_club_karachi",
-    "last_verified": "2026-08-02T02:51:37+05:00"
+    "last_verified": "2026-09-02T04:02:29+05:00"
   },
   {
     "venue_id": "ChIJZ9WoJZQ-sz4Rh1fwkhV4ydw",

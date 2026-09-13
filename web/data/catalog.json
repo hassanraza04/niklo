@@ -1197,7 +1197,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "indoor_cricket_karachi",
-    "last_verified": "2026-08-14T02:42:56+05:00"
+    "last_verified": "2026-09-14T03:52:38+05:00"
   },
   {
     "venue_id": "ChIJr2JP9Gw-sz4RmdOW_YkHxRI",
@@ -1271,7 +1271,7 @@
     "category_slugs": "sports-active",
     "google_category": "Sports club",
     "rating": 4.5,
-    "review_count": 65,
+    "review_count": 68,
     "latitude": 24.9181875,
     "longitude": 67.1304375,
     "area": "Block 14 Gulistan-e-Johar",
@@ -1287,7 +1287,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "5_a_side_football_karachi",
-    "last_verified": "2026-08-14T02:42:56+05:00"
+    "last_verified": "2026-09-14T03:52:38+05:00"
   },
   {
     "venue_id": "ChIJGb5YRN48sz4RnjkdDlB50Xo",
@@ -1751,7 +1751,7 @@
     "category_slugs": "culture",
     "google_category": "Art gallery",
     "rating": 4.2,
-    "review_count": 50,
+    "review_count": 51,
     "latitude": 24.8272813,
     "longitude": 67.03582899999999,
     "area": "Block 9 Clifton",
@@ -1767,7 +1767,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "art_gallery_karachi",
-    "last_verified": "2026-08-14T02:42:56+05:00"
+    "last_verified": "2026-09-14T03:52:38+05:00"
   },
   {
     "venue_id": "ChIJO_Xoa2JPsz4RnowXIK0GTxw",
@@ -4557,7 +4557,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "snooker_club_karachi",
-    "last_verified": "2026-08-14T02:42:56+05:00"
+    "last_verified": "2026-09-14T03:52:38+05:00"
   },
   {
     "venue_id": "ChIJVc5kx7w-sz4RXHN6jcCqo80",
@@ -5847,7 +5847,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "box_cricket_arena_karachi",
-    "last_verified": "2026-08-14T02:42:56+05:00"
+    "last_verified": "2026-09-14T03:52:38+05:00"
   },
   {
     "venue_id": "ChIJkRuDWJc5sz4RQfoNVgR7aY8",
@@ -7587,7 +7587,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "tennis_court_karachi",
-    "last_verified": "2026-08-14T02:42:56+05:00"
+    "last_verified": "2026-09-14T03:52:38+05:00"
   },
   {
     "venue_id": "ChIJ-YKZEaU9sz4RstZuPwjWC8E",
@@ -7887,7 +7887,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "padel_karachi",
-    "last_verified": "2026-08-14T02:42:56+05:00"
+    "last_verified": "2026-09-14T03:52:38+05:00"
   },
   {
     "venue_id": "ChIJz1c8eas_sz4RB2pU0Y7onrM",
@@ -8711,7 +8711,7 @@
     "category_slugs": "sports-active",
     "google_category": "Fitness center",
     "rating": 4.1,
-    "review_count": 57,
+    "review_count": 62,
     "latitude": 24.866142399999998,
     "longitude": 67.05738149999999,
     "area": "P.E.C.H.S Block 2 Block 2 P.E.C.H.S.",
@@ -8727,7 +8727,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "padel_dha_karachi",
-    "last_verified": "2026-08-14T02:42:56+05:00"
+    "last_verified": "2026-09-14T03:52:38+05:00"
   },
   {
     "venue_id": "ChIJWzVtgN44sz4RL28xi4-pN5E",
@@ -10407,7 +10407,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "box_cricket_dha_karachi",
-    "last_verified": "2026-08-14T02:42:56+05:00"
+    "last_verified": "2026-09-14T03:52:38+05:00"
   },
   {
     "venue_id": "ChIJR_4NBqo5sz4R6CMTmwX-P6s",
@@ -10647,7 +10647,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "football_ground_karachi",
-    "last_verified": "2026-08-14T02:42:56+05:00"
+    "last_verified": "2026-09-14T03:52:38+05:00"
   },
   {
     "venue_id": "ChIJcZgcOnQ5sz4RqJJ1qt_6CdY",
@@ -11907,7 +11907,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "indoor_cricket_karachi",
-    "last_verified": "2026-08-14T02:42:56+05:00"
+    "last_verified": "2026-09-14T03:52:38+05:00"
   },
   {
     "venue_id": "ChIJsdFJO0I7sz4RRphSNBWgfkA",
@@ -11937,7 +11937,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "padel_tennis_karachi",
-    "last_verified": "2026-08-14T02:42:56+05:00"
+    "last_verified": "2026-09-14T03:52:38+05:00"
   },
   {
     "venue_id": "ChIJ88_21Lk5sz4RZROg5iEbb6M",
@@ -12927,7 +12927,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "indoor_cricket_karachi",
-    "last_verified": "2026-08-14T02:42:56+05:00"
+    "last_verified": "2026-09-14T03:52:38+05:00"
   },
   {
     "venue_id": "ChIJY09VeABBsz4RaGQhRbzTzrA",
@@ -13421,7 +13421,7 @@
     "category_slugs": "sports-active",
     "google_category": "Soccer",
     "rating": 3.7,
-    "review_count": 39,
+    "review_count": 41,
     "latitude": 24.873623499999997,
     "longitude": 67.01032049999999,
     "area": "Usmanabad Ghazi Nagar",
@@ -13437,7 +13437,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "futsal_karachi",
-    "last_verified": "2026-08-14T02:42:56+05:00"
+    "last_verified": "2026-09-14T03:52:38+05:00"
   },
   {
     "venue_id": "ChIJQ028KusXsz4ROLU2Y85mVG4",
@@ -13790,14 +13790,14 @@
     "price_level": null,
     "website": null,
     "phone": "+92 21 35291409",
-    "hours": "{\"Friday\":[\"Open 24 hours\"],\"Monday\":[\"Open 24 hours\"],\"Saturday\":[\"Open 24 hours\"],\"Sunday\":[\"Open 24 hours\"],\"Thursday\":[\"Open 24 hours\"],\"Tuesday\":[\"Open 24 hours\"],\"Wednesday\":[\"Open 24 hours\"]}",
+    "hours": "{\"Friday\":[\"9 AM–11 PM\"],\"Monday\":[\"9 AM–11 PM\"],\"Saturday\":[\"9 AM–11 PM\"],\"Sunday\":[\"9 AM–11 PM\"],\"Thursday\":[\"9 AM–11 PM\"],\"Tuesday\":[\"9 AM–11 PM\"],\"Wednesday\":[\"9 AM–11 PM\"]}",
     "photo_url": "/venues/ChIJsfhKwCA9sz4R_rTlkG971j0.jpg",
     "photos": "[]",
     "google_url": "https://www.google.com/maps/place/XTREME+BOWL/data=!4m7!3m6!1s0x3eb33d20c04af8b1:0x3dd67b6f90e5b4fe!8m2!3d24.8017149!4d67.0299061!16s%2Fg%2F11s7sw06nv!19sChIJsfhKwCA9sz4R_rTlkG971j0?authuser=0&hl=en&rclk=1",
     "status": null,
     "is_open": 1,
     "source_query": "bowling_alley_karachi",
-    "last_verified": "2026-08-14T02:42:56+05:00"
+    "last_verified": "2026-09-14T03:52:38+05:00"
   },
   {
     "venue_id": "ChIJ60IpuUo_sz4RKCMtwOJ0o6c",

@@ -2021,7 +2021,7 @@
     "category_slugs": "sports-active",
     "google_category": "Football club",
     "rating": 4.6,
-    "review_count": 45,
+    "review_count": 46,
     "latitude": 24.8752046,
     "longitude": 67.0007869,
     "area": "Kumhar Wara Singo Lane",
@@ -2037,7 +2037,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "futsal_karachi",
-    "last_verified": "2026-08-17T02:18:19+05:00"
+    "last_verified": "2026-09-17T04:29:15+05:00"
   },
   {
     "venue_id": "ChIJH5qVMLE_sz4RMZxHRcSw6v0",
@@ -2591,7 +2591,7 @@
     "category_slugs": "sports-active,entertainment",
     "google_category": "Club",
     "rating": 4.3,
-    "review_count": 4787,
+    "review_count": 4802,
     "latitude": 24.7975533,
     "longitude": 67.0790219,
     "area": "DHA Karachi Phase VIII Zone A Zone A Phase 8 Defence Housing Authority",
@@ -2607,7 +2607,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "box_cricket_dha_karachi",
-    "last_verified": "2026-08-17T02:18:19+05:00"
+    "last_verified": "2026-09-17T04:29:15+05:00"
   },
   {
     "venue_id": "ChIJkaUULpc8sz4Rj3lC9twGOmY",
@@ -4917,7 +4917,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "snooker_club_karachi",
-    "last_verified": "2026-08-17T02:18:19+05:00"
+    "last_verified": "2026-09-17T04:29:15+05:00"
   },
   {
     "venue_id": "ChIJT3-h2B45sz4RCDYWvqcb6Cc",
@@ -5067,7 +5067,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "adventure_park_karachi",
-    "last_verified": "2026-08-17T02:18:19+05:00"
+    "last_verified": "2026-09-17T04:29:15+05:00"
   },
   {
     "venue_id": "ChIJK8uDfeg_sz4RPRfom6EwlLY",
@@ -5471,7 +5471,7 @@
     "category_slugs": "sports-active",
     "google_category": "Soccer field",
     "rating": 4.4,
-    "review_count": 759,
+    "review_count": 758,
     "latitude": 24.894371399999997,
     "longitude": 67.07868839999999,
     "area": "Block 14 Gulshan-e-Iqbal",
@@ -5487,7 +5487,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "tennis_academy_karachi",
-    "last_verified": "2026-08-17T02:18:19+05:00"
+    "last_verified": "2026-09-17T04:29:15+05:00"
   },
   {
     "venue_id": "ChIJXdsSPf89sz4RtidSNO65pSQ",
@@ -6897,7 +6897,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "football_ground_karachi",
-    "last_verified": "2026-08-17T02:18:19+05:00"
+    "last_verified": "2026-09-17T04:29:15+05:00"
   },
   {
     "venue_id": "ChIJvZJlG4wVsz4Rg8W4zhDhKt4",
@@ -7901,7 +7901,7 @@
     "category_slugs": "entertainment",
     "google_category": "Sports club",
     "rating": 4.7,
-    "review_count": 13,
+    "review_count": 14,
     "latitude": 24.8513102,
     "longitude": 67.020702,
     "area": "Civil Lines",
@@ -7917,7 +7917,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "snooker_club_karachi",
-    "last_verified": "2026-08-17T02:18:19+05:00"
+    "last_verified": "2026-09-17T04:29:15+05:00"
   },
   {
     "venue_id": "ChIJJSFsdSY-sz4Rm5Z_DZwFTcs",
@@ -8171,7 +8171,7 @@
     "category_slugs": "sports-active",
     "google_category": "Cricket ground",
     "rating": 4.2,
-    "review_count": 588,
+    "review_count": 592,
     "latitude": 24.9520213,
     "longitude": 67.0534521,
     "area": "Block J North Nazimabad Town",
@@ -8187,7 +8187,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "box_cricket_north_nazimabad_karachi",
-    "last_verified": "2026-08-17T02:18:19+05:00"
+    "last_verified": "2026-09-17T04:29:15+05:00"
   },
   {
     "venue_id": "ChIJS1czcaM_sz4RnVDUwA1lC50",
@@ -8351,7 +8351,7 @@
     "category_slugs": "sports-active,entertainment",
     "google_category": "Sports complex",
     "rating": 4.1,
-    "review_count": 780,
+    "review_count": 782,
     "latitude": 24.9677188,
     "longitude": 67.0624979,
     "area": "Sector 11-C/1 Sector 11 C 1 North Karachi",
@@ -8367,7 +8367,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "swimming_pool_karachi",
-    "last_verified": "2026-08-17T02:18:19+05:00"
+    "last_verified": "2026-09-17T04:29:15+05:00"
   },
   {
     "venue_id": "ChIJq6pGioNAsz4R0b9CyI96cZs",
@@ -9461,7 +9461,7 @@
     "category_slugs": "culture",
     "google_category": "Maritime museum",
     "rating": 4.5,
-    "review_count": 18730,
+    "review_count": 18785,
     "latitude": 24.885636299999998,
     "longitude": 67.0899932,
     "area": "Karsaz Faisal Cantonment",
@@ -9477,7 +9477,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "museum_karachi",
-    "last_verified": "2026-08-17T02:18:19+05:00"
+    "last_verified": "2026-09-17T04:29:15+05:00"
   },
   {
     "venue_id": "ChIJ2xnYpnA-sz4R3lrSuPil6n4",
@@ -9777,7 +9777,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "adventure_park_karachi",
-    "last_verified": "2026-08-17T02:18:19+05:00"
+    "last_verified": "2026-09-17T04:29:15+05:00"
   },
   {
     "venue_id": "ChIJ36cyS3U-sz4Rvi1_fYCBjvQ",
@@ -10068,7 +10068,7 @@
     "address": "V23H+Q3C ProPadel, Din Mohammad Wafai Rd, Civil Lines, Karachi, 75500, Pakistan",
     "city": "Karachi",
     "price_level": null,
-    "website": "https://playpro.pk/court-availability/pro-padel",
+    "website": "http://www.propadel.pk/",
     "phone": "+92 312 0830808",
     "hours": "{\"Friday\":[\"4 PM–3 AM\"],\"Monday\":[\"4 PM–3 AM\"],\"Saturday\":[\"6 PM–3 AM\"],\"Sunday\":[\"6 PM–3 AM\"],\"Thursday\":[\"4 PM–3 AM\"],\"Tuesday\":[\"4 PM–3 AM\"],\"Wednesday\":[\"4 PM–3 AM\"]}",
     "photo_url": "/venues/ChIJxXBPmiY_sz4RYhPH7-qHyh8.jpg",
@@ -10077,7 +10077,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "padel_court_karachi",
-    "last_verified": "2026-08-17T02:18:19+05:00"
+    "last_verified": "2026-09-17T04:29:15+05:00"
   },
   {
     "venue_id": "ChIJF56oh5k9sz4RbZbIlvxAKHA",
@@ -10737,7 +10737,7 @@
     "status": "Open",
     "is_open": 1,
     "source_query": "approved-waterpark-review",
-    "last_verified": "2026-08-17T02:18:19+05:00"
+    "last_verified": "2026-09-17T04:29:15+05:00"
   },
   {
     "venue_id": "ChIJ27GZSVc_sz4Rm3NT-fqSxHM",

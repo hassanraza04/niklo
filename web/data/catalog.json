@@ -401,7 +401,7 @@
     "category_slugs": "outdoors-adventure",
     "google_category": "Water park",
     "rating": 4.1,
-    "review_count": 884,
+    "review_count": 890,
     "latitude": 24.9919602,
     "longitude": 67.1783867,
     "area": "Gadap Town",
@@ -417,7 +417,7 @@
     "status": "Open",
     "is_open": 1,
     "source_query": "approved-waterpark-review",
-    "last_verified": "2026-08-26T02:25:53+05:00"
+    "last_verified": "2026-09-26T04:50:25+05:00"
   },
   {
     "venue_id": "ChIJhczLXgc-sz4R0OEkuu5dUSw",
@@ -1301,7 +1301,7 @@
     "category_slugs": "sports-active,entertainment",
     "google_category": "Club",
     "rating": 4.2,
-    "review_count": 2265,
+    "review_count": 2268,
     "latitude": 24.783642,
     "longitude": 67.0503274,
     "area": "D.H.A Phase 6 Darakhshan Villas Phase 6 Defence Housing Authority",
@@ -1317,7 +1317,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "swimming_pool_karachi",
-    "last_verified": "2026-08-26T02:25:53+05:00"
+    "last_verified": "2026-09-26T04:50:25+05:00"
   },
   {
     "venue_id": "ChIJk_5vHAA9sz4RCZV1mtKJzdA",
@@ -2067,7 +2067,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "art_studio_karachi",
-    "last_verified": "2026-08-26T02:25:53+05:00"
+    "last_verified": "2026-09-26T04:50:25+05:00"
   },
   {
     "venue_id": "ChIJd7AMaQA_sz4RGgAYE5tcb9Y",
@@ -3521,7 +3521,7 @@
     "category_slugs": "entertainment",
     "google_category": "Sports club",
     "rating": 4.9,
-    "review_count": 13,
+    "review_count": 12,
     "latitude": 24.906120599999998,
     "longitude": 67.0949643,
     "area": "Block 19 Gulshan-e-Iqbal",
@@ -3537,7 +3537,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "snooker_club_karachi",
-    "last_verified": "2026-08-26T02:25:53+05:00"
+    "last_verified": "2026-09-26T04:50:25+05:00"
   },
   {
     "venue_id": "ChIJZ_UdHSc_sz4RtVan5pMjUy8",
@@ -4047,7 +4047,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "futsal_karachi",
-    "last_verified": "2026-08-26T02:25:53+05:00"
+    "last_verified": "2026-09-26T04:50:25+05:00"
   },
   {
     "venue_id": "ChIJ0YH-LQA_sz4RV5Z6ODdKK_E",
@@ -4781,7 +4781,7 @@
     "category_slugs": "sports-active",
     "google_category": "Sports club",
     "rating": 4.5,
-    "review_count": 1643,
+    "review_count": 1646,
     "latitude": 24.9247335,
     "longitude": 67.0963648,
     "area": "Block 6 Gulshan-e-Iqbal",
@@ -4797,7 +4797,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "tennis_academy_karachi",
-    "last_verified": "2026-08-26T02:25:53+05:00"
+    "last_verified": "2026-09-26T04:50:25+05:00"
   },
   {
     "venue_id": "ChIJE1PXLQA9sz4RAICIJld_964",
@@ -6087,7 +6087,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "football_ground_karachi",
-    "last_verified": "2026-08-26T02:25:53+05:00"
+    "last_verified": "2026-09-26T04:50:25+05:00"
   },
   {
     "venue_id": "ChIJC78cR9MVsz4Rd-vs-aZ3lQ4",
@@ -6221,7 +6221,7 @@
     "category_slugs": "culture",
     "google_category": "City Hall",
     "rating": 4.4,
-    "review_count": 597,
+    "review_count": 599,
     "latitude": 24.857944699999997,
     "longitude": 67.0117877,
     "area": "New Labour Colony Nanakwara",
@@ -6237,7 +6237,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "historical_place_karachi",
-    "last_verified": "2026-08-26T02:25:53+05:00"
+    "last_verified": "2026-09-26T04:50:25+05:00"
   },
   {
     "venue_id": "ChIJvQh3FqMVsz4Rttmc-LE2dXs",
@@ -6447,7 +6447,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "swimming_pool_karachi",
-    "last_verified": "2026-08-26T02:25:53+05:00"
+    "last_verified": "2026-09-26T04:50:25+05:00"
   },
   {
     "venue_id": "ChIJaxk2tGo2sz4RsE5nT70iqjs",
@@ -10181,7 +10181,7 @@
     "category_slugs": "entertainment",
     "google_category": "Movie theater",
     "rating": 4.5,
-    "review_count": 2591,
+    "review_count": 2605,
     "latitude": 25.027388499999997,
     "longitude": 67.3086675,
     "area": "Phase 1 Bahria Town Karachi",
@@ -10197,7 +10197,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "cinema_karachi",
-    "last_verified": "2026-08-26T02:25:53+05:00"
+    "last_verified": "2026-09-26T04:50:25+05:00"
   },
   {
     "venue_id": "ChIJ5VCFPyw8sz4RNtYyFg4DH78",
@@ -10467,7 +10467,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "billiards_karachi",
-    "last_verified": "2026-08-26T02:25:53+05:00"
+    "last_verified": "2026-09-26T04:50:25+05:00"
   },
   {
     "venue_id": "ChIJF4C01AQ5sz4RfF70yO7q4Gc",
@@ -10887,7 +10887,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "football_ground_karachi",
-    "last_verified": "2026-08-26T02:25:53+05:00"
+    "last_verified": "2026-09-26T04:50:25+05:00"
   },
   {
     "venue_id": "ChIJBbe8DMk-sz4RtbVs9aukptM",
@@ -11847,7 +11847,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "indoor_cricket_karachi",
-    "last_verified": "2026-08-26T02:25:53+05:00"
+    "last_verified": "2026-09-26T04:50:25+05:00"
   },
   {
     "venue_id": "ChIJQ7-AVgA9sz4R4kqf4uaF150",
@@ -12521,7 +12521,7 @@
     "category_slugs": "culture",
     "google_category": "Science museum",
     "rating": 4.7,
-    "review_count": 4785,
+    "review_count": 4830,
     "latitude": 24.8466483,
     "longitude": 67.0030539,
     "area": "Lalazar",
@@ -12530,14 +12530,14 @@
     "price_level": null,
     "website": "https://magnifiscience.org/",
     "phone": "+92 306 6498170",
-    "hours": "{\"Friday\":[\"Closed\"],\"Monday\":[\"9 AM–5 PM\"],\"Saturday\":[\"10 AM–7:30 PM\"],\"Sunday\":[\"10 AM–7:30 PM\"],\"Thursday\":[\"9 AM–5 PM\"],\"Tuesday\":[\"9 AM–5 PM\"],\"Wednesday\":[\"Closed\"]}",
+    "hours": "{\"Friday\":[\"Closed\"],\"Monday\":[\"9 AM–5 PM\"],\"Saturday\":[\"10 AM–7:30 PM\"],\"Sunday\":[\"10 AM–7:30 PM\"],\"Thursday\":[\"9 AM–5 PM\"],\"Tuesday\":[\"9 AM–5 PM\"],\"Wednesday\":[\"9 AM–5 PM\"]}",
     "photo_url": "/venues/ChIJFz1QFvc_sz4RCn8K3zfYXv4.jpg",
     "photos": "[]",
     "google_url": "https://www.google.com/maps/place/TDF+Magnifi+Science+Centre/data=!4m7!3m6!1s0x3eb33ff716503d17:0xfe5ed837df0a7f0a!8m2!3d24.8466483!4d67.0030539!16s%2Fg%2F11j57w3svd!19sChIJFz1QFvc_sz4RCn8K3zfYXv4?authuser=0&hl=en&rclk=1",
     "status": null,
     "is_open": 1,
     "source_query": "museum_karachi",
-    "last_verified": "2026-08-26T02:25:53+05:00"
+    "last_verified": "2026-09-26T04:50:25+05:00"
   },
   {
     "venue_id": "ChIJQc9u2wk9sz4Rfh9ioYYxhY8",

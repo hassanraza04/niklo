@@ -401,7 +401,7 @@
     "category_slugs": "outdoors-adventure",
     "google_category": "Water park",
     "rating": 4.1,
-    "review_count": 890,
+    "review_count": 896,
     "latitude": 24.9919602,
     "longitude": 67.1783867,
     "area": "Gadap Town",
@@ -417,7 +417,7 @@
     "status": "Open",
     "is_open": 1,
     "source_query": "approved-waterpark-review",
-    "last_verified": "2026-09-26T04:50:25+05:00"
+    "last_verified": "2026-10-27T05:17:31+05:00"
   },
   {
     "venue_id": "ChIJhczLXgc-sz4R0OEkuu5dUSw",
@@ -1301,7 +1301,7 @@
     "category_slugs": "sports-active,entertainment",
     "google_category": "Club",
     "rating": 4.2,
-    "review_count": 2268,
+    "review_count": 2277,
     "latitude": 24.783642,
     "longitude": 67.0503274,
     "area": "D.H.A Phase 6 Darakhshan Villas Phase 6 Defence Housing Authority",
@@ -1317,7 +1317,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "swimming_pool_karachi",
-    "last_verified": "2026-09-26T04:50:25+05:00"
+    "last_verified": "2026-10-27T05:17:31+05:00"
   },
   {
     "venue_id": "ChIJk_5vHAA9sz4RCZV1mtKJzdA",
@@ -2067,7 +2067,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "art_studio_karachi",
-    "last_verified": "2026-09-26T04:50:25+05:00"
+    "last_verified": "2026-10-27T05:17:31+05:00"
   },
   {
     "venue_id": "ChIJd7AMaQA_sz4RGgAYE5tcb9Y",
@@ -3537,7 +3537,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "snooker_club_karachi",
-    "last_verified": "2026-09-26T04:50:25+05:00"
+    "last_verified": "2026-10-27T05:17:31+05:00"
   },
   {
     "venue_id": "ChIJZ_UdHSc_sz4RtVan5pMjUy8",
@@ -4047,7 +4047,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "futsal_karachi",
-    "last_verified": "2026-09-26T04:50:25+05:00"
+    "last_verified": "2026-10-27T05:17:31+05:00"
   },
   {
     "venue_id": "ChIJ0YH-LQA_sz4RV5Z6ODdKK_E",
@@ -4781,7 +4781,7 @@
     "category_slugs": "sports-active",
     "google_category": "Sports club",
     "rating": 4.5,
-    "review_count": 1646,
+    "review_count": 1648,
     "latitude": 24.9247335,
     "longitude": 67.0963648,
     "area": "Block 6 Gulshan-e-Iqbal",
@@ -4797,7 +4797,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "tennis_academy_karachi",
-    "last_verified": "2026-09-26T04:50:25+05:00"
+    "last_verified": "2026-10-27T05:17:31+05:00"
   },
   {
     "venue_id": "ChIJE1PXLQA9sz4RAICIJld_964",
@@ -6087,7 +6087,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "football_ground_karachi",
-    "last_verified": "2026-09-26T04:50:25+05:00"
+    "last_verified": "2026-10-27T05:17:31+05:00"
   },
   {
     "venue_id": "ChIJC78cR9MVsz4Rd-vs-aZ3lQ4",
@@ -6237,7 +6237,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "historical_place_karachi",
-    "last_verified": "2026-09-26T04:50:25+05:00"
+    "last_verified": "2026-10-27T05:17:31+05:00"
   },
   {
     "venue_id": "ChIJvQh3FqMVsz4Rttmc-LE2dXs",
@@ -6447,7 +6447,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "swimming_pool_karachi",
-    "last_verified": "2026-09-26T04:50:25+05:00"
+    "last_verified": "2026-10-27T05:17:31+05:00"
   },
   {
     "venue_id": "ChIJaxk2tGo2sz4RsE5nT70iqjs",
@@ -10181,7 +10181,7 @@
     "category_slugs": "entertainment",
     "google_category": "Movie theater",
     "rating": 4.5,
-    "review_count": 2605,
+    "review_count": 2621,
     "latitude": 25.027388499999997,
     "longitude": 67.3086675,
     "area": "Phase 1 Bahria Town Karachi",
@@ -10197,7 +10197,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "cinema_karachi",
-    "last_verified": "2026-09-26T04:50:25+05:00"
+    "last_verified": "2026-10-27T05:17:31+05:00"
   },
   {
     "venue_id": "ChIJ5VCFPyw8sz4RNtYyFg4DH78",
@@ -10451,7 +10451,7 @@
     "category_slugs": "entertainment",
     "google_category": "Sports club",
     "rating": 4.7,
-    "review_count": 42,
+    "review_count": 44,
     "latitude": 24.9541318,
     "longitude": 67.0698597,
     "area": "16/A Sector 16 A Buffer Zone",
@@ -10467,7 +10467,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "billiards_karachi",
-    "last_verified": "2026-09-26T04:50:25+05:00"
+    "last_verified": "2026-10-27T05:17:31+05:00"
   },
   {
     "venue_id": "ChIJF4C01AQ5sz4RfF70yO7q4Gc",
@@ -10887,7 +10887,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "football_ground_karachi",
-    "last_verified": "2026-09-26T04:50:25+05:00"
+    "last_verified": "2026-10-27T05:17:31+05:00"
   },
   {
     "venue_id": "ChIJBbe8DMk-sz4RtbVs9aukptM",
@@ -11831,7 +11831,7 @@
     "category_slugs": "sports-active",
     "google_category": "Cricket club",
     "rating": 4.5,
-    "review_count": 43,
+    "review_count": 42,
     "latitude": 24.8578705,
     "longitude": 67.0278742,
     "area": "Saddar New Chali",
@@ -11847,7 +11847,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "indoor_cricket_karachi",
-    "last_verified": "2026-09-26T04:50:25+05:00"
+    "last_verified": "2026-10-27T05:17:31+05:00"
   },
   {
     "venue_id": "ChIJQ7-AVgA9sz4R4kqf4uaF150",
@@ -12521,7 +12521,7 @@
     "category_slugs": "culture",
     "google_category": "Science museum",
     "rating": 4.7,
-    "review_count": 4830,
+    "review_count": 4881,
     "latitude": 24.8466483,
     "longitude": 67.0030539,
     "area": "Lalazar",
@@ -12537,7 +12537,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "museum_karachi",
-    "last_verified": "2026-09-26T04:50:25+05:00"
+    "last_verified": "2026-10-27T05:17:31+05:00"
   },
   {
     "venue_id": "ChIJQc9u2wk9sz4Rfh9ioYYxhY8",

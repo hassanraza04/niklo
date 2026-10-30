@@ -1077,7 +1077,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "indoor_cricket_karachi",
-    "last_verified": "2026-09-29T05:51:28+05:00"
+    "last_verified": "2026-10-30T05:38:36+05:00"
   },
   {
     "venue_id": "ChIJue4rzV08sz4RjfHRAsmM7hI",
@@ -3190,7 +3190,7 @@
     "subcategories": "box-cricket,futsal",
     "category_slugs": "sports-active",
     "google_category": "Sports complex",
-    "rating": 3.8,
+    "rating": 4.0,
     "review_count": 32,
     "latitude": 24.881687499999998,
     "longitude": 67.0631875,
@@ -3207,7 +3207,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "cricket_nets_karachi",
-    "last_verified": "2026-09-29T05:51:28+05:00"
+    "last_verified": "2026-10-30T05:38:36+05:00"
   },
   {
     "venue_id": "ChIJ5SuZqBw5sz4R_wYQiiIJjtc",
@@ -3777,7 +3777,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "padel_karachi",
-    "last_verified": "2026-09-29T05:51:28+05:00"
+    "last_verified": "2026-10-30T05:38:36+05:00"
   },
   {
     "venue_id": "ChIJZ_ZsUQA_sz4RLvmi1ACwe3A",
@@ -5531,7 +5531,7 @@
     "category_slugs": "sports-active",
     "google_category": "Cricket ground",
     "rating": 4.5,
-    "review_count": 37,
+    "review_count": 39,
     "latitude": 24.8483035,
     "longitude": 67.0271339,
     "area": "Civil Lines",
@@ -5547,7 +5547,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "cricket_nets_karachi",
-    "last_verified": "2026-09-29T05:51:28+05:00"
+    "last_verified": "2026-10-30T05:38:36+05:00"
   },
   {
     "venue_id": "ChIJ1VICXd89sz4RAqSYHvEqIBc",
@@ -5620,8 +5620,8 @@
     "subcategories": "futsal",
     "category_slugs": "sports-active",
     "google_category": "Playground",
-    "rating": 3.9,
-    "review_count": 248,
+    "rating": 4.0,
+    "review_count": 251,
     "latitude": 24.8952068,
     "longitude": 67.0227991,
     "area": "Gulbahar Eidgah Colony",
@@ -5637,7 +5637,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "football_ground_karachi",
-    "last_verified": "2026-09-29T05:51:28+05:00"
+    "last_verified": "2026-10-30T05:38:36+05:00"
   },
   {
     "venue_id": "ChIJ6er1u_Q-sz4RMFo272tdDTc",
@@ -5891,7 +5891,7 @@
     "category_slugs": "sports-active",
     "google_category": "Swimming pool",
     "rating": 3.8,
-    "review_count": 47,
+    "review_count": 48,
     "latitude": 24.882591899999998,
     "longitude": 67.0925343,
     "area": "Karsaz Faisal Cantonment",
@@ -5899,7 +5899,7 @@
     "city": "Karachi",
     "price_level": null,
     "website": null,
-    "phone": "+92 312 1112105",
+    "phone": "+92 307 2435908",
     "hours": "{}",
     "photo_url": "/venues/ChIJMd7Vpzg_sz4Rh8LkpQZA3r0.jpg",
     "photos": "[]",
@@ -5907,7 +5907,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "swimming_pool_karachi",
-    "last_verified": "2026-09-29T05:51:28+05:00"
+    "last_verified": "2026-10-30T05:38:36+05:00"
   },
   {
     "venue_id": "ChIJn3aZFaE_sz4RTEbCjjLBbIc",
@@ -8577,7 +8577,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "futsal_karachi",
-    "last_verified": "2026-09-29T05:51:28+05:00"
+    "last_verified": "2026-10-30T05:38:36+05:00"
   },
   {
     "venue_id": "ChIJhb25Jrg9sz4R8hSscYafAQk",
@@ -8847,7 +8847,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "padel_court_karachi",
-    "last_verified": "2026-09-29T05:51:28+05:00"
+    "last_verified": "2026-10-30T05:38:36+05:00"
   },
   {
     "venue_id": "ChIJN3aGHwA_sz4RJGfeyavNsOs",
@@ -8861,7 +8861,7 @@
     "category_slugs": "sports-active",
     "google_category": "Sports club",
     "rating": 4.6,
-    "review_count": 14,
+    "review_count": 15,
     "latitude": 24.8776668,
     "longitude": 67.05196579999999,
     "area": "Muslimabad",
@@ -8877,7 +8877,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "padel_club_karachi",
-    "last_verified": "2026-09-29T05:51:28+05:00"
+    "last_verified": "2026-10-30T05:38:36+05:00"
   },
   {
     "venue_id": "ChIJrQbtTQA_sz4RioPhln4VHoo",
@@ -10827,7 +10827,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "boat_ride_karachi",
-    "last_verified": "2026-09-29T05:51:28+05:00"
+    "last_verified": "2026-10-30T05:38:36+05:00"
   },
   {
     "venue_id": "ChIJqR_nD0E_sz4RhieaW72Mljo",
@@ -11547,7 +11547,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "football_ground_karachi",
-    "last_verified": "2026-10-05T04:50:09+05:00"
+    "last_verified": "2026-10-30T05:38:36+05:00"
   },
   {
     "venue_id": "ChIJWckeEzY_sz4RzYpD2qQlxts",
@@ -12880,8 +12880,8 @@
     "subcategories": "box-cricket",
     "category_slugs": "sports-active",
     "google_category": "Sports complex",
-    "rating": 3.7,
-    "review_count": 17,
+    "rating": 3.6,
+    "review_count": 18,
     "latitude": 24.8730638,
     "longitude": 67.0645571,
     "area": "Delhi Mercantile Society Darul Aman Society P.E.C.H.S.",
@@ -12897,7 +12897,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "indoor_cricket_karachi",
-    "last_verified": "2026-09-29T05:51:28+05:00"
+    "last_verified": "2026-10-30T05:38:36+05:00"
   },
   {
     "venue_id": "ChIJsWdI6lQ5sz4RWS1Xd8yrlmo",
@@ -13481,7 +13481,7 @@
     "category_slugs": "sports-active",
     "google_category": "Sports club",
     "rating": 4.0,
-    "review_count": 41,
+    "review_count": 43,
     "latitude": 24.8197619,
     "longitude": 67.0482707,
     "area": "D.H.A. Phase 4 Upper Gizri Defence Housing Authority",
@@ -13497,7 +13497,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "padel_clifton_karachi",
-    "last_verified": "2026-09-29T05:51:28+05:00"
+    "last_verified": "2026-10-30T05:38:36+05:00"
   },
   {
     "venue_id": "ChIJlUUTPVI_sz4RqatPSV0JOIo",
@@ -13720,8 +13720,8 @@
     "subcategories": "heritage",
     "category_slugs": "culture",
     "google_category": "Historical landmark",
-    "rating": 4.5,
-    "review_count": 90,
+    "rating": 4.4,
+    "review_count": 96,
     "latitude": 24.8541757,
     "longitude": 66.9964736,
     "area": "Musa Lane",
@@ -13737,7 +13737,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "historical_place_karachi",
-    "last_verified": "2026-09-29T05:51:28+05:00"
+    "last_verified": "2026-10-30T05:38:36+05:00"
   },
   {
     "venue_id": "ChIJZUmDF-VIsz4RWyxdHJ3aUyE",

@@ -671,7 +671,7 @@
     "category_slugs": "outdoors-adventure",
     "google_category": "Park",
     "rating": 4.0,
-    "review_count": 201,
+    "review_count": 204,
     "latitude": 24.855840399999998,
     "longitude": 67.0133997,
     "area": "Aram Bagh",
@@ -687,7 +687,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "hiking_trail_karachi",
-    "last_verified": "2026-10-08T05:41:38+05:00"
+    "last_verified": "2026-11-08T05:13:20+05:00"
   },
   {
     "venue_id": "ChIJ12h7DgA_sz4RQpI-AgthVIM",
@@ -851,7 +851,7 @@
     "category_slugs": "culture",
     "google_category": "Cultural center",
     "rating": 4.4,
-    "review_count": 3447,
+    "review_count": 3513,
     "latitude": 24.8530063,
     "longitude": 67.0208892,
     "area": "Saddar",
@@ -867,7 +867,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "art_cafe_karachi",
-    "last_verified": "2026-10-08T05:41:38+05:00"
+    "last_verified": "2026-11-08T05:13:20+05:00"
   },
   {
     "venue_id": "ChIJfXXqm84_sz4RBpMET5GljFc",
@@ -1887,7 +1887,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "paint_cafe_karachi",
-    "last_verified": "2026-10-08T05:41:38+05:00"
+    "last_verified": "2026-11-08T05:13:20+05:00"
   },
   {
     "venue_id": "ChIJWUxCOys9sz4RhTxEARU5Dsg",
@@ -2081,7 +2081,7 @@
     "category_slugs": "sports-active",
     "google_category": "Tennis court",
     "rating": 5.0,
-    "review_count": 27,
+    "review_count": 25,
     "latitude": 24.873314999999998,
     "longitude": 67.0667706,
     "area": "Darul Aman Society P.E.C.H.S.",
@@ -2097,7 +2097,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "tennis_academy_karachi",
-    "last_verified": "2026-10-08T05:41:38+05:00"
+    "last_verified": "2026-11-08T05:13:20+05:00"
   },
   {
     "venue_id": "ChIJLRmR0lVPsz4RVscYrkU0vLA",
@@ -2741,7 +2741,7 @@
     "category_slugs": "culture",
     "google_category": "Historical landmark",
     "rating": 4.5,
-    "review_count": 1252,
+    "review_count": 1292,
     "latitude": 24.8208807,
     "longitude": 67.03410199999999,
     "area": "Block 5 Clifton",
@@ -2757,7 +2757,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "historical_place_karachi",
-    "last_verified": "2026-10-08T05:41:38+05:00"
+    "last_verified": "2026-11-08T05:13:20+05:00"
   },
   {
     "venue_id": "ChIJPSp0QrtBsz4RtUsoyWTCs-Y",
@@ -3821,7 +3821,7 @@
     "category_slugs": "outdoors-adventure",
     "google_category": "Beach",
     "rating": 4.5,
-    "review_count": 1122,
+    "review_count": 1124,
     "latitude": 24.8394776,
     "longitude": 66.81824809999999,
     "area": "",
@@ -3837,7 +3837,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "french_beach_karachi",
-    "last_verified": "2026-10-08T05:41:38+05:00"
+    "last_verified": "2026-11-08T05:13:20+05:00"
   },
   {
     "venue_id": "ChIJe01bS9g9sz4Rbwn4ZiMC3jc",
@@ -3851,7 +3851,7 @@
     "category_slugs": "culture",
     "google_category": "Historical landmark",
     "rating": 4.4,
-    "review_count": 10641,
+    "review_count": 10684,
     "latitude": 24.847367,
     "longitude": 67.03292979999999,
     "area": "Civil Lines",
@@ -3867,7 +3867,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "heritage_site_karachi",
-    "last_verified": "2026-10-08T05:41:38+05:00"
+    "last_verified": "2026-11-08T05:13:20+05:00"
   },
   {
     "venue_id": "ChIJozoqCgA_sz4RbDS9AV_VScA",
@@ -4751,7 +4751,7 @@
     "category_slugs": "sports-active",
     "google_category": "Futsal court",
     "rating": 4.6,
-    "review_count": 11,
+    "review_count": 12,
     "latitude": 24.936695699999998,
     "longitude": 67.0485403,
     "area": "Block H North Nazimabad Town",
@@ -4767,7 +4767,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "futsal_karachi",
-    "last_verified": "2026-10-08T05:41:38+05:00"
+    "last_verified": "2026-11-08T05:13:20+05:00"
   },
   {
     "venue_id": "ChIJFydBA8s4sz4RC_V0Du4Ck-M",
@@ -5697,7 +5697,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "futsal_karachi",
-    "last_verified": "2026-10-08T05:41:38+05:00"
+    "last_verified": "2026-11-08T05:13:20+05:00"
   },
   {
     "venue_id": "ChIJ96gaUYg9sz4Rxs4vFMkx20o",
@@ -7707,7 +7707,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "futsal_karachi",
-    "last_verified": "2026-10-08T05:41:38+05:00"
+    "last_verified": "2026-11-08T05:13:20+05:00"
   },
   {
     "venue_id": "ChIJwXdpc14-sz4ROh2Jpsg27XA",
@@ -9551,7 +9551,7 @@
     "category_slugs": "sports-active",
     "google_category": "Club",
     "rating": 4.4,
-    "review_count": 356,
+    "review_count": 359,
     "latitude": 24.923481199999998,
     "longitude": 67.03579909999999,
     "area": "Block-B Block B North Nazimabad Town",
@@ -9567,7 +9567,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "swimming_pool_karachi",
-    "last_verified": "2026-10-08T05:41:38+05:00"
+    "last_verified": "2026-11-08T05:13:20+05:00"
   },
   {
     "venue_id": "ChIJn4INsds-sz4R4HSzMNsq34k",
@@ -10121,7 +10121,7 @@
     "category_slugs": "sports-active",
     "google_category": "Stadium",
     "rating": 4.1,
-    "review_count": 38,
+    "review_count": 39,
     "latitude": 24.8244459,
     "longitude": 67.0462879,
     "area": "Lower Gizri Gizri",
@@ -10137,7 +10137,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "football_ground_karachi",
-    "last_verified": "2026-10-08T05:41:38+05:00"
+    "last_verified": "2026-11-08T05:13:20+05:00"
   },
   {
     "venue_id": "ChIJhzdvPdg9sz4RYUscq-dVwTg",
@@ -11981,7 +11981,7 @@
     "category_slugs": "sports-active",
     "google_category": "Sports club",
     "rating": 4.5,
-    "review_count": 125,
+    "review_count": 132,
     "latitude": 24.8641185,
     "longitude": 67.0721283,
     "area": "Shahrah-e-Faisal Block 6 P.E.C.H.S.",
@@ -11997,7 +11997,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "indoor_cricket_karachi",
-    "last_verified": "2026-10-08T05:41:38+05:00"
+    "last_verified": "2026-11-08T05:13:20+05:00"
   },
   {
     "venue_id": "ChIJ7e2jKgA_sz4R2UNLThOUdqU",
@@ -12837,7 +12837,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "box_cricket_karachi",
-    "last_verified": "2026-10-08T05:41:38+05:00"
+    "last_verified": "2026-11-08T05:13:20+05:00"
   },
   {
     "venue_id": "ChIJd0OQyja1TDkRgQIDyvP4wsg",
@@ -12851,7 +12851,7 @@
     "category_slugs": "outdoors-adventure",
     "google_category": "Water park",
     "rating": 4.3,
-    "review_count": 3452,
+    "review_count": 3456,
     "latitude": 25.0176789,
     "longitude": 67.3873148,
     "area": "Gadap Town",
@@ -12860,14 +12860,14 @@
     "price_level": null,
     "website": "https://www.thegreatfiesta.com/",
     "phone": "+92 333 3529940",
-    "hours": "{\"Friday\":[\"10:30 AM-5:30 PM\"],\"Monday\":[\"10:30 AM-5:30 PM\"],\"Saturday\":[\"10:30 AM-5:30 PM\"],\"Sunday\":[\"10:30 AM-5:30 PM\"],\"Thursday\":[\"10:30 AM-5:30 PM\"],\"Tuesday\":[\"10:30 AM-5:30 PM\"],\"Wednesday\":[\"10:30 AM-5:30 PM\"]}",
+    "hours": "{\"Friday\":[\"10:30 AM–1:30 PM\",\"2:30–5:30 PM\"],\"Monday\":[\"10:30 AM–1 PM\",\"2–5:30 PM\"],\"Saturday\":[\"10:30 AM–1 PM\",\"2–5:30 PM\"],\"Sunday\":[\"10:30 AM–1 PM\",\"2–5:30 PM\"],\"Thursday\":[\"10:30 AM–1 PM\",\"2–5:30 PM\"],\"Tuesday\":[\"10:30 AM–1 PM\",\"2–5:30 PM\"],\"Wednesday\":[\"10:30 AM–1 PM\",\"2–5:30 PM\"]}",
     "photo_url": "/venues/ChIJd0OQyja1TDkRgQIDyvP4wsg.jpg",
     "photos": "[]",
     "google_url": "https://www.google.com/maps/place/The+Great+Fiesta/@24.9,67.15,12z/data=!4m6!3m5!1s0x394cb536ca904377:0xc8c2f8f3ca030281!8m2!3d25.0176789!4d67.3873148!16s%2Fg%2F1tjdpqxq?hl=en&entry=ttu&g_ep=EgoyMDI2MDcwOC4wIKXMDSoASAFQAw%3D%3D",
     "status": "Open",
     "is_open": 1,
     "source_query": "approved-waterpark-review",
-    "last_verified": "2026-10-08T05:41:38+05:00"
+    "last_verified": "2026-11-08T05:13:20+05:00"
   },
   {
     "venue_id": "ChIJNWV-KgA_sz4RWQKFsnZtHwI",

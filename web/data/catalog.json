@@ -1211,7 +1211,7 @@
     "category_slugs": "entertainment",
     "google_category": "Movie theater",
     "rating": 3.5,
-    "review_count": 853,
+    "review_count": 854,
     "latitude": 24.8641518,
     "longitude": 67.02536359999999,
     "area": "Preedy Quarters",
@@ -1227,7 +1227,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "cinema_karachi",
-    "last_verified": "2026-10-14T05:10:25+05:00"
+    "last_verified": "2026-11-14T06:16:29+05:00"
   },
   {
     "venue_id": "ChIJbctVFbA-sz4RlYUBU2hctcA",
@@ -1601,7 +1601,7 @@
     "category_slugs": "sports-active",
     "google_category": "Padel club",
     "rating": 3.6,
-    "review_count": 11,
+    "review_count": 12,
     "latitude": 24.814263699999998,
     "longitude": 67.0378088,
     "area": "DHA Phase 5 Defence V Defence Housing Authority",
@@ -1617,7 +1617,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "padel_club_karachi",
-    "last_verified": "2026-10-14T05:10:25+05:00"
+    "last_verified": "2026-11-14T06:16:29+05:00"
   },
   {
     "venue_id": "ChIJ3c2oKwA_sz4RbEn1X2i_G4U",
@@ -2240,14 +2240,14 @@
     "price_level": null,
     "website": null,
     "phone": "+92 335 2949056",
-    "hours": "{\"Friday\":[\"4 PM–1 AM\"],\"Monday\":[\"4 PM–1 AM\"],\"Saturday\":[\"4 PM–4 AM\"],\"Sunday\":[\"4 PM–1 AM\"],\"Thursday\":[\"4 PM–1 AM\"],\"Tuesday\":[\"4 PM–1 AM\"],\"Wednesday\":[\"4 PM–1 AM\"]}",
+    "hours": "{\"Friday\":[\"4 p.m.–1 a.m.\"],\"Monday\":[\"4 p.m.–1 a.m.\"],\"Saturday\":[\"4 p.m.–4 a.m.\"],\"Sunday\":[\"4 p.m.–1 a.m.\"],\"Thursday\":[\"4 p.m.–1 a.m.\"],\"Tuesday\":[\"4 p.m.–1 a.m.\"],\"Wednesday\":[\"4 p.m.–1 a.m.\"]}",
     "photo_url": "/venues/ChIJpaVEpNVHsz4RaZn-_eiqF3k.jpg",
     "photos": "[]",
     "google_url": "https://www.google.com/maps/place/Cricket+Hub/data=!4m7!3m6!1s0x3eb347d5a444a5a5:0x7917aae8fdfe9969!8m2!3d24.9474405!4d67.1027538!16s%2Fg%2F11vcwfn8_b!19sChIJpaVEpNVHsz4RaZn-_eiqF3k?authuser=0&hl=en&rclk=1",
     "status": null,
     "is_open": 1,
     "source_query": "indoor_cricket_karachi",
-    "last_verified": "2026-10-14T05:10:25+05:00"
+    "last_verified": "2026-11-14T06:16:29+05:00"
   },
   {
     "venue_id": "ChIJa--ipS49sz4RAoluCYLD4YI",
@@ -3687,7 +3687,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "football_ground_karachi",
-    "last_verified": "2026-10-14T05:10:25+05:00"
+    "last_verified": "2026-11-14T06:16:29+05:00"
   },
   {
     "venue_id": "ChIJi1OqxMc9sz4RA0563v3H-sI",
@@ -4001,7 +4001,7 @@
     "category_slugs": "sports-active,outdoors-adventure",
     "google_category": "Park",
     "rating": 4.2,
-    "review_count": 536,
+    "review_count": 537,
     "latitude": 24.8729111,
     "longitude": 67.00583449999999,
     "area": "Kalakot Kalan Kot",
@@ -4010,14 +4010,14 @@
     "price_level": null,
     "website": null,
     "phone": "+92 312 2964124",
-    "hours": "{\"Friday\":[\"7 AM–11 PM\"],\"Monday\":[\"7 AM–11 PM\"],\"Saturday\":[\"7 AM–11 PM\"],\"Sunday\":[\"7–11 PM\"],\"Thursday\":[\"7 AM–11 PM\"],\"Tuesday\":[\"7 AM–11 PM\"],\"Wednesday\":[\"7 AM–11 PM\"]}",
+    "hours": "{\"Friday\":[\"7 a.m.–11 p.m.\"],\"Monday\":[\"7 a.m.–11 p.m.\"],\"Saturday\":[\"7 a.m.–11 p.m.\"],\"Sunday\":[\"7–11 p.m.\"],\"Thursday\":[\"7 a.m.–11 p.m.\"],\"Tuesday\":[\"7 a.m.–11 p.m.\"],\"Wednesday\":[\"7 a.m.–11 p.m.\"]}",
     "photo_url": "/venues/ChIJpeGe7yM-sz4RpbZrgyxufdw.jpg",
     "photos": "[]",
     "google_url": "https://www.google.com/maps/place/Gabol+Park/data=!4m7!3m6!1s0x3eb33e23ef9ee1a5:0xdc7d6e2c836bb6a5!8m2!3d24.8729111!4d67.0058345!16s%2Fg%2F1txc5j04!19sChIJpeGe7yM-sz4RpbZrgyxufdw?authuser=0&hl=en&rclk=1",
     "status": null,
     "is_open": 1,
     "source_query": "football_ground_karachi",
-    "last_verified": "2026-10-14T05:10:25+05:00"
+    "last_verified": "2026-11-14T06:16:29+05:00"
   },
   {
     "venue_id": "ChIJH7UXVNI_sz4RwJe9kH_aXMk",
@@ -4249,15 +4249,15 @@
     "city": "Karachi",
     "price_level": null,
     "website": "http://www.greenwichpadel.pk/",
-    "phone": "+92 339 0000215",
-    "hours": "{\"Friday\":[\"12–10 AM\",\"4 PM–12 AM\"],\"Monday\":[\"12–10 AM\",\"4 PM–12 AM\"],\"Saturday\":[\"12–10 AM\",\"4 PM–12 AM\"],\"Sunday\":[\"12–10 AM\",\"4 PM–12 AM\"],\"Thursday\":[\"12–10 AM\",\"4 PM–12 AM\"],\"Tuesday\":[\"12–10 AM\",\"4 PM–12 AM\"],\"Wednesday\":[\"12–10 AM\",\"4 PM–12 AM\"]}",
+    "phone": "+92 313 6639933",
+    "hours": "{\"Friday\":[\"12–10 a.m.\",\"4 p.m.–12 a.m.\"],\"Monday\":[\"12–10 a.m.\",\"4 p.m.–12 a.m.\"],\"Saturday\":[\"12–10 a.m.\",\"4 p.m.–12 a.m.\"],\"Sunday\":[\"12–10 a.m.\",\"4 p.m.–12 a.m.\"],\"Thursday\":[\"12–10 a.m.\",\"4 p.m.–12 a.m.\"],\"Tuesday\":[\"12–10 a.m.\",\"4 p.m.–12 a.m.\"],\"Wednesday\":[\"12–10 a.m.\",\"4 p.m.–12 a.m.\"]}",
     "photo_url": "/venues/ChIJqyruOwA9sz4ROf5cpEePV40.jpg",
     "photos": "[]",
     "google_url": "https://www.google.com/maps/place/Greenwich+PADEL/data=!4m7!3m6!1s0x3eb33d003bee2aab:0x8d578f47a45cfe39!8m2!3d24.7880906!4d67.0488853!16s%2Fg%2F11wnn0m3hg!19sChIJqyruOwA9sz4ROf5cpEePV40?authuser=0&hl=en&rclk=1",
     "status": null,
     "is_open": 1,
     "source_query": "padel_dha_karachi",
-    "last_verified": "2026-10-14T05:10:25+05:00"
+    "last_verified": "2026-11-14T06:16:29+05:00"
   },
   {
     "venue_id": "ChIJI04vaco9sz4RZ9KApkrEcb8",
@@ -4437,7 +4437,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "football_ground_karachi",
-    "last_verified": "2026-10-14T05:10:25+05:00"
+    "last_verified": "2026-11-14T06:16:29+05:00"
   },
   {
     "venue_id": "ChIJ2Wi42Sg_sz4R5JuNpT2NcUA",
@@ -4857,7 +4857,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "heritage_site_karachi",
-    "last_verified": "2026-10-14T05:10:25+05:00"
+    "last_verified": "2026-11-14T06:16:29+05:00"
   },
   {
     "venue_id": "ChIJ0U6XUs45sz4RzE6ILp_XP50",
@@ -5201,7 +5201,7 @@
     "category_slugs": "sports-active",
     "google_category": "Sports complex",
     "rating": 3.6,
-    "review_count": 281,
+    "review_count": 283,
     "latitude": 24.8773125,
     "longitude": 67.0918125,
     "area": "KDA Scheme #1 KDA Scheme 1",
@@ -5217,7 +5217,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "5_a_side_football_karachi",
-    "last_verified": "2026-10-14T05:10:25+05:00"
+    "last_verified": "2026-11-14T06:16:29+05:00"
   },
   {
     "venue_id": "ChIJnW5OCWo_sz4R3JHzwLXVlxs",
@@ -7781,7 +7781,7 @@
     "category_slugs": "sports-active",
     "google_category": "Sports",
     "rating": 4.0,
-    "review_count": 21,
+    "review_count": 22,
     "latitude": 24.8708441,
     "longitude": 67.0117392,
     "area": "Usmanabad Ghazi Nagar",
@@ -7797,7 +7797,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "football_ground_karachi",
-    "last_verified": "2026-10-14T05:10:25+05:00"
+    "last_verified": "2026-11-14T06:16:29+05:00"
   },
   {
     "venue_id": "ChIJIzSubQA_sz4RreuanbC_xaY",
@@ -8381,7 +8381,7 @@
     "category_slugs": "sports-active,entertainment",
     "google_category": "Sports club",
     "rating": 4.2,
-    "review_count": 1339,
+    "review_count": 1342,
     "latitude": 24.9314437,
     "longitude": 67.0486214,
     "area": "Block G North Nazimabad Town",
@@ -8390,14 +8390,14 @@
     "price_level": null,
     "website": "https://www.facebook.com/northnazimabadgymkhanaofficial?mibextid=ZbWKwL",
     "phone": "+92 343 7622045",
-    "hours": "{\"Friday\":[\"6 AM–1 PM\",\"4–11 PM\"],\"Monday\":[\"Open 24 hours\"],\"Saturday\":[\"6 AM–1 PM\",\"4–11 PM\"],\"Sunday\":[\"6–9 AM\",\"4–11 PM\"],\"Thursday\":[\"6 AM–1 PM\",\"4–11 PM\"],\"Tuesday\":[\"6 AM–1 PM\",\"4–11 PM\"],\"Wednesday\":[\"6 AM–1 PM\",\"4–11 PM\"]}",
+    "hours": "{\"Friday\":[\"6 a.m.–1 p.m.\",\"4–11 p.m.\"],\"Monday\":[\"Open 24 hours\"],\"Saturday\":[\"6 a.m.–1 p.m.\",\"4–11 p.m.\"],\"Sunday\":[\"6–9 a.m.\",\"4–11 p.m.\"],\"Thursday\":[\"6 a.m.–1 p.m.\",\"4–11 p.m.\"],\"Tuesday\":[\"6 a.m.–1 p.m.\",\"4–11 p.m.\"],\"Wednesday\":[\"6 a.m.–1 p.m.\",\"4–11 p.m.\"]}",
     "photo_url": "/venues/ChIJq6pGioNAsz4R0b9CyI96cZs.jpg",
     "photos": "[]",
     "google_url": "https://www.google.com/maps/place/North+Nazimabad+Gymkhana/data=!4m7!3m6!1s0x3eb340838a46aaab:0x9b717a8fc842bfd1!8m2!3d24.9314437!4d67.0486214!16s%2Fg%2F1tdbv6_r!19sChIJq6pGioNAsz4R0b9CyI96cZs?authuser=0&hl=en&rclk=1",
     "status": null,
     "is_open": 1,
     "source_query": "box_cricket_north_nazimabad_karachi",
-    "last_verified": "2026-10-14T05:10:25+05:00"
+    "last_verified": "2026-11-14T06:16:29+05:00"
   },
   {
     "venue_id": "ChIJ____v30_sz4RWGycda6ytdg",
@@ -8891,7 +8891,7 @@
     "category_slugs": "sports-active",
     "google_category": "Padel court",
     "rating": 4.6,
-    "review_count": 106,
+    "review_count": 112,
     "latitude": 24.8747079,
     "longitude": 67.0640394,
     "area": "Delhi Mercantile Society P.E.C.H.S.",
@@ -8907,7 +8907,7 @@
     "status": null,
     "is_open": 1,
     "source_query": "padel_tennis_karachi",
-    "last_verified": "2026-10-14T05:10:25+05:00"
+    "last_verified": "2026-11-14T06:16:29+05:00"
   },
   {
     "venue_id": "ChIJ110-VwA_sz4REs53rVo-CAo",
@@ -10841,7 +10841,7 @@
     "category_slugs": "sports-active",
     "google_category": "Soccer field",
     "rating": 4.6,
-    "review_count": 80,
+    "review_count": 81,
     "latitude": 24.8750802,
     "longitude": 67.00081709999999,
     "area": "Singo Lane Lyari",
@@ -10850,14 +10850,14 @@
     "price_level": null,
     "website": null,
     "phone": "+92 321 2864346",
-    "hours": "{\"Friday\":[\"8:30 AM–2 AM\"],\"Monday\":[\"8:30 AM–2 AM\"],\"Saturday\":[\"8:30 AM–1 AM\"],\"Sunday\":[\"8:30 AM–1 AM\"],\"Thursday\":[\"8:30 AM–1 AM\"],\"Tuesday\":[\"8:30 AM–1 AM\"],\"Wednesday\":[\"8:30 AM–1 AM\"]}",
+    "hours": "{\"Friday\":[\"8:30 a.m.–2 a.m.\"],\"Monday\":[\"8:30 a.m.–2 a.m.\"],\"Saturday\":[\"8:30 a.m.–1 a.m.\"],\"Sunday\":[\"8:30 a.m.–1 a.m.\"],\"Thursday\":[\"8:30 a.m.–1 a.m.\"],\"Tuesday\":[\"8:30 a.m.–1 a.m.\"],\"Wednesday\":[\"8:30 a.m.–1 a.m.\"]}",
     "photo_url": "/venues/ChIJqR_nD0E_sz4RhieaW72Mljo.jpg",
     "photos": "[]",
     "google_url": "https://www.google.com/maps/place/Sarbazi+Ground/data=!4m7!3m6!1s0x3eb33f410fe71fa9:0x3a968cbd5b9a2786!8m2!3d24.8750802!4d67.0008171!16s%2Fg%2F11h2mym413!19sChIJqR_nD0E_sz4RhieaW72Mljo?authuser=0&hl=en&rclk=1",
     "status": null,
     "is_open": 1,
     "source_query": "football_ground_karachi",
-    "last_verified": "2026-10-14T05:10:25+05:00"
+    "last_verified": "2026-11-14T06:16:29+05:00"
   },
   {
     "venue_id": "ChIJG3jiktk_sz4RRmzHAcJU378",
@@ -12101,7 +12101,7 @@
     "category_slugs": "culture",
     "google_category": "Museum",
     "rating": 4.7,
-    "review_count": 470,
+    "review_count": 475,
     "latitude": 24.848442499999997,
     "longitude": 66.99943139999999,
     "area": "Lalazar",
@@ -12110,14 +12110,14 @@
     "price_level": null,
     "website": null,
     "phone": "+92 21 99221011",
-    "hours": "{\"Friday\":[\"9 AM–5:30 PM\"],\"Monday\":[\"9 AM–5:30 PM\"],\"Saturday\":[\"9 AM–5:30 PM\"],\"Sunday\":[\"Closed\"],\"Thursday\":[\"9 AM–5:30 PM\"],\"Tuesday\":[\"9 AM–5:30 PM\"],\"Wednesday\":[\"9 AM–5:30 PM\"]}",
+    "hours": "{\"Friday\":[\"9 a.m.–5:30 p.m.\"],\"Monday\":[\"9 a.m.–5:30 p.m.\"],\"Saturday\":[\"9 a.m.–5:30 p.m.\"],\"Sunday\":[\"Closed\"],\"Thursday\":[\"9 a.m.–5:30 p.m.\"],\"Tuesday\":[\"9 a.m.–5:30 p.m.\"],\"Wednesday\":[\"9 a.m.–5:30 p.m.\"]}",
     "photo_url": "/venues/ChIJpV0O2wE-sz4RCzHGypCUpkE.jpg",
     "photos": "[]",
     "google_url": "https://www.google.com/maps/place/State+Bank+Museum+%26+Art+Gallery/data=!4m7!3m6!1s0x3eb33e01db0e5da5:0x41a69490cac6310b!8m2!3d24.8484425!4d66.9994314!16s%2Fg%2F11gdt9vbmz!19sChIJpV0O2wE-sz4RCzHGypCUpkE?authuser=0&hl=en&rclk=1",
     "status": null,
     "is_open": 1,
     "source_query": "art_studio_karachi",
-    "last_verified": "2026-10-14T05:10:25+05:00"
+    "last_verified": "2026-11-14T06:16:29+05:00"
   },
   {
     "venue_id": "ChIJx7OssPA9sz4RcGEIrZ8_2fM",
